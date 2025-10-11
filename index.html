@@ -3742,12 +3742,16 @@ const fd = new FormData();
 fd.append('name', data.name);
 fd.append('email', data.email);
 fd.append('message', data.message);
+data.files.forEach(f => fd.append('files', f)); // name 'files' matches parser field
 
-try {
-  const res = await fetch('https://script.google.com/macros/s/AKfycbweMpe5LYxLlbwtgAkjRSfuTAY59MJyifxXZE5QCb2FYyewxKvGRbZlq9jRBAwwMkao/exec', {
-    method: 'POST',
-    body: fd
-  });
+const res = await fetch('https://script.google.com/macros/s/AKfycbweMpe5LYxLlbwtgAkjRSfuTAY59MJyifxXZE5QCb2FYyewxKvGRbZlq9jRBAwwMkao/exec', { method: 'POST', body: fd });
+const text = await res.text();
+if (text.includes('Success')) {
+  // show success UI
+} else {
+  // show error
+}
+
 
   const text = await res.text();
   console.log('Server response:', text);
