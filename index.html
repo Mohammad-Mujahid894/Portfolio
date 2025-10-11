@@ -1812,7 +1812,7 @@ label {
   transition: all 0.2s ease;
 }
 
-..input:focus + label,
+.input:focus + label,
 .input:not(:placeholder-shown) + label,
 .textarea:focus + label,
 .textarea:not(:placeholder-shown) + label {
@@ -1820,13 +1820,12 @@ label {
   left: 10px;
   font-size: 12px;
   color: var(--accent1);
-  padding: 0 8px;
-  border-radius: 14px;                      /* pill shape */
-  background: rgba(255, 255, 255, 0.06);    /* very light, semi-transparent */
-  backdrop-filter: blur(6px);               /* frosted glass effect */
-  -webkit-backdrop-filter: blur(6px);       /* Safari support */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);   /* subtle glow/shadow */
+  padding: 0 6px;
+  border-radius: 12px;                   /* pill shape */
+  background: rgba(255, 255, 255, 0.1);  /* light glassy color */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
+
 
 
 
