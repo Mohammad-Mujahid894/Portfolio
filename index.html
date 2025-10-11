@@ -1865,7 +1865,17 @@ input[type="file"]::file-selector-button:hover {
   color: var(--accent1);   /* optional hover color */
 }
 
-
+/* Target autofill in Chrome, Edge, Safari */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.textarea:-webkit-autofill,
+.textarea:-webkit-autofill:hover,
+.textarea:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.04) inset; /* your glassy background */
+    -webkit-text-fill-color: var(--fg); /* keep text color correct */
+    transition: background-color 5000s ease-in-out 0s; /* prevents flashing */
+}
 
 
 
@@ -3727,17 +3737,33 @@ window.addEventListener('resize', () => {
     btn?.classList.add('loading');
     btn?.setAttribute('disabled', 'true');
 
-    // TODO: Replace with real endpoint POST (FormData)
-    // const fd = new FormData();
-    // fd.append('name', data.name);
-    // fd.append('email', data.email);
-    // fd.append('message', data.message);
-    // data.files.forEach(f => fd.append('files[]', f));
-    // await fetch('/api/contact', { method: 'POST', body: fd });
+// ✅ Send data to Google Apps Script (real mail sender)
+const fd = new FormData();
+fd.append('name', data.name);
+fd.append('email', data.email);
+fd.append('message', data.message);
 
-    await new Promise(r => setTimeout(r, 1200));
+try {
+  const res = await fetch('https://script.google.com/macros/s/AKfycbweMpe5LYxLlbwtgAkjRSfuTAY59MJyifxXZE5QCb2FYyewxKvGRbZlq9jRBAwwMkao/exec', {
+    method: 'POST',
+    body: fd
+  });
 
+  const text = await res.text();
+  console.log('Server response:', text);
+
+  if (text.includes("Success")) {
+    await new Promise(r => setTimeout(r, 500));
     success?.removeAttribute('hidden');
+    form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled','true'));
+  } else {
+    alert('⚠️ Something went wrong. Please try again later.');
+  }
+} catch (err) {
+  console.error('Error sending message:', err);
+  alert('🚨 Error sending your message. Please check console.');
+}
+
     form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled','true'));
   });
 
