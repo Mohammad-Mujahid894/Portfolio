@@ -1618,19 +1618,20 @@ body {
   gap: 8px;
 }
 .contact-item {
-  display: grid;
-  grid-template-columns: 28px minmax(0,1fr) auto;
-  gap: 12px;
+  display: flex;          /* use flex instead of grid */
   align-items: center;
+  gap: 12px;
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--stroke);
   border-radius: 14px;
   padding: 8px 10px;
-  color: inherit;
-  text-decoration: none;
-  width: 100%;
-  min-height: 44px;
 }
+
+.contact-item > div {
+  display: flex;
+  flex-direction: column;
+}
+
 .contact-item:hover {
   border-color: rgba(255,255,255,0.18);
 }
@@ -1729,6 +1730,16 @@ body {
   box-shadow: 0 0 12px rgba(138, 122, 255, 0.5);
   transform: scale(1.05);
 }
+  .contact-meta div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.meta-label { color: var(--muted); }
+.meta-val { color: var(--fg); font-weight: 500; text-align: right; }
+
 
 /* Media queries */
 @media (max-width: 768px) {
@@ -1751,6 +1762,48 @@ body {
   .contact-avatar { width: 38px; height: 38px; }
 }
 
+.field {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 12px 12px 12px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.04);
+  color: var(--fg);
+  font-size: 14px;
+  outline: none;
+  transition: border 0.25s ease;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--accent1);
+}
+
+label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 14px;
+  color: var(--muted);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.input:focus + label,
+.input:not(:placeholder-shown) + label,
+.textarea:focus + label,
+.textarea:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 8px;
+  font-size: 12px;
+  color: var(--accent1);
+  background: var(--bg);
+  padding: 0 4px;
+}
 
   
 
@@ -2437,10 +2490,11 @@ I Lead with Relationship Building
         <a class="social-btn" href="#projects">Portfolio</a>
       </div>
 
-      <div class="contact-meta">
-        <div><span class="meta-label">Response</span><span class="meta-val">Within 24 hours</span></div>
-        <div><span class="meta-label">Hours</span><span class="meta-val">9 AM–6 PM IST • Nights ok</span></div>
-      </div>
+<div class="contact-meta">
+  <div><span class="meta-label">Response</span><span class="meta-val">24 hours</span></div>
+  <div><span class="meta-label">Working Hours</span><span class="meta-val">5:30 PM – 3:00 AM IST (US Shift)</span></div>
+</div>
+
     </aside>
 
     <!-- Form card -->
