@@ -1618,19 +1618,21 @@ body {
   gap: 8px;
 }
 .contact-item {
-  display: flex;          /* use flex instead of grid */
+  display: flex;
   align-items: center;
+  justify-content: space-between; /* separates left info and right action */
   gap: 12px;
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--stroke);
   border-radius: 14px;
-  padding: 8px 10px;
+  padding: 8px 12px;
 }
-
 .contact-item > div {
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* ensures label/value are left aligned */
 }
+
 
 .contact-item:hover {
   border-color: rgba(255,255,255,0.18);
@@ -1647,11 +1649,12 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--fg); /* make it normal text color */
 }
 .contact-action {
+  margin-left: auto; /* pushes it to the right */
+  text-align: right;
   color: var(--accent1);
-  font-size: 12px;
-  opacity: .9;
 }
 
 /* Copy feedback states */
@@ -1736,7 +1739,9 @@ body {
   margin-bottom: 6px;
   font-size: 14px;
 }
-
+.contact-label {
+  color: var(--muted);
+}
 .meta-label { color: var(--muted); }
 .meta-val { color: var(--fg); font-weight: 500; text-align: right; }
 
@@ -1762,6 +1767,7 @@ body {
   .contact-avatar { width: 38px; height: 38px; }
 }
 
+/* Fix floating labels animation and box appearance */
 .field {
   position: relative;
   margin-bottom: 16px;
@@ -1769,24 +1775,25 @@ body {
 
 .input, .textarea {
   width: 100%;
-  padding: 12px 12px 12px 12px;
+  padding: 12px;
   border-radius: 10px;
   border: 1px solid var(--stroke);
   background: rgba(255,255,255,0.04);
   color: var(--fg);
   font-size: 14px;
   outline: none;
-  transition: border 0.25s ease;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
 }
 
 .input:focus, .textarea:focus {
   border-color: var(--accent1);
+  box-shadow: 0 0 6px rgba(122,162,255,0.3);
 }
 
 label {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 14px;
+  left: 14px;
   font-size: 14px;
   color: var(--muted);
   pointer-events: none;
@@ -1797,12 +1804,37 @@ label {
 .input:not(:placeholder-shown) + label,
 .textarea:focus + label,
 .textarea:not(:placeholder-shown) + label {
-  top: -8px;
-  left: 8px;
+  top: -6px;           /* slightly above, not way up */
+  left: 10px;
   font-size: 12px;
   color: var(--accent1);
-  background: var(--bg);
+  background: rgba(4,6,11,0.9); /* subtle, matches bg */
   padding: 0 4px;
+}
+
+/* Style file input nicely */
+input[type="file"] {
+  color: var(--fg);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--stroke);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  background: var(--accent1);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  margin-right: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--accent2);
 }
 
   
@@ -2553,7 +2585,6 @@ I Lead with Relationship Building
   <!-- Toast -->
   <div class="toast" id="toast" role="status" aria-live="polite">
     <span class="toast-ico">✓</span>
-    <span class="toast-msg">Copied to clipboard</span>
   </div>
 </section>
 
