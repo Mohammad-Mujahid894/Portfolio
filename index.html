@@ -1504,8 +1504,16 @@ body {
 .contact-subtitle { color: var(--muted); max-width: 70ch; margin: 0 auto; }
 
 .contact-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 880px) { .contact-grid { grid-template-columns: 1.1fr 1.3fr 0.9fr; } }
 
+@media (min-width: 880px) {
+  .contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+    justify-content: center;
+  }
+}
+
+  
 .glass {
   background: var(--glass);
   border: 1px solid var(--stroke);
@@ -1620,6 +1628,18 @@ label {
 @media (max-width: 520px) {
   .glass { padding: 14px; }
   }
+.contact-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+.glass {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.contact-section, .contact-grid {
+  background: transparent;
+  border: none;
+}
 
 
   
@@ -3396,7 +3416,7 @@ window.addEventListener('resize', () => {
   // Validation rules
   const rules = {
     name: v => v.trim().length >= 2 || 'Name must be at least 2 characters',
-    email: v => /S+@S+.S+/.test(v) || 'Enter a valid email',
+email: v => /\S+@\S+\.\S+/.test(v) || 'Enter a valid email'
     subject: v => !!v || 'Select a subject',
     message: v => v.trim().length >= 10 || 'Message must be at least 10 characters'
   };
