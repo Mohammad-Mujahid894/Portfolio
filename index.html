@@ -1931,7 +1931,29 @@ label {
   }
 }
 
+/* ---- Anti-glitch fix for faint line issue ---- */
+* {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 
+.contact-section,
+.glass {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  isolation: isolate; /* creates a new stacking context */
+}
+
+html, body {
+  background-color: #04060b; /* your --bg color */
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
 
 
 
