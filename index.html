@@ -1493,17 +1493,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-  
-
 :root {
   --bg: #04060b;
   --fg: #eaf2ff;
@@ -1523,22 +1512,35 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 60px 24px;
+  overflow: hidden; /* fixes page-line glitch caused by backdrop-filter on glass cards */
 }
 
 /* Hero */
-.contact-hero { text-align: center; margin-bottom: clamp(24px, 3vw, 40px); }
-.contact-title { font-size: clamp(28px, 4.2vw, 42px); margin: 0 0 8px; }
+.contact-hero {
+  text-align: center;
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+.contact-title {
+  font-size: clamp(28px, 4.2vw, 42px);
+  margin: 0 0 8px;
+}
 .contact-gradient {
   background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-.contact-subtitle { color: var(--muted); max-width: 70ch; margin: 0 auto; }
+.contact-subtitle {
+  color: var(--muted);
+  max-width: 70ch;
+  margin: 0 auto;
+}
 
-/* Grid: force 3 columns on all screens, left wider */
+/* Grid: left wider, middle normal, right compressed */
 .contact-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: 1.4fr 1fr 1fr; /* left wider */
+  grid-template-columns: 1.6fr 1.1fr 0.9fr; /* adjusted: left wider, right compact */
   align-items: stretch;
 }
 
@@ -1548,22 +1550,36 @@ body {
   border: 1px solid var(--stroke);
   border-radius: 18px;
   backdrop-filter: blur(10px);
-  padding: 14px; /* tighter so 3-up fits on phones */
+  padding: 14px;
   transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.glass:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
+.glass:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.18);
+}
 
 /* Ensure left card doesn't span multiple columns */
 .contact-card { grid-column: auto; }
 
 /* Info card header */
-.contact-profile { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
+.contact-profile {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 12px;
+}
 .contact-avatar {
-  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
-  font-weight: 700; color: var(--bg);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%; /* Rounded like Microsoft Teams */
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--bg);
+  font-size: 18px;
   background: linear-gradient(145deg, var(--accent1), var(--accent3));
   box-shadow:
     0 0 12px rgba(122,162,255,.45),
@@ -1577,16 +1593,31 @@ body {
   background-clip: text;
   color: transparent;
 }
-.contact-role { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
-.contact-availability { display: flex; align-items: center; gap: 8px; margin-top: 6px; color: var(--muted); font-size: 13px; }
+.contact-role {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.contact-availability {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
 .dot--green { background: #4ff0b0; box-shadow: 0 0 8px rgba(79,240,176,.6); }
 
 /* Contact list */
-.contact-list { margin-top: 12px; display: grid; gap: 8px; }
+.contact-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
 .contact-item {
   display: grid;
-  grid-template-columns: 28px minmax(0,1fr) auto; /* middle column won't overflow */
+  grid-template-columns: 28px minmax(0,1fr) auto;
   gap: 12px;
   align-items: center;
   background: rgba(255,255,255,0.04);
@@ -1626,31 +1657,54 @@ body {
 .contact-list + .contact-social { margin-top: 16px; }
 
 /* Socials */
-.contact-social { display: flex; flex-wrap: wrap; gap: 8px; }
+.contact-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 .social-btn {
-  border: 1px solid var(--stroke); border-radius: 12px; padding: 8px 12px;
-  background: rgba(255,255,255,0.04); color: var(--fg); text-decoration: none; font-size: 13px;
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.04);
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 13px;
 }
 .social-btn:hover { border-color: rgba(255,255,255,0.18); }
 
 /* Meta */
-.contact-meta { display: grid; gap: 6px; margin-top: 12px; }
-.contact-meta > div { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+.contact-meta {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+.contact-meta > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+}
 .meta-label { opacity: .9; }
 .meta-val { color: var(--fg); }
 
-/* Form (header removed; stacked fields) */
+/* Form fields spacing reduced */
 .form-head { display: none; }
-.form-row { display: grid; gap: 12px; grid-template-columns: 1fr; }
-.field { position: relative; margin-bottom: 10px; }
+.form-row {
+  display: grid;
+  gap: 10px; /* reduced from 12px slightly */
+  grid-template-columns: 1fr;
+}
+.field { position: relative; margin-bottom: 8px; } /* slightly reduced */
 
+/* Inputs */
 .input, .textarea {
   width: 100%;
   color: var(--fg);
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--stroke);
   border-radius: 12px;
-  padding: 14px 12px;
+  padding: 13px 12px; /* reduced from 14px */
   outline: none;
   line-height: 1.4;
 }
@@ -1659,6 +1713,7 @@ body {
   box-shadow: 0 0 0 4px rgba(122,162,255,.12);
 }
 
+/* Floating labels */
 label {
   position: absolute;
   left: 12px;
@@ -1668,19 +1723,26 @@ label {
   pointer-events: none;
   transition: transform .2s ease, opacity .2s ease;
 }
-
-/* Floating labels (requires placeholder=" ") */
 .input:placeholder-shown + label,
 .textarea:placeholder-shown + label { transform: none; opacity: 1; }
 .input:not(:placeholder-shown) + label,
 .input:focus + label,
 .textarea:not(:placeholder-shown) + label,
-.textarea:focus + label { transform: translateY(-14px) scale(.9); opacity: .85; }
+.textarea:focus + label {
+  transform: translateY(-14px) scale(.9);
+  opacity: .85;
+}
 
-.err { color: #ff6b6b; font-size: 12px; margin-top: 6px; min-height: 14px; }
-.counter { position: absolute; right: 10px; bottom: 10px; color: var(--muted); font-size: 12px; }
+.err { color: #ff6b6b; font-size: 12px; margin-top: 4px; min-height: 14px; }
+.counter {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
 
-/* File input styled like others */
+/* File input */
 #cf-files { margin-top: 2px; }
 .input[type="file"] {
   padding: 10px 12px;
@@ -1719,8 +1781,12 @@ label {
 .btn:hover { border-color: rgba(255,255,255,0.18); }
 .btn[disabled] { opacity: .7; cursor: not-allowed; }
 .btn-spin {
-  width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.25); border-top-color: var(--fg);
-  border-radius: 50%; display: none; animation: spin 1s linear infinite;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.25);
+  border-top-color: var(--fg);
+  border-radius: 50%;
+  display: none;
+  animation: spin 1s linear infinite;
 }
 .btn.loading .btn-text { opacity: .8; }
 .btn.loading .btn-spin { display: inline-block; }
@@ -1737,8 +1803,11 @@ label {
 }
 .succ-ico { font-size: 24px; }
 
-/* Quick actions */
-.contact-quick h3 { margin: 0 0 8px; font-size: 18px; }
+/* Quick actions (compressed width visually) */
+.contact-quick h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
 .qa {
   width: 100%;
   min-height: 44px;
@@ -1748,7 +1817,7 @@ label {
   background: rgba(255,255,255,0.04);
   color: var(--fg);
   padding: 10px 12px;
-  margin-bottom: 8px;
+  margin-bottom: 6px; /* tighter */
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -1777,11 +1846,22 @@ label {
 .toast.show { transform: translateY(0); opacity: 1; }
 .toast-ico { font-size: 16px; }
 
-/* Mobile tweaks if 3-up is too tight on very small screens (optional) */
+/* Mobile tweaks */
 @media (max-width: 360px) {
-  .contact-grid { grid-template-columns: 1.2fr 1fr 1fr; } /* keep, but tighter ratio */
+  .contact-grid { grid-template-columns: 1.3fr 1fr 0.9fr; }
   .contact-value { font-size: 13px; }
 }
+
+
+
+
+
+
+
+
+
+  
+
 
 
 
