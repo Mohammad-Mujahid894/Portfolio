@@ -1475,9 +1475,35 @@ body {
 
 
 
-/* ===============================
-   CONTACT SECTION - FINAL OPTIMIZED CSS
-   =============================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
 :root {
   --bg: #04060b;
   --fg: #eaf2ff;
@@ -1486,220 +1512,137 @@ body {
   --stroke: rgba(255,255,255,0.12);
   --accent1: #7aa2ff;
   --accent2: #8a7aff;
-  --accent3: #4ff0ff;
-  --shadow-glow: 0 0 12px var(--accent1), 0 0 24px var(--accent2);
-  --font-body: "Poppins", sans-serif;
+  --accent3: #4ff0b0;
 }
 
-/* Wrapper */
+/* Contact section wrapper */
 .contact-section {
   position: relative;
   color: var(--fg);
   background: transparent;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 24px;
-  font-family: var(--font-body);
+  padding: 60px 24px;
 }
 
-/* Heading */
-.contact-hero {
-  text-align: center;
-  margin-bottom: 60px;
-  position: relative;
+/* Hero */
+.contact-hero { text-align: center; margin-bottom: clamp(24px, 3vw, 40px); }
+.contact-title { font-size: clamp(28px, 4.2vw, 42px); margin: 0 0 8px; }
+.contact-gradient {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
+.contact-subtitle { color: var(--muted); max-width: 70ch; margin: 0 auto; }
 
-.contact-title {
-  font-size: clamp(32px, 5vw, 46px);
-  font-weight: 600;
-  margin: 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--fg);
-  position: relative;
-}
-
-.contact-title::before {
-  content: "MM";
-  position: absolute;
-  top: -70px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 70px;
-  font-weight: 700;
-  background: linear-gradient(90deg, var(--accent1), var(--accent3));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: var(--shadow-glow);
-  letter-spacing: 3px;
-}
-
-.contact-subtitle {
-  font-size: 18px;
-  color: var(--muted);
-  margin-top: 12px;
-}
-
-/* Layout Grid */
+/* Grid: force 3 columns on all screens, left wider */
 .contact-grid {
   display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr;
+  gap: 12px;
+  grid-template-columns: 1.4fr 1fr 1fr; /* left wider */
   align-items: stretch;
 }
 
-@media (min-width: 960px) {
-  .contact-grid {
-    grid-template-columns: 1.2fr 1fr 1fr;
-  }
-}
-
-/* Glass Card */
+/* Card “glass” */
 .glass {
   background: var(--glass);
   border: 1px solid var(--stroke);
   border-radius: 18px;
   backdrop-filter: blur(10px);
-  padding: 22px;
+  padding: 14px; /* tighter so 3-up fits on phones */
+  transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
 }
+.glass:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
 
-.glass:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.18);
-  box-shadow: var(--shadow-glow);
-}
+/* Ensure left card doesn't span multiple columns */
+.contact-card { grid-column: auto; }
 
-/* Left Profile Card */
-.contact-profile {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
+/* Info card header */
+.contact-profile { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
 .contact-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  color: var(--bg);
+  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  font-weight: 700; color: var(--bg);
   background: linear-gradient(145deg, var(--accent1), var(--accent3));
-  box-shadow: var(--shadow-glow);
+  box-shadow:
+    0 0 12px rgba(122,162,255,.45),
+    0 0 22px rgba(79,240,176,.25);
 }
-
 .contact-name {
   margin: 0;
-  font-size: 19px;
-  font-weight: 600;
+  font-size: 20px;
+  background: linear-gradient(90deg, var(--fg), var(--accent1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
+.contact-role { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.contact-availability { display: flex; align-items: center; gap: 8px; margin-top: 6px; color: var(--muted); font-size: 13px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.dot--green { background: #4ff0b0; box-shadow: 0 0 8px rgba(79,240,176,.6); }
 
-.contact-role {
-  margin: 2px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* Availability Dot */
-.contact-availability {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 13px;
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--muted);
-}
-.dot--green {
-  background: #4ff0b0;
-  box-shadow: 0 0 8px rgba(79,240,176,.6);
-}
-
-/* Contact Items */
-.contact-list {
-  margin-top: 14px;
-  display: grid;
-  gap: 8px;
-}
+/* Contact list */
+.contact-list { margin-top: 12px; display: grid; gap: 8px; }
 .contact-item {
   display: grid;
-  grid-template-columns: 28px 1fr auto;
-  gap: 10px;
+  grid-template-columns: 28px minmax(0,1fr) auto; /* middle column won't overflow */
+  gap: 12px;
   align-items: center;
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--stroke);
   border-radius: 14px;
-  padding: 8px 12px;
+  padding: 8px 10px;
   color: inherit;
   text-decoration: none;
-  transition: all 0.25s ease;
-  height: 42px;
+  width: 100%;
+  min-height: 44px;
 }
-.contact-item:hover {
-  border-color: rgba(255,255,255,0.18);
-}
-.contact-ico {
-  font-size: 18px;
-}
-.contact-label {
-  color: var(--muted);
-  font-size: 12px;
-}
+.contact-item:hover { border-color: rgba(255,255,255,0.18); }
+.contact-ico { font-size: 16px; }
+.contact-label { color: var(--muted); font-size: 12px; }
+
+/* Keep email on one line, ellipsis if too long */
 .contact-value {
   font-size: 14px;
-  word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.contact-action {
-  color: var(--accent1);
-  font-size: 12px;
-  opacity: 0.9;
+.contact-action { color: var(--accent1); font-size: 12px; opacity: .9; }
+
+/* Copy feedback states */
+.contact-item.copied {
+  border-color: rgba(79,240,176,.6);
+  box-shadow: 0 0 0 4px rgba(79,240,176,.15);
+  transform: translateY(-1px) scale(1.01);
+}
+.contact-item.copy-failed {
+  border-color: rgba(255,107,107,.6);
+  box-shadow: 0 0 0 4px rgba(255,107,107,.12);
 }
 
-/* Social buttons pushed bottom */
-.contact-social {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: auto;
-  margin-bottom: 6px;
-}
+/* Space below list before socials so they don't touch Location */
+.contact-list + .contact-social { margin-top: 16px; }
+
+/* Socials */
+.contact-social { display: flex; flex-wrap: wrap; gap: 8px; }
 .social-btn {
-  border: 1px solid var(--stroke);
-  border-radius: 12px;
-  padding: 8px 12px;
-  background: rgba(255,255,255,0.04);
-  color: var(--fg);
-  text-decoration: none;
-  font-size: 13px;
-  transition: all 0.25s ease;
+  border: 1px solid var(--stroke); border-radius: 12px; padding: 8px 12px;
+  background: rgba(255,255,255,0.04); color: var(--fg); text-decoration: none; font-size: 13px;
 }
-.social-btn:hover {
-  border-color: rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.08);
-}
+.social-btn:hover { border-color: rgba(255,255,255,0.18); }
 
-/* Form Card (Middle Tab Simplified) */
-.form-head { display: none; } /* No Send a Message header */
+/* Meta */
+.contact-meta { display: grid; gap: 6px; margin-top: 12px; }
+.contact-meta > div { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+.meta-label { opacity: .9; }
+.meta-val { color: var(--fg); }
 
-.form-row {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: 1fr;
-}
-
-.field {
-  position: relative;
-}
+/* Form (header removed; stacked fields) */
+.form-head { display: none; }
+.form-row { display: grid; gap: 12px; grid-template-columns: 1fr; }
+.field { position: relative; margin-bottom: 10px; }
 
 .input, .textarea {
   width: 100%;
@@ -1710,9 +1653,7 @@ body {
   padding: 14px 12px;
   outline: none;
   line-height: 1.4;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
-
 .input:focus, .textarea:focus {
   border-color: rgba(122,162,255,.6);
   box-shadow: 0 0 0 4px rgba(122,162,255,.12);
@@ -1728,39 +1669,36 @@ label {
   transition: transform .2s ease, opacity .2s ease;
 }
 
-/* Floating Labels */
+/* Floating labels (requires placeholder=" ") */
 .input:placeholder-shown + label,
-.textarea:placeholder-shown + label {
-  transform: none;
-  opacity: 1;
-}
+.textarea:placeholder-shown + label { transform: none; opacity: 1; }
 .input:not(:placeholder-shown) + label,
 .input:focus + label,
 .textarea:not(:placeholder-shown) + label,
-.textarea:focus + label {
-  transform: translateY(-14px) scale(0.9);
-  opacity: 0.85;
-}
+.textarea:focus + label { transform: translateY(-14px) scale(.9); opacity: .85; }
 
-/* Attach Files */
-#cf-files {
-  margin-top: 4px;
-  color: var(--fg);
-  font-size: 13px;
-}
-input[type="file"] {
-  display: block;
-  width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--stroke);
-  border-radius: 12px;
+.err { color: #ff6b6b; font-size: 12px; margin-top: 6px; min-height: 14px; }
+.counter { position: absolute; right: 10px; bottom: 10px; color: var(--muted); font-size: 12px; }
+
+/* File input styled like others */
+#cf-files { margin-top: 2px; }
+.input[type="file"] {
   padding: 10px 12px;
-  cursor: pointer;
   color: var(--muted);
-  transition: all 0.25s ease;
 }
-input[type="file"]:hover {
-  border-color: rgba(255,255,255,0.18);
+.input[type="file"]::-webkit-file-upload-button,
+.input[type="file"]::file-selector-button {
+  margin-right: 10px;
+  border: 1px solid var(--stroke);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  color: var(--fg);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.input[type="file"]:focus {
+  border-color: rgba(122,162,255,.6);
+  box-shadow: 0 0 0 4px rgba(122,162,255,.12);
 }
 
 /* Buttons */
@@ -1773,25 +1711,37 @@ input[type="file"]:hover {
   border-radius: 12px;
   border: 1px solid var(--stroke);
   padding: 12px 14px;
-  margin-top: 10px;
+  margin-top: 6px;
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
   color: var(--fg);
   cursor: pointer;
-  transition: all 0.25s ease;
 }
-.btn:hover {
-  border-color: rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.08);
+.btn:hover { border-color: rgba(255,255,255,0.18); }
+.btn[disabled] { opacity: .7; cursor: not-allowed; }
+.btn-spin {
+  width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.25); border-top-color: var(--fg);
+  border-radius: 50%; display: none; animation: spin 1s linear infinite;
 }
+.btn.loading .btn-text { opacity: .8; }
+.btn.loading .btn-spin { display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn--ghost { background: transparent; }
 
-/* Right Quick Actions Card */
-.contact-quick h3 {
-  margin: 0 0 10px;
-  font-size: 18px;
+/* Success */
+.form-success {
+  text-align: center;
+  border: 1px dashed var(--stroke);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 10px;
 }
+.succ-ico { font-size: 24px; }
+
+/* Quick actions */
+.contact-quick h3 { margin: 0 0 8px; font-size: 18px; }
 .qa {
   width: 100%;
-  min-height: 42px;
+  min-height: 44px;
   text-align: left;
   border-radius: 12px;
   border: 1px solid var(--stroke);
@@ -1803,10 +1753,6 @@ input[type="file"]:hover {
   align-items: center;
   gap: 10px;
   justify-content: flex-start;
-  font-size: 14px;
-}
-.qa:hover {
-  border-color: rgba(255,255,255,0.18);
 }
 
 /* Toast */
@@ -1828,27 +1774,28 @@ input[type="file"]:hover {
   transition: .25s ease;
   z-index: 50;
 }
-.toast.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-.toast-ico {
-  font-size: 16px;
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-ico { font-size: 16px; }
+
+/* Mobile tweaks if 3-up is too tight on very small screens (optional) */
+@media (max-width: 360px) {
+  .contact-grid { grid-template-columns: 1.2fr 1fr 1fr; } /* keep, but tighter ratio */
+  .contact-value { font-size: 13px; }
 }
 
-/* Mobile Optimization */
-@media (max-width: 640px) {
-  .glass {
-    padding: 16px;
-  }
-  .contact-title::before {
-    top: -60px;
-    font-size: 54px;
-  }
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
