@@ -2365,145 +2365,275 @@ I Lead with Relationship Building
 
 
 
+<style>
+/* Contact section wrapper */
+.contact-section {
+  position: relative;
+  color: #eaf2ff;
+  background: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
 
-<!-- CONTACT -->
-<section id="contact" class="contact-section" aria-labelledby="contact-title">
-  <div class="contact-hero">
-    <h2 id="contact-title" class="contact-title"><span class="contact-gradient">Let’s Connect</span></h2>
-    <p class="contact-subtitle">Open to roles in O2C, cash application, and process automation—happy to chat.</p>
-  </div>
+/* Hero */
+.contact-hero { text-align: center; margin-bottom: clamp(24px, 3vw, 40px); }
+.contact-title { font-size: clamp(28px, 4.2vw, 42px); margin: 0 0 8px; }
+.contact-gradient {
+  background: linear-gradient(90deg, #7aa2ff, #8a7aff, #4ff0b0);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.contact-subtitle { color: #9fb2d8; max-width: 70ch; margin: 0 auto; }
 
-  <div class="contact-grid">
-    <!-- Info card (spans 2 columns on desktop via CSS .contact-card) -->
-    <aside class="contact-card glass" aria-label="Contact information">
-      <div class="contact-profile">
-        <div class="contact-avatar" aria-hidden="true">MM</div>
-        <div>
-          <h3 class="contact-name">Mohammad Mujahid</h3>
-          <p class="contact-role">Order to Cash • Accenture</p>
-          <div class="contact-availability">
-            <span class="dot dot--green" aria-hidden="true"></span>
-            <span>Available for opportunities</span>
-          </div>
-        </div>
-      </div>
+/* Grid: force 3 columns on all screens, left wider */
+.contact-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1.4fr 1fr 1fr; /* left wider */
+  align-items: stretch;
+}
 
-      <div class="contact-list">
-        <button class="contact-item js-copy" data-copy="Mohammad.mujahid.icmai.otc@gmail.com" type="button" aria-label="Copy corporate email">
-          <span class="contact-ico" aria-hidden="true">✉️</span>
-          <div>
-            <div class="contact-label">Corporate Inbox</div>
-            <div class="contact-value">Mohammad.mujahid.icmai.otc@gmail.com</div>
-          </div>
-          <span class="contact-action">Copy</span>
-        </button>
+/* Card “glass” */
+.glass {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  padding: 14px;
+  transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.glass:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
 
-        <button class="contact-item js-copy" data-copy="Mrozark894@gmail.com" type="button" aria-label="Copy personal email">
-          <span class="contact-ico" aria-hidden="true">✉️</span>
-          <div>
-            <div class="contact-label">Personal Inbox</div>
-            <div class="contact-value">Mrozark894@gmail.com</div>
-          </div>
-          <span class="contact-action">Copy</span>
-        </button>
+/* Ensure left card doesn't span multiple columns */
+.contact-card { grid-column: auto; }
 
-        <a class="contact-item" href="tel:+918105088456" aria-label="Call phone number">
-          <span class="contact-ico" aria-hidden="true">📞</span>
-          <div>
-            <div class="contact-label">Phone</div>
-            <div class="contact-value">+91 81050 88456</div>
-          </div>
-          <span class="contact-action">Call</span>
-        </a>
+/* Info card header */
+.contact-profile { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
+.contact-avatar {
+  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  font-weight: 700; color: #04060b;
+  background: linear-gradient(145deg, #7aa2ff, #4ff0b0);
+  box-shadow:
+    0 0 12px rgba(122,162,255,.45),
+    0 0 22px rgba(79,240,176,.25);
+}
+.contact-name {
+  margin: 0;
+  font-size: 20px;
+  background: linear-gradient(90deg, #eaf2ff, #7aa2ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.contact-role { margin: 2px 0 0; color: #9fb2d8; font-size: 14px; }
+.contact-availability { display: flex; align-items: center; gap: 8px; margin-top: 6px; color: #9fb2d8; font-size: 13px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #9fb2d8; }
+.dot--green { background: #4ff0b0; box-shadow: 0 0 8px rgba(79,240,176,.6); }
 
-        <a class="contact-item" href="https://maps.google.com/?q=Bengaluru%2C%20Karnataka" target="_blank" rel="noopener" aria-label="Open location in Google Maps">
-          <span class="contact-ico" aria-hidden="true">📍</span>
-          <div>
-            <div class="contact-label">Location</div>
-            <div class="contact-value">Bengaluru, Karnataka</div>
-          </div>
-          <span class="contact-action">Map</span>
-        </a>
-      </div>
+/* Contact list */
+.contact-list { margin-top: 12px; display: grid; gap: 8px; }
+.contact-item {
+  display: grid;
+  grid-template-columns: 28px minmax(0,1fr) auto;
+  gap: 12px;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 8px 10px;
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  min-height: 44px;
+}
+.contact-item:hover { border-color: rgba(255,255,255,0.18); }
+.contact-ico { font-size: 16px; }
+.contact-label { color: #9fb2d8; font-size: 12px; }
 
-      <div class="contact-social" aria-label="Profiles">
-        <a class="social-btn" href="https://linkedin.com/in/mohammadmujahid" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="social-btn" href="https://github.com/mohammad-mujahid894" target="_blank" rel="noopener">GitHub</a>
-        <a class="social-btn" href="#projects">Portfolio</a>
-      </div>
+/* Keep email on one line, ellipsis if too long */
+.contact-value {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contact-action { color: #7aa2ff; font-size: 12px; opacity: .9; }
 
-      <div class="contact-meta">
-        <div><span class="meta-label">Response</span><span class="meta-val">Within 24 hours</span></div>
-        <div><span class="meta-label">Hours</span><span class="meta-val">9 AM–6 PM IST • Nights ok</span></div>
-      </div>
-    </aside>
+/* Copy feedback states */
+.contact-item.copied {
+  border-color: rgba(79,240,176,.6);
+  box-shadow: 0 0 0 4px rgba(79,240,176,.15);
+  transform: translateY(-1px) scale(1.01);
+}
+.contact-item.copy-failed {
+  border-color: rgba(255,107,107,.6);
+  box-shadow: 0 0 0 4px rgba(255,107,107,.12);
+}
 
-    <!-- Form card -->
-    <div class="contact-form glass" aria-label="Contact form">
-      <form id="contactForm" name="contact" method="POST" enctype="multipart/form-data" novalidate>
-        <!-- Netlify Forms (optional): uncomment if deploying on Netlify -->
-        <!-- <input type="hidden" name="form-name" value="contact"> -->
-        <!-- <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p> -->
+/* Space below list before socials so they don't touch Location */
+.contact-list + .contact-social { margin-top: 16px; }
 
-        <div class="form-row">
-          <div class="field">
-            <input class="input" id="cf-name" name="name" type="text" required placeholder=" ">
-            <label for="cf-name">Full name</label>
-            <div class="err" id="err-name"></div>
-          </div>
-        </div>
+/* Socials */
+.contact-social { display: flex; flex-wrap: wrap; gap: 8px; }
+.social-btn {
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 8px 12px;
+  background: rgba(255,255,255,0.04); color: #eaf2ff; text-decoration: none; font-size: 13px;
+}
+.social-btn:hover { border-color: rgba(255,255,255,0.18); }
 
-        <div class="form-row">
-          <div class="field">
-            <input class="input" id="cf-email" name="email" type="email" required placeholder=" ">
-            <label for="cf-email">Email</label>
-            <div class="err" id="err-email"></div>
-          </div>
-        </div>
+/* Meta */
+.contact-meta { display: grid; gap: 6px; margin-top: 12px; }
+.contact-meta > div { display: flex; justify-content: space-between; font-size: 13px; color: #9fb2d8; }
+.meta-label { opacity: .9; }
+.meta-val { color: #eaf2ff; }
 
-        <div class="field">
-          <textarea class="textarea" id="cf-message" name="message" rows="6" required placeholder=" "></textarea>
-          <label for="cf-message">Your message</label>
-          <!-- Optional live counter: <div class="counter"><span id="cf-count">0</span> chars</div> -->
-          <div class="err" id="err-message"></div>
-        </div>
+/* Form (header removed; stacked fields) */
+.form-head { display: none; }
+.form-row { display: grid; gap: 12px; grid-template-columns: 1fr; }
+.field { position: relative; margin-bottom: 10px; }
 
-        <div class="field">
-          <input class="input" id="cf-files" name="files" type="file" multiple
-                 accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.txt,.csv">
-          <label for="cf-files">Attach files (optional)</label>
-          <div class="err" id="err-files"></div>
-        </div>
+.input, .textarea {
+  width: 100%;
+  color: #eaf2ff;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 14px 12px;
+  outline: none;
+  line-height: 1.4;
+}
+.input:focus, .textarea:focus {
+  border-color: rgba(122,162,255,.6);
+  box-shadow: 0 0 0 4px rgba(122,162,255,.12);
+}
 
-        <button id="cf-submit" class="btn" type="submit">
-          <span class="btn-text">Send message</span>
-          <span class="btn-spin" aria-hidden="true"></span>
-        </button>
+label {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  font-size: 12px;
+  color: #9fb2d8;
+  pointer-events: none;
+  transition: transform .2s ease, opacity .2s ease;
+}
 
-        <div class="form-success" id="cf-success" hidden>
-          <div class="succ-ico">🎉</div>
-          <h4>Message sent</h4>
-          <p>Thanks for reaching out—reply within 24 hours.</p>
-          <button class="btn btn--ghost" type="button" id="cf-send-another">Send another</button>
-        </div>
-      </form>
-    </div>
+/* Floating labels (requires placeholder=" ") */
+.input:placeholder-shown + label,
+.textarea:placeholder-shown + label { transform: none; opacity: 1; }
+.input:not(:placeholder-shown) + label,
+.input:focus + label,
+.textarea:not(:placeholder-shown) + label,
+.textarea:focus + label { transform: translateY(-14px) scale(.9); opacity: .85; }
 
-    <!-- Quick actions -->
-    <div class="contact-quick glass" aria-label="Quick actions">
-      <h3>Quick actions</h3>
-      <button class="qa" type="button" id="qa-resume">📄 Download Resume</button>
-      <button class="qa" type="button" id="qa-meet">📅 Schedule Meeting</button>
-      <a class="qa" href="#projects">🎯 View Portfolio</a>
-    </div>
-  </div>
+.err { color: #ff6b6b; font-size: 12px; margin-top: 6px; min-height: 14px; }
+.counter { position: absolute; right: 10px; bottom: 10px; color: #9fb2d8; font-size: 12px; }
 
-  <!-- Toast -->
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <span class="toast-ico" aria-hidden="true">✓</span>
-    <span class="toast-msg">Copied to clipboard</span>
-  </div>
-</section>
+/* File input styled like others */
+#cf-files { margin-top: 2px; }
+.input[type="file"] {
+  padding: 10px 12px;
+  color: #9fb2d8;
+}
+.input[type="file"]::-webkit-file-upload-button,
+.input[type="file"]::file-selector-button {
+  margin-right: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  color: #eaf2ff;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.input[type="file"]:focus {
+  border-color: rgba(122,162,255,.6);
+  box-shadow: 0 0 0 4px rgba(122,162,255,.12);
+}
+
+/* Buttons */
+.btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 12px 14px;
+  margin-top: 6px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  color: #eaf2ff;
+  cursor: pointer;
+}
+.btn:hover { border-color: rgba(255,255,255,0.18); }
+.btn[disabled] { opacity: .7; cursor: not-allowed; }
+.btn-spin {
+  width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.25); border-top-color: #eaf2ff;
+  border-radius: 50%; display: none; animation: spin 1s linear infinite;
+}
+.btn.loading .btn-text { opacity: .8; }
+.btn.loading .btn-spin { display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn--ghost { background: transparent; }
+
+/* Success */
+.form-success {
+  text-align: center;
+  border: 1px dashed rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 10px;
+}
+.succ-ico { font-size: 24px; }
+
+/* Quick actions */
+.contact-quick h3 { margin: 0 0 8px; font-size: 18px; }
+.qa {
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: #eaf2ff;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  inset: auto 16px 16px auto;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 8px;
+  background: rgba(20,24,34,.9);
+  color: #eaf2ff;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 10px 12px;
+  transform: translateY(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s ease;
+  z-index: 50;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-ico { font-size: 16px; }
+
+/* Mobile tweaks if 3-up is too tight on very small screens (optional) */
+@media (max-width: 360px) {
+  .contact-grid { grid-template-columns: 1.2fr 1fr 1fr; }
+  .contact-value { font-size: 13px; }
+}
+  </style>
 
 
 
