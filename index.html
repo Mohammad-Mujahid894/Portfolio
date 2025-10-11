@@ -1526,10 +1526,14 @@ body {
 /* Grid: left wider, middle normal, right compressed */
 .contact-grid {
   display: grid;
-  gap: 12px;
-  grid-template-columns: 1.6fr 1.1fr 0.9fr;
-  align-items: stretch;
+  gap: 16px;
+  grid-template-columns: 
+    minmax(250px, 1.6fr)  /* left: at least 250px */
+    minmax(280px, 1.1fr)  /* middle: at least 280px */
+    minmax(200px, 0.9fr); /* right: at least 200px */
+  align-items: start;
 }
+
 
 /* Glass card */
 .glass {
@@ -2441,10 +2445,6 @@ I Lead with Relationship Building
 
     <!-- Form card -->
     <div class="contact-form glass">
-      <header class="form-head">
-        <h3>Send a message</h3>
-        <p>Brief context helps: role, timeline, and expectations.</p>
-      </header>
 
       <form id="contactForm" novalidate enctype="multipart/form-data">
         <div class="form-row">
