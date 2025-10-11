@@ -1568,6 +1568,17 @@ body {
   width: 100%;
   min-height: 48px;
 }
+  /* Emails stay on one line inside the left card */
+.contact-item { grid-template-columns: 28px minmax(0,1fr) auto; }
+.contact-value {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+  .contact-item { padding: 8px 10px; min-height: 44px; }
+  .contact-ico { font-size: 16px; }
+.contact-section { max-width: 1040px; }
+
 .contact-item:hover { border-color: rgba(255,255,255,0.18); }
 .contact-ico { font-size: 16px; }
 .contact-label { color: var(--muted); font-size: 12px; }
@@ -1580,6 +1591,19 @@ body {
   text-overflow: ellipsis;
 }
 .contact-action { color: var(--accent1); font-size: 12px; opacity: .9; }
+
+  /* Mobile: 2 columns with left wider */
+.contact-grid {
+  grid-template-columns: 1.3fr 1fr;
+}
+.contact-form { grid-column: 1 / -1; } /* third card moves to new row on small screens */
+
+/* Desktop: 3 columns equal */
+@media (min-width: 880px) {
+  .contact-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .contact-form { grid-column: auto; }
+}
+
 
 /* Copy feedback states */
 .contact-item.copied {
@@ -1751,7 +1775,6 @@ label {
 @media (max-width: 520px) {
   .glass { padding: 14px; }
 }
-
 
 
   
@@ -2386,12 +2409,14 @@ I Lead with Relationship Building
 .contact-subtitle { color: #9fb2d8; max-width: 70ch; margin: 0 auto; }
 
 /* Grid: force 3 columns on all screens, left wider */
+/* Force 3 columns on all screens */
 .contact-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: 1.4fr 1fr 1fr; /* left wider */
+  grid-template-columns: 1.4fr 1fr 1fr; /* left wider than others */
   align-items: stretch;
 }
+
 
 /* Card “glass” */
 .glass {
