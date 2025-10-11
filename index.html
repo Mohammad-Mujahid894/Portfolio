@@ -1493,16 +1493,6 @@ body {
 
 
 
-:root {
-  --bg: #04060b;
-  --fg: #eaf2ff;
-  --muted: #9fb2d8;
-  --glass: rgba(255,255,255,0.06);
-  --stroke: rgba(255,255,255,0.12);
-  --accent1: #7aa2ff;
-  --accent2: #8a7aff;
-  --accent3: #4ff0b0;
-}
 
 /* Contact section wrapper */
 .contact-section {
@@ -1935,38 +1925,6 @@ label {
 
 
 
-  /* --- Smooth backdrop fix (non-breaking) --- */
-
-/* Only apply GPU fix to glass components, not the entire section */
-.glass {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-/* Restore background visibility */
-.contact-section {
-  isolation: unset !important;
-  background: transparent !important;
-  overflow: hidden; /* prevents 1px faint line bleed */
-}
-
-/* Root background always visible */
-html, body {
-  background: var(--bg) !important;
-  background-attachment: fixed;
-  overflow-x: hidden;
-}
-
-/* Prevent stray 1px scroll artifacts (like that X mark) */
-body::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
 
 
 
