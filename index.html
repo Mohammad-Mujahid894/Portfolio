@@ -1931,29 +1931,43 @@ label {
   }
 }
 
-/* ---- Anti-glitch fix for faint line issue ---- */
-* {
+
+
+
+
+  /* --- Smooth backdrop fix (non-breaking) --- */
+
+/* Only apply GPU fix to glass components, not the entire section */
+.glass {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-}
-
-.contact-section,
-.glass {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
   will-change: transform;
-  isolation: isolate; /* creates a new stacking context */
+  transform: translateZ(0);
 }
 
+/* Restore background visibility */
+.contact-section {
+  isolation: unset !important;
+  background: transparent !important;
+  overflow: hidden; /* prevents 1px faint line bleed */
+}
+
+/* Root background always visible */
 html, body {
-  background-color: #04060b; /* your --bg color */
+  background: var(--bg) !important;
+  background-attachment: fixed;
   overflow-x: hidden;
 }
 
-body {
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
+/* Prevent stray 1px scroll artifacts (like that X mark) */
+body::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
+
 
 
 
