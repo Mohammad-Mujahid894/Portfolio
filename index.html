@@ -1477,24 +1477,21 @@ body {
 
 
 
-:root {
-  --bg: #04060b;
-  --fg: #eaf2ff;
-  --muted: #9fb2d8;
-  --glass: rgba(255,255,255,0.06);
-  --stroke: rgba(255,255,255,0.12);
-  --accent1: #7aa2ff;
-  --accent2: #8a7aff;
-  --accent3: #4ff0b0;
-}
 
+
+
+
+/* Contact section wrapper */
 .contact-section {
   position: relative;
-  padding: clamp(48px, 6vw, 96px) min(6vw, 64px);
   color: var(--fg);
   background: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px;
 }
 
+/* Hero */
 .contact-hero { text-align: center; margin-bottom: clamp(24px, 3vw, 40px); }
 .contact-title { font-size: clamp(28px, 4.2vw, 42px); margin: 0 0 8px; }
 .contact-gradient {
@@ -1503,24 +1500,28 @@ body {
 }
 .contact-subtitle { color: var(--muted); max-width: 70ch; margin: 0 auto; }
 
-.contact-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-
+/* Grid: 1col → 3col, equal card heights */
+.contact-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
 @media (min-width: 880px) {
-  .contact-grid {
-    grid-template-columns: repeat(3, 1fr);
-    align-items: start;
-    justify-content: center;
-  }
+  .contact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-  
+/* Card “glass” */
 .glass {
   background: var(--glass);
   border: 1px solid var(--stroke);
   border-radius: 18px;
   backdrop-filter: blur(10px);
   padding: clamp(16px, 2.4vw, 24px);
-  transition: transform .25s ease, border-color .25s ease, background .25s ease;
+  transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .glass:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
 
@@ -1537,60 +1538,114 @@ body {
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
 .dot--green { background: #4ff0b0; box-shadow: 0 0 8px rgba(79,240,176,.6); }
 
+/* Contact list */
 .contact-list { margin-top: 12px; display: grid; gap: 8px; }
 .contact-item {
-  display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center;
-  background: rgba(255,255,255,0.04); border: 1px solid var(--stroke); border-radius: 14px;
-  padding: 10px 12px; color: inherit; text-decoration: none;
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  padding: 10px 12px;
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
 }
 .contact-item:hover { border-color: rgba(255,255,255,0.18); }
 .contact-ico { font-size: 18px; }
 .contact-label { color: var(--muted); font-size: 12px; }
-.contact-value { font-size: 14px; }
+.contact-value { font-size: 14px; word-break: break-all; }
 .contact-action { color: var(--accent1); font-size: 12px; opacity: .9; }
 
-.contact-social { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+/* Copy feedback states */
+.contact-item.copied {
+  border-color: rgba(79,240,176,.6);
+  box-shadow: 0 0 0 4px rgba(79,240,176,.15);
+  transform: translateY(-1px) scale(1.01);
+}
+.contact-item.copy-failed {
+  border-color: rgba(255,107,107,.6);
+  box-shadow: 0 0 0 4px rgba(255,107,107,.12);
+}
+
+/* Socials pushed to bottom for equal-height */
+.contact-social { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
 .social-btn {
   border: 1px solid var(--stroke); border-radius: 12px; padding: 8px 12px;
   background: rgba(255,255,255,0.04); color: var(--fg); text-decoration: none; font-size: 13px;
 }
 .social-btn:hover { border-color: rgba(255,255,255,0.18); }
 
+/* Meta */
 .contact-meta { display: grid; gap: 6px; margin-top: 12px; }
 .contact-meta > div { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
-.meta-label { opacity: .9; } .meta-val { color: var(--fg); }
+.meta-label { opacity: .9; }
+.meta-val { color: var(--fg); }
 
 /* Form */
 .form-head h3 { margin: 0; font-size: 18px; }
 .form-head p { margin: 4px 0 12px; color: var(--muted); font-size: 14px; }
 
-.form-row { display: grid; gap: 10px; grid-template-columns: 1fr; }
+.form-row { display: grid; gap: 12px; grid-template-columns: 1fr; }
 @media (min-width: 560px) { .form-row { grid-template-columns: 1fr 1fr; } }
 
 .field { position: relative; }
-.input, .select, .textarea {
-  width: 100%; color: var(--fg); background: rgba(255,255,255,0.04);
-  border: 1px solid var(--stroke); border-radius: 12px; padding: 14px 12px; outline: none;
+
+.input, .textarea {
+  width: 100%;
+  color: var(--fg);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 14px 12px;
+  outline: none;
+  line-height: 1.4;
 }
-.input:focus, .select:focus, .textarea:focus { border-color: rgba(122,162,255,.6); box-shadow: 0 0 0 4px rgba(122,162,255,.12); }
+.input:focus, .textarea:focus {
+  border-color: rgba(122,162,255,.6);
+  box-shadow: 0 0 0 4px rgba(122,162,255,.12);
+}
+
 label {
-  position: absolute; left: 12px; top: 10px; font-size: 12px; color: var(--muted); pointer-events: none;
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  pointer-events: none;
   transition: transform .2s ease, opacity .2s ease;
 }
+
+/* Floating labels (requires placeholder=" " on inputs/textarea) */
+.input:placeholder-shown + label,
+.textarea:placeholder-shown + label { transform: none; opacity: 1; }
 .input:not(:placeholder-shown) + label,
 .input:focus + label,
 .textarea:not(:placeholder-shown) + label,
-.textarea:focus + label,
-.select:focus + label { transform: translateY(-14px) scale(.9); opacity: .85; }
+.textarea:focus + label { transform: translateY(-14px) scale(.9); opacity: .85; }
 
 .err { color: #ff6b6b; font-size: 12px; margin-top: 6px; min-height: 14px; }
 .counter { position: absolute; right: 10px; bottom: 10px; color: var(--muted); font-size: 12px; }
 
+/* Attachments input spacing */
+#cf-files { margin-top: 2px; }
+
+/* Buttons */
 .btn {
-  width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  border-radius: 12px; border: 1px solid var(--stroke); padding: 12px 14px; margin-top: 6px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  padding: 12px 14px;
+  margin-top: 6px;
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  color: var(--fg); cursor: pointer;
+  color: var(--fg);
+  cursor: pointer;
 }
 .btn:hover { border-color: rgba(255,255,255,0.18); }
 .btn[disabled] { opacity: .7; cursor: not-allowed; }
@@ -1601,24 +1656,53 @@ label {
 .btn.loading .btn-text { opacity: .8; }
 .btn.loading .btn-spin { display: inline-block; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
 .btn--ghost { background: transparent; }
 
-.form-success { text-align: center; border: 1px dashed var(--stroke); border-radius: 12px; padding: 16px; margin-top: 10px; }
+/* Success box */
+.form-success {
+  text-align: center;
+  border: 1px dashed var(--stroke);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 10px;
+}
 .succ-ico { font-size: 24px; }
 
-/* Quick actions */
+/* Quick actions aligned and equal widths */
 .contact-quick h3 { margin: 0 0 8px; font-size: 18px; }
 .qa {
-  width: 100%; text-align: left; border-radius: 12px; border: 1px solid var(--stroke);
-  background: rgba(255,255,255,0.04); color: var(--fg); padding: 10px 12px; margin-bottom: 8px;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.04);
+  color: var(--fg);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
 }
 
 /* Toast */
 .toast {
-  position: fixed; inset: auto 16px 16px auto; display: grid; grid-auto-flow: column; align-items: center; gap: 8px;
-  background: rgba(20,24,34,.9); color: var(--fg); border: 1px solid var(--stroke); border-radius: 12px;
-  padding: 10px 12px; transform: translateY(16px); opacity: 0; pointer-events: none; transition: .25s ease;
+  position: fixed;
+  inset: auto 16px 16px auto;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 8px;
+  background: rgba(20,24,34,.9);
+  color: var(--fg);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 10px 12px;
+  transform: translateY(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s ease;
   z-index: 50;
 }
 .toast.show { transform: translateY(0); opacity: 1; }
@@ -1627,18 +1711,6 @@ label {
 /* Mobile spacing */
 @media (max-width: 520px) {
   .glass { padding: 14px; }
-  }
-.contact-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 24px;
-}
-.glass {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-.contact-section, .contact-grid {
-  background: transparent;
-  border: none;
 }
 
 
@@ -2268,21 +2340,21 @@ I Lead with Relationship Building
       </div>
 
       <div class="contact-list">
-        <button class="contact-item js-copy" data-copy="Mohammad.mujahid.icmai.otc@gmail.com" type="button" aria-label="Copy email">
+        <button class="contact-item js-copy" data-copy="Mohammad.mujahid.icmai.otc@gmail.com" type="button" aria-label="Copy corporate email">
           <span class="contact-ico">✉️</span>
           <div>
-            <div class="contact-label">Corporate InBox</div>
+            <div class="contact-label">Corporate Inbox</div>
             <div class="contact-value">Mohammad.mujahid.icmai.otc@gmail.com</div>
-            </div>
+          </div>
           <span class="contact-action">Copy</span>
         </button>
-              <div class="contact-list">
-        <button class="contact-item js-copy" data-copy="Mrozark894@gmail.com" type="button" aria-label="Copy email">
+
+        <button class="contact-item js-copy" data-copy="Mrozark894@gmail.com" type="button" aria-label="Copy personal email">
           <span class="contact-ico">✉️</span>
           <div>
             <div class="contact-label">Personal Inbox</div>
             <div class="contact-value">Mrozark894@gmail.com</div>
-            </div>
+          </div>
           <span class="contact-action">Copy</span>
         </button>
 
@@ -2324,39 +2396,31 @@ I Lead with Relationship Building
         <p>Brief context helps: role, timeline, and expectations.</p>
       </header>
 
-      <form id="contactForm" novalidate>
+      <form id="contactForm" novalidate enctype="multipart/form-data">
         <div class="form-row">
           <div class="field">
-            <input class="input" id="cf-name" name="name" type="text" required />
+            <input class="input" id="cf-name" name="name" type="text" required placeholder=" ">
             <label for="cf-name">Full name</label>
             <div class="err" id="err-name"></div>
           </div>
           <div class="field">
-            <input class="input" id="cf-email" name="email" type="email" required />
+            <input class="input" id="cf-email" name="email" type="email" required placeholder=" ">
             <label for="cf-email">Email</label>
             <div class="err" id="err-email"></div>
           </div>
         </div>
 
         <div class="field">
-          <select class="select" id="cf-subject" name="subject" required>
-            <option value="" disabled selected>Select subject</option>
-            <option value="job">Job Opportunity</option>
-            <option value="collab">Collaboration</option>
-            <option value="freelance">Freelance Project</option>
-            <option value="consult">Consultation</option>
-            <option value="o2c">O2C Process Discussion</option>
-            <option value="other">Other</option>
-          </select>
-          <label for="cf-subject">Subject</label>
-          <div class="err" id="err-subject"></div>
+          <textarea class="textarea" id="cf-message" name="message" rows="6" required placeholder=" "></textarea>
+          <label for="cf-message">Your message</label>
+          <div class="err" id="err-message"></div>
         </div>
 
         <div class="field">
-          <textarea class="textarea" id="cf-message" name="message" rows="6" maxlength="1000" required></textarea>
-          <label for="cf-message">Your message</label>
-          <div class="counter"><span id="cf-count">0</span>/1000</div>
-          <div class="err" id="err-message"></div>
+          <input class="input" id="cf-files" name="files" type="file" multiple
+                 accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.txt,.csv">
+          <label for="cf-files">Attach files (optional)</label>
+          <div class="err" id="err-files"></div>
         </div>
 
         <button id="cf-submit" class="btn" type="submit">
@@ -2387,7 +2451,7 @@ I Lead with Relationship Building
     <span class="toast-ico">✓</span>
     <span class="toast-msg">Copied to clipboard</span>
   </div>
-        </section>
+</section>
 
 
 
@@ -3404,7 +3468,43 @@ window.addEventListener('resize', () => {
   if (window.innerWidth > 900) closeMobileModal();
 });
 </script>
-    <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
 (() => {
   const $ = sel => document.querySelector(sel);
   const $$ = sel => Array.from(document.querySelectorAll(sel));
@@ -3412,25 +3512,28 @@ window.addEventListener('resize', () => {
   const form = $('#contactForm');
   const btn = $('#cf-submit');
   const success = $('#cf-success');
-  const count = $('#cf-count');
+  const count = $('#cf-count'); // optional if you add a counter element
   const toast = $('#toast');
-
-  // Character counter
   const msg = $('#cf-message');
+
+  /* ========== Character counter (no hard cap) ========== */
   if (msg && count) {
     const update = () => { count.textContent = msg.value.length; };
     msg.addEventListener('input', update); update();
   }
 
-  // Validation rules
+  /* ========== Validation (no Subject) ========== */
   const rules = {
     name: v => v.trim().length >= 2 || 'Name must be at least 2 characters',
-email: v => /\S+@\S+\.\S+/.test(v) || 'Enter a valid email'
-    subject: v => !!v || 'Select a subject',
+    email: v => /\S+@\S+\.\S+/.test(v) || 'Enter a valid email',
     message: v => v.trim().length >= 10 || 'Message must be at least 10 characters'
   };
 
-  function setError(id, msg) { const el = $('#err-' + id); if (el) el.textContent = msg || ''; }
+  function setError(id, msg) {
+    const el = $('#err-' + id);
+    if (el) el.textContent = msg || '';
+  }
+
   function validateField(id, value) {
     const rule = rules[id];
     if (!rule) return true;
@@ -3439,87 +3542,121 @@ email: v => /\S+@\S+\.\S+/.test(v) || 'Enter a valid email'
     return ok === true;
   }
 
-  // Real-time validation
-  [['name','cf-name'],['email','cf-email'],['subject','cf-subject'],['message','cf-message']].forEach(([key, id]) => {
+  [['name','cf-name'],['email','cf-email'],['message','cf-message']].forEach(([key, id]) => {
     const input = document.getElementById(id);
     if (!input) return;
     input.addEventListener('blur', () => validateField(key, input.value));
     input.addEventListener('input', () => setError(key, ''));
   });
 
-  // Submit handling
+  /* ========== Submit handling (simulate network) ========== */
   form?.addEventListener('submit', async e => {
     e.preventDefault();
     const data = {
       name: $('#cf-name')?.value || '',
       email: $('#cf-email')?.value || '',
-      subject: $('#cf-subject')?.value || '',
-      message: $('#cf-message')?.value || ''
+      message: $('#cf-message')?.value || '',
+      files: Array.from($('#cf-files')?.files || [])
     };
 
-    const valid = Object.entries(data).every(([k, v]) => validateField(k, v));
+    const valid = ['name','email','message'].every(k => validateField(k, data[k]));
     if (!valid) return;
 
-    // Loading state
     btn?.classList.add('loading');
     btn?.setAttribute('disabled', 'true');
 
-    // Simulate request
+    // TODO: Replace with real endpoint POST (FormData)
+    // const fd = new FormData();
+    // fd.append('name', data.name);
+    // fd.append('email', data.email);
+    // fd.append('message', data.message);
+    // data.files.forEach(f => fd.append('files[]', f));
+    // await fetch('/api/contact', { method: 'POST', body: fd });
+
     await new Promise(r => setTimeout(r, 1200));
 
-    // Success UI
     success?.removeAttribute('hidden');
     form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled','true'));
   });
 
-  // Send another
   $('#cf-send-another')?.addEventListener('click', () => {
     success?.setAttribute('hidden','true');
     form?.reset();
     form?.querySelectorAll('input, textarea, select, button').forEach(el => el.removeAttribute('disabled'));
     btn?.classList.remove('loading');
     btn?.removeAttribute('disabled');
-    setError('name',''); setError('email',''); setError('subject',''); setError('message','');
-    if (msg) count.textContent = '0';
+    setError('name',''); setError('email',''); setError('message','');
+    if (msg) msg.dispatchEvent(new Event('input')); // refresh counter if present
   });
 
-  // Copy email
-  $$('.js-copy').forEach(el => {
-    el.addEventListener('click', async () => {
-      const text = el.getAttribute('data-copy');
-      try {
-        await navigator.clipboard.writeText(text);
-        showToast('Copied to clipboard');
-      } catch {
-        fallbackCopy(text);
-      }
-    });
-  });
-
-  function fallbackCopy(text) {
+  /* ========== Copy email with feedback ========== */
+  async function copyText(text) {
+    if (!text) throw new Error('No text to copy');
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
     const ta = document.createElement('textarea');
-    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); showToast('Copied to clipboard'); }
-    catch { showToast('Copy failed'); }
-    document.body.removeChild(ta);
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); }
+    finally { document.body.removeChild(ta); }
   }
 
-  // Quick actions
-  $('#qa-resume')?.addEventListener('click', () => showToast('Resume download starting...'));
-  $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
+  function flashAction(el, ok = true) {
+    const label = el.querySelector('.contact-action');
+    const original = label?.textContent || 'Copy';
+    if (label) label.textContent = ok ? 'Copied' : 'Failed';
+    el.classList.add(ok ? 'copied' : 'copy-failed');
+    setTimeout(() => {
+      if (label) label.textContent = original;
+      el.classList.remove('copied', 'copy-failed');
+    }, 1100);
+  }
 
-  // Toast
-  let toastTimer;
   function showToast(message) {
     if (!toast) return;
-    toast.querySelector('.toast-msg').textContent = message;
+    const msgEl = toast.querySelector('.toast-msg');
+    if (msgEl) msgEl.textContent = message;
     toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove('show'), 2000);
   }
+
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.js-copy');
+    if (!btn) return;
+    const text = btn.dataset.copy?.trim() || btn.querySelector('.contact-value')?.textContent.trim() || '';
+    try {
+      await copyText(text);
+      flashAction(btn, true);
+      showToast('Copied to clipboard');
+    } catch (err) {
+      console.error('Copy failed:', err);
+      flashAction(btn, false);
+      showToast('Copy failed');
+    }
+  });
+
+  /* ========== Quick actions ========== */
+  $('#qa-resume')?.addEventListener('click', () => showToast('Resume download starting...'));
+  $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
-    </script>
+</script>
+
+
+
+
+
+
+
+
+    
+    
   <!-- Mobile modal popup -->
 <div id="mobileModal" class="mobile-modal">
   <div class="mobile-modal-content">
