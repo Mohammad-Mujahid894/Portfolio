@@ -3761,10 +3761,22 @@ form?.addEventListener('submit', async e => {
     console.log('Fetch done ✅', res);
 
     // Since no-cors hides response, assume success visually
-    await new Promise(r => setTimeout(r, 500));
-    success?.removeAttribute('hidden');
-    form.querySelectorAll('input, textarea, select, button')
-        .forEach(el => el.setAttribute('disabled', 'true'));
+await new Promise(r => setTimeout(r, 500));
+success?.removeAttribute('hidden');
+form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled', 'true'));
+
+// ✅ Auto-reset form after 5 seconds
+setTimeout(() => {
+  success?.setAttribute('hidden','true');
+  form.reset();
+  form.querySelectorAll('input, textarea, select, button').forEach(el => el.removeAttribute('disabled'));
+  btn?.classList.remove('loading');
+  btn?.removeAttribute('disabled');
+  // Clear validation errors
+  setError('name',''); setError('email',''); setError('message','');
+  if (msg) msg.dispatchEvent(new Event('input')); // refresh counter if present
+}, 5000); // 5000ms = 5 seconds
+
 
   } catch (err) {
     console.error('Error sending message:', err);
