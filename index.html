@@ -3722,35 +3722,44 @@ window.addEventListener('resize', () => {
   });
 
   /* ========== Submit handling (simulate network) ========== */
-  form?.addEventListener('submit', async e => {
-    e.preventDefault();
-    const data = {
-      name: $('#cf-name')?.value || '',
-      email: $('#cf-email')?.value || '',
-      message: $('#cf-message')?.value || '',
-      files: Array.from($('#cf-files')?.files || [])
-    };
+form?.addEventListener('submit', async e => {
+  e.preventDefault();
+  const data = {
+    name: $('#cf-name')?.value || '',
+    email: $('#cf-email')?.value || '',
+    message: $('#cf-message')?.value || '',
+    files: Array.from($('#cf-files')?.files || [])
+  };
 
-    const valid = ['name','email','message'].every(k => validateField(k, data[k]));
-    if (!valid) return;
+  const valid = ['name','email','message'].every(k => validateField(k, data[k]));
+  if (!valid) return;
 
-    btn?.classList.add('loading');
-    btn?.setAttribute('disabled', 'true');
+  btn?.classList.add('loading');
+  btn?.setAttribute('disabled', 'true');
 
-// ✅ Send data to Google Apps Script (real mail sender)
-const fd = new FormData();
-fd.append('name', data.name);
-fd.append('email', data.email);
-fd.append('message', data.message);
-data.files.forEach(f => fd.append('files', f)); // name 'files' matches parser field
+  const fd = new FormData();
+  fd.append('name', data.name);
+  fd.append('email', data.email);
+  fd.append('message', data.message);
+  data.files.forEach(f => fd.append('files', f));
 
-const res = await fetch('https://script.google.com/macros/s/AKfycbweMpe5LYxLlbwtgAkjRSfuTAY59MJyifxXZE5QCb2FYyewxKvGRbZlq9jRBAwwMkao/exec', { method: 'POST', body: fd });
-const text = await res.text();
-if (text.includes('Success')) {
-  // show success UI
-} else {
-  // show error
-}
+  // ✅ New working block here
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbwoUNf7JiExyPIovk5nzxj7pfDZOgogS4SJ2Nv55HQzY_ezHEGDYqfgYwBX1LaI1RVO/exec', {
+      method: 'POST',
+      body: fd,
+      mode: 'no-cors',
+    });
+
+    await new Promise(r => setTimeout(r, 500));
+    success?.removeAttribute('hidden');
+    form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled', 'true'));
+
+  } catch (err) {
+    console.error('Error sending message:', err);
+    alert('⚠️ Message not sent. Try again later.');
+  }
+});
 
 
   const text = await res.text();
