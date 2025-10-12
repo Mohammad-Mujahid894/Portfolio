@@ -2601,6 +2601,11 @@ I Lead with Relationship Building
           <span class="btn-spin" aria-hidden="true"></span>
         </button>
 
+<form id="contactForm" novalidate enctype="multipart/form-data"
+      action="https://script.google.com/macros/s/AKfycbx4AOUz4FmZrmST8JvDWx8Qhof-mosMuUtN_xXrBx7L1Enjaqoj51N3po9xRiGgxxM3/exec"
+      method="POST">
+
+        
         <div class="form-success" id="cf-success" hidden>
           <div class="succ-ico">🎉</div>
           <h4>Message sent</h4>
@@ -3723,59 +3728,55 @@ window.addEventListener('resize', () => {
 
   /* ========== Submit handling (simulate network) ========== */
 form?.addEventListener('submit', async e => {
-  e.preventDefault();
+  e.preventDefault(); // ✅ stop page refresh
+  console.log('Form submit triggered');
+
   const data = {
-    name: $('#cf-name')?.value || '',
-    email: $('#cf-email')?.value || '',
-    message: $('#cf-message')?.value || '',
+    name: $('#cf-name')?.value.trim() || '',
+    email: $('#cf-email')?.value.trim() || '',
+    message: $('#cf-message')?.value.trim() || '',
     files: Array.from($('#cf-files')?.files || [])
   };
 
+  // ✅ Validation
   const valid = ['name','email','message'].every(k => validateField(k, data[k]));
   if (!valid) return;
 
   btn?.classList.add('loading');
   btn?.setAttribute('disabled', 'true');
 
+  // ✅ Prepare FormData
   const fd = new FormData();
   fd.append('name', data.name);
   fd.append('email', data.email);
   fd.append('message', data.message);
   data.files.forEach(f => fd.append('files', f));
 
-  // ✅ New working block here
   try {
-    await fetch('https://script.google.com/macros/s/AKfycbwoUNf7JiExyPIovk5nzxj7pfDZOgogS4SJ2Nv55HQzY_ezHEGDYqfgYwBX1LaI1RVO/exec', {
-      method: 'POST',
-      body: fd,
-      mode: 'no-cors',
-    });
+    const res = await fetch(
+      'https://script.google.com/macros/s/AKfycbx4AOUz4FmZrmST8JvDWx8Qhof-mosMuUtN_xXrBx7L1Enjaqoj51N3po9xRiGgxxM3/exec',
+      {
+        method: 'POST',
+        body: fd,
+        mode: 'no-cors', // keep no-cors for now
+      }
+    );
 
+    console.log('Fetch done ✅', res);
+
+    // Since no-cors hides response, assume success visually
     await new Promise(r => setTimeout(r, 500));
     success?.removeAttribute('hidden');
-    form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled', 'true'));
+    form.querySelectorAll('input, textarea, select, button')
+        .forEach(el => el.setAttribute('disabled', 'true'));
 
   } catch (err) {
     console.error('Error sending message:', err);
     alert('⚠️ Message not sent. Try again later.');
+    btn?.classList.remove('loading');
+    btn?.removeAttribute('disabled');
   }
 });
-
-
-  const text = await res.text();
-  console.log('Server response:', text);
-
-  if (text.includes("Success")) {
-    await new Promise(r => setTimeout(r, 500));
-    success?.removeAttribute('hidden');
-    form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled','true'));
-  } else {
-    alert('⚠️ Something went wrong. Please try again later.');
-  }
-} catch (err) {
-  console.error('Error sending message:', err);
-  alert('🚨 Error sending your message. Please check console.');
-}
 
     form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled','true'));
   });
