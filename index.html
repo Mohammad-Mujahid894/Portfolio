@@ -477,31 +477,46 @@ section#about {
 
     /* ===== Contained Layout for Home & About Me ===== */
 
-/* Common wrapper styling */
+/* ===== Clean Contained Layout (No Background Box) ===== */
+
 #home,
 #about {
   display: flex;
   justify-content: center;
   width: 100%;
-  background: transparent; /* keep your nebula background visible */
-  padding: 60px 16px;      /* equal padding on both sides */
+  background: transparent; /* keep your nebula visible */
+  padding: 60px 16px;
+  box-sizing: border-box;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+/* Inner wrappers */
+#home .hero-content,
+#about .about-container {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 30px;
   box-sizing: border-box;
 }
 
-/* Inner containers stay centered and limited in width */
-#home .hero-content,
+/* Fix flex layout for About Me */
 #about .about-container {
-  max-width: 1080px;      /* control width */
-  width: 100%;
-  background: rgba(255,255,255,0.04); /* subtle glassy feel (optional) */
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 18px;
-  backdrop-filter: blur(8px);
-  padding: 40px 30px;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+  display: flex;
+  flex-wrap: wrap; /* ensures wrapping instead of overflow */
+  gap: 30px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-/* Keep layout responsive */
+/* Prevent long words from causing overflow */
+#about * {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Mobile responsiveness */
 @media (max-width: 900px) {
   #home,
   #about {
@@ -510,9 +525,13 @@ section#about {
 
   #home .hero-content,
   #about .about-container {
+    padding: 24px 16px;
+  }
+
+  /* Stack items vertically on small screens */
+  #about .about-container {
     flex-direction: column;
-    padding: 24px 18px;
-    border-radius: 14px;
+    align-items: center;
   }
 
   .intro-text {
@@ -527,6 +546,26 @@ section#about {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   <style>
     :root {
       --bg: #04060b;
