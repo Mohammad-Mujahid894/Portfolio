@@ -1467,27 +1467,6 @@ body {
   .column .list { grid-template-columns: 1fr; }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 900px){
   /* Hide desktop details panel on mobile */
   #gallup-embed #gallupStrengths #details { display: none !important; }
@@ -1551,29 +1530,6 @@ body {
     touch-action: none;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 :root {
   --accent1: #7aa2ff;
@@ -1920,9 +1876,6 @@ background: rgba(30, 30, 30, 0.9); /* opaque dark glassy background */
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-
-
-
 /* Style file input nicely */
 input[type="file"] {
   color: var(--fg);
@@ -2006,6 +1959,97 @@ input[type="file"]::file-selector-button:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ===== Fix faint white line / flicker at bottom ===== */
+
+/* Prevent visual gap below sections */
+html, body {
+  background-color: #04060b !important; /* match your dark theme */
+  overscroll-behavior: none;            /* disable bounce effect on mobile */
+  overflow-x: hidden !important;
+}
+
+/* Ensure background layers perfectly fill */
+.layer, #nebula {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  pointer-events: none !important;
+}
+
+/* Stop faint “section lines” between parts */
+section {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Fix for the white flicker during scroll */
+@supports (-webkit-overflow-scrolling: touch) {
+  body {
+    -webkit-overflow-scrolling: auto !important;
+    background-color: #04060b !important;
+  }
+}
+
+/* Prevent iOS/Safari gray overscroll highlight */
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #04060b;
+  z-index: 99999;
+}
+
+
+
+
+
 </style>
 
 
@@ -2067,10 +2111,10 @@ input[type="file"]::file-selector-button:hover {
   <div class="dropdown">
     <a href="#" class="dropbtn">More ▾</a>
     <div class="dropdown-content">
-      <a href="#projects">Projects</a>
+            <a href="Mohammad_OTC_1YR_Accenture.pdf" target="_blank">Download Resume</a>
+            <a href="#education">Gallup Strenghts</a>
       <a href="#achievements">Achievements</a>
-      <a href="#education">Gallup Strenghts</a>
-      <a href="Mohammad_OTC_1YR_Accenture.pdf" target="_blank">Download Resume</a>
+      <a href="#projects">Projects</a>
       <a href="#blogs">Blogs</a>
       <a href="#interests">Interests</a>
     </div>
@@ -2294,8 +2338,8 @@ and making processes faster, cleaner, and scalable.
       <span class="tag">Taxation</span>
     </div>
 
-    <button class="more-btn" aria-expanded="false" aria-controls="d3" onclick="toggleDetails(this)">View Details ▾</button>
-    <div id="d3" class="details" hidden style="overflow:hidden; transition:max-height 0.35s ease, padding 0.2s ease;">
+    <button class="more-btn" aria-expanded="false" aria-controls="d2" onclick="toggleDetails(this)">View Details ▾</button>
+    <div id="d2" class="details" hidden style="overflow:hidden; transition:max-height 0.35s ease, padding 0.2s ease;">
       <ul>
         <li>Filed GSTR returns for multiple clients</li>
         <li>Managed audits and stock verification at Intek Tapes Pvt Ltd.</li>
@@ -2305,7 +2349,6 @@ and making processes faster, cleaner, and scalable.
     </div>
   </div>
 </div>
-
 <!-- 4: Bachelor of Commerce -->
 <div class="timeline-item">
   <div class="timeline-dot">
@@ -2648,9 +2691,27 @@ I Lead with Relationship Building
       </div>
 
       <div class="contact-social">
-        <a class="social-btn" href="https://linkedin.com/in/mohammadmujahid" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="social-btn" href="https://github.com/mohammad-mujahid894" target="_blank" rel="noopener">GitHub</a>
-        <a class="social-btn" href="#projects">Portfolio</a>
+<!-- Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<a class="social-btn" href="https://www.linkedin.com/in/mujahid1321101894/" target="_blank" rel="noopener">
+  <i class="fa fa-linkedin"></i> LinkedIn
+</a>
+<a class="social-btn" href="https://github.com/mohammad-mujahid894" target="_blank" rel="noopener">
+  <i class="fa fa-github"></i> GitHub
+</a>
+<a class="social-btn" href="https://twitter.com/ozark894" target="_blank" rel="noopener">
+  <i class="fa fa-twitter"></i> X (Twitter)
+</a>
+<a class="social-btn" href="https://instagram.com/ozark1321" target="_blank" rel="noopener">
+  <i class="fa fa-instagram"></i> Instagram
+</a>
+<a class="social-btn" href="https://www.snapchat.com/add/mohamad_mujju02" target="_blank" rel="noopener">
+  <i class="fa fa-snapchat-ghost"></i> Snapchat
+</a>
+<a class="social-btn" href="https://t.me/ozark179" target="_blank" rel="noopener">
+  <i class="fa fa-telegram"></i> Telegram
+</a>
       </div>
 
 <div class="contact-meta">
@@ -2709,8 +2770,7 @@ I Lead with Relationship Building
     <div class="contact-quick glass">
       <h3>Quick actions</h3>
       <button class="qa" type="button" id="qa-resume">📄 Download Resume</button>
-      <button class="qa" type="button" id="qa-meet">📅 Schedule Meeting</button>
-      <a class="qa" href="#projects">🎯 View Portfolio</a>
+      <button class="qa" type="button" id="qa-meet"> 🎗️ My Certification's</button>
     </div>
   </div>
 
