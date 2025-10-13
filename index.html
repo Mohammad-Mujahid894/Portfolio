@@ -1998,41 +1998,7 @@ input[type="file"]::file-selector-button:hover {
 
 
 
-  /* ===== Fix faint white line / flicker at bottom ===== */
-
-/* Prevent visual gap below sections */
-html, body {
-  background-color: #04060b !important; /* match your dark theme */
-  overscroll-behavior: none;            /* disable bounce effect on mobile */
-  overflow-x: hidden !important;
-}
-
-/* Stop faint “section lines” between parts */
-section {
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
-
-/* Fix for the white flicker during scroll */
-@supports (-webkit-overflow-scrolling: touch) {
-  body {
-    -webkit-overflow-scrolling: auto !important;
-    background-color: #04060b !important;
-  }
-}
-
-/* Prevent iOS/Safari gray overscroll highlight */
-body::after {
-  content: "";
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #04060b;
-  z-index: 99999;
-}
+ 
 
 
 
