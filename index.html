@@ -472,6 +472,61 @@ section#about {
 }
       <meta charset="UTF-8">
   <title>Timeline with Logos</title>
+
+
+
+    /* ===== Contained Layout for Home & About Me ===== */
+
+/* Common wrapper styling */
+#home,
+#about {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: transparent; /* keep your nebula background visible */
+  padding: 60px 16px;      /* equal padding on both sides */
+  box-sizing: border-box;
+}
+
+/* Inner containers stay centered and limited in width */
+#home .hero-content,
+#about .about-container {
+  max-width: 1080px;      /* control width */
+  width: 100%;
+  background: rgba(255,255,255,0.04); /* subtle glassy feel (optional) */
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  padding: 40px 30px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+}
+
+/* Keep layout responsive */
+@media (max-width: 900px) {
+  #home,
+  #about {
+    padding: 40px 12px;
+  }
+
+  #home .hero-content,
+  #about .about-container {
+    flex-direction: column;
+    padding: 24px 18px;
+    border-radius: 14px;
+  }
+
+  .intro-text {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+  }
+}
+
   <style>
     :root {
       --bg: #04060b;
