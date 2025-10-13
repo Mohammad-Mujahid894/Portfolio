@@ -2001,6 +2001,26 @@ input[type="file"]::file-selector-button:hover {
  
 
 
+/* ===== Prevent bottom white flash on scroll (safe version) ===== */
+
+html, body {
+  background-color: #04060b; /* dark fallback */
+  overscroll-behavior-y: none; /* disable bounce vertically */
+  overflow-x: hidden;
+}
+
+/* Subtle gradient mask at the bottom to hide overscroll flicker */
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -2px;          /* keep it just below the edge */
+  height: 10px;
+  background: linear-gradient(to bottom, rgba(4,6,11,0) 0%, #04060b 100%);
+  pointer-events: none;
+  z-index: -1;           /* behind background layers, not above! */
+}
 
 
 
@@ -2669,7 +2689,7 @@ I Lead with Relationship Building
       </div>
 
 <div class="contact-meta">
-  <div><span class="meta-label">Response</span><span class="meta-val">24 hours</span></div>
+  <div><span class="meta-label">Response</span><span class="meta-val">Within 24 hrs</span></div>
   <div><span class="meta-label">Working Hours</span><span class="meta-val">5:30 PM – 3:00 AM IST (US Shift)</span></div>
 </div>
 
@@ -3805,9 +3825,9 @@ window.addEventListener('resize', () => {
 
   /* ========== Validation (no Subject) ========== */
   const rules = {
-    name: v => v.trim().length >= 2 || 'Name must be at least 2 characters',
-    email: v => /\S+@\S+\.\S+/.test(v) || 'Enter a valid email',
-    message: v => v.trim().length >= 10 || 'Message must be at least 10 characters'
+    name: v => v.trim().length >= 2 || 'Your name’s too tiny. Physically and metaphorically 🥹',
+    email: v => /\S+@\S+\.\S+/.test(v) || 'Looks like you forgot the ‘@’—it’s not optional!',
+    message: v => v.trim().length >= 10 || 'We accept prose here, not Morse code. Minimum 10 character please.'
   };
 
   function setError(id, msg) {
