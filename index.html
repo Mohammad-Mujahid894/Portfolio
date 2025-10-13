@@ -2001,28 +2001,29 @@ input[type="file"]::file-selector-button:hover {
  
 
 
-/* ===== Prevent bottom white flash on scroll (safe version) ===== */
-
-/* ===== Prevent bottom white flash on scroll (fully transparent-safe) ===== */
+/* ===== Mobile & desktop safe scroll flicker fix ===== */
 
 html, body {
-  overscroll-behavior-y: none; /* disable vertical bounce */
+  overscroll-behavior-y: contain; /* prevents bounce on mobile */
   overflow-x: hidden;
-  position: relative;          /* for ::after positioning */
+  position: relative;
+  min-height: 100vh;              /* ensures body covers full viewport */
 }
 
-/* Subtle gradient mask at the bottom to hide overscroll flicker */
+/* Ultra-safe gradient mask at the bottom */
 body::after {
   content: "";
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;                     /* stick exactly to viewport bottom */
-  height: 10px;
-  background: linear-gradient(to bottom, rgba(4,6,11,0) 0%, rgba(4,6,11,0.3) 100%);
+  bottom: 0;
+  height: 30px;                    /* taller to cover mobile bounce */
+  background: linear-gradient(to bottom, rgba(4,6,11,0) 0%, rgba(4,6,11,0.2) 100%);
   pointer-events: none;
-  z-index: 9999;                 /* won't block anything, just overlays */
+  z-index: 9999;                   /* overlays scroll flash without affecting content */
 }
+
+
 
 
 
@@ -2572,7 +2573,7 @@ I Lead with Relationship Building
       <div class="controls">
         <input type="search" id="search" placeholder="Search strength name or rank (e.g., 'Relator' or '1')">
         <button class="btn" id="top5">Highlight Top 5</button>
-        <button class="btn" id="viewCertifications">🎗️ View Certification's</button>
+        <button class="btn" id="viewCertifications">View Certification's</button>
         <div style="flex:1"></div>
       </div>
 
@@ -2689,9 +2690,9 @@ I Lead with Relationship Building
 </a>
 <a class="social-btn" href="https://t.me/ozark179" target="_blank" rel="noopener">
   <i class="fa fa-telegram"></i> 
-</a>
+</a> 
       </div>
-
+<br>
 <div class="contact-meta">
   <div><span class="meta-label">Response</span><span class="meta-val">Within 24 hrs</span></div>
   <div><span class="meta-label">Working Hours</span><span class="meta-val">5:30 PM – 3:00 AM IST (US Shift)</span></div>
