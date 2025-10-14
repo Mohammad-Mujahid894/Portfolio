@@ -1945,6 +1945,22 @@ body::after {
   pointer-events: none;
   z-index: 9999;                   /* overlays scroll flash without affecting content */
 }
+
+  .copyright {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  margin-top: 40px;
+}
+
+.copyright p {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
 </style>
   
 </head>
@@ -3880,6 +3896,8 @@ setTimeout(() => {
     <div id="mobileModalBody"></div>
   </div>
 </div>
-
+<footer class="copyright">
+  <p>© 2025 Mohammad Mujahid. All rights reserved.</p>
+</footer>
 </body>
 </html>
