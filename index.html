@@ -1961,6 +1961,11 @@ body::after {
   font-weight: 500;
   letter-spacing: 0.5px;
 }
+
+  footer.copyright {
+  position: relative;
+  z-index: 10;
+  }
 </style>
   
 </head>
@@ -3879,7 +3884,9 @@ setTimeout(() => {
   $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
 </script>
-
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 
 
@@ -3897,7 +3904,9 @@ setTimeout(() => {
   </div>
 </div>
 <footer class="copyright">
-  <p>© 2025 Mohammad Mujahid. All rights reserved.</p>
+  <p>© <span id="year"></span> Mohammad Mujahid. All rights reserved.</p>
 </footer>
+
+
 </body>
 </html>
