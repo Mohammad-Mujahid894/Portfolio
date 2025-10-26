@@ -1342,51 +1342,37 @@ function tileMouseOut(){
 
 function tileClick(event, d) {
   const isMobile = window.innerWidth <= 900;
-  const domColor = domainOrder.find(x => x.key === d.domain)?.color || '#7aa2ff';
 
   if (isMobile) {
-    // Mobile: use existing mobileModal, add outside-click + Esc close
+    // Show mobile modal
     const modal = document.getElementById("mobileModal");
     const body = document.getElementById("mobileModalBody");
 
     body.innerHTML = `
-      <h2 style="color:${domColor}">
-        ${d.rank}. ${d.name}
+      <h2 style="color: var(--domColor)">
+        ${d.rank}. ${d.name} 
         <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
       </h2>
       <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
       <p><strong>How to use this strength:</strong> ${d.tips}</p>
     `;
 
+    const domColor = domainOrder.find(x => x.key === d.domain).color;
+    body.querySelector("h2").style.color = domColor;
+
     modal.style.display = "block";
 
-    // Close: X
-    const closeBtn = modal.querySelector(".close-btn");
-    closeBtn.onclick = () => { modal.style.display = "none"; };
-
-    // Close: outside click (clicking the backdrop only)
-    function onBackdrop(e) {
-      if (e.target === modal) {
-        modal.style.display = "none";
-        modal.removeEventListener('click', onBackdrop);
-      }
-    }
-    modal.addEventListener('click', onBackdrop);
-
-    // Close: Esc
-    function onEsc(e) {
-      if (e.key === 'Escape') {
-        modal.style.display = "none";
-        document.removeEventListener('keydown', onEsc);
-      }
-    }
-    document.addEventListener('keydown', onEsc);
+    // Close button
+    modal.querySelector(".close-btn").onclick = () => {
+      modal.style.display = "none";
+    };
 
   } else {
-    // Desktop: open contained modal (not a side panel)
-    const html = `
-      <h2 id="detailsTitle" style="color:${domColor}">
-        ${d.rank}. ${d.name}
+    // Desktop → update side details panel
+    const details = d3.select('#details');
+    details.html(`
+      <h2 style="color: var(--domColor)">
+        ${d.rank}. ${d.name} 
         <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
       </h2>
       <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
@@ -1394,13 +1380,9 @@ function tileClick(event, d) {
       <p style="margin-top:8px;font-size:13px;color:var(--muted)">
         Tap another tile to view its notes. Use the Search to filter.
       </p>
-    `;
-    // This calls the reusable desktop modal you added earlier
-    openDetails(html);
-  }
-}
+    `);
 
-  const domColor = domainOrder.find(x => x.key===d.domain).color;
+    const domColor = domainOrder.find(x => x.key===d.domain).color;
     details.select('h2').style('color', domColor);
 
     // highlight in top bar
