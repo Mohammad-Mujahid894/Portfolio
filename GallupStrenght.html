@@ -318,68 +318,57 @@ display: flex;
 
 
 
-    
-/* Load your custom font */
-/* Center the whole header */
-header.intro-text {
+@font-face {
+  font-family: 'FoundationTitlesHand';
+  src: url('./FoundationTitlesHand.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Center the intro block */
+.intro-center {
   text-align: center;
-  margin: 12px auto 8px auto;   /* slightly tighter */
+  margin: 12px auto 8px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 72px; /* keep content clear of sticky navbar */
 }
 
-/* Gradient text for name */
-.intro-text .title span {
+/* Gradient text for title */
+.intro-center .title span {
   background: linear-gradient(90deg, #7aa2ff, #8a7aff, #4ff0b0);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-family: 'FoundationTitlesHand.ttf', sans-serif;
-  font-size: clamp(20px, 4vw, 32px);
+  font-family: 'FoundationTitlesHand', system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  font-size: clamp(22px, 4vw, 36px);
   font-weight: 700;
   letter-spacing: 0.3px;
   text-transform: uppercase;
   background-size: 200% auto;
   animation: gradientFlow 6s ease-in-out infinite alternate;
   text-shadow: 0 0 3px rgba(122, 162, 255, 0.25);
-  line-height: 1.15;            /* tighten line spacing */
-  margin: 0;                     /* remove default margins */
+  line-height: 1.15;
+  margin: 0;
 }
 
 /* Subtitle style */
-.intro-text .sub {
+.intro-center .sub {
   color: var(--muted, #9fb2d8);
-  font-size: 12px;
-  line-height: 1.35;             /* tighter than default */
-  margin-top: 2px;               /* less gap below the title */
-  margin-bottom: 0;              /* avoid extra bottom gap */
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 4px 0;
   font-weight: 500;
 }
 
-/* Optional smaller header */
-header.title {
-  display: flex;
-  align-items: center;
-  gap: 6px;                      /* smaller gap */
-  margin-bottom: 4px;            /* tighter bottom margin */
-  line-height: 1;                /* keep row compact */
+@keyframes gradientFlow {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
 }
 
-header.title h1 {
-  margin: 0;
-  font-size: 14px;
-  letter-spacing: 0.1px;
-  line-height: 1.1;              /* compact heading line height */
-}
-
-header.title p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.2;              /* compact paragraph line height */
-}
 
 
 
@@ -883,6 +872,7 @@ html, body{ overflow-x: hidden; }
 }
 
 
+
   </style>
 
 </head>
@@ -925,23 +915,27 @@ html, body{ overflow-x: hidden; }
   <canvas id="stars3" class="layer" aria-hidden="true"></canvas>
   <div id="nebula" class="layer" aria-hidden="true"></div>
 
-<h1 class="title"><span>My Clifton Strengths® Theme Map</span></h1>
-<p class="sub">(These Strengths Insights are personalized based on my CliftonStrengths results.)</p>
-<p class="sub">I lead with Relationship Building</p>
+<div class="intro-center">
+  <h1 class="title"><span>My Clifton Strengths® Theme Map</span></h1>
+  <p class="sub">(These Strengths Insights are personalized based on my CliftonStrengths results.)</p>
+  <p class="sub">I lead with Relationship Building</p>
+</div>
+
 
 <br>
   <br>
 <br>
 <div class="content-wrap">
+  <!-- bring this back ABOVE the controls -->
+  <div id="svgBarWrap"></div>
+
   <div class="controls">
     <input type="search" id="search" placeholder="Search strength name or rank (e.g., 'Relator' or '1')">
-    <!-- optional: <div class="spacer"></div> if you want the button right on desktop -->
     <button class="btn" id="top5">Highlight Top 5</button>
-    <button class="btn" id="🥇 View My certification's</button>
+    <button class="btn" id="certsBtn">🥇 View My Certifications</button>
   </div>
-
-  <div id="svgBarWrap"></div>
 </div>
+
 
     
     <div id="gallupStrengths">
