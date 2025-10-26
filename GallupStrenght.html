@@ -871,8 +871,39 @@ html, body{ overflow-x: hidden; }
   .controls .spacer { display: block; flex: 1; }
 }
 
-
-
+/* Backdrop */
+.details-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+/* Modal */
+.details-modal {
+  background: linear-gradient(180deg, rgba(10,16,28,0.98), rgba(6,10,18,0.95));
+  color: #eaf2ff;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(2,8,23,0.6);
+  padding: 14px;
+  width: auto;                           /* shrink-wrap */
+  max-width: min(720px, 92vw);
+  max-height: min(80vh, 680px);
+  overflow: auto;                        /* scroll inside if needed */
+}
+/* Close button */
+.details-modal .close-x {
+  position: sticky; top: 0; left: 100%;
+  transform: translate(-100%, 0);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 4px 8px; cursor: pointer;
+  color: #9fb2d8; margin-bottom: 8px;
+}
+.details-backdrop.show { display: flex; }
   </style>
 
 </head>
@@ -2382,13 +2413,50 @@ say, “Let’s get started right now!” many people refrain from questioning y
   });
 
 </script>
+  <script>
+  const detailsBackdrop = document.getElementById('detailsBackdrop');
+  const detailsContent  = document.getElementById('detailsContent');
+
+  function openDetails(html) {
+    detailsContent.innerHTML = html;
+    detailsBackdrop.classList.add('show');
+    detailsBackdrop.setAttribute('aria-hidden', 'false');
+    // Optional: focus management (e.g., focus first heading/button)
+  }
+
+  function closeDetails() {
+    detailsBackdrop.classList.remove('show');
+    detailsBackdrop.setAttribute('aria-hidden', 'true');
+    detailsContent.innerHTML = '';
+  }
+
+  // Close on X
+  detailsBackdrop.querySelector('.close-x').addEventListener('click', closeDetails);
+
+  // Close on outside click (only if clicking the dim backdrop)
+  detailsBackdrop.addEventListener('click', (e) => {
+    if (e.target === detailsBackdrop) closeDetails();
+  });
+
+  // Close on Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && detailsBackdrop.classList.contains('show')) closeDetails();
+  });
+
+  // Export for your existing chart handlers
+  window.openDetails = openDetails;
+  window.closeDetails = closeDetails;
+</script>
+
     <!-- Mobile modal popup -->
-<div id="mobileModal" class="mobile-modal">
-  <div class="mobile-modal-content">
-    <span class="close-btn">&times;</span>
-    <div id="mobileModalBody"></div>
+<!-- Reusable details modal (desktop + mobile) -->
+<div id="detailsBackdrop" class="details-backdrop" aria-hidden="true">
+  <div role="dialog" aria-modal="true" aria-labelledby="detailsTitle" class="details-modal">
+    <button type="button" class="close-x" aria-label="Close">✕</button>
+    <div id="detailsContent"></div>
   </div>
 </div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   // Top section: grid + stackbar + compact split bar
