@@ -1355,7 +1355,6 @@ document.addEventListener("click", e => {
     closeMobileModal();
     history.back();
   }
-});
 
 // close when clicking outside
 window.addEventListener("click", e => {
@@ -1375,18 +1374,6 @@ window.addEventListener("popstate", () => {
 });
   
 
-    const domColor = domainOrder.find(x => x.key===d.domain).color;
-    details.select('h2').style('color', domColor);
-
-    // highlight in top bar
-    d3.select('#svgBarWrap svg').selectAll('rect')
-       .attr('stroke', null).attr('stroke-width', null);
-    d3.select('#svgBarWrap svg rect[data-rank="' + d.rank + '"]')
-       .attr('stroke', '#fff').attr('stroke-width', 2);
-
-    highlightRank(d.rank);
-  }
-}
 
 /* ===== Stack bar showing distribution of domains ===== */
 function clearAllHighlights(){
