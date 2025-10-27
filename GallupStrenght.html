@@ -883,6 +883,29 @@ html, body{ overflow-x: hidden; }
   backdrop-filter: blur(6px);
   background-color: rgba(17, 24, 39, 0.95);
 }
+.mobile-modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111827;
+  color: white;
+  border-radius: 12px 12px 0 0;
+  padding: 16px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.4);
+  z-index: 9999;
+}
+.modal-open {
+  overflow: hidden;
+}
+.close-btn {
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  font-size: 24px;
+  cursor: pointer;
+}
 
   </style>
 
@@ -2450,6 +2473,63 @@ window.addEventListener("popstate", () => {
   }
 });
 </script>
+  <script>
+// === TILE CLICK HANDLER ===
+function tileClick(htmlContent) {
+  const modal = document.getElementById("mobileModal");
+  const body = document.getElementById("mobileModalBody");
+
+  if (!modal || !body) {
+    console.error("Modal structure missing!");
+    return;
+  }
+
+  body.innerHTML = htmlContent;
+  modal.style.display = "block";
+  document.body.classList.add("modal-open");
+  history.pushState({ modalOpen: true }, ""); // Enable back button close
+}
+
+// === CLOSE MODAL ===
+function closeMobileModal() {
+  const modal = document.getElementById("mobileModal");
+  if (modal) {
+    modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+  }
+}
+
+// Close on X click
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("close-btn")) {
+    closeMobileModal();
+    history.back();
+  }
+});
+
+// Close when clicking outside modal content
+window.addEventListener("click", (event) => {
+  const modal = document.getElementById("mobileModal");
+  const body = document.getElementById("mobileModalBody");
+  if (modal && modal.style.display === "block") {
+    const inside = body.contains(event.target);
+    const closeClicked = event.target.classList.contains("close-btn");
+    if (!inside && !closeClicked) {
+      closeMobileModal();
+      history.back();
+    }
+  }
+});
+
+// Handle mobile back button
+window.addEventListener("popstate", () => {
+  const modal = document.getElementById("mobileModal");
+  if (modal && modal.style.display === "block") {
+    closeMobileModal();
+  }
+});
+</script>
+
 
 
     <!-- Mobile modal popup -->
