@@ -1324,49 +1324,55 @@ function tileMouseOut(){
 
 function tileClick(event, d) {
   const isMobile = window.innerWidth <= 900;
+  if (!isMobile) return;
 
-  if (isMobile) {
-    // Show mobile modal
-    const modal = document.getElementById("mobileModal");
-    const body = document.getElementById("mobileModalBody");
+  const modal = document.getElementById("mobileModal");
+  const body  = document.getElementById("mobileModalBody");
 
-    body.innerHTML = `
-      <h2 style="color: var(--domColor)">
-        ${d.rank}. ${d.name} 
-        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
-      </h2>
-      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
-      <p><strong>How to use this strength:</strong> ${d.tips}</p>
-    `;
+  const domColor = domainOrder.find(x => x.key === d.domain).color;
 
-    const domColor = domainOrder.find(x => x.key === d.domain).color;
-    body.querySelector("h2").style.color = domColor;
+  body.innerHTML = `
+    <h2 style="color:${domColor}">
+      ${d.rank}. ${d.name}
+      <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+    </h2>
+    <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+    <p><strong>How to use this strength:</strong> ${d.tips}</p>
+  `;
 
-    modal.style.display = "block";
-    history.pushState({ modalOpen: true }, "");  // allow mobile back button to close modal
+  modal.style.display = "block";
+  history.pushState({modalOpen:true},"");
+}
 
+function closeMobileModal() {
+  const modal = document.getElementById("mobileModal");
+  if (modal) modal.style.display = "none";
+}
 
-    // Close button
-// Close on "×"
-modal.querySelector(".close-btn").onclick = () => {
-  modal.style.display = "none";
-  history.back();
-};
+// close on ×
+document.addEventListener("click", e => {
+  if (e.target.classList.contains("close-btn")) {
+    closeMobileModal();
+    history.back();
+  }
+});
 
-  } else {
-    // Desktop → update side details panel
-    const details = d3.select('#details');
-    details.html(`
-      <h2 style="color: var(--domColor)">
-        ${d.rank}. ${d.name} 
-        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
-      </h2>
-      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
-      <p><strong>How to use this strength (practical):</strong> ${d.tips}</p>
-      <p style="margin-top:8px;font-size:13px;color:var(--muted)">
-        Tap another tile to view its notes. Use the Search to filter.
-      </p>
-    `);
+// close when clicking outside
+window.addEventListener("click", e => {
+  const modal = document.getElementById("mobileModal");
+  const body  = document.getElementById("mobileModalBody");
+  if (!modal || modal.style.display !== "block") return;
+  if (!body.contains(e.target) && !e.target.classList.contains("close-btn")) {
+    closeMobileModal();
+    history.back();
+  }
+});
+
+// close on phone back
+window.addEventListener("popstate", () => {
+  const modal = document.getElementById("mobileModal");
+  if (modal && modal.style.display === "block") closeMobileModal();
+});
   
 
     const domColor = domainOrder.find(x => x.key===d.domain).color;
@@ -2399,59 +2405,6 @@ say, “Let’s get started right now!” many people refrain from questioning y
       renderInputDetailsNoTabs(strengths);
   });
 
-</script>
-<script>
-function tileClick(event, d) {
-  const isMobile = window.innerWidth <= 900;
-  if (!isMobile) return;
-
-  const modal = document.getElementById("mobileModal");
-  const body  = document.getElementById("mobileModalBody");
-
-  const domColor = domainOrder.find(x => x.key === d.domain).color;
-
-  body.innerHTML = `
-    <h2 style="color:${domColor}">
-      ${d.rank}. ${d.name}
-      <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
-    </h2>
-    <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
-    <p><strong>How to use this strength:</strong> ${d.tips}</p>
-  `;
-
-  modal.style.display = "block";
-  history.pushState({modalOpen:true},"");
-}
-
-function closeMobileModal() {
-  const modal = document.getElementById("mobileModal");
-  if (modal) modal.style.display = "none";
-}
-
-// close on ×
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("close-btn")) {
-    closeMobileModal();
-    history.back();
-  }
-});
-
-// close when clicking outside
-window.addEventListener("click", e => {
-  const modal = document.getElementById("mobileModal");
-  const body  = document.getElementById("mobileModalBody");
-  if (!modal || modal.style.display !== "block") return;
-  if (!body.contains(e.target) && !e.target.classList.contains("close-btn")) {
-    closeMobileModal();
-    history.back();
-  }
-});
-
-// close on phone back
-window.addEventListener("popstate", () => {
-  const modal = document.getElementById("mobileModal");
-  if (modal && modal.style.display === "block") closeMobileModal();
-});
 </script>
 
 <script>
