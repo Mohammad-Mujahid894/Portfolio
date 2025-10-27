@@ -653,15 +653,23 @@ html, body{ overflow-x: hidden; }
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70%;
   background: #111827;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   box-shadow: 0 -4px 12px rgba(0,0,0,0.6);
   z-index: 9999;
-  animation: slideUp 0.3s ease;
+  animation: slideUp 0.25s ease;
   color: white;
-  overflow-y: auto;
+  overflow: hidden;
+  max-height: 80vh; /* prevents going too tall */
+  width: 100%;
+}
+
+.mobile-modal-content {
+  padding: 20px;
+  font-family: sans-serif;
+  max-height: 80vh;
+  overflow-y: auto; /* scroll only if text too long */
 }
 
 /* Inner content */
@@ -904,6 +912,14 @@ html, body{ overflow-x: hidden; }
   color: #9fb2d8; margin-bottom: 8px;
 }
 .details-backdrop.show { display: flex; }
+    .mobile-modal {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.mobile-modal.hide {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
   </style>
 
 </head>
@@ -1365,10 +1381,16 @@ function tileClick(event, d) {
     body.querySelector("h2").style.color = domColor;
 
     modal.style.display = "block";
+    history.pushState({ modalOpen: true }, "");  // allow mobile back button to close modal
+
 
     // Close button
     modal.querySelector(".close-btn").onclick = () => {
-      modal.style.display = "none";
+      modal.classList.add("hide");
+setTimeout(() => {
+  modal.style.display = "none";
+  modal.classList.remove("hide");
+}, 200);
     };
 
   } else {
@@ -2450,6 +2472,29 @@ say, “Let’s get started right now!” many people refrain from questioning y
   // Export for your existing chart handlers
   window.openDetails = openDetails;
   window.closeDetails = closeDetails;
+</script>
+<script>
+// === Close when tapping outside the box ===
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById("mobileModal");
+  const body = document.getElementById("mobileModalBody");
+  if (modal && modal.style.display === "block") {
+    const clickedInside = body.contains(event.target);
+    const clickedClose = event.target.classList.contains("close-btn");
+    if (!clickedInside && !clickedClose) {
+      modal.style.display = "none";
+      history.back(); // go back one step when closed manually
+    }
+  }
+});
+
+// === Handle mobile "back" button ===
+window.addEventListener('popstate', function() {
+  const modal = document.getElementById("mobileModal");
+  if (modal && modal.style.display === "block") {
+    modal.style.display = "none";
+  }
+});
 </script>
 
     <!-- Mobile modal popup -->
