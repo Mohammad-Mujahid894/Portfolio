@@ -646,60 +646,6 @@ html, body{ overflow-x: hidden; }
 html, body{ overflow-x: hidden; }
 .container, #gallupStrengths, .grid, .column, .column .list{ min-width: 0; }
     
-/* Hidden by default */
-.mobile-modal {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #111827;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.6);
-  z-index: 9999;
-  animation: slideUp 0.25s ease;
-  color: white;
-  overflow: hidden;
-  max-height: 80vh; /* prevents going too tall */
-  width: 100%;
-}
-
-.mobile-modal-content {
-  padding: 20px;
-  font-family: sans-serif;
-  max-height: 80vh;
-  overflow-y: auto; /* scroll only if text too long */
-}
-
-/* Inner content */
-.mobile-modal-content {
-  padding: 20px;
-  font-family: sans-serif;
-}
-
-/* Close button */
-.mobile-modal .close-btn {
-  font-size: 28px;
-  font-weight: bold;
-  float: right;
-  cursor: pointer;
-  color: #aaa;
-}
-.mobile-modal .close-btn:hover {
-  color: white;
-}
-
-/* Slide up animation */
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-/* Only apply modal on mobile */
-@media (min-width: 901px){
-  .mobile-modal{ display: none !important; }
-}
     
 /* Center + contain */
 .center-wrap{
@@ -819,11 +765,6 @@ html, body{ overflow-x: hidden; }
   border-bottom-style: solid;
 }
 
-
-
-
-
-    
     /* Page content column (same as other sections) */
 .content-wrap {
   width: 100%;
@@ -879,10 +820,14 @@ html, body{ overflow-x: hidden; }
   .controls .spacer { display: block; flex: 1; }
 }
 
-.mobile-modal {
-  backdrop-filter: blur(6px);
-  background-color: rgba(17, 24, 39, 0.95);
-}
+
+
+
+
+
+
+
+    /* Hidden by default */
 .mobile-modal {
   display: none;
   position: fixed;
@@ -890,21 +835,51 @@ html, body{ overflow-x: hidden; }
   left: 0;
   right: 0;
   background: #111827;
-  color: white;
-  border-radius: 12px 12px 0 0;
-  padding: 16px;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.4);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.6);
   z-index: 9999;
-}
-.modal-open {
+  animation: slideUp 0.25s ease;
+  color: white;
   overflow: hidden;
+  max-height: 80vh; /* prevents going too tall */
+  width: 100%;
 }
-.close-btn {
-  position: absolute;
-  right: 16px;
-  top: 8px;
-  font-size: 24px;
+
+.mobile-modal-content {
+  padding: 20px;
+  font-family: sans-serif;
+  max-height: 80vh;
+  overflow-y: auto; /* scroll only if text too long */
+}
+
+/* Inner content */
+.mobile-modal-content {
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+/* Close button */
+.mobile-modal .close-btn {
+  font-size: 28px;
+  font-weight: bold;
+  float: right;
   cursor: pointer;
+  color: #aaa;
+}
+.mobile-modal .close-btn:hover {
+  color: white;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Only apply modal on mobile */
+@media (min-width: 901px){
+  .mobile-modal{ display: none !important; }
 }
 
   </style>
@@ -2426,120 +2401,58 @@ say, “Let’s get started right now!” many people refrain from questioning y
 
 </script>
 <script>
-// === Close when tapping outside the box ===
-window.addEventListener('click', function(event) {
-  const modal = document.getElementById("mobileModal");
-  const body = document.getElementById("mobileModalBody");
-  if (modal && modal.style.display === "block") {
-    const clickedInside = body.contains(event.target);
-    const clickedClose = event.target.classList.contains("close-btn");
-    if (!clickedInside && !clickedClose) {
-      modal.style.display = "none";
-      history.back(); // go back one step when closed manually
-    }
-  }
-});
+function tileClick(event, d) {
+  const isMobile = window.innerWidth <= 900;
+  if (!isMobile) return;
 
-// === Handle mobile "back" button ===
-window.addEventListener('popstate', function() {
   const modal = document.getElementById("mobileModal");
-  if (modal && modal.style.display === "block") {
-    modal.style.display = "none";
-  }
-});
-</script>
-  <script>
-/* ===== MOBILE MODAL — CLOSING LOGIC ===== */
+  const body  = document.getElementById("mobileModalBody");
 
-// Close when tapping outside the modal content
-window.addEventListener("click", (event) => {
-  const modal = document.getElementById("mobileModal");
-  const body = document.getElementById("mobileModalBody");
-  if (modal && modal.style.display === "block") {
-    const clickedInside = body.contains(event.target);
-    const clickedClose = event.target.classList.contains("close-btn");
-    if (!clickedInside && !clickedClose) {
-      modal.style.display = "none";
-      history.back();
-    }
-  }
-});
+  const domColor = domainOrder.find(x => x.key === d.domain).color;
 
-// Close when mobile back button is pressed
-window.addEventListener("popstate", () => {
-  const modal = document.getElementById("mobileModal");
-  if (modal && modal.style.display === "block") {
-    modal.style.display = "none";
-  }
-});
-</script>
-  <script>
-// === TILE CLICK HANDLER ===
-function tileClick(htmlContent) {
-  const modal = document.getElementById("mobileModal");
-  const body = document.getElementById("mobileModalBody");
+  body.innerHTML = `
+    <h2 style="color:${domColor}">
+      ${d.rank}. ${d.name}
+      <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+    </h2>
+    <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+    <p><strong>How to use this strength:</strong> ${d.tips}</p>
+  `;
 
-  if (!modal || !body) {
-    console.error("Modal structure missing!");
-    return;
-  }
-
-  body.innerHTML = htmlContent;
   modal.style.display = "block";
-  document.body.classList.add("modal-open");
-  history.pushState({ modalOpen: true }, ""); // Enable back button close
+  history.pushState({modalOpen:true},"");
 }
 
-// === CLOSE MODAL ===
 function closeMobileModal() {
   const modal = document.getElementById("mobileModal");
-  if (modal) {
-    modal.style.display = "none";
-    document.body.classList.remove("modal-open");
-  }
+  if (modal) modal.style.display = "none";
 }
 
-// Close on X click
-document.addEventListener("click", (e) => {
+// close on ×
+document.addEventListener("click", e => {
   if (e.target.classList.contains("close-btn")) {
     closeMobileModal();
     history.back();
   }
 });
 
-// Close when clicking outside modal content
-window.addEventListener("click", (event) => {
+// close when clicking outside
+window.addEventListener("click", e => {
   const modal = document.getElementById("mobileModal");
-  const body = document.getElementById("mobileModalBody");
-  if (modal && modal.style.display === "block") {
-    const inside = body.contains(event.target);
-    const closeClicked = event.target.classList.contains("close-btn");
-    if (!inside && !closeClicked) {
-      closeMobileModal();
-      history.back();
-    }
+  const body  = document.getElementById("mobileModalBody");
+  if (!modal || modal.style.display !== "block") return;
+  if (!body.contains(e.target) && !e.target.classList.contains("close-btn")) {
+    closeMobileModal();
+    history.back();
   }
 });
 
-// Handle mobile back button
+// close on phone back
 window.addEventListener("popstate", () => {
   const modal = document.getElementById("mobileModal");
-  if (modal && modal.style.display === "block") {
-    closeMobileModal();
-  }
+  if (modal && modal.style.display === "block") closeMobileModal();
 });
 </script>
-
-
-
-    <!-- Mobile modal popup -->
-<!-- Reusable details modal (desktop + mobile) -->
-<div id="detailsBackdrop" class="details-backdrop" aria-hidden="true">
-  <div role="dialog" aria-modal="true" aria-labelledby="detailsTitle" class="details-modal">
-    <button type="button" class="close-x" aria-label="Close">✕</button>
-    <div id="detailsContent"></div>
-  </div>
-</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
