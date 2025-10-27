@@ -879,6 +879,10 @@ html, body{ overflow-x: hidden; }
   .controls .spacer { display: block; flex: 1; }
 }
 
+.mobile-modal {
+  backdrop-filter: blur(6px);
+  background-color: rgba(17, 24, 39, 0.95);
+}
 
   </style>
 
@@ -1345,13 +1349,11 @@ function tileClick(event, d) {
 
 
     // Close button
-    modal.querySelector(".close-btn").onclick = () => {
-      modal.classList.add("hide");
-setTimeout(() => {
+// Close on "×"
+modal.querySelector(".close-btn").onclick = () => {
   modal.style.display = "none";
-  modal.classList.remove("hide");
-}, 200);
-    };
+  history.back();
+};
 
   } else {
     // Desktop → update side details panel
@@ -2400,38 +2402,6 @@ say, “Let’s get started right now!” many people refrain from questioning y
   });
 
 </script>
-  <script>
-  
-  function openDetails(html) {
-    detailsContent.innerHTML = html;
-    detailsBackdrop.classList.add('show');
-    detailsBackdrop.setAttribute('aria-hidden', 'false');
-    // Optional: focus management (e.g., focus first heading/button)
-  }
-
-  function closeDetails() {
-    detailsBackdrop.classList.remove('show');
-    detailsBackdrop.setAttribute('aria-hidden', 'true');
-    detailsContent.innerHTML = '';
-  }
-
-  // Close on X
-  detailsBackdrop.querySelector('.close-x').addEventListener('click', closeDetails);
-
-  // Close on outside click (only if clicking the dim backdrop)
-  detailsBackdrop.addEventListener('click', (e) => {
-    if (e.target === detailsBackdrop) closeDetails();
-  });
-
-  // Close on Esc
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && detailsBackdrop.classList.contains('show')) closeDetails();
-  });
-
-  // Export for your existing chart handlers
-  window.openDetails = openDetails;
-  window.closeDetails = closeDetails;
-</script>
 <script>
 // === Close when tapping outside the box ===
 window.addEventListener('click', function(event) {
@@ -2455,6 +2425,32 @@ window.addEventListener('popstate', function() {
   }
 });
 </script>
+  <script>
+/* ===== MOBILE MODAL — CLOSING LOGIC ===== */
+
+// Close when tapping outside the modal content
+window.addEventListener("click", (event) => {
+  const modal = document.getElementById("mobileModal");
+  const body = document.getElementById("mobileModalBody");
+  if (modal && modal.style.display === "block") {
+    const clickedInside = body.contains(event.target);
+    const clickedClose = event.target.classList.contains("close-btn");
+    if (!clickedInside && !clickedClose) {
+      modal.style.display = "none";
+      history.back();
+    }
+  }
+});
+
+// Close when mobile back button is pressed
+window.addEventListener("popstate", () => {
+  const modal = document.getElementById("mobileModal");
+  if (modal && modal.style.display === "block") {
+    modal.style.display = "none";
+  }
+});
+</script>
+
 
     <!-- Mobile modal popup -->
 <!-- Reusable details modal (desktop + mobile) -->
