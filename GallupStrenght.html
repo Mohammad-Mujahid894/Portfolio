@@ -879,46 +879,6 @@ html, body{ overflow-x: hidden; }
   .controls .spacer { display: block; flex: 1; }
 }
 
-/* Backdrop */
-.details-backdrop {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-/* Modal */
-.details-modal {
-  background: linear-gradient(180deg, rgba(10,16,28,0.98), rgba(6,10,18,0.95));
-  color: #eaf2ff;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  box-shadow: 0 12px 40px rgba(2,8,23,0.6);
-  padding: 14px;
-  width: auto;                           /* shrink-wrap */
-  max-width: min(720px, 92vw);
-  max-height: min(80vh, 680px);
-  overflow: auto;                        /* scroll inside if needed */
-}
-/* Close button */
-.details-modal .close-x {
-  position: sticky; top: 0; left: 100%;
-  transform: translate(-100%, 0);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 4px 8px; cursor: pointer;
-  color: #9fb2d8; margin-bottom: 8px;
-}
-.details-backdrop.show { display: flex; }
-    .mobile-modal {
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-.mobile-modal.hide {
-  opacity: 0;
-  transform: translateY(20px);
-}
 
   </style>
 
@@ -1391,7 +1351,7 @@ setTimeout(() => {
   modal.style.display = "none";
   modal.classList.remove("hide");
 }, 200);
-  
+    };
 
   } else {
     // Desktop → update side details panel
@@ -1407,7 +1367,7 @@ setTimeout(() => {
         Tap another tile to view its notes. Use the Search to filter.
       </p>
     `);
-     };
+  
 
     const domColor = domainOrder.find(x => x.key===d.domain).color;
     details.select('h2').style('color', domColor);
@@ -2441,9 +2401,7 @@ say, “Let’s get started right now!” many people refrain from questioning y
 
 </script>
   <script>
-  const detailsBackdrop = document.getElementById('detailsBackdrop');
-  const detailsContent  = document.getElementById('detailsContent');
-
+  
   function openDetails(html) {
     detailsContent.innerHTML = html;
     detailsBackdrop.classList.add('show');
