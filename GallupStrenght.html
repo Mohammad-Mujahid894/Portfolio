@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -646,6 +647,52 @@ html, body{ overflow-x: hidden; }
 html, body{ overflow-x: hidden; }
 .container, #gallupStrengths, .grid, .column, .column .list{ min-width: 0; }
     
+/* Hidden by default */
+.mobile-modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  background: #111827;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.6);
+  z-index: 9999;
+  animation: slideUp 0.3s ease;
+  color: white;
+  overflow-y: auto;
+}
+
+/* Inner content */
+.mobile-modal-content {
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+/* Close button */
+.mobile-modal .close-btn {
+  font-size: 28px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  color: #aaa;
+}
+.mobile-modal .close-btn:hover {
+  color: white;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Only apply modal on mobile */
+@media (min-width: 901px){
+  .mobile-modal{ display: none !important; }
+}
     
 /* Center + contain */
 .center-wrap{
@@ -765,6 +812,11 @@ html, body{ overflow-x: hidden; }
   border-bottom-style: solid;
 }
 
+
+
+
+
+    
     /* Page content column (same as other sections) */
 .content-wrap {
   width: 100%;
@@ -820,68 +872,39 @@ html, body{ overflow-x: hidden; }
   .controls .spacer { display: block; flex: 1; }
 }
 
-
-
-
-
-
-
-
-    /* Hidden by default */
-.mobile-modal {
+/* Backdrop */
+.details-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
   display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #111827;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.6);
-  z-index: 9999;
-  animation: slideUp 0.25s ease;
-  color: white;
-  overflow: hidden;
-  max-height: 80vh; /* prevents going too tall */
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
 }
-
-.mobile-modal-content {
-  padding: 20px;
-  font-family: sans-serif;
-  max-height: 80vh;
-  overflow-y: auto; /* scroll only if text too long */
+/* Modal */
+.details-modal {
+  background: linear-gradient(180deg, rgba(10,16,28,0.98), rgba(6,10,18,0.95));
+  color: #eaf2ff;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(2,8,23,0.6);
+  padding: 14px;
+  width: auto;                           /* shrink-wrap */
+  max-width: min(720px, 92vw);
+  max-height: min(80vh, 680px);
+  overflow: auto;                        /* scroll inside if needed */
 }
-
-/* Inner content */
-.mobile-modal-content {
-  padding: 20px;
-  font-family: sans-serif;
-}
-
 /* Close button */
-.mobile-modal .close-btn {
-  font-size: 28px;
-  font-weight: bold;
-  float: right;
-  cursor: pointer;
-  color: #aaa;
+.details-modal .close-x {
+  position: sticky; top: 0; left: 100%;
+  transform: translate(-100%, 0);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 4px 8px; cursor: pointer;
+  color: #9fb2d8; margin-bottom: 8px;
 }
-.mobile-modal .close-btn:hover {
-  color: white;
-}
-
-/* Slide up animation */
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-/* Only apply modal on mobile */
-@media (min-width: 901px){
-  .mobile-modal{ display: none !important; }
-}
-
+.details-backdrop.show { display: flex; }
   </style>
 
 </head>
@@ -925,7 +948,7 @@ html, body{ overflow-x: hidden; }
   <div id="nebula" class="layer" aria-hidden="true"></div>
 
 <div class="intro-center">
-  <h1 class="title"><span>Clifton Strengths® Theme Map</span></h1>
+  <h1 class="title"><span>My Clifton Strengths® Theme Map</span></h1>
   <p class="sub">(These Strengths Insights are personalized based on my CliftonStrengths results.)</p>
   <p class="sub">I lead with Relationship Building</p>
 </div>
@@ -1007,13 +1030,9 @@ html, body{ overflow-x: hidden; }
 <p style="font-size:13px; margin:0; text-align:center !important;"> Powered by Clifton Strengths. Trademarks belong to their respective owners.</p>
 </footer>
 
-<!-- ===== MOBILE MODAL (for mobile tile tap) ===== -->
-<div id="mobileModal" class="mobile-modal" role="dialog" aria-modal="true">
-  <span class="close-btn" aria-label="Close">&times;</span>
-  <div class="mobile-modal-content" id="mobileModalBody">
-    <!-- JS will inject strength details here -->
-  </div>
-</div>
+
+
+
   
     <script>
     /* ========= Parallax starfields (3 layers for depth) ========= */
@@ -1324,56 +1343,58 @@ function tileMouseOut(){
 
 function tileClick(event, d) {
   const isMobile = window.innerWidth <= 900;
-  if (!isMobile) return;
 
-  const modal = document.getElementById("mobileModal");
-  const body  = document.getElementById("mobileModalBody");
+  if (isMobile) {
+    // Show mobile modal
+    const modal = document.getElementById("mobileModal");
+    const body = document.getElementById("mobileModalBody");
 
-  const domColor = domainOrder.find(x => x.key === d.domain).color;
+    body.innerHTML = `
+      <h2 style="color: var(--domColor)">
+        ${d.rank}. ${d.name} 
+        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+      </h2>
+      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+      <p><strong>How to use this strength:</strong> ${d.tips}</p>
+    `;
 
-  body.innerHTML = `
-    <h2 style="color:${domColor}">
-      ${d.rank}. ${d.name}
-      <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
-    </h2>
-    <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
-    <p><strong>How to use this strength:</strong> ${d.tips}</p>
-  `;
+    const domColor = domainOrder.find(x => x.key === d.domain).color;
+    body.querySelector("h2").style.color = domColor;
 
-  modal.style.display = "block";
-  history.pushState({modalOpen:true},"");
-}
+    modal.style.display = "block";
 
-function closeMobileModal() {
-  const modal = document.getElementById("mobileModal");
-  if (modal) modal.style.display = "none";
-}
+    // Close button
+    modal.querySelector(".close-btn").onclick = () => {
+      modal.style.display = "none";
+    };
 
-// close on ×
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("close-btn")) {
-    closeMobileModal();
-    history.back();
+  } else {
+    // Desktop → update side details panel
+    const details = d3.select('#details');
+    details.html(`
+      <h2 style="color: var(--domColor)">
+        ${d.rank}. ${d.name} 
+        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+      </h2>
+      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+      <p><strong>How to use this strength (practical):</strong> ${d.tips}</p>
+      <p style="margin-top:8px;font-size:13px;color:var(--muted)">
+        Tap another tile to view its notes. Use the Search to filter.
+      </p>
+    `);
+
+    const domColor = domainOrder.find(x => x.key===d.domain).color;
+    details.select('h2').style('color', domColor);
+
+    // highlight in top bar
+    d3.select('#svgBarWrap svg').selectAll('rect')
+       .attr('stroke', null).attr('stroke-width', null);
+    d3.select('#svgBarWrap svg rect[data-rank="' + d.rank + '"]')
+       .attr('stroke', '#fff').attr('stroke-width', 2);
+
+    highlightRank(d.rank);
   }
-
-// close when clicking outside
-window.addEventListener("click", e => {
-  const modal = document.getElementById("mobileModal");
-  const body  = document.getElementById("mobileModalBody");
-  if (!modal || modal.style.display !== "block") return;
-  if (!body.contains(e.target) && !e.target.classList.contains("close-btn")) {
-    closeMobileModal();
-    history.back();
-  }
-});
-
-// close on phone back
-window.addEventListener("popstate", () => {
-  const modal = document.getElementById("mobileModal");
-  if (modal && modal.style.display === "block") closeMobileModal();
-});
-  
-
+}
 
 /* ===== Stack bar showing distribution of domains ===== */
 function clearAllHighlights(){
@@ -1700,7 +1721,7 @@ reciprocate — that is, return — your feelings of warmth and affection
     </div>
     <!-- Blend Section -->
 <div style="margin-top:24px;">
-  <h3 style="font-size:16px;margin-bottom:12px;">How Relator Blends With my Other Top Five Strengths</h3>
+  <h3 style="font-size:16px;margin-bottom:12px;">How Relator Blends With Your Other Top Five Strengths</h3>
 
   <div style="display:flex;flex-direction:column;gap:12px;">
     
@@ -1931,7 +1952,7 @@ special acclaim
       </div>
 
 <div style="margin-top:24px; text-align:center; display:flex; flex-direction:column; align-items:center;">
-  <h3 style="font-size:16px; margin-bottom:12px;">How Deliberative Blends With my Other Top Five Strengths</h3>
+  <h3 style="font-size:16px; margin-bottom:12px;">How Deliberative Blends With Your Other Top Five Strengths</h3>
   
   <div style="display:flex; flex-direction:column; gap:12px; align-items:center; max-width:600px;">
     
@@ -2068,7 +2089,7 @@ prevailing circumstances, available resources, and desired outcomes.
 
     <!-- Blend Section -->
 <div style="margin-top:24px;">
-  <h3 style="font-size:16px;margin-bottom:12px;">How Learner Blends With my Other Top Five Strengths</h3>
+  <h3 style="font-size:16px;margin-bottom:12px;">How Learner Blends With Your Other Top Five Strengths</h3>
 
   <div style="display:flex;flex-direction:column;gap:12px;">
     
@@ -2202,7 +2223,7 @@ are not immediately useful.
 
     <!-- Blend Section -->
 <div style="margin-top:24px;">
-  <h3 style="font-size:16px;margin-bottom:12px;">How Intellection Blends With my Other Top Five Strengths</h3>
+  <h3 style="font-size:16px;margin-bottom:12px;">How Intellection Blends With Your Other Top Five Strengths</h3>
 
   <div style="display:flex;flex-direction:column;gap:12px;">
     <div>
@@ -2334,7 +2355,7 @@ say, “Let’s get started right now!” many people refrain from questioning y
 
     <!-- Blend Section -->
     <div style="margin-top:24px;">
-  <h3 style="font-size:16px;margin-bottom:12px;">How Input Blends With my Other Top Five Strengths</h3>
+  <h3 style="font-size:16px;margin-bottom:12px;">How Input Blends With Your Other Top Five Strengths</h3>
 
   <div style="display:flex;flex-direction:column;gap:12px;">
     <div>
@@ -2378,7 +2399,6 @@ say, “Let’s get started right now!” many people refrain from questioning y
   `;
   wrap.html(html);
 }
-}
   // Ensure D3 and strengths are available
   document.addEventListener('DOMContentLoaded', function () {
     // 1) Top split barcode (compact version)
@@ -2394,6 +2414,49 @@ say, “Let’s get started right now!” many people refrain from questioning y
   });
 
 </script>
+  <script>
+  const detailsBackdrop = document.getElementById('detailsBackdrop');
+  const detailsContent  = document.getElementById('detailsContent');
+
+  function openDetails(html) {
+    detailsContent.innerHTML = html;
+    detailsBackdrop.classList.add('show');
+    detailsBackdrop.setAttribute('aria-hidden', 'false');
+    // Optional: focus management (e.g., focus first heading/button)
+  }
+
+  function closeDetails() {
+    detailsBackdrop.classList.remove('show');
+    detailsBackdrop.setAttribute('aria-hidden', 'true');
+    detailsContent.innerHTML = '';
+  }
+
+  // Close on X
+  detailsBackdrop.querySelector('.close-x').addEventListener('click', closeDetails);
+
+  // Close on outside click (only if clicking the dim backdrop)
+  detailsBackdrop.addEventListener('click', (e) => {
+    if (e.target === detailsBackdrop) closeDetails();
+  });
+
+  // Close on Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && detailsBackdrop.classList.contains('show')) closeDetails();
+  });
+
+  // Export for your existing chart handlers
+  window.openDetails = openDetails;
+  window.closeDetails = closeDetails;
+</script>
+
+    <!-- Mobile modal popup -->
+<!-- Reusable details modal (desktop + mobile) -->
+<div id="detailsBackdrop" class="details-backdrop" aria-hidden="true">
+  <div role="dialog" aria-modal="true" aria-labelledby="detailsTitle" class="details-modal">
+    <button type="button" class="close-x" aria-label="Close">✕</button>
+    <div id="detailsContent"></div>
+  </div>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
