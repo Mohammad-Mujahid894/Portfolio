@@ -654,17 +654,19 @@ html, body{ overflow-x: hidden; }
   bottom: 0;
   left: 0;
   right: 0;
-  height: 55%; /* smaller modal */
-  max-height: 450px; /* keep it contained on larger phones */
+  height: 30%;                    /* reduced height */
+  max-height: 340px;              /* cap for large screens */
   background: #111827;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.6);
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.6);
   z-index: 9999;
-  animation: slideUp 0.3s ease;
+  animation: slideUp 0.25s ease;
   color: white;
   overflow-y: auto;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
+ 
 
 /* Inner content */
 .mobile-modal-content {
@@ -693,6 +695,16 @@ html, body{ overflow-x: hidden; }
 /* Only apply modal on mobile */
 @media (min-width: 901px){
   .mobile-modal{ display: none !important; }
+}
+    .mobile-modal.show {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-modal.hide {
+  transform: translateY(100%);
+  opacity: 0;
 }
     
 /* Center + contain */
@@ -1364,26 +1376,40 @@ function tileClick(event, d) {
 
     modal.style.display = "block";
 
-    // Close button
-    modal.querySelector(".close-btn").onclick = () => {
-      modal.style.display = "none";
-    };
-    // === Close modal when tapping outside ===
+
+
+// === Handle Android Back Button ===
+window.addEventListener('popstate', () => {
+  const modal = document.getElementById("mobileModal");
+  if (modal && modal.style.display === "block") {
+    modal.style.display// === Close button ===
+modal.querySelector(".close-btn").onclick = () => {
+  modal.classList.add("hide");
+  modal.classList.remove("show");
+  setTimeout(() => (modal.style.display = "none"), 250);
+};
+
+// === Close modal when tapping outside ===
 document.addEventListener('click', (e) => {
   const modal = document.getElementById("mobileModal");
   if (!modal) return;
   const body = document.getElementById("mobileModalBody");
   if (modal.style.display === "block" && !body.contains(e.target) && !e.target.classList.contains('tile')) {
-    modal.style.display = "none";
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    setTimeout(() => (modal.style.display = "none"), 250);
   }
 });
-    // === Close modal on Back or Backspace ===
+
+// === Close modal on Back or Backspace ===
 document.addEventListener('keydown', (e) => {
   const modal = document.getElementById("mobileModal");
   if (!modal) return;
   if ((e.key === "Backspace" || e.key === "Escape") && modal.style.display === "block") {
     e.preventDefault();
-    modal.style.display = "none";
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    setTimeout(() => (modal.style.display = "none"), 250);
   }
 });
 
@@ -1391,7 +1417,9 @@ document.addEventListener('keydown', (e) => {
 window.addEventListener('popstate', () => {
   const modal = document.getElementById("mobileModal");
   if (modal && modal.style.display === "block") {
-    modal.style.display = "none";
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    setTimeout(() => (modal.style.display = "none"), 250);
     history.pushState(null, "", location.href); // keep the same page
   }
 });
