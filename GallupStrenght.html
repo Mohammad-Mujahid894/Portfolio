@@ -1453,47 +1453,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 
-  // === GLOBAL MODAL HANDLERS ===
-const modal = document.getElementById("mobileModal");
-const body = document.getElementById("mobileModalBody");
-
-// Close when tapping outside
-document.addEventListener("click", (e) => {
-  if (modal.style.display === "block" &&
-      !body.contains(e.target) &&
-      !e.target.classList.contains("tile")) {
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    setTimeout(() => (modal.style.display = "none"), 250);
-  }
-});
-
-// Close button
-modal.querySelector(".close-btn").onclick = () => {
-  modal.classList.add("hide");
-  modal.classList.remove("show");
-  setTimeout(() => (modal.style.display = "none"), 250);
-};
-
-// Close on Backspace or Escape
-window.addEventListener("keydown", (e) => {
-  if (modal.style.display === "block" && (e.key === "Backspace" || e.key === "Escape")) {
-    e.preventDefault(); // stop browser from navigating back
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    setTimeout(() => (modal.style.display = "none"), 250);
-  }
-});
-
-// Handle Android Back button
-window.addEventListener("popstate", (e) => {
-  if (modal.style.display === "block") {
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    setTimeout(() => (modal.style.display = "none"), 250);
-  }
-});
-
   
 function tileMouseMove(event, d){
   // show tooltip with short description
