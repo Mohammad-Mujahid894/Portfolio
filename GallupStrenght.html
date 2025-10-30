@@ -1329,7 +1329,106 @@ function renderTiles(data){
 
 /* TOOLTIP elements */
 const tooltip = d3.select('#tooltip');
+function tileClick(event, d) {
+  const isMobile = window.innerWidth <= 900;
 
+  if (isMobile) {
+    // === MOBILE: Show slide-up modal ===
+    const modal = document.getElementById("mobileModal");
+    const body = document.getElementById("mobileModalBody");
+
+    // Fill modal with strength details
+    body.innerHTML = `
+      <h2 style="color: var(--domColor)">
+        ${d.rank}. ${d.name} 
+        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+      </h2>
+      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+      <p><strong>How to use this strength:</strong> ${d.tips}</p>
+    `;
+
+    // Apply color theme
+    const domColor = domainOrder.find(x => x.key === d.domain).color;
+    body.querySelector("h2").style.color = domColor;
+
+    // Show modal with animation
+    modal.classList.remove("hide");
+    modal.classList.add("show");
+    modal.style.display = "block";
+
+    // === Close when tapping outside ===
+    document.addEventListener('click', (e) => {
+      const body = document.getElementById("mobileModalBody");
+      if (
+        modal.style.display === "block" &&
+        !body.contains(e.target) &&
+        !e.target.classList.contains('tile')
+      ) {
+        modal.classList.add("hide");
+        modal.classList.remove("show");
+        setTimeout(() => (modal.style.display = "none"), 250);
+      }
+    });
+
+    // === Close when pressing Backspace or Escape ===
+    document.addEventListener('keydown', (e) => {
+      if (
+        (e.key === "Backspace" || e.key === "Escape") &&
+        modal.style.display === "block"
+      ) {
+        e.preventDefault();
+        modal.classList.add("hide");
+        modal.classList.remove("show");
+        setTimeout(() => (modal.style.display = "none"), 250);
+      }
+    });
+
+    // === Close on Android Back Button ===
+    window.addEventListener('popstate', () => {
+      if (modal && modal.style.display === "block") {
+        modal.classList.add("hide");
+        modal.classList.remove("show");
+        setTimeout(() => (modal.style.display = "none"), 250);
+        history.pushState(null, "", location.href);
+      }
+    });
+
+    // === Close button ===
+    modal.querySelector(".close-btn").onclick = () => {
+      modal.classList.add("hide");
+      modal.classList.remove("show");
+      setTimeout(() => (modal.style.display = "none"), 250);
+    };
+
+  } else {
+    // === DESKTOP: Update right-side details panel ===
+    const details = d3.select('#details');
+    details.html(`
+      <h2 style="color: var(--domColor)">
+        ${d.rank}. ${d.name} 
+        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+      </h2>
+      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+      <p><strong>How to use this strength (practical):</strong> ${d.tips}</p>
+      <p style="margin-top:8px;font-size:13px;color:var(--muted)">
+        Tap another tile to view its notes. Use the Search to filter.
+      </p>
+    `);
+
+    const domColor = domainOrder.find(x => x.key === d.domain).color;
+    details.select('h2').style('color', domColor);
+
+    // Highlight selected bar
+    d3.select('#svgBarWrap svg').selectAll('rect')
+      .attr('stroke', null)
+      .attr('stroke-width', null);
+    d3.select(`#svgBarWrap svg rect[data-rank="${d.rank}"]`)
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 2);
+
+    highlightRank(d.rank);
+  }
+}
 function tileMouseMove(event, d){
   // show tooltip with short description
   tooltip.style('display','block')
@@ -1354,103 +1453,7 @@ function tileMouseOut(){
 
 }
 
-function tileClick(event, d) {
-  const isMobile = window.innerWidth <= 900;
 
-  if (isMobile) {
-    // Show mobile modal
-    const modal = document.getElementById("mobileModal");
-    const body = document.getElementById("mobileModalBody");
-
-    body.innerHTML = `
-      <h2 style="color: var(--domColor)">
-        ${d.rank}. ${d.name} 
-        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
-      </h2>
-      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
-      <p><strong>How to use this strength:</strong> ${d.tips}</p>
-    `;
-
-    const domColor = domainOrder.find(x => x.key === d.domain).color;
-    body.querySelector("h2").style.color = domColor;
-
-    modal.style.display = "block";
-
-
-
-// === Handle Android Back Button ===
-window.addEventListener('popstate', () => {
-  const modal = document.getElementById("mobileModal");
-  if (modal && modal.style.display === "block") {
-    modal.style.display// === Close button ===
-modal.querySelector(".close-btn").onclick = () => {
-  modal.classList.add("hide");
-  modal.classList.remove("show");
-  setTimeout(() => (modal.style.display = "none"), 250);
-};
-
-// === Close modal when tapping outside ===
-document.addEventListener('click', (e) => {
-  const modal = document.getElementById("mobileModal");
-  if (!modal) return;
-  const body = document.getElementById("mobileModalBody");
-  if (modal.style.display === "block" && !body.contains(e.target) && !e.target.classList.contains('tile')) {
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    setTimeout(() => (modal.style.display = "none"), 250);
-  }
-});
-
-// === Close modal on Back or Backspace ===
-document.addEventListener('keydown', (e) => {
-  const modal = document.getElementById("mobileModal");
-  if (!modal) return;
-  if ((e.key === "Backspace" || e.key === "Escape") && modal.style.display === "block") {
-    e.preventDefault();
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    setTimeout(() => (modal.style.display = "none"), 250);
-  }
-});
-
-// === Handle Android Back Button ===
-window.addEventListener('popstate', () => {
-  const modal = document.getElementById("mobileModal");
-  if (modal && modal.style.display === "block") {
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    setTimeout(() => (modal.style.display = "none"), 250);
-    history.pushState(null, "", location.href); // keep the same page
-  }
-});
-
-  } else {
-    // Desktop → update side details panel
-    const details = d3.select('#details');
-    details.html(`
-      <h2 style="color: var(--domColor)">
-        ${d.rank}. ${d.name} 
-        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
-      </h2>
-      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
-      <p><strong>How to use this strength (practical):</strong> ${d.tips}</p>
-      <p style="margin-top:8px;font-size:13px;color:var(--muted)">
-        Tap another tile to view its notes. Use the Search to filter.
-      </p>
-    `);
-
-    const domColor = domainOrder.find(x => x.key===d.domain).color;
-    details.select('h2').style('color', domColor);
-
-    // highlight in top bar
-    d3.select('#svgBarWrap svg').selectAll('rect')
-       .attr('stroke', null).attr('stroke-width', null);
-    d3.select('#svgBarWrap svg rect[data-rank="' + d.rank + '"]')
-       .attr('stroke', '#fff').attr('stroke-width', 2);
-
-    highlightRank(d.rank);
-  }
-}
 
 /* ===== Stack bar showing distribution of domains ===== */
 function clearAllHighlights(){
