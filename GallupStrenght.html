@@ -1333,79 +1333,34 @@ function tileClick(event, d) {
   const isMobile = window.innerWidth <= 900;
 
   if (isMobile) {
-    // === MOBILE: Show slide-up modal ===
     const modal = document.getElementById("mobileModal");
     const body = document.getElementById("mobileModalBody");
 
     // Fill modal with strength details
     body.innerHTML = `
       <h2 style="color: var(--domColor)">
-        ${d.rank}. ${d.name} 
+        ${d.rank}. ${d.name}
         <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
       </h2>
       <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
       <p><strong>How to use this strength:</strong> ${d.tips}</p>
     `;
 
-    // Apply color theme
     const domColor = domainOrder.find(x => x.key === d.domain).color;
     body.querySelector("h2").style.color = domColor;
 
-    // Show modal with animation
+    // Show modal
     modal.classList.remove("hide");
     modal.classList.add("show");
     modal.style.display = "block";
-
-    // === Close when tapping outside ===
-    document.addEventListener('click', (e) => {
-      const body = document.getElementById("mobileModalBody");
-      if (
-        modal.style.display === "block" &&
-        !body.contains(e.target) &&
-        !e.target.classList.contains('tile')
-      ) {
-        modal.classList.add("hide");
-        modal.classList.remove("show");
-        setTimeout(() => (modal.style.display = "none"), 250);
-      }
-    });
-
-    // === Close when pressing Backspace or Escape ===
-    document.addEventListener('keydown', (e) => {
-      if (
-        (e.key === "Backspace" || e.key === "Escape") &&
-        modal.style.display === "block"
-      ) {
-        e.preventDefault();
-        modal.classList.add("hide");
-        modal.classList.remove("show");
-        setTimeout(() => (modal.style.display = "none"), 250);
-      }
-    });
-
-    // === Close on Android Back Button ===
-    window.addEventListener('popstate', () => {
-      if (modal && modal.style.display === "block") {
-        modal.classList.add("hide");
-        modal.classList.remove("show");
-        setTimeout(() => (modal.style.display = "none"), 250);
-        history.pushState(null, "", location.href);
-      }
-    });
-
-    // === Close button ===
-    modal.querySelector(".close-btn").onclick = () => {
-      modal.classList.add("hide");
-      modal.classList.remove("show");
-      setTimeout(() => (modal.style.display = "none"), 250);
-    };
+    history.pushState({ modalOpen: true }, ""); // helps intercept back button
 
   } else {
-    // === DESKTOP: Update right-side details panel ===
+    // === DESKTOP behavior ===
     const details = d3.select('#details');
     details.html(`
       <h2 style="color: var(--domColor)">
-        ${d.rank}. ${d.name} 
+        ${d.rank}. ${d.name}
         <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
       </h2>
       <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
@@ -1429,6 +1384,49 @@ function tileClick(event, d) {
     highlightRank(d.rank);
   }
 }
+
+  // === GLOBAL MODAL HANDLERS ===
+const modal = document.getElementById("mobileModal");
+const body = document.getElementById("mobileModalBody");
+
+// Close when tapping outside
+document.addEventListener("click", (e) => {
+  if (modal.style.display === "block" &&
+      !body.contains(e.target) &&
+      !e.target.classList.contains("tile")) {
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    setTimeout(() => (modal.style.display = "none"), 250);
+  }
+});
+
+// Close button
+modal.querySelector(".close-btn").onclick = () => {
+  modal.classList.add("hide");
+  modal.classList.remove("show");
+  setTimeout(() => (modal.style.display = "none"), 250);
+};
+
+// Close on Backspace or Escape
+window.addEventListener("keydown", (e) => {
+  if (modal.style.display === "block" && (e.key === "Backspace" || e.key === "Escape")) {
+    e.preventDefault(); // stop browser from navigating back
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    setTimeout(() => (modal.style.display = "none"), 250);
+  }
+});
+
+// Handle Android Back button
+window.addEventListener("popstate", (e) => {
+  if (modal.style.display === "block") {
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    setTimeout(() => (modal.style.display = "none"), 250);
+  }
+});
+
+  
 function tileMouseMove(event, d){
   // show tooltip with short description
   tooltip.style('display','block')
