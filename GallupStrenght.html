@@ -1385,6 +1385,74 @@ function tileClick(event, d) {
   }
 }
 
+  // === GLOBAL MODAL HANDLERS (works on all devices) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("mobileModal");
+  const body = document.getElementById("mobileModalBody");
+  const closeBtn = modal.querySelector(".close-btn");
+
+  // Helper to close modal
+  function closeModal() {
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    setTimeout(() => (modal.style.display = "none"), 250);
+  }
+
+  // Close button
+  closeBtn.addEventListener("click", closeModal);
+  closeBtn.addEventListener("touchstart", closeModal);
+
+  // Tap outside
+  document.addEventListener("click", (e) => {
+    if (
+      modal.style.display === "block" &&
+      !body.contains(e.target) &&
+      !e.target.classList.contains("tile") &&
+      !e.target.classList.contains("close-btn")
+    ) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("touchstart", (e) => {
+    if (
+      modal.style.display === "block" &&
+      !body.contains(e.target) &&
+      !e.target.classList.contains("tile") &&
+      !e.target.classList.contains("close-btn")
+    ) {
+      closeModal();
+    }
+  });
+
+  // Backspace / Escape (desktop only)
+  window.addEventListener("keydown", (e) => {
+    if (modal.style.display === "block" && (e.key === "Backspace" || e.key === "Escape")) {
+      e.preventDefault();
+      closeModal();
+    }
+  });
+
+  // Android back button (popstate)
+  window.addEventListener("popstate", () => {
+    if (modal.style.display === "block") {
+      closeModal();
+      history.pushState(null, "", location.href);
+    }
+  });
+
+  // Ensure history push happens before showing modal
+  const originalTileClick = window.tileClick;
+  window.tileClick = function (event, d) {
+    if (window.innerWidth <= 900) {
+      history.pushState({ modalOpen: true }, "");
+    }
+    originalTileClick(event, d);
+  };
+});
+
+  
+
   // === GLOBAL MODAL HANDLERS ===
 const modal = document.getElementById("mobileModal");
 const body = document.getElementById("mobileModalBody");
@@ -2540,9 +2608,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <!-- ===== MOBILE MODAL (for mobile tile tap) ===== -->
 <div id="mobileModal" class="mobile-modal" role="dialog" aria-modal="true">
   <span class="close-btn" aria-label="Close">&times;</span>
-  <div class="mobile-modal-content" id="mobileModalBody">
-    <!-- JS will inject strength details here -->
-  </div>
+  <div class="mobile-modal-content" id="mobileModalBody"></div>
 </div>
 </body>
 </html>
