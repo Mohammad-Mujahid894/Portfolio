@@ -2493,18 +2493,10 @@ say, “Let’s get started right now!” many people refrain from questioning y
     // Optional: focus management (e.g., focus first heading/button)
   }
 
-  function closeDetails() {
-    detailsBackdrop.classList.remove('show');
-    detailsBackdrop.setAttribute('aria-hidden', 'true');
-    detailsContent.innerHTML = '';
-  }
 
 
 
-  // Close on outside click (only if clicking the dim backdrop)
-  detailsBackdrop.addEventListener('click', (e) => {
-    if (e.target === detailsBackdrop) closeDetails();
-  });
+
 
   // Close on Esc
   document.addEventListener('keydown', (e) => {
