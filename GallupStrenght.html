@@ -1331,14 +1331,14 @@ function renderTiles(data){
 const tooltip = d3.select('#tooltip');
 function tileClick(event, d) {
   const isMobile = window.innerWidth <= 900;
+  const domColor = domainOrder.find(x => x.key === d.domain).color;
 
   if (isMobile) {
     const modal = document.getElementById("mobileModal");
     const body = document.getElementById("mobileModalBody");
 
-    // Fill modal with strength details
     body.innerHTML = `
-      <h2 style="color: var(--domColor)">
+      <h2 style="color:${domColor}">
         ${d.rank}. ${d.name}
         <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
       </h2>
@@ -1346,20 +1346,18 @@ function tileClick(event, d) {
       <p><strong>How to use this strength:</strong> ${d.tips}</p>
     `;
 
-    const domColor = domainOrder.find(x => x.key === d.domain).color;
-    body.querySelector("h2").style.color = domColor;
-
-    // Show modal
     modal.classList.remove("hide");
     modal.classList.add("show");
     modal.style.display = "block";
-    history.pushState({ modalOpen: true }, ""); // helps intercept back button
 
+    // record state for back button
+    if (history.state?.modalOpen !== true) {
+      history.pushState({ modalOpen: true }, "");
+    }
   } else {
-    // === DESKTOP behavior ===
     const details = d3.select('#details');
     details.html(`
-      <h2 style="color: var(--domColor)">
+      <h2 style="color:${domColor}">
         ${d.rank}. ${d.name}
         <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
       </h2>
@@ -1370,20 +1368,16 @@ function tileClick(event, d) {
       </p>
     `);
 
-    const domColor = domainOrder.find(x => x.key === d.domain).color;
-    details.select('h2').style('color', domColor);
-
-    // Highlight selected bar
     d3.select('#svgBarWrap svg').selectAll('rect')
       .attr('stroke', null)
       .attr('stroke-width', null);
     d3.select(`#svgBarWrap svg rect[data-rank="${d.rank}"]`)
       .attr('stroke', '#fff')
       .attr('stroke-width', 2);
-
     highlightRank(d.rank);
   }
 }
+
 
   // === GLOBAL MODAL HANDLERS (works on all devices) ===
 document.addEventListener("DOMContentLoaded", () => {
@@ -1441,16 +1435,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Ensure history push happens before showing modal
-  const originalTileClick = window.tileClick;
-  window.tileClick = function (event, d) {
-    if (window.innerWidth <= 900) {
-      history.pushState({ modalOpen: true }, "");
-    }
-    originalTileClick(event, d);
-  };
-});
-
+ 
   
 
   
