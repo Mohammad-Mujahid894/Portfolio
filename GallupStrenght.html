@@ -1329,6 +1329,8 @@ function renderTiles(data){
 
 /* TOOLTIP elements */
 const tooltip = d3.select('#tooltip');
+
+/* ============ TILE CLICK (handles both desktop & mobile) ============ */
 function tileClick(event, d) {
   const isMobile = window.innerWidth <= 900;
   const domColor = domainOrder.find(x => x.key === d.domain).color;
@@ -1337,6 +1339,7 @@ function tileClick(event, d) {
     const modal = document.getElementById("mobileModal");
     const body = document.getElementById("mobileModalBody");
 
+    // fill modal
     body.innerHTML = `
       <h2 style="color:${domColor}">
         ${d.rank}. ${d.name}
@@ -1346,12 +1349,15 @@ function tileClick(event, d) {
       <p><strong>How to use this strength:</strong> ${d.tips}</p>
     `;
 
-    modal.classList.remove("hide");
-    modal.classList.add("show");
+    // show instantly
     modal.style.display = "block";
+    requestAnimationFrame(() => {
+      modal.classList.add("show");
+      modal.classList.remove("hide");
+    });
 
-    // record state for back button
-    if (history.state?.modalOpen !== true) {
+    // record history (for Android back)
+    if (!history.state || !history.state.modalOpen) {
       history.pushState({ modalOpen: true }, "");
     }
   } else {
@@ -1369,23 +1375,21 @@ function tileClick(event, d) {
     `);
 
     d3.select('#svgBarWrap svg').selectAll('rect')
-      .attr('stroke', null)
-      .attr('stroke-width', null);
+      .attr('stroke', null).attr('stroke-width', null);
     d3.select(`#svgBarWrap svg rect[data-rank="${d.rank}"]`)
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 2);
+      .attr('stroke', '#fff').attr('stroke-width', 2);
     highlightRank(d.rank);
   }
 }
 
-
-  // === GLOBAL MODAL HANDLERS (works on all devices) ===
+/* ============ GLOBAL MODAL HANDLERS (reliable) ============ */
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("mobileModal");
   const body = document.getElementById("mobileModalBody");
-  const closeBtn = modal.querySelector(".close-btn");
+  const closeBtn = document.querySelector(".close-btn");
 
-  // Helper to close modal
+  if (!modal || !body || !closeBtn) return;
+
   function closeModal() {
     modal.classList.add("hide");
     modal.classList.remove("show");
@@ -1396,44 +1400,39 @@ document.addEventListener("DOMContentLoaded", () => {
   closeBtn.addEventListener("click", closeModal);
   closeBtn.addEventListener("touchstart", closeModal);
 
-  // Tap outside
-  document.addEventListener("click", (e) => {
-    if (
-      modal.style.display === "block" &&
-      !body.contains(e.target) &&
-      !e.target.classList.contains("tile") &&
-      !e.target.classList.contains("close-btn")
-    ) {
-      closeModal();
-    }
+  // Outside click / touch
+  ["click", "touchstart"].forEach(evt => {
+    document.addEventListener(evt, e => {
+      if (
+        modal.style.display === "block" &&
+        !body.contains(e.target) &&
+        !e.target.closest(".tile") &&
+        !e.target.closest(".close-btn")
+      ) {
+        closeModal();
+      }
+    });
   });
 
-  document.addEventListener("touchstart", (e) => {
+  // Keyboard close (desktop)
+  window.addEventListener("keydown", e => {
     if (
       modal.style.display === "block" &&
-      !body.contains(e.target) &&
-      !e.target.classList.contains("tile") &&
-      !e.target.classList.contains("close-btn")
+      (e.key === "Backspace" || e.key === "Escape")
     ) {
-      closeModal();
-    }
-  });
-
-  // Backspace / Escape (desktop only)
-  window.addEventListener("keydown", (e) => {
-    if (modal.style.display === "block" && (e.key === "Backspace" || e.key === "Escape")) {
       e.preventDefault();
       closeModal();
     }
   });
 
-  // Android back button (popstate)
-  window.addEventListener("popstate", () => {
+  // Android back button
+  window.addEventListener("popstate", e => {
     if (modal.style.display === "block") {
       closeModal();
-      history.pushState(null, "", location.href);
+      history.replaceState(null, "", location.href);
     }
   });
+});
 
  
   
