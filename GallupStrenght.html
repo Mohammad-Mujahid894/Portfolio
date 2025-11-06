@@ -1,0 +1,2547 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clifton - Strengths</title>
+  <!-- D3 v7 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#04060b; --fg:#eaf2ff; --muted:#9fb2d8; --glass:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
+      --radius:18px; --shadow:0 30px 80px rgba(0,0,0,.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+body {
+  margin: 0;
+  color: var(--fg);
+  background: #04060b;   /* keep only the dark base color, no cloudy gradient */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  overflow-x: hidden;
+}
+    /* ===== LAYERS ===== */
+    .layer{position:fixed; inset:0; pointer-events:none}
+    #stars1,#stars2,#stars3{z-index:-3}
+#nebula {
+  z-index: -2;
+  filter: blur(40px) saturate(120%);
+  background:
+    radial-gradient(40% 40% at 15% 20%, rgba(122,162,255,.30), transparent 70%),
+    radial-gradient(35% 35% at 85% 15%, rgba(79,240,176,.25), transparent 70%),
+    radial-gradient(50% 50% at 60% 80%, rgba(138,122,255,.22), transparent 70%),
+    radial-gradient(30% 30% at 20% 85%, rgba(255,200,120,.18), transparent 70%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: drift 24s ease-in-out infinite alternate;
+}
+    @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-2%,0)}}
+
+    .container{
+      max-width:1100px;
+      margin: 0 auto;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1100px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+/* Brand */
+header .brand {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+header .brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+header .brand strong {
+  font-size: 18px;
+  color: #eaf2ff;
+  white-space: nowrap;
+}
+
+/* ===== NAV ===== */
+#navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#navbar a {
+  color: #eaf2ff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+}
+#navbar a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  color: #fff;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: relative;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;      /* below button */
+  left: 0;
+  min-width: 200px;
+  background: rgba(20,20,20,0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+  flex-direction: column;
+  z-index: 2000;
+}
+.dropdown-content a {
+  display: block;
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.dropdown-content a:hover {
+  background: rgba(122, 162, 255, 0.3);
+}
+
+/* Show dropdown on hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1101;
+}
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  header {
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    padding: 10px 15px;   /* reduce padding to avoid overflow */
+    display: flex;
+    justify-content: space-between; /* brand left, hamburger right */
+    align-items: center;
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+
+  #navbar {
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    max-height: 0;
+    width: 250px;
+    overflow: hidden;
+    flex-direction: column;
+    transition: max-height 0.3s ease;
+  }
+  #navbar.show { max-height: 500px; overflow-y: auto; }
+
+  #navbar a {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  #navbar a:last-child { border-bottom: none; }
+
+  .dropdown-content {
+    position: static;
+    display: none;
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+  .dropdown.active .dropdown-content { display: block; }
+}
+
+    @media (max-width: 768px) {
+  /* Hide navbar by default */
+  #navbar {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Show navbar when hamburger clicked */
+  #navbar.show {
+    display: flex;
+  }
+
+  /* Dropdown content hidden by default */
+  .navbar .dropdown .dropdown-content {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* Show dropdown when parent has 'open' */
+  .navbar .dropdown.open .dropdown-content {
+    display: flex;
+  }
+
+  /* Make dropdown links full width for mobile */
+  .dropdown .dropdown-content a {
+    display: block;
+    padding-left: 15px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@font-face {
+  font-family: 'FoundationTitlesHand';
+  src: url('./FoundationTitlesHand.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Center the intro block */
+.intro-center {
+  text-align: center;
+  margin: 12px auto 8px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 72px; /* keep content clear of sticky navbar */
+}
+
+/* Gradient text for title */
+.intro-center .title span {
+  background: linear-gradient(90deg, #7aa2ff, #8a7aff, #4ff0b0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: 'FoundationTitlesHand', system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background-size: 200% auto;
+  animation: gradientFlow 6s ease-in-out infinite alternate;
+  text-shadow: 0 0 3px rgba(122, 162, 255, 0.25);
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* Subtitle style */
+.intro-center .sub {
+  color: var(--muted, #9fb2d8);
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 4px 0;
+  font-weight: 500;
+}
+
+@keyframes gradientFlow {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+
+
+
+
+
+    /* Controls */
+    .controls{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:16px;
+      flex-wrap:wrap;
+    }
+    .controls input[type="search"]{
+      padding:8px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      color:var(--fg);
+      min-width:220px;
+    }
+    .btn{
+      padding:8px 12px;
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.06);
+      color:#eaf2ff;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .legend { display:flex; gap:12px; align-items:center; color:var(--muted); font-size:13px; }
+
+    /* Grid columns */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:var(--gap);
+    }
+    @media (max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .column{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,0.04);
+      padding:12px;
+      border-radius:var(--radius);
+      min-height:120px;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+    .column h3{
+      margin:0 0 10px 0;
+      font-size:13px;
+      letter-spacing:0.6px;
+    }
+    .column .count {
+      position:absolute;
+      right:12px;
+      top:12px;
+      background:rgba(255,255,255,0.03);
+      padding:6px 8px;
+      border-radius:10px;
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Tile */
+    /* Tile */
+    .tile{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background: rgba(255,255,255,0.02);
+      border-radius:10px;
+      padding:8px;
+      margin-bottom:8px;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s;
+      border-left:6px solid transparent;
+    }
+    .tile:hover{
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.035);
+      box-shadow: 0 8px 30px rgba(2,8,23,0.6);
+    }
+    .rank{
+      min-width:34px;
+      height:34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      font-weight:800;
+      font-size:14px;
+      color: #fff;
+      background: rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .name{
+      font-weight:700;
+      font-size:14px;
+    }
+    .sub {
+      font-size:12px;
+      color:var(--muted);
+    }
+    /* Domain colors (use consistent palette) */
+    .domain-executing { --domColor:#8b61ff; border-left-color: #8b61ff; }
+    .domain-influencing { --domColor:#ff9b3f; border-left-color:#ff9b3f; }
+    .domain-relationship { --domColor:#3aa0ff; border-left-color:#3aa0ff; }
+    .domain-strategic { --domColor:#38d07a; border-left-color:#38d07a; }
+
+    /* Tooltip */
+    .tooltip{
+      position:fixed;
+      pointer-events:none;
+      background: linear-gradient(180deg, rgba(10,16,28,0.98), rgba(6,10,18,0.95));
+      color:#eaf2ff;
+      padding:10px 12px;
+      border-radius:10px;
+      font-size:13px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 10px 30px rgba(2,8,23,0.6);
+      max-width:320px;
+      z-index:99999;
+      display:none;
+    }
+
+    /* Details panel */
+    #details {
+      margin-top:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:var(--shadow);
+    }
+    #details h2{ margin:0 0 6px 0; font-size:18px; }
+    #details p{ margin:6px 0; color:var(--muted); font-size:13px; line-height:1.4; }
+
+    /* stacked bar */
+    .stackbar-wrap { margin-top:12px; display:flex; gap:12px; align-items:center; }
+    .stack svg { height:16px; display:block; border-radius:8px; overflow:visible; }
+    .stack-legend { display:flex; gap:8px; align-items:center; color:var(--muted); font-size:13px; }
+
+    footer.small { margin-top:10px; color:var(--muted); font-size:12px; }
+
+    /* faded */
+    .muted { opacity:0.28; }
+.tile.highlighted {
+  transform: scale(1.05); /* subtle zoom */
+  box-shadow: 0 12px 35px rgba(2,8,23,0.7);
+  background: rgba(255,255,255,0.06);
+}
+#svgBarWrap, #stackbar{ width:100%; overflow:hidden; }
+/* Make the colorful stacked bar compact on desktop */
+#stackbar svg{
+  width: clamp(260px, 50vw, 520px);
+  height: auto;
+  max-width: 100%;
+}
+
+/* Keep the legend wrapping nicely around it */
+.stackbar-wrap{
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+#stackLegend{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+html, body{ overflow-x: hidden; }
+/* Desktop container cap */
+.container, #gallupStrengths, .grid{
+  width: 100%;
+  max-width: 1100px;      /* pick your desktop cap */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Left-align and cap the DNA bar size */
+#svgBarWrap{
+  display: block;           /* no centering */
+}
+#svgBarWrap svg{
+  /* min 260px, prefers 40vw, max 420px */
+  width: clamp(300px, 50vw, 560px);
+  height: auto;
+  max-width: 100%;
+}
+    /* Cap charts so they don’t stretch on ultrawide */
+#svgBarWrap{ display: block; }
+#svgBarWrap svg{
+  max-width: 560px;   /* desktop cap */
+  width: 100%;
+  height: auto;
+}
+#stackbar svg{
+  max-width: 520px;   /* desktop cap */
+  width: 100%;
+  height: auto;
+}
+
+
+    .layer{ position: fixed; inset: 0; pointer-events: none; max-width: 100vw; }
+
+    
+
+    /* Guardrail: never allow horizontal scroll */
+html, body{ overflow-x: hidden; }
+
+/* Mobile layout: dense, contained, tap-friendly */
+/* Mobile: readable glass tiles, no overflow */
+@media (max-width: 900px){
+  .grid{ grid-template-columns: 1fr; }
+
+  .column .list{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 per row: better readability; change to 6 if desired */
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .tile{
+    aspect-ratio: 1 / 1;      /* keep square */
+    padding: 8px;
+    margin: 0;
+    gap: 8px;
+    flex-direction: column;   /* stack vertically */
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .tile > div{ min-width: 0; }
+
+  .rank{ width: 28px; height: 28px; font-size: 12px; }
+
+  /* Name: allow two lines so full text can be seen */
+  .name{
+    font-size: 12px;
+    line-height: 1.15;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;     /* show up to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  /* Show a tiny subline (domain + rank) or custom snippet */
+  .sub{
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  /* Hide tooltip on touch */
+  .tooltip{ display: none !important; }
+}
+
+/* Ultra-small phones: use 4 per row */
+@media (max-width: 420px){
+  .column .list{ grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Guardrail: no horizontal scroll */
+html, body{ overflow-x: hidden; }
+.container, #gallupStrengths, .grid, .column, .column .list{ min-width: 0; }
+    
+/* Hidden by default */
+.mobile-modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;                    /* reduced height */
+  max-height: 340px;              /* cap for large screens */
+  background: #111827;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.6);
+  z-index: 9999;
+  animation: slideUp 0.25s ease;
+  color: white;
+  overflow-y: auto;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+ 
+
+/* Inner content */
+.mobile-modal-content {
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+/* Close button */
+.mobile-modal .close-btn {
+  font-size: 28px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  color: #aaa;
+}
+.mobile-modal .close-btn:hover {
+  color: white;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Only apply modal on mobile */
+@media (min-width: 901px){
+  .mobile-modal{ display: none !important; }
+}
+    .mobile-modal.show {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-modal.hide {
+  transform: translateY(100%);
+  opacity: 0;
+}
+    
+/* Center + contain */
+.center-wrap{
+  width: 100%;
+  max-width: 720px;       /* contained on desktop */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;     /* small gutters for mobile */
+  padding-right: 12px;
+}
+
+/* Make the existing barcode wrapper participate in centering */
+#fullBarcodeWrap{
+  margin: 16px 0;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Make SVG scale within the cap */
+#fullBarcodeWrap svg{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+}
+
+/* Plain (no background) Relator content, centered */
+.relator-plain{
+  max-width: 720px;
+  margin: 16px auto;
+  text-align: center;
+}
+
+/* Remove tabular/background look from your prior .relator-card */
+.relator-card{ 
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Paragraph readability */
+.relator-plain p{
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 8px 0;
+}
+
+/* Bullets: easier to scan left-aligned within centered block */
+.relator-plain .bullet{
+  text-align: left;
+  color: #eaf2ff;
+}
+
+/* Responsive: slightly narrower cap on small phones */
+@media (max-width: 420px){
+  .center-wrap,
+  #fullBarcodeWrap,
+  .relator-plain{
+    max-width: 600px;
+  }
+}
+/* Optional: cap and center the per-section barcode */
+.barcode-wrap {
+  margin: 16px auto;
+  max-width: 720px;
+}
+.barcode-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+}
+
+    /* Micro footer: subtle, glassy, readable */
+/* Micro footer: subtle, glassy, centered */
+.site-footnote {
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 24px rgba(2,8,23,0.5);
+  backdrop-filter: blur(8px);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.site-footnote .links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.site-footnote a {
+  color: #7aa2ff;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(122,162,255,0.55);
+  padding-bottom: 1px;
+}
+
+.site-footnote a:hover {
+  color: #8a7aff;
+  border-bottom-style: solid;
+}
+
+
+
+
+
+    
+    /* Page content column (same as other sections) */
+.content-wrap {
+  width: 100%;
+  max-width: 1100px;      /* match your site’s container */
+  margin: 0 auto;
+  padding: 0 16px;        /* keeps content off the hard left edge */
+}
+
+/* Controls row: left aligned */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;  /* left */
+  gap: 10px;
+  margin: 12px 0 16px 0;
+  flex-wrap: wrap;
+}
+
+/* Optional spacer: off by default */
+.controls .spacer { display: none; }
+
+/* Inputs/buttons */
+.controls input[type="search"] {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: var(--fg);
+  min-width: 260px;
+}
+
+.controls .btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #eaf2ff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Stack bar wrapper: same column, left-aligned */
+#svgBarWrap {
+  width: 100%;
+  max-width: 1100px;       /* same as container so it lines up with other charts */
+  margin: 18px 0;          /* no auto centering */
+  padding: 0 16px;         /* same side padding as content-wrap */
+  box-sizing: border-box;
+}
+
+/* If you ever want the button on the far right (desktop only) */
+@media (min-width: 900px) {
+  .controls .spacer { display: block; flex: 1; }
+}
+
+/* Backdrop */
+.details-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+/* Modal */
+.details-modal {
+  background: linear-gradient(180deg, rgba(10,16,28,0.98), rgba(6,10,18,0.95));
+  color: #eaf2ff;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(2,8,23,0.6);
+  padding: 14px;
+  width: auto;                           /* shrink-wrap */
+  max-width: min(720px, 92vw);
+  max-height: min(80vh, 680px);
+  overflow: auto;                        /* scroll inside if needed */
+}
+/* Close button */
+.details-modal .close-x {
+  position: sticky; top: 0; left: 100%;
+  transform: translate(-100%, 0);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 4px 8px; cursor: pointer;
+  color: #9fb2d8; margin-bottom: 8px;
+}
+.details-backdrop.show { display: flex; }
+  </style>
+
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="062325.png" alt="Profile" />
+    <strong>Mohammad Mujahid</strong>
+  </div>
+
+  <div class="hamburger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+
+  <nav id="navbar" class="navbar">
+    <a href="./index.html">Home</a>
+    <a href="./index.html#about">About</a>
+    <a href="./index.html#experience">Experience</a>
+    <a href="./index.html#skills">Skills</a>
+    <a href="./index.html#contact">Contact</a>
+
+    <div class="dropdown">
+      <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">More ▾</a>
+      <div class="dropdown-content">
+        <a href="./Mujahid.Accenture.OTC.pdf" target="_blank" rel="noopener">Download Resume</a>
+        <a href="./GallupStrenght.html">Gallup Strengths</a>
+        <a href="./index.html#achievements">Achievements</a>
+        <a href="./index.html#projects">Projects</a>
+        <a href="./index.html#blogs">Blogs</a>
+        <a href="./index.html#interests">Interests</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+  <!-- ===== BACKGROUND LAYERS ===== -->
+  <canvas id="stars1" class="layer" aria-hidden="true"></canvas>
+  <canvas id="stars2" class="layer" aria-hidden="true"></canvas>
+  <canvas id="stars3" class="layer" aria-hidden="true"></canvas>
+  <div id="nebula" class="layer" aria-hidden="true"></div>
+
+<div class="intro-center">
+  <h1 class="title"><span>My Clifton Strengths® Theme Map</span></h1>
+  <p class="sub">(These Strengths Insights are personalized based on my CliftonStrengths results.)</p>
+  <p class="sub">I lead with Relationship Building</p>
+</div>
+
+
+<br>
+  <br>
+<br>
+<div class="content-wrap">
+  <!-- bring this back ABOVE the controls -->
+  <div id="svgBarWrap"></div>
+
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search strength name or rank (e.g., 'Relator' or '1')">
+    <button class="btn" id="top5">Highlight Top 5</button>
+    <button class="btn" id="certsBtn">🥇 View My Certifications</button>
+  </div>
+</div>
+
+
+    
+    <div id="gallupStrengths">
+      <div class="grid" id="grid"></div>
+
+      <div class="stackbar-wrap" style="margin-top:16px; align-items:center;">
+        <div style="flex:1">
+          <div id="stackbar"></div>
+        </div>
+        <div class="stack-legend" id="stackLegend"></div>
+      </div>
+
+      <div id="details">
+        <h2>Click any strength to see details</h2>
+      </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+  </div>
+
+<br>
+  <br>
+<div class="center-wrap">
+<!-- HTML already present; keep this order (mount above details) -->
+<div id="relatorSection" class="relator-plain relator-card">
+  <div id="relatorBarcode" class="barcode-wrap"></div>
+  <div id="relatorDetails" class="details-wrap"></div>
+</div>
+
+<div id="deliberativeSection" class="relator-plain relator-card">
+  <div id="deliberativeBarcode" class="barcode-wrap"></div>
+  <div id="deliberativeDetails" class="details-wrap"></div>
+</div>
+
+<div id="learnerSection" class="relator-plain relator-card">
+  <div id="learnerBarcode" class="barcode-wrap"></div>
+  <div id="learnerDetails" class="details-wrap"></div>
+</div>
+
+<div id="intellectionSection" class="relator-plain relator-card">
+  <div id="intellectionBarcode" class="barcode-wrap"></div>
+  <div id="intellectionDetails" class="details-wrap"></div>
+</div>
+
+<div id="inputSection" class="relator-plain relator-card">
+  <div id="inputBarcode" class="barcode-wrap"></div>
+  <div id="inputDetails" class="details-wrap"></div>
+</div>
+
+
+<footer class="site-footnote" aria-label="Page footnote">
+<p style="font-size:13px; margin:0; text-align:center !important;"> Thanks for exploring my CliftonStrengths journey! Understanding my top themes helps me leverage my strengths in teamwork, problem-solving, and leadership. </p>
+  <p style="font-size:13px; margin:0; text-align:center !important;"> Discover your strengths too! Visit 
+    <a href="https://www.gallup.com/cliftonstrengths/en/strengthsfinder.aspx" target="_blank" rel="noopener">Gallup CliftonStrengths</a></p>
+  <div class="links">
+    <a href="https://www.gallup.com/cliftonstrengths/en/strengthsfinder.aspx" target="_blank" rel="noopener">Gallup CliftonStrengths</a>
+    <a href="mailto:mujahid.icmai@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/mujahid1321101894/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+<p style="font-size:13px; margin:0; text-align:center !important;"> Powered by Clifton Strengths. Trademarks belong to their respective owners.</p>
+</footer>
+
+
+
+
+  
+    <script>
+    /* ========= Parallax starfields (3 layers for depth) ========= */
+    const DPR = Math.min(2, window.devicePixelRatio || 1);
+    const layers = [
+      { id: 'stars1', count: 110, speed: 0.15, size: 1.0 }, // far
+      { id: 'stars2', count: 90, speed: 0.35, size: 1.6 }, // mid
+      { id: 'stars3', count: 60,  speed: 0.65, size: 2.0 }  // near
+    ];
+
+    function Starfield(layer){
+      const cvs = document.getElementById(layer.id); const ctx = cvs.getContext('2d');
+      let w, h, stars=[]; let mx=0, my=0; // parallax
+      function resize(){ w = cvs.width = innerWidth * DPR; h = cvs.height = innerHeight * DPR; cvs.style.width = innerWidth+'px'; cvs.style.height = innerHeight+'px';
+        stars = Array.from({length: layer.count}, ()=>({ x: Math.random()*w, y: Math.random()*h, a: Math.random()*0.7+0.2 })); }
+      resize(); addEventListener('resize', resize);
+      addEventListener('mousemove', (e)=>{ mx = (e.clientX/innerWidth - .5); my = (e.clientY/innerHeight - .5); });
+      function draw(){ ctx.clearRect(0,0,w,h); ctx.fillStyle = '#fff';
+        for(const s of stars){ const px = s.x + mx*20*layer.speed; const py = s.y + my*20*layer.speed; ctx.globalAlpha = s.a; ctx.fillRect(px, py, layer.size*DPR, layer.size*DPR); }
+        requestAnimationFrame(draw); }
+      draw();
+      return {ctx, get size(){return {w,h}}, pushMeteor};
+
+      function pushMeteor(x,y,vx,vy){ // gradient trail line
+        const grad = ctx.createLinearGradient(x,y, x-vx*14, y-vy*14);
+        grad.addColorStop(0,'rgba(255,255,255,.95)'); grad.addColorStop(1,'rgba(122,162,255,0)');
+        ctx.strokeStyle = grad; ctx.lineWidth = 1.5*DPR; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-vx*14, y-vy*14); ctx.stroke();
+      }
+    }
+    const fields = layers.map(Starfield);
+
+    /* ========= Random shooting stars ========= */
+    const meteors = [];
+    function spawnMeteor(){ if(document.visibilityState !== 'visible') return; const {w,h} = fields[2].size;
+      meteors.push({ x: Math.random()*w, y: -20, vx: -6*DPR, vy: 6*DPR, life: 180 }); }
+    setInterval(spawnMeteor, 2200);
+    function drawMeteors(){ for(let i=meteors.length-1;i>=0;i--){ const m = meteors[i]; m.x += m.vx; m.y += m.vy; m.life -= 1; fields[2].pushMeteor(m.x,m.y,m.vx,m.vy); if(m.x < -50 || m.y > fields[2].size.h+50 || m.life<=0){ meteors.splice(i,1); } }
+      requestAnimationFrame(drawMeteors); }
+    drawMeteors();
+
+    /* ========= Glitter comet cursor ========= */
+    const sparks=[]; let last=0; function spawnSpark(x,y){ const s=document.createElement('span'); s.className='spark'; s.style.left=x+'px'; s.style.top=y+'px'; document.body.appendChild(s); sparks.push(s); if(sparks.length>40){ const old=sparks.shift(); old.remove(); } setTimeout(()=>s.remove(), 900); }
+    addEventListener('mousemove', (e)=>{ if(matchMedia('(pointer:fine)').matches) { const now=performance.now(); if(now-last>12){ spawnSpark(e.clientX, e.clientY); last=now; } } });
+
+    /* ========= 3D Hover Tilt ========= */
+    const tilts = [...document.querySelectorAll('.tilt')];
+    tilts.forEach(el=>{
+      el.addEventListener('mousemove', (e)=>{ const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width; const y = (e.clientY - r.top) / r.height; const rx = (0.5 - y) * 10; const ry = (x - 0.5) * 10; el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`; });
+      el.addEventListener('mouseleave', ()=>{ el.style.transform = 'rotateX(0deg) rotateY(0deg)'; });
+    });
+
+
+    /* ========= Reduce motion toggle ========= */
+    let motionReduced = false; function toggleMotion(){ motionReduced = !motionReduced; document.body.style.setProperty('animation-play-state', motionReduced ? 'paused' : 'running'); }
+    window.toggleMotion = toggleMotion;
+  </script>
+  <script>
+  function goHome() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+    // Counter animation
+const counters = document.querySelectorAll('.counter');
+const speed = 200; // smaller = faster
+
+const animateCounters = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const counter = entry.target;
+
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+
+        const increment = Math.ceil(target / speed);
+
+        if (current < target) {
+          counter.innerText = current + increment;
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+      updateCount();
+      observer.unobserve(counter);
+    }
+  });
+};
+
+const observer = new IntersectionObserver(animateCounters, { threshold: 0.3 });
+counters.forEach(counter => observer.observe(counter));
+</script>
+    <script>
+const entries = document.querySelectorAll('.entry');
+const stars = document.querySelectorAll('.star');
+
+window.addEventListener('scroll', () => {
+  entries.forEach((entry, i) => {
+    const rect = entry.getBoundingClientRect();
+    if (rect.top >= 100 && rect.top < window.innerHeight / 2) {
+      entries.forEach(e => e.classList.remove('active'));
+      stars.forEach(s => s.classList.remove('active'));
+      entry.classList.add('active');
+      stars[i].classList.add('active');
+    }
+  });
+});
+</script>
+  <script>
+  const hamburger = document.querySelector('.hamburger');
+const navbar = document.getElementById('navbar');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navbar.classList.toggle('show');
+});
+</script>
+    <script>
+  function toggleDetails(btn) {
+    const details = btn.nextElementSibling;
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    if (!details) return;
+
+    if (!open) {
+      if (details.hasAttribute('hidden')) details.removeAttribute('hidden');
+      details.style.maxHeight = details.scrollHeight + 'px';
+      details.style.paddingTop = '8px';
+      btn.setAttribute('aria-expanded', 'true');
+      btn.textContent = 'Hide Details ▴';
+      details.addEventListener('transitionend', function onEnd() {
+        details.style.maxHeight = 'none';
+        details.removeEventListener('transitionend', onEnd);
+      });
+    } else {
+      const h = details.scrollHeight;
+      details.style.maxHeight = h + 'px';
+      requestAnimationFrame(() => {
+        details.style.maxHeight = '0px';
+        details.style.paddingTop = '0px';
+      });
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = 'View Details ▾';
+      details.addEventListener('transitionend', function onEnd() {
+        details.setAttribute('hidden', '');
+        details.removeEventListener('transitionend', onEnd);
+      });
+    }
+  }
+
+  // Optional: Disable scroll fade-in on small screens to avoid jank
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    document.querySelectorAll('.timeline-content').forEach(el => {
+      el.style.opacity = 1;
+      el.style.transform = "none";
+    });
+  }
+</script>
+    <script>
+document.querySelectorAll('.dropdown > .dropbtn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    if (window.innerWidth <= 768) { // mobile only
+      e.preventDefault(); // stop navigation
+      const parent = btn.parentElement;
+
+      // Optional: close other dropdowns
+      document.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== parent) d.classList.remove('open');
+      });
+
+      parent.classList.toggle('open'); // toggle current dropdown
+    }
+  });
+});
+</script>
+
+<script>
+/* ============================
+   DATA: 34 strengths with domains and short descriptions
+   ============================ */
+const strengths = [
+  { rank:1, name:"Relator", domain:"RELATIONSHIP", short:"I build close relationships and trust.", tips:"Use with customers: develop one-to-one rapport; in O2C, call the same AR contact to nurture relationships." },
+  { rank:2, name:"Deliberative", domain:"EXECUTING", short:"Careful, cautious, risk-aware decision maker.", tips:"Use to evaluate exceptions and ACH/NSF cases before pushing for automation." },
+  { rank:3, name:"Learner", domain:"STRATEGIC", short:"I love learning and improving.", tips:"Great for studying ICMAI — set micro-goals and learn one accounting concept per shift." },
+  { rank:4, name:"Intellection", domain:"STRATEGIC", short:"I enjoy deep thinking and reflection.", tips:"Use for root-cause analysis when investigating complex payment mismatches." },
+  { rank:5, name:"Input", domain:"STRATEGIC", short:"I collect ideas, facts and resources.", tips:"Build and maintain a quick-reference folder for bank codes and comment codes." },
+  { rank:6, name:"Empathy", domain:"RELATIONSHIP", short:"I sense other people's feelings.", tips:"Helpful when handling upset customers; reflect back feelings to de-escalate." },
+  { rank:7, name:"Individualization", domain:"RELATIONSHIP", short:"I see each person's uniqueness.", tips:"Customize communication templates — some customers prefer short emails, others phone calls." },
+  { rank:8, name:"Developer", domain:"RELATIONSHIP", short:"I see and grow potential in others.", tips:"Mentor a new teammate on TANDEM processes gradually." },
+  { rank:9, name:"Harmony", domain:"RELATIONSHIP", short:"I look for agreement and avoid conflict.", tips:"In dispute resolution, focus on shared goals to reach a compromise." },
+  { rank:10, name:"Restorative", domain:"EXECUTING", short:"I love solving problems and fixing issues.", tips:"Perfect for exception queues — you’ll enjoy resolving partial remits and unclear checks." },
+
+  { rank:11, name:"Ideation", domain:"STRATEGIC", short:"I generate fresh, creative ideas.", tips:"Propose small automation or template ideas to reduce repetitive manual steps." },
+  { rank:12, name:"Connectedness", domain:"RELATIONSHIP", short:"I see links and a larger story.", tips:"Use when mapping how payments, credit holds, and statements affect customers." },
+  { rank:13, name:"Competition", domain:"INFLUENCING", short:"I measure myself and like to win.", tips:"Set a safe productivity target (e.g., daily matched checks) and beat your own score." },
+  { rank:14, name:"Strategic", domain:"STRATEGIC", short:"I spot patterns and best paths forward.", tips:"Use to design an efficient daily workflow for ACH + check queues." },
+  { rank:15, name:"Positivity", domain:"RELATIONSHIP", short:"I bring energy and enthusiasm.", tips:"Lift team morale on tough night shifts with short wins and celebrations." },
+  { rank:16, name:"Discipline", domain:"EXECUTING", short:"I create structure, procedures, and routines.", tips:"Create a standard start-of-shift checklist for reviewing ACH and bank files." },
+  { rank:17, name:"Futuristic", domain:"STRATEGIC", short:"I imagine exciting futures and possibilities.", tips:"Sketch a 6-month improvements roadmap for faster invoice retrievals." },
+  { rank:18, name:"Significance", domain:"INFLUENCING", short:"I want to make an impact and be noticed.", tips:"Volunteer for a small cross-team project to raise visibility." },
+  { rank:19, name:"Maximizer", domain:"INFLUENCING", short:"I turn good into great, focus on strengths.", tips:"Spot colleagues’ strengths and pair them for complex exceptions." },
+  { rank:20, name:"Achiever", domain:"EXECUTING", short:"I have stamina and like finishing tasks.", tips:"Use a visible daily checklist to get the satisfaction of crossing off items." },
+
+  { rank:21, name:"Responsibility", domain:"EXECUTING", short:"I am reliable and keep promises.", tips:"Own a weekly folder cleanup task (invoice folder) and show consistent follow-through." },
+  { rank:22, name:"Analytical", domain:"STRATEGIC", short:"I examine data and look for cause and effect.", tips:"Use when reviewing chargeback patterns by bank/comment code." },
+  { rank:23, name:"Focus", domain:"EXECUTING", short:"I concentrate and prioritize what matters.", tips:"Block 45 minutes for deep exception handling without Slack/phone." },
+  { rank:24, name:"Self-Assurance", domain:"INFLUENCING", short:"Confident and decisive in my choices.", tips:"Take ownership when clarifying ambiguous remits with customers." },
+  { rank:25, name:"Adaptability", domain:"RELATIONSHIP", short:"Flexible and present-centered; go with the flow.", tips:"Great on shift when priorities change; pivot to urgent bank items." },
+  { rank:26, name:"Arranger", domain:"EXECUTING", short:"I organize but stay flexible to optimize.", tips:"Design an efficient folder & routing structure for invoice distribution." },
+  { rank:27, name:"Consistency", domain:"EXECUTING", short:"Fairness, rules and same treatment for all.", tips:"Use consistent templates and SLAs to keep customer experience uniform." },
+  { rank:28, name:"Belief", domain:"EXECUTING", short:"Values-driven and principled.", tips:"Bring ethics and clarity to disputes — document decisions for audits." },
+  { rank:29, name:"Communication", domain:"INFLUENCING", short:"I explain and express ideas clearly.", tips:"Write crisp emails explaining remittance mismatches — customers appreciate clarity." },
+
+  { rank:30, name:"Context", domain:"STRATEGIC", short:"I look to the past to understand the present.", tips:"When something repeats, check the historical transaction trail to learn patterns." },
+  { rank:31, name:"Activator", domain:"INFLUENCING", short:"I make things happen — quick to start.", tips:"Launch small process tests to speed up a manual reconciliation step." },
+  { rank:32, name:"Command", domain:"INFLUENCING", short:"I lead confidently and take charge.", tips:"Step up to drive a cross-team decision when there’s ambiguity." },
+  { rank:33, name:"Woo", domain:"INFLUENCING", short:"I win others over and start conversations easily.", tips:"Use at onboarding calls to build rapport with new vendors." },
+  { rank:34, name:"Includer", domain:"RELATIONSHIP", short:"You make people feel part of a group.", tips:"Make sure quieter teammates get credit in team updates." }
+];
+
+/* Domain order & colors */
+const domainOrder = [
+  { key:"EXECUTING", label:"Executing", css:"domain-executing", color:"#8b61ff" },
+  { key:"INFLUENCING", label:"Influencing", css:"domain-influencing", color:"#ff9b3f" },
+  { key:"RELATIONSHIP", label:"Relationship Building", css:"domain-relationship", color:"#3aa0ff" },
+  { key:"STRATEGIC", label:"Strategic Thinking", css:"domain-strategic", color:"#38d07a" }
+];
+
+/* ====== Build UI with D3 (grid columns + tiles) ====== */
+const grid = d3.select('#grid');
+
+/* Create one column per domain */
+const columns = grid.selectAll('.column')
+  .data(domainOrder)
+  .join('div')
+    .attr('class','column')
+    .attr('data-domain', d => d.key)
+    .each(function(domainInfo){
+      const col = d3.select(this);
+      col.append('h3').text(domainInfo.label);
+      col.append('div').attr('class','count').text('0');
+      col.append('div').attr('class','list'); // will hold tiles
+    });
+
+/* function to update counts and tiles */
+function renderTiles(data){
+  domainOrder.forEach(dom => {
+    const items = data.filter(d => d.domain === dom.key).sort((a,b)=> a.rank - b.rank);
+    const list = grid.select(`[data-domain="${dom.key}"] .list`);
+    // update count
+    grid.select(`[data-domain="${dom.key}"] .count`).text(items.length);
+
+    // bind tiles
+    const tiles = list.selectAll('.tile')
+      .data(items, d => d.rank);
+
+    // exit
+    tiles.exit().transition().duration(250).style('opacity',0).remove();
+
+    // enter
+    const enter = tiles.enter()
+      .append('div')
+        .attr('class', d => `tile ${dom.css}`)
+        .style('opacity',0)
+        .on('mousemove', tileMouseMove)
+        .on('mouseout', tileMouseOut)
+        .on('click', tileClick);
+
+    enter.append('div').attr('class','rank').text(d => d.rank);
+    const info = enter.append('div').style('min-width','0px'); // wrapper
+    info.append('div').attr('class','name').text(d => d.name);
+    info.append('div').attr('class','sub').text(d => `#${d.rank} • ${dom.label}`);
+
+    // merge + transition
+    enter.merge(tiles)
+      .transition().duration(350)
+      .style('opacity',1)
+      .style('transform','translateY(0)');
+  });
+}
+
+
+/* TOOLTIP elements */
+const tooltip = d3.select('#tooltip');
+
+/* ============ TILE CLICK (handles both desktop & mobile) ============ */
+function tileClick(event, d) {
+  const isMobile = window.innerWidth <= 900;
+  const domColor = domainOrder.find(x => x.key === d.domain).color;
+
+  if (isMobile) {
+    const modal = document.getElementById("mobileModal");
+    const body = document.getElementById("mobileModalBody");
+
+    // fill modal
+    body.innerHTML = `
+      <h2 style="color:${domColor}">
+        ${d.rank}. ${d.name}
+        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+      </h2>
+      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+      <p><strong>How to use this strength:</strong> ${d.tips}</p>
+    `;
+
+    // show instantly
+    modal.style.display = "block";
+    requestAnimationFrame(() => {
+      modal.classList.add("show");
+      modal.classList.remove("hide");
+    });
+
+    // record history (for Android back)
+    if (!history.state || !history.state.modalOpen) {
+      history.pushState({ modalOpen: true }, "");
+    }
+  } else {
+    const details = d3.select('#details');
+    details.html(`
+      <h2 style="color:${domColor}">
+        ${d.rank}. ${d.name}
+        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+      </h2>
+      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+      <p><strong>How to use this strength (practical):</strong> ${d.tips}</p>
+      <p style="margin-top:8px;font-size:13px;color:var(--muted)">
+        Tap another tile to view its notes. Use the Search to filter.
+      </p>
+    `);
+
+    d3.select('#svgBarWrap svg').selectAll('rect')
+      .attr('stroke', null).attr('stroke-width', null);
+    d3.select(`#svgBarWrap svg rect[data-rank="${d.rank}"]`)
+      .attr('stroke', '#fff').attr('stroke-width', 2);
+    highlightRank(d.rank);
+  }
+}
+
+/* ============ GLOBAL MODAL HANDLERS (reliable) ============ */
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("mobileModal");
+  const body = document.getElementById("mobileModalBody");
+  const closeBtn = document.querySelector(".close-btn");
+
+  if (!modal || !body || !closeBtn) return;
+
+  function closeModal() {
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    setTimeout(() => (modal.style.display = "none"), 250);
+  }
+
+  // Close button
+  closeBtn.addEventListener("click", closeModal);
+  closeBtn.addEventListener("touchstart", closeModal);
+
+  // Outside click / touch
+  ["click", "touchstart"].forEach(evt => {
+    document.addEventListener(evt, e => {
+      if (
+        modal.style.display === "block" &&
+        !body.contains(e.target) &&
+        !e.target.closest(".tile") &&
+        !e.target.closest(".close-btn")
+      ) {
+        closeModal();
+      }
+    });
+  });
+
+  // Keyboard close (desktop)
+  window.addEventListener("keydown", e => {
+    if (
+      modal.style.display === "block" &&
+      (e.key === "Backspace" || e.key === "Escape")
+    ) {
+      e.preventDefault();
+      closeModal();
+    }
+  });
+
+  // Android back button
+  window.addEventListener("popstate", e => {
+    if (modal.style.display === "block") {
+      closeModal();
+      history.replaceState(null, "", location.href);
+    }
+  });
+});
+
+ 
+  
+
+  
+function tileMouseMove(event, d){
+  // show tooltip with short description
+  tooltip.style('display','block')
+         .html(`<strong style="display:block;margin-bottom:6px">${d.rank}. ${d.name}</strong>
+                <div style="color:var(--muted);font-size:13px">${d.short}</div>`);
+  // position tooltip near pointer, with small offset
+  const [mx,my] = d3.pointer(event);
+  const left = event.clientX + 12;
+  const top = event.clientY + 12;
+  tooltip.style('left', left + 'px').style('top', top + 'px');
+  // highlight same-domain tiles
+  d3.selectAll('.tile').classed('muted', t => t.domain !== d.domain);
+  highlightRank(d.rank);
+
+}
+
+
+function tileMouseOut(){
+  tooltip.style('display','none');
+  d3.selectAll('.tile').classed('muted', false);
+  clearAllHighlights();
+
+}
+
+
+
+/* ===== Stack bar showing distribution of domains ===== */
+function clearAllHighlights(){
+  d3.select('#svgBarWrap svg').selectAll('rect')
+    .attr('stroke', null).attr('stroke-width', null);
+  d3.selectAll('.tile').classed('muted', false);
+  d3.selectAll('.stack-seg')
+    .attr('opacity', 1)
+    .attr('stroke', null)
+    .attr('stroke-width', null);
+}
+function highlightRank(rank){
+  // Top barcode
+  d3.select('#svgBarWrap svg').selectAll('rect')
+    .attr('stroke', null).attr('stroke-width', null);
+  d3.select('#svgBarWrap svg rect[data-rank="' + rank + '"]')
+    .attr('stroke', '#fff').attr('stroke-width', 2);
+  // Tiles
+  d3.selectAll('.tile').classed('muted', t => t.rank !== rank);
+  // Stackbar segments
+  const strength = strengths.find(s => s.rank === rank);
+  if(strength){
+    d3.selectAll('.stack-seg')
+      .attr('opacity', s => s.key === strength.domain ? 1 : 0.25)
+      .attr('stroke', s => s.key === strength.domain ? '#fff' : null)
+      .attr('stroke-width', s => s.key === strength.domain ? 2 : null);
+  }
+}
+function highlightDomain(domainKey){
+  // tiles by domain
+  d3.selectAll('.tile').classed('muted', t => t.domain !== domainKey);
+
+  // top bars by domain
+  const bars = d3.select('#svgBarWrap svg').selectAll('rect');
+  bars.attr('stroke', null).attr('stroke-width', null);
+  bars.filter(d => d && d.domain === domainKey)
+      .attr('stroke', '#fff').attr('stroke-width', 2);
+
+  // stackbar emphasize the selected segment
+  d3.selectAll('.stack-seg')
+    .attr('opacity', s => s && s.key === domainKey ? 1 : 0.25)
+    .attr('stroke', s => s && s.key === domainKey ? '#fff' : null)
+    .attr('stroke-width', s => s && s.key === domainKey ? 2 : null);
+}
+function renderStackBar(data){
+  const counts = domainOrder.map(dom => {
+    return { key: dom.key, label: dom.label, color: dom.color, count: data.filter(d => d.domain===dom.key).length };
+  });
+  const total = d3.sum(counts, d => d.count);
+
+  const width = 520;
+  const height = 16;
+  d3.select('#stackbar').html(''); // clear
+const svg = d3.select('#stackbar').append('svg')
+  .attr('viewBox', `0 0 ${width} ${height}`)
+  .attr('preserveAspectRatio', 'xMidYMid meet')
+  .attr('width', null)
+  .attr('height', null);
+  let x = 0;
+svg.selectAll('rect')
+  .data(counts)
+  .enter()
+  .append('rect')
+    .attr('x', (d,i) => d3.sum(counts.slice(0,i), c => (c.count/total)*width))
+    .attr('y', 0)
+    .attr('width', d => (d.count / total) * width)
+    .attr('height', height)
+    .attr('fill', d => d.color)
+    .attr('rx', 4)
+    .attr('class', 'stack-seg')
+  .append('title')
+    .text(d => `${d.label}: ${d.count}`);
+
+  // legend to right
+  const legend = d3.select('#stackLegend').html('');
+  counts.forEach(seg => {
+    legend.append('div').style('display','flex').style('gap','6px').style('align-items','center').html(`
+      <div style="width:12px;height:12px;border-radius:3px;background:${seg.color}"></div>
+      <div style="font-size:13px;color:var(--muted)">${seg.label} (${seg.count})</div>
+    `);
+  });
+}
+renderStackBar(strengths);
+
+/* ===== Controls: Search, Top5, Export CSV ===== */
+d3.select('#search').on('input', function(){
+  const q = this.value.trim().toLowerCase();
+  if(!q){
+    d3.selectAll('.tile').style('opacity',1);
+    return;
+  }
+  d3.selectAll('.tile').each(function(d){
+    const match = d.name.toLowerCase().includes(q) || String(d.rank) === q;
+    d3.select(this).style('opacity', match ? 1 : 0.18);
+  });
+});
+
+let top5Active = false;
+
+d3.select('#top5').on('click', function(){
+  if (!top5Active) {
+    // activate
+    d3.selectAll('.tile').style('opacity', t => (t.rank <= 5 ? 1 : 0.12)); // highlight top 5 tiles [web:74]
+    // outline the top 5 bars
+    const svgBars = d3.select('#svgBarWrap svg').selectAll('rect');
+    svgBars.attr('stroke', null).attr('stroke-width', null);
+    strengths.filter(s => s.rank <= 5).forEach(s => {
+      d3.select('#svgBarWrap svg rect[data-rank="' + s.rank + '"]')
+        .attr('stroke', '#fff').attr('stroke-width', 2);
+    });
+    top5Active = true;
+  } else {
+    // deactivate: full reset
+    d3.selectAll('.tile').style('opacity', 1);
+    clearAllHighlights(); // clears strokes and mutes [web:74]
+    top5Active = false;
+  }
+});
+
+
+d3.select('#exportCSV').on('click', function(){
+  const rows = ["rank,name,domain,short"];
+  strengths.forEach(s => rows.push(`${s.rank},"${s.name.replace(/"/g,'""')}","${s.domain}","${s.short.replace(/"/g,'""')}"`));
+  const blob = new Blob([rows.join("\n")], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'clifton_strengths_34.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+/* ===== Responsive niceties: if header overlaps, add top padding (optional) ===== */
+/* If you embed into a page with a fixed header, call:
+     document.querySelector('#app').style.paddingTop = '80px';
+   (example included in integration notes)
+*/
+
+/* If you want to re-render after editing data, call:
+     renderTiles(newData); renderStackBar(newData);
+*/
+
+/* END OF SCRIPT */
+ function renderCliftonSVGBar(data) {
+  const domainColors = {
+    EXECUTING: "#8b61ff",
+    INFLUENCING: "#ff9b3f",
+    RELATIONSHIP: "#3aa0ff",
+    STRATEGIC: "#38d07a"
+  };
+
+  const svgWidth = 500, svgHeight = 60;
+  const barWidth = 8, barHeight = 40, spacing = 12;
+
+  // Reset
+  d3.select('#svgBarWrap').html('');
+ const svg = d3.select('#svgBarWrap')
+  .append('svg')
+  .attr('viewBox', `0 0 ${svgWidth} ${svgHeight}`)
+  .attr('preserveAspectRatio','xMidYMid meet')
+  .attr('width', null)
+  .attr('height', null);
+
+
+  // ---- helper function to draw a group of bars ----
+  function drawBars(container, bars) {
+    container.selectAll('rect')
+      .data(bars)
+      .enter()
+      .append('rect')
+        .attr('x', (d,i) => i * spacing)
+        .attr('y', 0)
+        .attr('width', barWidth)
+        .attr('height', barHeight)
+        .attr('rx', 2)
+        .attr('fill', d => domainColors[d.domain] || '#ccc')
+        .attr('data-rank', d => d.rank)
+        .style('cursor','pointer')
+.on('mouseover', function(e,d) {
+  barHoverOnly(d); // highlight only — no tooltip or details
+})
+.on('mouseout', function() {
+  clearAllHighlights(); // reset everything
+})
+.on('click', function(e,d) {
+  tileClick(e,d); // open details panel if clicked
+});
+
+  }
+
+  // ---- LEFT 5 bars ----
+  const leftBars = data.filter(d => d.rank <= 5);
+  const leftG = svg.append('g').attr('transform','translate(0,10)');
+  drawBars(leftG, leftBars);
+
+  // ---- Decorative lines left ----
+  svg.append('line').attr('x1',0).attr('y1',5).attr('x2',56).attr('y2',5)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+  svg.append('line').attr('x1',0).attr('y1',55).attr('x2',56).attr('y2',55)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+
+  // ---- Diagonals after 5 bars ----
+  svg.append('line').attr('x1',56).attr('y1',5).attr('x2',116).attr('y2',55)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+  svg.append('line').attr('x1',56).attr('y1',55).attr('x2',116).attr('y2',5)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+
+  // ---- RIGHT 29 bars ----
+  const rightBars = data.filter(d => d.rank > 5);
+  const rightG = svg.append('g').attr('transform','translate(116,10)');
+  drawBars(rightG, rightBars);
+
+  // ---- Decorative lines right ----
+  svg.append('line')
+    .attr('x1',116).attr('y1',5).attr('x2',500).attr('y2',5)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+  svg.append('line')
+    .attr('x1',116).attr('y1',55).attr('x2',500).attr('y2',55)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+}
+function barHoverOnly(d){
+  // Reset previous highlights
+  d3.selectAll('.tile').classed('muted', false).classed('highlighted', false);
+  clearAllHighlights(); // clears stackbar and top bar strokes
+
+  // Highlight the top barcode
+  d3.select('#svgBarWrap svg rect[data-rank="' + d.rank + '"]')
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 2);
+
+  // Highlight the corresponding tile
+  d3.selectAll('.tile')
+    .filter(t => t.rank === d.rank)
+    .classed('highlighted', true);
+
+  // Muted effect for other tiles (optional)
+  d3.selectAll('.tile')
+    .filter(t => t.rank !== d.rank)
+    .classed('muted', true);
+
+  // Highlight stackbar
+  const strength = strengths.find(s => s.rank === d.rank);
+  if(strength){
+    d3.selectAll('.stack-seg')
+      .attr('opacity', s => s.key === strength.domain ? 1 : 0.25)
+      .attr('stroke', s => s.key === strength.domain ? '#fff' : null)
+      .attr('stroke-width', s => s.key === strength.domain ? 2 : null);
+  }
+}
+
+// ===== Full 34-barcode with diagonal "X" cut, fully contained =====
+
+// ===== Relator details (no tabs, like your image) =====
+function renderRelatorDetailsNoTabs(strengths){
+  const relator = strengths.find(s => s.rank === 1 && s.name === 'Relator');
+  if(!relator) return;
+
+  const domColor = "#3aa0ff";
+  const wrap = d3.select('#relatorDetails');
+
+  const html = `
+    <div style="max-width:720px;margin:24px auto;text-align:left;">
+      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">1. Relator<sup>®</sup></h2>
+
+      <h3 style="font-size:15px;margin-top:10px;">What is Relator?</h3>
+      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+        Relator talents describe a person’s attitude toward their relationships. People with strong Relator talents are drawn to
+others they already know. They do not necessarily shy away from meeting new people — in fact, they may have other
+themes that cause them to enjoy the thrill of turning strangers into friends — but they do derive a great deal of pleasure
+and strength from being around their close friends. A person with strong Relator talents forms close relationships with
+people. 
+      </p>
+
+      <h3 style="font-size:15px;margin-top:18px;">Why Your Relator Is Unique</h3>
+      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+        These Strengths Insights are personalized based on my CliftonStrengths results.
+      </p>
+
+      <!-- Tabs -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+      </div>
+
+      <!-- Insights -->
+      <div style="
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:16px;
+  padding:18px 20px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+">
+        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Chances are good that you are a well-read individual. People whom you have befriended turn to you for
+guidance. Often you help them see a situation or problem from a different perspective because of
+something you discovered while surveying a book, article, letter, or Internet site. For you, reading is the key
+that opens the door to a world of fresh ideas. You collect them, never knowing when something you read will
+benefit someone else. 
+        </div>
+        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+         Instinctively, you have a small number of close friends who share a foundation of intimacy and trust. You care
+less about how many friends you have and more about how precious those friends are. 
+        </div>
+        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+ By nature, you bond with and work well with people who tell you what they want to accomplish in life. 
+        </div>
+        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+         Because of your strengths, you often declare you are as productive as you can be, especially when people
+allow you to work independently. Having to deal with teammates, classmates, or group members stymies —
+that is, hinders — your progress. 
+        </div>
+        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          It’s very likely that you are very fond of and devoted to the people in your life. You thrive when individuals
+reciprocate — that is, return — your feelings of warmth and affection
+        </div>
+      </div>
+    </div>
+    <!-- Blend Section -->
+<div style="margin-top:24px;">
+  <h3 style="font-size:16px;margin-bottom:12px;">How Relator Blends With Your Other Top Five Strengths</h3>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        Trusting others takes some time for you because you trust only those you know well, and you are careful about who you get to know.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">LEARNER</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        Your deepest, longest friendships don’t stagnate because you strive to discover something new about those who are familiar.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">INTELLECTION</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        Even though you find solitude conducive for clarifying your thoughts, it will never take the place of being with your friends.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">INPUT</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        You value tangible, practical resources, but you also value the human resources of your close friends and family.
+      </p>
+    </div>
+
+  </div>
+</div>
+  `;
+  wrap.html(html);
+}
+
+
+// 1) Make your barcode function accept a highlight rank (default 1)
+// Replace your current renderFull34BarcodeContained with this id-based version
+function renderFull34BarcodeContained(data, highlightRank = 1, mountId = 'fullBarcodeWrap') {
+  const domainColors = {
+    EXECUTING: '#8b61ff',
+    INFLUENCING: '#ff9b3f',
+    RELATIONSHIP: '#3aa0ff',
+    STRATEGIC: '#38d07a'
+  };
+
+  const svgWidth = 640, svgHeight = 70;
+  const rail = '#bfbfbf';
+  const grey = '#778199';
+
+const topY = 12, railThickness = 6;
+const barWidth = 8, spacing = 12, innerGap = 6; // more buffer above/below
+const barTop = topY + railThickness + innerGap; // start a bit lower
+const barBottom = svgHeight - topY - railThickness - innerGap;
+const barHeight = barBottom - barTop; // contained within rails
+
+
+  const leftBars = data.filter(d => d.rank <= 5).sort((a, b) => a.rank - b.rank);
+  const rightBars = data.filter(d => d.rank > 5).sort((a, b) => a.rank - b.rank);
+
+  const leftSpan = (leftBars.length - 1) * spacing + barWidth;
+  const diagWidth = 56;
+  const gap = 0; // no visual gap between diagonal and right rails
+const rightSpan = (rightBars.length - 1) * spacing + barWidth;
+const totalWidth = leftSpan + diagWidth + rightSpan;
+
+const offsetX = (svgWidth - totalWidth) / 2;
+const rightStartX = offsetX + leftSpan + diagWidth; // start exactly at diagonal end
+
+
+  const target = d3.select(`#${mountId}`);
+  target.select('svg.barcode-svg').remove();
+
+  const svg = target.append('svg')
+    .attr('class', 'barcode-svg')
+    .attr('viewBox', `0 0 ${svgWidth} ${svgHeight}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  // Left rails
+  svg.append('line')
+    .attr('x1', offsetX).attr('y1', topY)
+    .attr('x2', offsetX + leftSpan).attr('y2', topY)
+    .attr('stroke', rail).attr('stroke-width', 6).attr('stroke-linecap', 'round');
+
+  svg.append('line')
+    .attr('x1', offsetX).attr('y1', svgHeight - topY)
+    .attr('x2', offsetX + leftSpan).attr('y2', svgHeight - topY)
+    .attr('stroke', rail).attr('stroke-width', 6).attr('stroke-linecap', 'round');
+
+  // Left bars
+  const gLeft = svg.append('g').attr('transform', `translate(${offsetX},${barTop})`);
+  gLeft.selectAll('rect')
+    .data(leftBars)
+    .enter().append('rect')
+    .attr('x', (d, i) => i * spacing)
+    .attr('y', 0)
+    .attr('width', barWidth)
+    .attr('height', barHeight)
+    .attr('rx', 2)
+    .attr('fill', d => d.rank === highlightRank ? domainColors[d.domain] : grey)
+    .attr('data-rank', d => d.rank)
+    .style('cursor', 'pointer')
+    .on('mouseover', (e, d) => barHoverOnly(d))
+    .on('mouseout', () => clearAllHighlights())
+    .on('click', (e, d) => tileClick(e, d)); // reuses your existing handlers
+
+  // Diagonal X
+  const diagStart = offsetX + leftSpan;
+  svg.append('line')
+    .attr('x1', diagStart).attr('y1', topY)
+    .attr('x2', diagStart + diagWidth).attr('y2', svgHeight - topY)
+    .attr('stroke', rail).attr('stroke-width', 6).attr('stroke-linecap', 'round');
+
+  svg.append('line')
+    .attr('x1', diagStart).attr('y1', svgHeight - topY)
+    .attr('x2', diagStart + diagWidth).attr('y2', topY)
+    .attr('stroke', rail).attr('stroke-width', 6).attr('stroke-linecap', 'round');
+
+  // Right rails
+  svg.append('line')
+    .attr('x1', rightStartX).attr('y1', topY)
+    .attr('x2', rightStartX + rightSpan).attr('y2', topY)
+    .attr('stroke', rail).attr('stroke-width', 6).attr('stroke-linecap', 'round');
+
+  svg.append('line')
+    .attr('x1', rightStartX).attr('y1', svgHeight - topY)
+    .attr('x2', rightStartX + rightSpan).attr('y2', svgHeight - topY)
+    .attr('stroke', rail).attr('stroke-width', 6).attr('stroke-linecap', 'round');
+
+  // Right bars
+  const gRight = svg.append('g').attr('transform', `translate(${rightStartX},${barTop})`);
+  gRight.selectAll('rect')
+    .data(rightBars)
+    .enter().append('rect')
+    .attr('x', (d, i) => i * spacing)
+    .attr('y', 0)
+    .attr('width', barWidth)
+    .attr('height', barHeight)
+    .attr('rx', 2)
+    .attr('fill', d => d.rank === highlightRank ? domainColors[d.domain] : grey)
+    .attr('data-rank', d => d.rank)
+    .style('cursor', 'pointer')
+    .on('mouseover', (e, d) => barHoverOnly(d))
+    .on('mouseout', () => clearAllHighlights())
+    .on('click', (e, d) => tileClick(e, d));
+}
+
+
+
+// 2) The Deliberative card render (no early return on rank)
+function renderDeliberativeDetailsNoTabs(strengths){
+  const delib = strengths.find(s => (s.name || '').toLowerCase().trim() === 'deliberative');
+  if(!delib) return;
+
+  // draw barcode with Deliberative highlight
+renderFull34BarcodeContained(strengths, 2, 'deliberativeBarcode');
+
+  // mount content
+  const domColor = "#8b61ff";
+  const wrap = d3.select('#deliberativeDetails');
+  if (!wrap.node()) return; // container missing
+
+  wrap.html(`
+    <div style="max-width:720px;margin:24px auto;text-align:left;">
+      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">2. Deliberative<sup>®</sup></h2>
+      <h3 style="font-size:15px;margin-top:10px;">What is Deliberative?</h3>
+      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+        People with strong Deliberative talents are careful and vigilant. Everything may seem in order, but beneath the surface,
+they sense many risks. Rather than avoiding these hazards, they draw them out into the open so they can identify, assess
+and ultimately reduce each risk. Thus, those with strong Deliberative talents bring a thorough and conscientious
+approach to making decisions. They take care to consider options, thinking through the pros and cons of each
+alternative. To them, making the correct choice is more important than the time it takes to do so. They see life as
+something of a minefield. Others may run through it recklessly if they so choose, but those with Deliberative talents take
+a different approach. They identify the dangers, weigh these risks’ relative effect and then place their feet deliberately.
+They walk with care. 
+      </p>
+
+      <h3 style="font-size:15px;margin-top:18px;">Why Your Deliberative Is Unique</h3>
+      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+        These Strengths Insights are personalized based on my CliftonStrengths results.
+      </p>
+
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:18px 20px;backdrop-filter:blur(10px);box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Driven by your talents, you approach your studies or work with dignity and in a businesslike manner. It makes
+perfect sense, therefore, that you possess a vocabulary rich in complicated, technical, or subject-specific
+words. You habitually take time to carefully think through whatever you are going to say or write before you
+begin. Once you have identified your main theories or concepts, you can express them with clarity and
+precision. 
+        </div>
+        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Because of your strengths, you are uncomfortable making quick decisions. When others reach an outcome
+too fast, you feel unsettled by what you perceive as a lack of concern and reckless behavior
+        </div>
+        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          By nature, you appreciate progress but not at the expense of vigilance. You see yourself as the safeguard
+against poor choices and failed outcomes. 
+        </div>
+        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+         It’s very likely that you will not make reckless choices. While others may need immediate answers, you pause
+to take the time you need to make the best decisions. 
+        </div>
+        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Chances are good that you choose not to reveal to others too much about yourself, your thoughts, and your
+feelings. You exercise great care and weigh all possible risks when you interact with people. You prefer to give
+sincere and well-deserved compliments. You are likely to refrain from acknowledging the talents,
+contributions, and accomplishments of individuals and groups until you have clear evidence they merit
+special acclaim
+        </div>
+      </div>
+
+<div style="margin-top:24px; text-align:center; display:flex; flex-direction:column; align-items:center;">
+  <h3 style="font-size:16px; margin-bottom:12px;">How Deliberative Blends With Your Other Top Five Strengths</h3>
+  
+  <div style="display:flex; flex-direction:column; gap:12px; align-items:center; max-width:600px;">
+    
+    <div style="max-width:480px;">
+      <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
+        <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#3AA0FF;">RELATOR</span>
+      </p>
+      <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
+        Trusting others takes some time for you because you trust only those you know well, and you are careful about who you get to know.
+      </p>
+    </div>
+
+    <div style="max-width:480px;">
+      <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
+        <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">LEARNER</span>
+      </p>
+      <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
+        You are open to new information and experiences, but you want adequate time to study them carefully and thoroughly.
+      </p>
+    </div>
+
+    <div style="max-width:480px;">
+      <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
+        <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">INTELLECTION</span>
+      </p>
+      <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
+        Your introspective reflection enhances your self-awareness. Your vigilant anticipation enhances your risk awareness.
+      </p>
+    </div>
+
+    <div style="max-width:480px;">
+      <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
+        <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">INPUT</span>
+      </p>
+      <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
+        You gather effective tools and valuable resources that can help manage risk and prevent problems.
+      </p>
+    </div>
+
+  </div>
+</div>
+  `);
+}
+
+  function renderLearnerDetailsNoTabs(strengths){
+  // Find Learner regardless of exact casing/spaces
+  const learner = strengths.find(s => (s.name || '').toLowerCase().trim() === 'learner');
+  if(!learner) return;
+
+  // Reuse the same DNA, highlighting rank 3 (Learner)
+  // Requires your renderFull34BarcodeContained(data, highlightRank) version
+renderFull34BarcodeContained(strengths, 3, 'learnerBarcode');
+
+  // Accent color = Strategic Thinking domain
+  const domColor = "#38d07a";
+  const wrap = d3.select('#learnerDetails');
+  if(!wrap.node()) return;
+
+  const html = `
+    <div style="max-width:720px;margin:24px auto;text-align:left;">
+      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">3. Learner<sup>®</sup></h2>
+
+      <h3 style="font-size:15px;margin-top:10px;">What is Learner?</h3>
+      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+People with strong Learner talents constantly strive to learn and improve. The process of learning is just as important to
+them as the knowledge they gain. The steady and deliberate journey from ignorance to competence energizes Learners.
+The thrill of learning new facts, beginning a new subject and mastering an important skill excites people with dominant
+Learner talents. Learning builds these people’s confidence. Having Learner as a dominant theme does not necessarily
+motivate someone to become a subject-matter expert or strive for the respect that accompanies earning a professional
+or academic credential. The outcome of learning is less significant than the “getting there.
+      </p>
+
+      <h3 style="font-size:15px;margin-top:18px;">Why Your Learner Is Unique</h3>
+      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+        These Strengths Insights are personalized based on my CliftonStrengths results.
+      </p>
+
+      <!-- Tabs -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+      </div>
+
+      <!-- Insights -->
+      <div style="
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.15);
+        border-radius:16px;
+        padding:18px 20px;
+        backdrop-filter:blur(10px);
+        box-shadow:0 4px 12px rgba(0,0,0,0.2);
+      ">
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+It’s very likely that you may prefer to work in certain groups. Perhaps you are attracted to teams whose
+activities or challenges intrigue you. Periodically you choose to give specific matters your undivided
+attention. 
+        </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Instinctively, you make sure you comprehend more than any of your opponents do about what it takes to win
+something. Whenever your results are going to be compared to those of others, you are determined to be
+the sole victor. Consequently, you welcome opportunities to put your talents, knowledge, and skills to the
+test. You are especially interested when meaningful and objective measurements are used to pinpoint the
+best performer.</div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Driven by your talents, you thrive when you are encouraged to acquire knowledge and skills. You enjoy
+studying, reading, listening and thinking. Your mind is crowded with information on numerous subjects. The
+act of processing it excites you. You probably have a special place or time to reflect on your discoveries. You
+are unwilling to accept someone’s ideas just because they have been published or are considered an expert.
+You often test the validity of their conclusions, main points, theories or concepts. 
+        </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          You are unwilling to accept someone’s ideas just because they have been published or are considered an expert. You often test the validity of their conclusions, main points, theories or concepts.
+        </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Chances are good that you may enjoy pondering what you can revise, correct, renovate, upgrade, or
+relocate. When you are curious about a person, event, topic, project, activity, or idea, you probably devote a
+bit more energy and time to studying it. 
+        </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          By nature, you comprehend what has gone wrong. Eagerly, you uncover facts. Sorting through lots of
+information rarely intimidates you. You welcome the abundance of information. Like a detective, you sort
+through it and identify key pieces of evidence. Following these leads, you bring the big picture into view. Next,
+you generate schemes for solving the problem. Finally, you choose the best option after considering
+prevailing circumstances, available resources, and desired outcomes. 
+        </div>
+      </div>
+    </div>
+
+    <!-- Blend Section -->
+<div style="margin-top:24px;">
+  <h3 style="font-size:16px;margin-bottom:12px;">How Learner Blends With Your Other Top Five Strengths</h3>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">LEARNER</span> + <span style="color:#3AA0FF;">RELATOR</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        Your deepest, longest friendships don’t stagnate because you strive to discover something new about those who are familiar.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">LEARNER</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        You are open to new information and experiences, but you want adequate time to study them carefully and thoroughly.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">LEARNER</span> + <span style="color:#38D07A;">INTELLECTION</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        You are a student of the world in which you live, and you are a student of the world of thoughts that lives within you.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">LEARNER</span> + <span style="color:#38D07A;">INPUT</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        As a natural student/teacher, you love the process of learning, and you are always looking for useful resources that can enhance learning.
+      </p>
+    </div>
+
+  </div>
+</div>
+  `;
+  wrap.html(html);
+}
+
+
+  function renderIntellectionDetailsNoTabs(strengths){
+  // find Intellection safely irrespective of casing/space
+  const intel = strengths.find(s => (s.name || '').toLowerCase().trim() === 'intellection');
+  if(!intel) return;
+
+  // reuse the same DNA, highlighting rank 4 (Intellection)
+  // requires your renderFull34BarcodeContained(data, highlightRank) version
+renderFull34BarcodeContained(strengths, 4, 'intellectionBarcode');
+  // Strategic Thinking accent (green)
+  const domColor = "#38d07a";
+  const wrap = d3.select('#intellectionDetails');
+  if(!wrap.node()) return;
+
+  const html = `
+    <div style="max-width:720px;margin:24px auto;text-align:left;">
+      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">4. Intellection<sup>®</sup></h2>
+
+      <h3 style="font-size:15px;margin-top:10px;">What is Intellection?</h3>
+      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+        People with strong Intellection talents like to think. They like mental activity. They like to exercise the “muscles” of their
+brain, stretching them in multiple directions. This need for mental activity may be focused; for example, they may be
+trying to solve a problem, develop an idea or understand another person’s feelings. The exact focus will depend on their
+other strengths. The theme of Intellection does not dictate what these people are thinking about; it simply describes that
+they like to think. They like to let their thoughts go in many directions. People with strong Intellection talents are
+introspective. This introspection gives them time to reflect and ponder. Wherever it leads them, their mental hum is a
+constant in their lives
+      </p>
+
+      <h3 style="font-size:15px;margin-top:18px;">Why Your Intellection Is Unique</h3>
+      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+        These Strengths Insights are personalized based on my CliftonStrengths results.
+      </p>
+
+      <!-- Tabs -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+      </div>
+
+      <!-- Insights -->
+      <div style="
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.15);
+        border-radius:16px;
+        padding:18px 20px;
+        backdrop-filter:blur(10px);
+        box-shadow:0 4px 12px rgba(0,0,0,0.2);
+      ">
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+Because of your strengths, you probably examine facts, data, or the sequence of events to determine why
+something happened. You customarily use reason to make sense of whatever is going on in your life. 
+        </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+         Instinctively, you delight in the opportunity to hear leading thinkers discuss their theories and insights. The
+“life of the mind” appeals to you greatly. You relish acquiring new information about profound, out-of-theordinary, or scholarly ideas. 
+        </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+ It’s very likely that you are more interested in gathering ideas, theories, or concepts during conversations
+with intelligent people than you are in being well known or famous. You tend to be most satisfied when your
+mind is absorbing thoughts you have never before considered. In addition, you enjoy broadening the thinking
+of others. 
+        </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+Chances are good that you automatically reflect on all the good people, events, experiences, or
+opportunities you have encountered in life. You frequently pause to consider everything for which you are
+grateful. You probably avoid individuals who seldom say “thank you” or rarely express appreciation. They
+think there is a scarcity of good things in life. You, on the other hand, think there is an overwhelming
+abundance of good things to enjoy
+        </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+ By nature, you commonly reflect on tomorrow’s possibilities and their potential impact on your life.
+Understandably, you seek the company of intelligent, forward-looking individuals. You talk with them. You
+listen. You ask questions. You offer your own ideas. Every step of the way, you keep pulling together intriguing
+bits of information that can help you shape your future. There are thoughts you treasure even though they
+are not immediately useful. 
+        </div>
+      </div>
+    </div>
+
+    <!-- Blend Section -->
+<div style="margin-top:24px;">
+  <h3 style="font-size:16px;margin-bottom:12px;">How Intellection Blends With Your Other Top Five Strengths</h3>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#3AA0FF;">RELATOR</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        Even though you find solitude conducive for clarifying your thoughts, it will never take the place
+        of being with your friends. 
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+       Your introspective reflection enhances your self-awareness. Your vigilant anticipation enhances
+      your risk awareness. 
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#38D07A;">LEARNER</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        You are a student of the world in which you live, and you are student of the world of thoughts
+      that lives within you. 
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#38D07A;">INPUT</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+       Just because your thinking can be deep and philosophical does not mean that it cannot be
+      practical and useful. 
+      </p>
+    </div>
+  </div>
+</div>
+
+  `;
+  wrap.html(html);
+}
+
+
+function renderInputDetailsNoTabs(strengths){
+  const input = strengths.find(s => (s.name || '').toLowerCase().trim() === 'input');
+  if(!input) return;
+
+  // keeps your barcode (this is fine)
+  renderFull34BarcodeContained(strengths, 5, 'inputBarcode');
+
+  const domColor = "#38d07a";
+
+  // FIX: select by id
+  const wrap = d3.select('#inputDetails');
+  if(!wrap.node()) return;
+
+  const html = `
+    <div style="max-width:720px;margin:24px auto;text-align:left;">
+      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">5. Input<sup>®</sup></h2>
+
+      <h3 style="font-size:15px;margin-top:10px;">What is Input?</h3>
+      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+        People with strong Input talents are inquisitive and always want to know more. They crave information. They might collect
+ideas, books, memorabilia, quotations or facts. Whatever they collect, they do so because it interests them. They find
+many things interesting and have a natural curiosity. The world is exciting precisely because of its infinite variety and
+complexity. A few minutes spent surfing the internet may turn into hours once their curiosity takes off. They constantly
+acquire, compile and file things away. Their pursuits keep their minds fresh. They know that one day the information or
+things they’ve gathered will prove valuable. 
+      </p>
+
+      <h3 style="font-size:15px;margin-top:18px;">Why Your Input Is Unique</h3>
+      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+        These Strengths Insights are personalized based on my CliftonStrengths results.
+      </p>
+
+      <!-- Tabs -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+      </div>
+
+      <!-- Insights -->
+      <div style="
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.15);
+        border-radius:16px;
+        padding:18px 20px;
+        backdrop-filter:blur(10px);
+        box-shadow:0 4px 12px rgba(0,0,0,0.2);
+      ">
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Instinctively, you derive much satisfaction from reading books, magazines, newspapers, websites, blogs or
+documents. Acquiring knowledge is as much a pastime for you as it is a necessity of life. Often writers
+stimulate your thinking about the people, situations or things you need to make better. </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Driven by your talents, you combine your fascination for reading with your ability to figure out what sets
+individuals apart. You are likely to discover what interests someone and then read more about their interests.
+You want to collect insights that can inspire them to take advantage of their one-of-a-kind talents,
+knowledge, and skills.</div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          By nature, you tend to read several books or publications at the same time. Without confusing yourself, you
+can peruse — that is, studiously examine — one for a while, then put it down, pick up another, and continue
+reading where you left off the last time. Your need to gather lots of information probably explains your
+capacity for juggling a variety of topics, plots, and authors in the same time span. </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+          Chances are good that you simply cannot have too much information. It is impossible. Like a miner searches
+for gold day after day, you continually collect new bits of knowledge. Depending on your other talents, you
+can delve into one or two interesting topics, or you can opt to know a little about a wide range of subjects.
+Your longing for knowledge is unlikely to be satisfied until you are recognized by others as the ultimate expert
+in a field or the grand champion of trivia. </div>
+        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+         Because of your strengths, you compel individuals or groups to quickly move into action by using officialsounding words. Your extensive vocabulary also contains hard-to-understand terminology that sets you
+apart. Thus, you speak with an air of authority that you often fail to hear. So, when you display impatience and
+say, “Let’s get started right now!” many people refrain from questioning your decision. </div>
+      </div>
+    </div>
+
+    <!-- Blend Section -->
+    <div style="margin-top:24px;">
+  <h3 style="font-size:16px;margin-bottom:12px;">How Input Blends With Your Other Top Five Strengths</h3>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">INPUT</span> + <span style="color:#3AA0FF;">RELATOR</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        You value tangible, practical resources, and you equally value the human resources of your close friends and family.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">INPUT</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        You gather effective tools and valuable resources that can help manage risk and prevent problems.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">INPUT</span> + <span style="color:#38D07A;">LEARNER</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        As a natural student/teacher, you love the process of learning and you’re always finding useful resources that enhance learning.
+      </p>
+    </div>
+
+    <div>
+      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+        <span style="color:#38D07A;">INPUT</span> + <span style="color:#38D07A;">INTELLECTION</span>
+      </p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+        Even deep, philosophical thinking becomes practical and useful when paired with strong resource gathering.
+      </p>
+    </div>
+  </div>
+</div>
+
+  `;
+  wrap.html(html);
+}
+  // Ensure D3 and strengths are available
+  document.addEventListener('DOMContentLoaded', function () {
+    // 1) Top split barcode (compact version)
+    renderCliftonSVGBar(strengths);
+
+    // 2) Full 34-barcode with diagonal X in the contained wrapper
+    renderFull34BarcodeContained(strengths);
+
+    // 3) Relator details (plain, centered)
+    renderRelatorDetailsNoTabs(strengths);
+
+      renderInputDetailsNoTabs(strengths);
+  });
+
+</script>
+  <script>
+  const detailsBackdrop = document.getElementById('detailsBackdrop');
+  const detailsContent  = document.getElementById('detailsContent');
+
+  function openDetails(html) {
+    detailsContent.innerHTML = html;
+    detailsBackdrop.classList.add('show');
+    detailsBackdrop.setAttribute('aria-hidden', 'false');
+    // Optional: focus management (e.g., focus first heading/button)
+  }
+
+
+
+
+
+
+  // Close on Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && detailsBackdrop.classList.contains('show')) closeDetails();
+  });
+
+  // Export for your existing chart handlers
+  window.openDetails = openDetails;
+</script>
+
+    <!-- Mobile modal popup -->
+<!-- Reusable details modal (desktop + mobile) -->
+<div id="detailsBackdrop" class="details-backdrop" aria-hidden="true">
+  <div role="dialog" aria-modal="true" aria-labelledby="detailsTitle" class="details-modal">
+    <button type="button" class="close-x" aria-label="Close">✕</button>
+    <div id="detailsContent"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Top section: grid + stackbar + compact split bar
+  renderTiles(strengths);
+  renderCliftonSVGBar(strengths);
+  renderStackBar(strengths);
+
+  // ===== Full DNA bars for each section =====
+  renderFull34BarcodeContained(strengths, 1, 'relatorBarcode');
+  renderFull34BarcodeContained(strengths, 2, 'deliberativeBarcode');
+  renderFull34BarcodeContained(strengths, 3, 'learnerBarcode');
+  renderFull34BarcodeContained(strengths, 4, 'intellectionBarcode');
+  renderFull34BarcodeContained(strengths, 5, 'inputBarcode');
+
+  // ===== Section details =====
+  renderRelatorDetailsNoTabs(strengths);
+  renderDeliberativeDetailsNoTabs(strengths);
+  renderLearnerDetailsNoTabs(strengths);
+  renderIntellectionDetailsNoTabs(strengths);
+  renderInputDetailsNoTabs(strengths);
+});
+</script>
+  <!-- ===== MOBILE MODAL (for mobile tile tap) ===== -->
+<div id="mobileModal" class="mobile-modal" role="dialog" aria-modal="true">
+  <span class="close-btn" aria-label="Close">&times;</span>
+  <div class="mobile-modal-content" id="mobileModalBody"></div>
+</div>
+</body>
+</html>

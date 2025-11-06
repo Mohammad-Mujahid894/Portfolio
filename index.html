@@ -1,0 +1,3728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohammad Mujahid | Finance & O2C Professional</title>
+
+  <!-- Existing primary description is fine to keep -->
+  <meta name="description" content="I craft clarity out of chaos in finance and operations. Mohammad Mujahid here — bridging real-world accounting operations with strategic insights. From streamlining O2C workflows to turning raw financial data into actionable decisions, I deliver solutions that matter. This portfolio isn’t just a showcase of my work — it’s a lens into how I think, solve, and create impact, right now.">
+
+  <!-- Add these PREVIEW TAGS here (after title/description, before <style>) -->
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mohammad-mujahid894.github.io/Portfolio/">
+  <meta property="og:title" content="Mohammad Mujahid | Finance & O2C Professional">
+  <meta property="og:description" content="Crafting clarity out of chaos in finance and operations. O2C, cash apps, and data-driven decisions. Delivering solutions that matter. This portfolio isn’t just a showcase of my work — it’s a lens into how I think, solve, and create impact.">
+
+  <!-- Twitter / X (text-only card) -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mohammad Mujahid | Finance & O2C Professional">
+  <meta name="twitter:description" content="Crafting clarity out of chaos in finance and operations. O2C, cash apps, and data-driven decisions. Delivering solutions that matter. This portfolio isn’t just a showcase of my work — it’s a lens into how I think, solve, and create impact.">
+<style>
+    :root{
+      --bg:#04060b; --fg:#eaf2ff; --muted:#9fb2d8; --glass:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
+      --radius:18px; --shadow:0 30px 80px rgba(0,0,0,.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+body {
+  margin: 0;
+  color: var(--fg);
+  background: #04060b;   /* keep only the dark base color, no cloudy gradient */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  overflow-x: hidden;
+}
+    /* ===== LAYERS ===== */
+    .layer{position:fixed; inset:0; pointer-events:none}
+    #stars1,#stars2,#stars3{z-index:-3}
+#nebula {
+  z-index: -2;
+  filter: blur(40px) saturate(120%);
+  background:
+    radial-gradient(40% 40% at 15% 20%, rgba(122,162,255,.30), transparent 70%),
+    radial-gradient(35% 35% at 85% 15%, rgba(79,240,176,.25), transparent 70%),
+    radial-gradient(50% 50% at 60% 80%, rgba(138,122,255,.22), transparent 70%),
+    radial-gradient(30% 30% at 20% 85%, rgba(255,200,120,.18), transparent 70%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: drift 24s ease-in-out infinite alternate;
+}
+    @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-2%,0)}}
+
+    /* ===== CONTENT ===== */
+    .wrap{max-width:1080px; margin:0 auto; padding:24px}
+    header{position:sticky; top:0; z-index:10; backdrop-filter:saturate(160%) blur(8px); background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0));}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; border:1px solid var(--stroke); background:var(--glass); border-radius:calc(var(--radius) + 6px); padding:14px 18px; box-shadow:var(--shadow)}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:36px; height:36px; border-radius:12px; background:conic-gradient(from 180deg,#7aa2ff 0 25%, #8a7aff 25% 50%, #4ff0b0 50% 75%, #ffd28a 75% 100%)}
+    .nav a{color:var(--fg); text-decoration:none; opacity:.9; font-weight:700}
+
+    main{padding-top:24px}
+    .hero{min-height:70vh; display:grid; place-items:center; text-align:center}
+    .title{font-size:clamp(32px,5vw,62px); line-height:1.05; margin:0}
+    .title span{background:linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .sub{color:var(--muted); margin-top:10px}
+    .cta{display:flex; gap:10px; justify-content:center; margin-top:18px}
+    .btn{border:1px solid var(--stroke); background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.02)); color:var(--fg); padding:10px 14px; border-radius:14px; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:var(--shadow)}
+
+    /* Cards to feel hover tilt */
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:18px; margin:60px 0}
+    .col-6{grid-column:span 6}
+    @media(max-width:900px){.col-6{grid-column:span 12}}
+    .card{position:relative; border:1px solid var(--stroke); background:var(--glass); border-radius:18px; padding:22px; box-shadow:var(--shadow)}
+    .tilt{transform-style:preserve-3d; will-change:transform; transition:transform 150ms ease}
+    .tilt .inner{transform:translateZ(30px)}
+
+    /* Progress bars demo */
+    .skillbar{position:relative; height:12px; border-radius:999px; background:rgba(255,255,255,.08); overflow:hidden}
+    .skillbar span{position:absolute; inset:0; width:0; background:linear-gradient(90deg,#7aa2ff,#4ff0b0); transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+
+    /* Cursor glitter particles */
+    .spark{position:fixed; width:6px; height:6px; border-radius:50%; pointer-events:none; background:radial-gradient(circle,#fff,rgba(255,255,255,0)); filter:drop-shadow(0 0 10px rgba(122,162,255,.9)); opacity:0; animation: fade .8s ease-out forwards}
+    @keyframes fade{0%{opacity:1; transform:translate(-50%,-50%) scale(1)}100%{opacity:0; transform:translate(-50%,-50%) scale(.4)}}
+
+    .notice{color:var(--muted); text-align:center; margin:30px 0}
+
+    @media (prefers-reduced-motion: reduce){
+      #nebula{animation:none}
+    }
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1100px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+/* Brand */
+header .brand {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+header .brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+header .brand strong {
+  font-size: 18px;
+  color: #eaf2ff;
+  white-space: nowrap;
+}
+
+/* ===== NAV ===== */
+#navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#navbar a {
+  color: #eaf2ff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+}
+#navbar a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  color: #fff;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: relative;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;      /* below button */
+  left: 0;
+  min-width: 200px;
+  background: rgba(20,20,20,0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+  flex-direction: column;
+  z-index: 2000;
+}
+.dropdown-content a {
+  display: block;
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.dropdown-content a:hover {
+  background: rgba(122, 162, 255, 0.3);
+}
+
+/* Show dropdown on hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1101;
+}
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  header {
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    padding: 10px 15px;   /* reduce padding to avoid overflow */
+    display: flex;
+    justify-content: space-between; /* brand left, hamburger right */
+    align-items: center;
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+
+  #navbar {
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    max-height: 0;
+    width: 250px;
+    overflow: hidden;
+    flex-direction: column;
+    transition: max-height 0.3s ease;
+  }
+  #navbar.show { max-height: 500px; overflow-y: auto; }
+
+  #navbar a {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  #navbar a:last-child { border-bottom: none; }
+
+  .dropdown-content {
+    position: static;
+    display: none;
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+  .dropdown.active .dropdown-content { display: block; }
+}
+    /* Hero layout */
+.hero-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  min-height: 80vh;
+}
+
+@font-face {
+  font-family: 'FoundationTitlesHand';
+  src: url('FoundationTitlesHand.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+#about h2,
+#experience h2,
+#skills h2,
+#skillsglobe h2,
+#contact h2 {
+  font-family: 'FoundationTitlesHand', sans-serif !important;
+}
+/* Only change font-family for your name text */
+.title span {
+  font-family: 'FoundationTitlesHand', sans-serif !important;
+}
+
+  @font-face {
+  font-family: 'FoundationTitlesHand';
+  src: url('foundationtitleshand.ttf') format('truetype'); /* make sure path is correct */
+  font-weight: normal;
+  font-style: normal;
+}
+
+#gallup-section-title h2, /* optional if needed elsewhere */
+#clifton-title {
+  font-family: 'FoundationTitlesHand', sans-serif !important;
+  font-size: clamp(28px,5vw,42px);
+  margin-bottom: 10px;
+  text-align: center;
+  background: linear-gradient(90deg, #7aa2ff, #8a7aff, #4ff0b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+  
+/* Profile picture with glowing orbits */
+.profile-pic {
+  position: relative;
+  width: 250px;   /* bigger circle */
+  height: 250px;
+}
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 0 35px rgba(122,162,255,0.8);
+  background: black;
+}
+
+/* Intro text */
+.intro-text {
+  text-align: left;
+  margin-left: 30px;  /* pushes your text to the right */
+}
+
+.intro-text .title span {
+  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: clamp(36px, 6vw, 68px);
+  font-weight: 800;
+}
+.intro-text .sub {
+  color: var(--muted);
+  font-size: 18px;
+  margin: 6px 0;
+}
+
+/* Scroll down arrow */
+.scroll-down {
+  font-size: 28px;
+  margin-top: 20px;
+  animation: bounce 1.5s infinite;
+  color: #7aa2ff;
+  cursor: pointer;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Glassy pill-style tags */
+.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);   /* lighter */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(122,162,255,0.3),
+              0 0 15px rgba(79,240,176,0.25);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.tag:hover {
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 14px rgba(122,162,255,0.5),
+              0 0 20px rgba(79,240,176,0.4);
+  transform: translateY(-2px);
+}
+    .pills-left {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-start;   /* align to left */
+}
+.pills-right {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;     /* align to right */
+}
+
+.stat-card {
+  position: relative;
+  padding: 16px;
+  border-radius: 16px;
+  text-align: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 0 25px rgba(122,162,255,0.25),
+              inset 0 0 10px rgba(255,255,255,0.1);
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 40px rgba(122,162,255,0.7),
+              0 0 70px rgba(79,240,176,0.5);
+  background: rgba(255,255,255,0.12);
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg,
+    transparent 30%,
+    rgba(255,255,255,0.35) 50%,
+    transparent 70%);
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+  animation: shine 1.6s ease forwards;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+.stat-card h3 {
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(90deg,#7aa2ff,#4ff0b0,#8a7aff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(122,162,255,0.8),
+               0 0 30px rgba(79,240,176,0.6);
+}
+    .stat-card .plus {
+  font-size: 32px;
+  font-weight: 900;
+  color: #7aa2ff;
+  margin-left: 4px;
+}
+
+/* Grid for stat cards in About section */
+.work-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 3 per row on desktop */
+  gap: 18px;
+  margin-top: 50px;
+  justify-items: center;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .work-stats {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .work-stats {
+    grid-template-columns: 1fr; /* 1 per row on phones */
+  }
+}
+
+    /* Make all sections fully transparent so background stays same */
+section#about {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+    /* Force About Me section to align left */
+#about {
+  margin: 0 !important;
+  padding: 60px 24px 0 24px !important; /* top padding so content isn’t stuck */
+  background: transparent !important;
+  border: none !important;
+}
+    .hero {
+  min-height: 100vh;  /* fills full screen height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+      <meta charset="UTF-8">
+  <title>Timeline with Logos</title>
+
+
+
+    /* ===== Contained Layout for Home & About Me ===== */
+
+/* ===== Clean Contained Layout (No Background Box) ===== */
+
+#home,
+#about {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: transparent; /* keep your nebula visible */
+  padding: 60px 16px;
+  box-sizing: border-box;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+/* Inner wrappers */
+#home .hero-content,
+#about .about-container {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 30px;
+  box-sizing: border-box;
+}
+
+/* Fix flex layout for About Me */
+#about .about-container {
+  display: flex;
+  flex-wrap: wrap; /* ensures wrapping instead of overflow */
+  gap: 30px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Prevent long words from causing overflow */
+#about * {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 900px) {
+  #home,
+  #about {
+    padding: 40px 12px;
+  }
+
+  #home .hero-content,
+  #about .about-container {
+    padding: 24px 16px;
+  }
+
+  /* Stack items vertically on small screens */
+  #about .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .intro-text {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  <style>
+    :root {
+      --bg: #04060b;
+      --fg: #eaf2ff;
+      --muted: #9fb2d8;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+/* ===== TIMELINE SECTION ===== */
+.timeline-section {
+  margin-top: 80px;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.timeline-section .section-title {
+  font-size: clamp(28px, 5vw, 42px);
+  margin-bottom: 50px;
+  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* Glowing vertical line */
+/* Replace your current .timeline::before block with this */
+.timeline-inner {
+  position: relative;
+}
+.timeline { overflow: hidden; }
+    .timeline { position: relative; overflow: hidden; }
+
+
+.timeline-inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;                 /* auto height to match inner content */
+  left: 50%;
+  width: 4px;
+  background: linear-gradient(180deg,#7aa2ff,#4ff0b0,#8a7aff);
+  box-shadow: 0 0 20px #7aa2ff, 0 0 40px #4ff0b0;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* Your mobile override should point to the new selector too */
+@media (max-width: 768px) {
+  /* Hide the old line on mobile */
+  .timeline::before,
+  .timeline-inner::before { display: none !important; }
+
+  /* Draw a new line that stays inside the box */
+  .timeline::after {
+    content: "";
+    position: absolute;
+    left: 20px;        /* same left you already use on mobile */
+    top: 8px;          /* small top cap */
+    bottom: 12px;      /* small bottom cap */
+    width: 3px;
+    background: linear-gradient(180deg,#7aa2ff,#4ff0b0,#8a7aff);
+    box-shadow: 0 0 14px rgba(122,162,255,0.6), 0 0 24px rgba(79,240,176,0.4);
+    z-index: 0;
+  }
+}
+
+    /* Timeline items */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 50px 30px;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+/* Glassy cards */
+.timeline-content {
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 0 20px rgba(122,162,255,0.25),
+              inset 0 0 10px rgba(255,255,255,0.1);
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  z-index: 1;
+}
+
+.timeline-content h3 {
+  margin: 0 0 8px;
+  font-size: 21px;   /* bigger */
+  font-weight: 700;
+  background: linear-gradient(90deg,#7aa2ff,#4ff0b0,#8a7aff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.timeline-content .company {
+  display: block;
+  font-size: 18px;   /* bigger than now */
+  font-weight: 600;
+  margin-bottom: 12px; /* add space before pills */
+  color: var(--muted);
+}
+
+.timeline-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--fg);
+}
+
+.timeline-content:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 30px rgba(122,162,255,0.8),
+              0 0 50px rgba(79,240,176,0.6);
+}
+
+/* ===== Logo dots on the line ===== */
+.timeline-dot {
+  position: absolute;
+  top: 50%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(122,162,255,0.6),
+              0 0 40px rgba(79,240,176,0.4);
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+/* Odd items (left side) → push dot towards center line */
+.timeline-item:nth-child(odd) .timeline-dot {
+  right: -35px;
+}
+
+/* Even items (right side) → push dot towards center line */
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -35px;
+}
+
+/* Logo inside dot */
+.timeline-dot img {
+  width: 90%;              /* take up most of the circle */
+  height: 90%;             
+  object-fit: contain;     /* fit logo without distortion */
+  border-radius: 50%;      /* force into circle */
+  background: #fff;        /* white background for clarity */
+  padding: 4px;            /* reduce extra space */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline-item {
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 20px;
+    text-align: left;
+  }
+  .timeline-item:nth-child(even) { left: 0; }
+  .timeline-dot {
+    left: 20px;
+    transform: translateY(-50%);
+  }
+}
+.more-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 5px 14px;   /* smaller */
+  border-radius: 18px;
+  font-size: 13px;     /* smaller */
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.more-btn:hover {
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 12px rgba(122,162,255,0.5),
+              0 0 18px rgba(79,240,176,0.4);
+}
+@font-face {
+  font-family: 'FoundationTitlesHand';
+  src: url('FoundationTitlesHand.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#typewriter {
+  font-family: 'FoundationTitlesHand', sans-serif;
+  font-size: clamp(18px, 3.5vw, 28px); /* smaller but still responsive */
+  font-weight: 700;
+  color: #fff; /* change color if needed */
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+}
+
+/* Hero CTA row under the animated text */
+.hero-ctas{
+  display:flex;
+  gap:14px;
+  margin-top:16px;
+  flex-wrap:wrap;
+  justify-content:flex-start; /* aligns with your left intro text */
+}
+
+/* Button looks */
+.btn-primary{
+  background: linear-gradient(90deg,#7aa2ff,#4ff0b0);
+  color:#081018;
+  border:none;
+}
+.btn-primary:hover{
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn-secondary{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.22);
+  color:#eaf2ff;
+}
+.btn-secondary:hover{
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
+
+/* Mobile: full-width buttons if space is tight */
+@media (max-width:600px){
+  .hero-ctas .btn{
+    width:100%;
+    justify-content:center;
+  }
+}
+html{ scroll-behavior: smooth; }
+/* Stop anchor scroll from hiding under the sticky header */
+:target::before{
+  content:"";
+  display:block;
+  height: 90px;       /* adjust if your header is taller/shorter */
+  margin-top: -90px;  /* same value, negative */
+}
+/* Make typewriter its own line and reserve space */
+#typewriter{
+  display:block;         /* own line */
+  min-height: 2.4rem;    /* reserve height so it can type without pushing */
+  white-space: nowrap;   /* keep single line on desktop */
+}
+
+/* Gap between typewriter and CTAs */
+.typewriter-spacer{
+  height: 8px;           /* small fixed gap */
+}
+
+/* Mobile: allow wrapping so it doesn't collide with buttons */
+@media(max-width:600px){
+  #typewriter{ white-space: normal; word-break: break-word; }
+  .hero-ctas .btn{ width:100%; }      /* tidy stacked buttons on phones */
+}
+
+    .glassy-card {
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px) saturate(160%);
+  padding: 24px;
+  box-shadow: 0 0 30px rgba(122,162,255,0.35),
+              inset 0 0 8px rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+}
+.glassy-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 40px rgba(122,162,255,0.6),
+              0 0 70px rgba(79,240,176,0.4);
+}
+  </style>
+  <style>
+/* ==================== Tabs Container ==================== */
+/* ==================== Tabs Container ==================== */
+.skills-filter-tab {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin-bottom: 28px;
+  justify-content: center;
+  align-items: flex-start; /* align buttons to top for multi-row */
+  line-height: 1;
+  overflow-x: visible;
+}
+
+/* ==================== Buttons ==================== */
+.skills-filter-tab .filter-btn {
+  position: relative;
+  z-index: 1;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #eaeaea;
+  padding: 8px 14px;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* Active Button */
+.skills-filter-tab .filter-btn.is-active {
+  font-weight: 600;
+  color: #fff !important;
+}
+
+/* Hover (non-active) */
+.skills-filter-tab .filter-btn:hover {
+  color: #fff;
+}
+
+/* ==================== Moving Glass Pill ==================== */
+.filter-active-pill {
+  position: absolute;
+  top: 0;                  /* align with top of button row */
+  left: 0;
+  height: 30px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25), 0 0 10px rgba(122,162,255,0.25), inset 0 0 3px rgba(255,255,255,0.08);
+  z-index: 0;
+  min-width: 56px;
+  max-width: 200px;
+  transition: left 0.2s ease, top 0.2s ease, width 0.2s ease, height 0.2s ease;
+}
+
+/* ==================== Responsive Adjustments ==================== */
+@media (max-width: 768px) {
+  .skills-filter-tab {
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 14px;
+  }
+  .skills-filter-tab .filter-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  .filter-active-pill {
+    height: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .skills-filter-tab {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .skills-filter-tab {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* ==================== Glass Button (Optional) ==================== */
+.glass-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #eaf2ff;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-button:hover, .glass-button:focus {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.4);
+  color: #ffffff;
+}
+
+/* Extra spacing around Skills Constellation heading and the 3D button */
+.skills-tab h3 {
+  margin-top: 20px;      /* more space above the heading */
+  margin-bottom: 16px;   /* more space below the heading */
+}
+
+/* Add a gap before the Explore My Skills in 3D button area */
+.full-view-btn-container {
+  margin-top: 16px;      /* space before the button row */
+}
+
+/* Optional: tighten spacing on desktop but add more on mobile */
+@media (max-width: 768px) {
+  .skills-tab h3 {
+    margin-top: 24px;    /* a touch more on phones */
+    margin-bottom: 18px;
+  }
+  .full-view-btn-container {
+    margin-top: 18px;
+  }
+}
+
+/* ======================= Skills Tab Container ======================= */
+.skills-tab {
+  width: 100%;             /* full width */
+  max-width: 100%;         /* don’t limit width */
+  margin: 0 auto;          /* center container */
+  padding: 0 10px;         /* small edges on sides */
+  border-radius: 16px;
+  background: none;        /* transparent */
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+  text-align: center;      /* center iframe */
+}
+
+/* Tab heading */
+.skills-tab h3 {
+  margin: 16px 0;
+  color: #cce6ff;
+  font-size: 24px;
+}
+
+/* iframe styling */
+.skills-tab iframe {
+  width: 100%;             /* fill container width */
+  max-width: 100%;         
+  height: 80vh;
+  border: none;
+  border-radius: 16px;
+  display: block;
+}
+
+/* Mobile fix: remove horizontal overflow while keeping full-bleed look */
+@media (max-width: 768px) {
+  /* 1) Ensure all boxes account for padding in width calc */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* 2) Site header uses width: 90% on desktop; don’t let it push layout on phones */
+  header {
+    width: 100% !important;
+    left: 0 !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  /* 3) Main wrappers: no side gutters on phones */
+  .wrap,
+  section#skills,
+  .skills-layout,
+  .full-view-btn-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* 4) Skills tab: use percentages (not 100vw) to avoid overflow */
+  .skills-tab {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .skills-left.glassy-card { padding-bottom: 16px; }
+.skills-left.glassy-card .skill:last-child { margin-bottom: 0; }
+
+
+  /* 5) Iframe uses width: 100% (not 100vw) and a tall but scrollable height */
+  .skills-tab iframe {
+    display: block !important;
+    width: 100% !important;         /* changed from 100vw */
+    max-width: 100% !important;
+    height: 65vh !important;        /* adjust 80–92vh as needed */
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* 6) Prevent horizontal scroll globally, but allow vertical scroll */
+  html, body {
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 7) Any element that still forces width via 100vw will be clamped */
+  [style*="100vw"] {
+    max-width: 100% !important;
+  }
+}
+
+/* Prevent focus/pressed state from mimicking selection */
+.skills-filter-tab .filter-btn:focus,
+.skills-filter-tab .filter-btn:active {
+  outline: none;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+    /* Consistent pill rows */
+.pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0 10px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.pills-row::-webkit-scrollbar { display: none; }
+
+.tag, .map-icon.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Mobile layout improvements */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+    width: 3px;
+    transform: none;
+    box-shadow: 0 0 14px rgba(122,162,255,0.6), 0 0 24px rgba(79,240,176,0.4);
+  }
+
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    text-align: left !important;
+    padding: 18px 14px 26px 84px; /* room for rail + dot */
+  }
+
+  .timeline-content {
+    padding: 16px;
+    border-radius: 14px;
+    opacity: 1;      /* avoid fade-in jank */
+    transform: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35), inset 0 0 8px rgba(255,255,255,0.08);
+  }
+
+  .timeline-content h3 { font-size: 18px; }
+  .timeline-content .company { font-size: 15px; }
+  .timeline-content p { font-size: 15px; line-height: 1.5; }
+
+  .timeline-dot {
+    left: 20px !important;
+    right: auto !important;
+    width: 52px;
+    height: 52px;
+    top: 36px;
+    border-width: 1px;
+    transform: translateY(-50%);
+    box-shadow: 0 0 14px rgba(122,162,255,0.55), 0 0 26px rgba(79,240,176,0.35);
+  }
+
+  .timeline-dot img {
+    width: 88%;
+    height: 88%;
+    padding: 3px;
+  }
+
+  .timeline-item + .timeline-item { margin-top: -6px; }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .timeline-item { padding-left: 76px; }
+  .timeline-dot { width: 46px; height: 46px; top: 34px; }
+  .tag { font-size: 0.8rem; padding: 5px 9px; }
+}
+
+@media (max-width: 768px) {
+  /* Hide navbar by default */
+  #navbar {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Show navbar when hamburger clicked */
+  #navbar.show {
+    display: flex;
+  }
+
+  /* Dropdown content hidden by default */
+  .navbar .dropdown .dropdown-content {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* Show dropdown when parent has 'open' */
+  .navbar .dropdown.open .dropdown-content {
+    display: flex;
+  }
+
+  /* Make dropdown links full width for mobile */
+  .dropdown .dropdown-content a {
+    display: block;
+    padding-left: 15px;
+  }
+}
+</style>
+<style>
+:root {
+  --bg: #071026;
+  --card: rgba(255,255,255,0.04);
+  --muted: #9fb2d8;
+  --glass: rgba(255,255,255,0.04);
+  --radius: 14px;
+  --shadow: 0 18px 40px rgba(2,8,23,0.6);
+  --gap: 14px;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --domColor: #7aa2ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, #051022 0%, var(--bg) 100%);
+  color: #eaf2ff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  padding: 28px;
+}
+
+/* Header helpers */
+.centered-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 6px;
+}
+.centered-header h1 { font-size: 2rem; text-align: center; }
+.lead-strength { align-self: flex-start; font-size: 1.3rem; font-weight: 600; color: #fff; }
+
+/* Section shell */
+#gallup-embed { padding: 28px 12px; max-width: 100%; }
+.gallup-section-title { text-align: center; margin-bottom: 32px; }
+.gallup-section-title h2 {
+  font-size: clamp(28px, 4vw, 36px);
+  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gallup-section-title p.lead-strength { text-align: left; font-size: 1.2rem; font-weight: 600; color: #fff; margin-top: 8px; }
+
+/* Controls */
+.controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.controls input[type="search"] {
+  padding: 8px 12px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: #fff; min-width: 220px;
+}
+.controls input::placeholder { color: #b6bed9; }
+.btn {
+  padding: 8px 12px; border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #eaf2ff; cursor: pointer; font-weight: 600;
+}
+
+/* Grid and columns */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gap);
+}
+.column {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 12px;
+  border-radius: var(--radius);
+  min-height: 120px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.column h3 { margin-bottom: 10px; font-size: 13px; letter-spacing: 0.6px; }
+.column .count {
+  position: absolute; right: 12px; top: 12px;
+  background: rgba(255,255,255,0.03);
+  padding: 6px 8px; border-radius: 10px; font-size: 12px; color: var(--muted);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.column .list { display: flex; flex-direction: column; gap: 8px; }
+
+/* Tiles */
+.tile {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px; padding: 8px; margin-bottom: 8px;
+  cursor: pointer; border-left: 6px solid transparent;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s;
+}
+.tile:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.035);
+  box-shadow: 0 8px 30px rgba(2,8,23,0.6);
+}
+.tile.highlighted { transform: scale(1.05); box-shadow: 0 12px 35px rgba(2,8,23,0.7); background: rgba(255,255,255,0.06); }
+.rank {
+  min-width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; font-weight: 800; font-size: 14px; color: #fff;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04);
+}
+.name { font-weight: 700; font-size: 14px; }
+.sub { font-size: 12px; color: var(--muted); }
+
+/* Domain accents */
+.domain-executing { --domColor:#8b61ff; border-left-color:#8b61ff; }
+.domain-influencing { --domColor:#ff9b3f; border-left-color:#ff9b3f; }
+.domain-relationship { --domColor:#3aa0ff; border-left-color:#3aa0ff; }
+.domain-strategic { --domColor:#38d07a; border-left-color:#38d07a; }
+
+/* Details (desktop only) */
+#details {
+  margin-top: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 12px; padding: 14px;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: var(--shadow);
+}
+#details h2 { margin: 0 0 6px 0; font-size: 18px; }
+#details p { margin: 6px 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+
+/* Stackbar */
+.stackbar-wrap { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+#stackbar svg { width: clamp(260px, 50vw, 520px); height: auto; max-width: 100%; }
+.stack-legend, #stackLegend {
+  display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 13px; flex-wrap: wrap;
+}
+
+/* Tooltip */
+.tooltip {
+  position: fixed; pointer-events: auto;
+  background: linear-gradient(180deg, rgba(10,16,28,0.98), rgba(6,10,18,0.95));
+  color: #eaf2ff; padding: 10px 12px; border-radius: 10px; font-size: 13px;
+  border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 10px 30px rgba(2,8,23,0.6);
+  max-width: 320px; z-index: 99999; display: none;
+}
+
+/* SVG bar area */
+#svgBarWrap { display: block; width: 100%; overflow: hidden; }
+#svgBarWrap svg { width: clamp(300px, 50vw, 560px); height: auto; max-width: 100%; }
+
+/* Containers no-min overflow */
+.container, #gallupStrengths, .grid, .column, .column .list { min-width: 0; }
+
+/* ============== MOBILE ============== */
+@media (max-width: 900px) {
+  /* Domain columns stack; tiles become a simple 2-col grid per domain */
+  .grid { grid-template-columns: 1fr; gap: 12px; }
+  .column .list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  /* Keep each tile as a compact row (rank left, info right) */
+  .tile {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px;
+    margin: 0;
+    gap: 8px;
+    aspect-ratio: auto;
+  }
+
+  .rank { width: 28px; height: 28px; font-size: 12px; min-width: 28px; }
+  .name {
+    font-size: 12px; line-height: 1.2;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; max-width: 100%;
+  }
+  .sub { font-size: 11px; white-space: normal; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Use modal for details on mobile; hide desktop panel */
+  #details { display: none !important; }
+
+  /* Tooltips off on touch */
+  .tooltip { display: none !important; }
+}
+
+/* Small phones: single column tiles per domain for clarity */
+@media (max-width: 420px) {
+  .column .list { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px){
+  /* Hide desktop details panel on mobile */
+  #gallup-embed #gallupStrengths #details { display: none !important; }
+
+  /* Modal overlay (bottom sheet by default) */
+  .mobile-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 99999;
+
+    /* Hidden state */
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+
+    /* Layout */
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0; /* avoids notch overlap in some browsers */
+  }
+  .mobile-modal.open {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Sheet */
+  .mobile-modal-content {
+    width: 100%;
+    max-height: 75vh;
+    overflow-y: auto;
+    background: linear-gradient(180deg, rgba(10,16,28,0.98), rgba(6,10,18,0.95));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px 16px 0 0;
+    padding: 16px;
+    box-shadow: 0 -10px 30px rgba(2,8,23,0.6);
+
+    /* Slide-up animation for better UX */
+    transform: translateY(8px);
+    transition: transform .2s ease;
+  }
+  .mobile-modal.open .mobile-modal-content {
+    transform: translateY(0);
+  }
+
+  /* Close button */
+  .mobile-modal .close-btn {
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #eaf2ff;
+    float: right;
+  }
+
+  /* Prevent background scroll-jank on iOS when sheet is open (JS also locks body) */
+  body.modal-lock,
+  html.modal-lock {
+    overflow: hidden !important;
+    touch-action: none;
+  }
+}
+
+:root {
+  --accent1: #7aa2ff;
+  --accent2: #8a7aff;
+  --accent3: #4ff0b0;
+  --fg: #eaf2ff;
+  --muted: #9fb2d8;
+  --glass: rgba(255,255,255,0.06);
+  --stroke: rgba(255,255,255,0.12);
+}
+
+/* Contact section wrapper */
+.contact-section {
+  position: relative;
+  color: var(--fg);
+  background: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  overflow: hidden;
+}
+
+/* Hero */
+.contact-hero {
+  text-align: center;
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+.contact-title {
+  font-size: clamp(28px, 4.2vw, 42px);
+  margin: 0 0 8px;
+}
+.contact-gradient {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.contact-subtitle {
+  color: var(--muted);
+  max-width: 70ch;
+  margin: 0 auto;
+}
+
+/* Grid: left wider, middle normal, right compressed */
+.contact-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 
+    minmax(250px, 1.6fr)  /* left: at least 250px */
+    minmax(280px, 1.1fr)  /* middle: at least 280px */
+    minmax(200px, 0.9fr); /* right: at least 200px */
+  align-items: start;
+}
+
+
+/* Glass card */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  padding: 14px;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.glass:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.18);
+}
+.contact-card {
+  grid-column: auto;
+}
+
+/* Info card header */
+.contact-profile {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.contact-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent1), var(--accent3));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.contact-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(138, 122, 255, 0.5), 0 0 20px rgba(79,240,176,0.3);
+}
+.contact-name {
+  margin: 0;
+  font-size: 20px;
+  background: linear-gradient(90deg, var(--fg), var(--accent1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.contact-role {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.contact-availability {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.dot--green {
+  background: #4ff0b0;
+  box-shadow: 0 0 8px rgba(79,240,176,.6);
+}
+
+/* Contact list */
+.contact-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* separates left info and right action */
+  gap: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  padding: 8px 12px;
+}
+.contact-item > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* ensures label/value are left aligned */
+}
+
+
+.contact-item:hover {
+  border-color: rgba(255,255,255,0.18);
+}
+.contact-ico {
+  font-size: 16px;
+}
+.contact-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+.contact-value {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--fg); /* make it normal text color */
+}
+.contact-action {
+  margin-left: auto; /* pushes it to the right */
+  text-align: right;
+  color: var(--accent1);
+}
+
+/* Copy feedback states */
+.contact-item.copied {
+  border-color: rgba(79,240,176,.6);
+  box-shadow: 0 0 0 4px rgba(79,240,176,.15);
+  transform: translateY(-1px) scale(1.01);
+}
+.contact-item.copy-failed {
+  border-color: rgba(255,107,107,.6);
+  box-shadow: 0 0 0 4px rgba(255,107,107,.12);
+}
+
+/* Socials */
+.contact-list + .contact-social {
+  margin-top: 16px;
+}
+.contact-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.social-btn {
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.04);
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 13px;
+}
+.social-btn:hover {
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* Quick actions */
+.contact-quick h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+.qa {
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.04);
+  color: var(--fg);
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+/* mm avatar / extra badge */
+.mm {
+  background: linear-gradient(135deg, #7aa2ff 0%, #8a7aff 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+.mm:hover {
+  box-shadow: 0 0 12px rgba(138, 122, 255, 0.5);
+  transform: scale(1.05);
+}
+  .contact-meta div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.contact-label {
+  color: var(--muted);
+}
+.meta-label { color: var(--muted); }
+.meta-val { color: var(--fg); font-weight: 500; text-align: right; }
+
+
+/* Media queries */
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .glass { padding: 16px; border-radius: 16px; }
+  .contact-avatar { width: 42px; height: 42px; font-size: 16px; }
+  .contact-title { font-size: 28px; }
+  .contact-subtitle { font-size: 14px; max-width: 90%; }
+  .contact-value { font-size: 13px; white-space: normal; }
+  .contact-list { gap: 10px; }
+  .contact-item { grid-template-columns: 24px 1fr auto; padding: 8px; }
+  .contact-quick h3 { font-size: 16px; }
+  .qa { padding: 8px 10px; font-size: 14px; }
+}
+
+@media (max-width: 400px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-value { font-size: 12.5px; line-height: 1.4; word-break: break-word; }
+  .contact-item { grid-template-columns: 22px 1fr auto; }
+  .contact-avatar { width: 38px; height: 38px; }
+}
+
+/* Fix floating labels animation and box appearance */
+.field {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.04); /* always stays the same */
+  color: var(--fg);
+  font-size: 14px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+  /* Prevent Chrome autofill or focus from turning background white */
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.04) inset;
+  box-shadow: 0 0 0px 1000px rgba(255,255,255,0.04) inset;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--accent1);
+  box-shadow: 0 0 6px rgba(122,162,255,0.3);
+  background: rgba(255,255,255,0.04); /* ensures background doesn’t change */
+}
+
+/* Fix Chrome autofill */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.04) inset !important;
+  -webkit-text-fill-color: var(--fg) !important;
+}
+
+
+label {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 14px;
+  color: var(--muted);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.input:focus + label,
+.input:not(:placeholder-shown) + label,
+.textarea:focus + label,
+.textarea:not(:placeholder-shown) + label {
+  top: -6px;
+  left: 10px;
+  font-size: 12px;
+  color: var(--accent1);
+  padding: 0 6px;
+  border-radius: 12px;                   /* pill shape */
+background: rgba(30, 30, 30, 0.9); /* opaque dark glassy background */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Style file input nicely */
+input[type="file"] {
+  color: var(--fg);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--stroke);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  background: var(--accent1);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  margin-right: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--accent2);
+}
+
+  /* Remove default link underline and color for contact items */
+.contact-item,
+.contact-item a {
+  text-decoration: none;   /* remove underline */
+  color: var(--fg);        /* use normal text color */
+}
+
+.contact-item a:hover {
+  color: var(--accent1);   /* optional hover color */
+}
+
+/* Target autofill in Chrome, Edge, Safari */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.textarea:-webkit-autofill,
+.textarea:-webkit-autofill:hover,
+.textarea:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.04) inset; /* your glassy background */
+    -webkit-text-fill-color: var(--fg); /* keep text color correct */
+    transition: background-color 5000s ease-in-out 0s; /* prevents flashing */
+}
+
+/* ===== Mobile & desktop safe scroll flicker fix ===== */
+
+html, body {
+  overscroll-behavior-y: contain; /* prevents bounce on mobile */
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;              /* ensures body covers full viewport */
+}
+
+/* Ultra-safe gradient mask at the bottom */
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30px;                    /* taller to cover mobile bounce */
+  background: linear-gradient(to bottom, rgba(4,6,11,0) 0%, rgba(4,6,11,0.2) 100%);
+  pointer-events: none;
+  z-index: 9999;                   /* overlays scroll flash without affecting content */
+}
+
+  .copyright {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  margin-top: 40px;
+}
+
+.copyright p {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+  footer.copyright {
+  position: relative;
+  z-index: 10;
+  }
+</style>
+  
+</head>
+<body>
+  <!-- ===== BACKGROUND LAYERS ===== -->
+  <canvas id="stars1" class="layer" aria-hidden="true"></canvas>
+  <canvas id="stars2" class="layer" aria-hidden="true"></canvas>
+  <canvas id="stars3" class="layer" aria-hidden="true"></canvas>
+  <div id="nebula" class="layer" aria-hidden="true"></div>
+
+  <!-- ===== CONTENT ===== -->
+<header>
+  <div class="brand">
+    <img src="062325.png" alt="Profile" />
+    <strong>Mohammad Mujahid</strong>
+  </div>
+
+  <div class="hamburger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+
+  <nav id="navbar" className="navbar">
+  <a href="./index.html">Home</a>
+  <a href="./index.html#about">About</a>
+  <a href="./index.html#experience">Experience</a>
+  <a href="./index.html#skills">Skills</a>
+  <a href="./index.html#contact">Contact</a>
+
+  <div className="dropdown">
+    <a href="#" className="dropbtn">More ▾</a>
+    <div className="dropdown-content">
+      <a
+        href="./Mujahid.Accenture.OTC.pdf"
+        target="_blank"
+        rel="noopener"
+      >
+        Download Resume
+      </a>
+      {/* Gallup page from main portfolio */}
+      <a href="https://mohammad-mujahid894.github.io/Portfolio/GallupStrenght.html">
+        Gallup Strengths
+      </a>
+      {/* React site itself as Achievements */}
+      <a href="https://mohammad-mujahid894.github.io/Portfolio/react-site/dist/">
+        Achievements
+      </a>
+      <a href="./index.html#projects">Projects</a>
+      <a href="./index.html#blogs">Blogs</a>
+      <a href="./index.html#interests">Interests</a>
+    </div>
+  </div>
+</nav>
+
+</header>
+
+
+<main class="wrap">
+<section id="home" class="hero">
+  <div class="hero-content">
+    <!-- Left side - Profile Image -->
+<div class="profile-pic">
+  <img src="062325.png" alt="Profile Picture">
+</div>
+
+<!-- Right side - Name and Subtitles -->
+<div class="intro-text">
+  <h1 class="title"><span>Mohammad Mujahid</span></h1>
+  <br>
+  <div id="typewriter"></div>
+    <!-- Hard line break between typewriter and buttons -->
+  <div class="typewriter-spacer"></div>
+  <!-- Hero CTAs -->
+  <div class="hero-ctas">
+    <a href="#experience" class="btn btn-secondary">Explore my journey</a>
+    <a href="#contact" class="btn btn-secondary">Get in touch</a>
+  </div>
+</div>
+      
+      <!-- Scroll down arrow -->
+      <div class="scroll-down">↓</div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="wrap">
+<div class="about-container" style="display:flex; flex-wrap:nowrap; gap:40px; align-items:flex-start; justify-content:flex-start;">
+  
+  <!-- Left Side: About Me -->
+  <div class="about-text" style="flex:2; min-width:300px;">
+    <h2 style="font-size:clamp(28px,5vw,40px); margin-bottom:16px; background:linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0); -webkit-background-clip:text; color:transparent;">About Me</h2>
+    
+    <p style="color:var(--fg); line-height:1.6; font-size:17px;">
+      B.Com graduate, currently pursuing <strong>ICMAI Intermediate</strong>.  
+      Working as an <strong>Order to cash Associate at Accenture</strong>, specializing in cash application for 
+      <strong>US Client</strong> I handle NSF returns, check/ACH/wire postings, Versapay validations, 
+      and demand letters across divisions.
+    </p>
+
+    <p style="color:var(--fg); line-height:1.6; font-size:17px; margin-top:18px;">
+      I enjoy solving reconciliation puzzles, maintaining invoicing/statement Queries, 
+      and collaborating with Clients, Customer's, sales & credit teams for smooth month-end closures.  
+      Outside of work, I spend time baking, gardening, and learning continously. But my main focus is mastering tools that 
+make finance less manual and more intelligent. From automating cash application steps to 
+building Power BI reports that replace endless spreadsheets, I’m obsessed with cutting waste 
+and making processes faster, cleaner, and scalable.
+    </p>
+
+    <!-- Tags in one row -->
+<div class="tags" style="display:flex; flex-direction:row; gap:15px; margin-top:18px; white-space:nowrap;">
+  <span class="tag" style="display:inline-block; padding:6px 12px; background:var(--glass); border-radius:20px; font-size:14px;">Night Shift</span>
+  <span class="tag" style="display:inline-block; padding:6px 12px; background:var(--glass); border-radius:20px; font-size:14px;">Process Optimizer</span>
+  <span class="tag" style="display:inline-block; padding:6px 12px; background:var(--glass); border-radius:20px; font-size:14px;">Detail-Oriented</span>
+  <span class="tag" style="display:inline-block; padding:6px 12px; background:var(--glass); border-radius:20px; font-size:14px;">Team Communication</span>
+</div>
+<!-- Work Highlights - Futuristic Counters -->
+<div class="work-stats">
+  
+<div class="stat-card">
+  <h3><span class="counter" data-target="180">0</span>+</h3>
+  <p>Checks Processed Daily</p>
+  <div class="hover-info">
+    180+ customer payments validated & applied daily.
+  </div>
+</div>
+
+<div class="stat-card">
+  <h3><span class="counter" data-target="500">0</span>+</h3>
+  <p>Customer Queries Resolved Monthly</p>
+  <div class="hover-info">
+    Resolved 500+ queries including invoices, statements & escalations.
+  </div>
+</div>
+
+<div class="stat-card">
+  <h3><span class="counter" data-target="10">0</span>+</h3>
+  <p>Payment & Banking Systems Handled</p>
+  <div class="hover-info">
+    Hands-on with Versapay, TANDEM, ISR, JP Morgan, BofA, Wells Fargo, PNC etc
+  </div>
+</div>
+
+  <div class="stat-card">
+    <h3>100%</h3>
+    <p>Month-End Closures</p>
+    <div class="hover-info">
+      Maintained 100% accuracy and timeliness in month-end closures.
+    </div>
+  </div>
+
+<div class="stat-card">
+  <h3><span class="counter" data-target="30">0</span>+</h3>
+  <p>Division's handled for Dunning</p>
+  <div class="hover-info">
+    Issued Demand letters weekly across divisions as part of AR communication.
+  </div>
+</div>
+
+  <div class="stat-card">
+    <h3>⚡</h3>
+    <p>Process Optimization & Automation</p>
+    <div class="hover-info">
+      Automated workflows & optimized turnaround with AI.
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="experience" class="timeline-section">
+  <h2 class="section-title">Experience & Education</h2>
+  <div class="timeline">
+    <div class="timeline-inner">
+<!-- 1: Order to Cash Associate -->
+<div class="timeline-item">
+  <div class="timeline-dot">
+    <img src="ACCENTURE.png" alt="Accenture Logo">
+  </div>
+  <div class="timeline-content">
+    <h3>Order to Cash Operations New Associate</h3>
+    <span class="company">Accenture</span>
+
+    <!-- Right aligned pills -->
+    <div class="pills-right pills-row">
+      <a href="https://maps.app.goo.gl/MteS9hL4LvMbjCdz9" target="_blank" rel="noopener noreferrer" class="tag map-icon" title="View Workplace on Map" style="text-decoration:none;">📍</a>
+      <span class="tag">Oct 2024 – Present</span>
+      <span class="tag">Bengaluru</span>
+    </div>
+
+    <p>Processing 180+ daily transactions and spearheading automation projects that saved 10+ hours weekly.</p>
+
+    <div class="pills-right pills-row">
+      <span class="tag">Cash Application</span>
+      <span class="tag">Accounts Receivable</span>
+      <span class="tag">NSF</span>
+    </div>
+
+    <button class="more-btn" aria-expanded="false" aria-controls="d1" onclick="toggleDetails(this)">View Details ▾</button>
+    <div id="d1" class="details" hidden style="overflow:hidden; transition:max-height 0.35s ease, padding 0.2s ease;">
+      <ul>
+        <li>Process 180+ daily transactions (checks, ACH, wire transfers)</li>
+        <li>Handle NSF returns and Versapay validations</li>
+        <li>Manage demand letters across multiple divisions</li>
+        <li>Collaborate with clients, sales, and credit teams</li>
+        <li>Achieve 100% month-end closure success rate</li>
+        <li>Spearhead automation projects saving 10+ hours weekly</li>
+        <li>Build Power BI dashboards replacing endless spreadsheets</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 2: ICMAI Intermediate -->
+<div class="timeline-item">
+  <div class="timeline-dot">
+    <img src="ICMAI.png" alt="ICMAI Logo">
+  </div>
+  <div class="timeline-content">
+    <h3>ICMAI Intermediate</h3>
+    <span class="company">Institute of Cost and Management Accountants of India</span>
+
+    <!-- Left aligned pills -->
+    <div class="pills-left pills-row">
+      <span class="tag">2024 – Ongoing</span>
+      <span class="tag">Bengaluru Chapter</span>
+      <a href="https://maps.app.goo.gl/VxrUJCVxkWyXy9z57" target="_blank" rel="noopener noreferrer" class="tag map-icon" title="View my Institute on Map" style="text-decoration:none;">📍</a>
+    </div>
+
+    <p>Specializing in Financial Accounting, Cost Accounting, Business Laws & Ethics, and Direct & Indirect Taxation.</p>
+
+    <div class="pills-left pills-row">
+      <span class="tag">Cost Account's</span>
+      <span class="tag">Ethics</span>
+      <span class="tag">Compliance</span>
+    </div>
+
+    <button class="more-btn" aria-expanded="false" aria-controls="d2" onclick="toggleDetails(this)">View Details ▾</button>
+    <div id="d2" class="details" hidden style="overflow:hidden; transition:max-height 0.35s ease, padding 0.2s ease;">
+      <ul>
+        <li>Mandatory skills: SAP, Microsoft Office, E-Filing, Tally/Zoho ERP, Communication & Soft Skills</li>
+        <li>Curriculum uses real business case studies</li>
+        <li>Focus on laws, taxes, accounts, and analytics for finance roles</li>
+        <li>Contract compliance and O2C process knowledge</li>
+        <li>Cost & Management Accounting for cash flow tracking and process analysis</li>
+        <li>Data analytics modules in Excel and Power BI</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 3: Accounting & Taxation Intern -->
+<div class="timeline-item">
+  <div class="timeline-dot">
+    <img src="INTERN.png" alt="Intern Logo">
+  </div>
+  <div class="timeline-content">
+    <h3>Accounting & Taxation Intern</h3>
+    <span class="company">K S Ramkumar & Co</span>
+
+    <div class="pills-right pills-row">
+      <span class="tag">Mar 2024 – Aug 2024</span>
+      <span class="tag">Bengaluru</span>
+    </div>
+
+    <p>Worked on taxation, GST returns, audits, and compliance while building hands-on accounting knowledge.</p>
+
+    <div class="pills-right pills-row">
+      <a href="https://maps.app.goo.gl/cKmhLT3zZasA6ZnU7" target="_blank" rel="noopener noreferrer" class="tag map-icon" title="View my Internship Firm on Map" style="text-decoration:none;">📍</a>
+      <span class="tag">GSTR Filing</span>
+      <span class="tag">Audit</span>
+      <span class="tag">Taxation</span>
+    </div>
+
+    <button class="more-btn" aria-expanded="false" aria-controls="d2" onclick="toggleDetails(this)">View Details ▾</button>
+    <div id="d2" class="details" hidden style="overflow:hidden; transition:max-height 0.35s ease, padding 0.2s ease;">
+      <ul>
+        <li>Filed GSTR returns for multiple clients</li>
+        <li>Managed audits and stock verification at Intek Tapes Pvt Ltd.</li>
+        <li>Gained hands-on taxation experience along with Tally Prime and Compu Office</li>
+        <li>Enhanced attention to detail in financial documentation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- 4: Bachelor of Commerce -->
+<div class="timeline-item">
+  <div class="timeline-dot">
+    <img src="VANILOGO.jpg" alt="BCom Logo">
+  </div>
+  <div class="timeline-content">
+    <h3>Bachelor of Commerce</h3>
+    <span class="company">Sri Vani Vidya Kendra | Bangalore University</span>
+
+    <div class="pills-left pills-row">
+      <span class="tag">2021 – 2024</span>
+      <span class="tag">Bengaluru</span>
+      <span class="tag">CGPA 8.9</span>
+      <a href="https://maps.app.goo.gl/S1XJM9Ab4ybXDHv9A" target="_blank" rel="noopener noreferrer" class="tag map-icon" title="View my College on Map" style="text-decoration:none;">📍</a>
+    </div>
+
+    <p>Specialization in Accounting & Finance. Strong foundation in financial principles with consistent academic performance.</p>
+
+    <div class="pills-left pills-row">
+      <span class="tag">Account's</span>
+      <span class="tag">Financial Analysis</span>
+      <span class="tag">CGPA 8.9</span>
+    </div>
+
+    <button class="more-btn" aria-expanded="false" aria-controls="d4" onclick="toggleDetails(this)">View Details ▾</button>
+    <div id="d4" class="details" hidden style="overflow:hidden; transition:max-height 0.35s ease, padding 0.2s ease;">
+      <ul>
+        <li>CGPA: 8.9/10</li>
+        <li>Specialization in Accounting & Finance</li>
+        <li>Strong foundation in financial principles</li>
+        <li>Consistent academic excellence</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 5: ICMAI Foundation -->
+<div class="timeline-item">
+  <div class="timeline-dot">
+    <img src="ICMAI.png" alt="ICMAI Logo">
+  </div>
+  <div class="timeline-content">
+    <h3>ICMAI Foundation</h3>
+    <span class="company">Institute of Cost and Management Accountants of India</span>
+
+    <div class="pills-right pills-row">
+      <a href="https://maps.app.goo.gl/VxrUJCVxkWyXy9z57" target="_blank" rel="noopener noreferrer" class="tag map-icon" title="View my Institute on Map" style="text-decoration:none;">📍</a>
+      <span class="tag">2023</span>
+      <span class="tag">Bengaluru Chapter</span>
+      <span class="tag">CGPA 6.2</span>
+    </div>
+  </div>
+</div>
+
+<!-- 6: Pre-University Course -->
+<div class="timeline-item">
+  <div class="timeline-dot">
+    <img src="VANILOGO.jpg" alt="PUC Logo">
+  </div>
+  <div class="timeline-content">
+    <h3>Pre-University Course</h3>
+    <span class="company">Sri Vani Vidya Kendra Degree College <br>Karnataka PU Board</span>
+
+    <div class="pills-left pills-row">
+      <span class="tag">2021</span>
+      <span class="tag">Bengaluru</span>
+      <span class="tag">CGPA 9.1</span>
+      <a href="https://maps.app.goo.gl/S1XJM9Ab4ybXDHv9A" target="_blank" rel="noopener noreferrer" class="tag map-icon" title="View my College on Map" style="text-decoration:none;">📍</a>
+    </div>
+  </div>
+</div>
+
+<!-- 7: SSLC -->
+<div class="timeline-item">
+  <div class="timeline-dot">
+    <img src="STMEERAS.png" alt="SSLC Logo">
+  </div>
+  <div class="timeline-content">
+    <h3>SSLC</h3>
+    <span class="company">St Meeras Public School <br>Karnataka School Examination and Assessment Board</span>
+
+    <div class="pills-right pills-row">
+      <a href="https://maps.app.goo.gl/e9b8bhBGoQDRXNnZ8" target="_blank" rel="noopener noreferrer" class="tag map-icon" title="View my School on Map" style="text-decoration:none;">📍</a>
+      <span class="tag">2019</span>
+      <span class="tag">Bengaluru</span>
+      <span class="tag">CGPA 9.4</span>
+    </div>
+  </div>
+   </div>
+  </div>
+</div>
+
+
+<section id="skills" class="wrap" style="padding:60px 24px;">
+  <h2 class="section-title" style="font-size:clamp(28px,5vw,42px); margin-bottom:10px; background:linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-align:center;">
+    Skills & Expertise
+  </h2>
+  <p style="text-align:center; color:var(--muted); margin:0 0 34px;">
+    Navigate through my universe of finance and technology
+  </p>
+
+  <!-- Bars + Radar SIDE BY SIDE -->
+<div class="skills-layout" style="display:flex; flex-wrap:wrap; gap:28px; justify-content:center; align-items:flex-start;">
+
+    <!-- LEFT: Skill Bars in Glassy Card -->
+<div class="skills-left glassy-card" style="flex:1 1 480px; min-width:320px; max-width:720px; min-height:0; height:auto; align-self:center;">
+      <h3 class="tab-title">Core Technical & Finance Skills</h3>
+
+      <div class="skill"><strong>Advanced Excel</strong><div class="skillbar"><span style="--w:90%"></span></div></div>
+      <div class="skill"><strong>O2C & Accounts Receivable</strong><div class="skillbar"><span style="--w:86%"></span></div></div>
+      <div class="skill"><strong>SAP FICO (Learning)</strong><div class="skillbar"><span style="--w:60%"></span></div></div>
+      <div class="skill"><strong>Tally / Zoho / Quickbooks / ERPs</strong><div class="skillbar"><span style="--w:79%"></span></div></div>
+      <div class="skill"><strong>E-Filing (ITR / GSTR)</strong><div class="skillbar"><span style="--w:71%"></span></div></div>
+      <div class="skill"><strong>Coms's & Soft Skills</strong><div class="skillbar"><span style="--w:97%"></span></div></div>
+    </div>
+
+    <!-- RIGHT: Radar Chart (no background tab) -->
+    <div class="skills-right" style="flex:1 1 420px; min-width:320px; max-width:600px; display:flex; flex-direction:column;">
+      <h3 style="margin-bottom:12px; color:var(--muted);">Skill Radar</h3>
+      <div style="position:relative; width:100%; aspect-ratio:1/1; min-height:320px;">
+        <canvas id="radarChart"></canvas>
+      </div>
+    </div>
+      </div>
+</section>
+  
+<!-- Filter Controls -->
+<div class="skills-filter-tab" role="tablist" aria-label="Skills filter">
+  <span class="filter-active-pill" aria-hidden="true"></span>
+  <button class="filter-btn is-active" role="tab" aria-selected="true" data-filter="all"><span class="label">All Skills</span></button>
+  <button class="filter-btn" role="tab" aria-selected="false" data-filter="ops"><span class="label">O2C Operations</span></button>
+  <button class="filter-btn" role="tab" aria-selected="false" data-filter="banking"><span class="label">Banking</span></button>
+  <button class="filter-btn" role="tab" aria-selected="false" data-filter="tools"><span class="label">Platforms</span></button>
+  <button class="filter-btn" role="tab" aria-selected="false" data-filter="erp"><span class="label">ERPs</span></button>
+  <button class="filter-btn" role="tab" aria-selected="false" data-filter="analytics"><span class="label">Analytics</span></button>
+  <button class="filter-btn" role="tab" aria-selected="false" data-filter="soft"><span class="label">Professional</span></button>
+</div>
+
+
+<!-- Skills Grid -->
+<div id="skills-grid" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+  <!-- O2C Operations -->
+  <span class="tag skill-tag" data-cat="ops">Order to Cash</span>
+  <span class="tag skill-tag" data-cat="ops">Accounts Receivable</span>
+  <span class="tag skill-tag" data-cat="ops">Cash Application</span>
+  <span class="tag skill-tag" data-cat="ops">Invoice Processing</span>
+  <span class="tag skill-tag" data-cat="ops">Dispute Resolution</span>
+  <span class="tag skill-tag" data-cat="ops">Collections & Dunning</span>
+  <span class="tag skill-tag" data-cat="ops">Customer Aging</span>
+  <span class="tag skill-tag" data-cat="ops">Demand Letters</span>
+  <span class="tag skill-tag" data-cat="ops">NSF Returns</span>
+  <span class="tag skill-tag" data-cat="ops">Vendor Relations</span>
+  <span class="tag skill-tag" data-cat="ops">Master Set-up & Maintenance</span>
+  <span class="tag skill-tag" data-cat="ops">Queries Resolution</span>
+
+  <!-- Banking -->
+  <span class="tag skill-tag" data-cat="banking">Wells Fargo</span>
+  <span class="tag skill-tag" data-cat="banking">JPMorgan Chase</span>
+  <span class="tag skill-tag" data-cat="banking">PNC Bank</span>
+  <span class="tag skill-tag" data-cat="banking">Bank of America</span>
+  <span class="tag skill-tag" data-cat="banking">U.S. Bank</span>
+  <span class="tag skill-tag" data-cat="banking">Remittance Tracking</span>
+  <span class="tag skill-tag" data-cat="banking">Returned Items</span>
+  <span class="tag skill-tag" data-cat="banking">Stop Payments</span>
+
+
+  <!-- Platforms -->
+  <span class="tag skill-tag" data-cat="tools">Versapay</span>
+  <span class="tag skill-tag" data-cat="tools">TANDEM</span>
+  <span class="tag skill-tag" data-cat="tools">ISR</span>
+  <span class="tag skill-tag" data-cat="tools">IBM C-Mod</span>
+  <span class="tag skill-tag" data-cat="tools">Micro Dynamics</span>
+  <span class="tag skill-tag" data-cat="tools">Quadrient Impress</span>
+  <span class="tag skill-tag" data-cat="tools">MS DAX</span>
+  <span class="tag skill-tag" data-cat="tools">GST Filing</span>
+  <span class="tag skill-tag" data-cat="tools">ITR Filing</span>
+
+  <!-- ERPs -->
+  <span class="tag skill-tag" data-cat="erp">SAP FICO</span>
+  <span class="tag skill-tag" data-cat="erp">Tally Prime</span>
+  <span class="tag skill-tag" data-cat="erp">QuickBooks</span>
+  <span class="tag skill-tag" data-cat="erp">Sage</span>
+  <span class="tag skill-tag" data-cat="erp">Xero</span>
+  <span class="tag skill-tag" data-cat="erp">Zoho Books</span>
+  <span class="tag skill-tag" data-cat="erp">Compu Office</span>
+  
+
+  <!-- Analytics -->
+  <span class="tag skill-tag" data-cat="analytics">Power BI</span>
+  <span class="tag skill-tag" data-cat="analytics">Excel Advanced</span>
+  <span class="tag skill-tag" data-cat="analytics">Customer Aging Analysis</span>
+  <span class="tag skill-tag" data-cat="analytics">DAX Measures</span>
+  <span class="tag skill-tag" data-cat="analytics">Foxtrot RPA</span>
+
+
+  <!-- Professional -->
+  <span class="tag skill-tag" data-cat="soft">Business Ethics</span>
+  <span class="tag skill-tag" data-cat="soft">Customer Centricity</span>
+  <span class="tag skill-tag" data-cat="soft">Emotional Intelligence</span>
+  <span class="tag skill-tag" data-cat="soft">Risk Mitigation</span>
+<span class="tag skill-tag" data-cat="soft">Documentation Standards</span>
+  <span class="tag skill-tag" data-cat="soft">Combating Nervousness</span>
+  <span class="tag skill-tag" data-cat="soft">Achiever</span>
+<span class="tag skill-tag" data-cat="soft">Relator</span>
+  <span class="tag skill-tag" data-cat="soft">Gallup Strengths</span>
+</div>
+
+<div class="skills-tab">
+  <h3></h3>
+<iframe 
+    src="https://mohammad-mujahid894.github.io/Skills_Constellation/" 
+    style="width:100%; height:80vh; border:none;" 
+    allowfullscreen>
+</iframe>
+  
+  <!-- Button to view full page -->
+  <div class="full-view-btn-container">
+   <a href="https://mohammad-mujahid894.github.io/Skills_Constellation/" class="glass-button">
+  Explore My Skills in 3D
+</a>
+
+  </div>
+</div>
+</section>
+
+
+
+
+
+<!-- ================= GALLUP STRENGTHS SECTION ================= -->
+<section id="gallup-section" style="margin-top:60px;">
+  <div id="gallup-embed">
+    <div class="container" id="app">
+
+      <!-- Section title -->
+<div class="gallup-section-title">
+  <h2 id="clifton-title">My Clifton-Strengths</h2>
+  <p style="text-align:center; color:var(--muted); margin:0 0 34px;">
+I Lead with Relationship Building
+  </p>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <input type="search" id="search" placeholder="Search strength name or rank (e.g., 'Relator' or '1')">
+        <button class="btn" id="top5">Highlight Top 5</button>
+        <button class="btn" id="viewCertifications">View Certification's</button>
+        <div style="flex:1"></div>
+      </div>
+
+      <!-- DNA Bar -->
+      <div id="svgBarWrap" style="margin:18px 0;"></div>
+
+      <!-- Strength Tiles -->
+      <div id="gallupStrengths">
+        <div class="grid" id="grid"></div>
+        <div class="stackbar-wrap" style="margin-top:16px; align-items:center;">
+          <div style="flex:1">
+            <div id="stackbar"></div>
+          </div>
+          <div class="stack-legend" id="stackLegend"></div>
+        </div>
+        <div id="details">
+          <h3>Click any strength to see details</h3>
+        </div>
+      </div>
+
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT --> <section id="contact" class="contact-section"> <div class="contact-hero"> <h2 class="contact-title" style="font-size:clamp(28px,5vw,42px); margin-bottom:10px; background:linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-align:center;">
+  Connect Here
+</h2>
+<p class="contact-subtitle">
+  <strong>Serious or Absurd Topics are most Welcome</strong>
+</p>
+<br>
+ <p class="contact-subtitle">If you have come this far, I am sure we can get along. Happy to talk work, movies, sci-fi, global news, or why my last dough didn’t rise. Basically, I chat about everything that's ridiculous except boring small talk.</p> 
+  
+</div> <div class="contact-grid"> <!-- Info card --> <aside class="contact-card glass"> 
+  <div class="contact-profile"> <div class="contact-avatar">MM</div> <div>
+          <h3 class="contact-name">Mohammad Mujahid</h3>
+          <div class="contact-availability">
+            <span class="dot dot--green"></span>
+            <span>Available for opportunities</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-list">
+        <button class="contact-item js-copy" data-copy="mujahid.icmai@gmail.com" type="button" aria-label="Copy corporate email">
+          <span class="contact-ico">✉️</span>
+          <div>
+            <div class="contact-label">Corporate Inbox</div>
+            <div class="contact-value">mujahid.icmai@gmail.com</div>
+          </div>
+          <span class="contact-action">Copy</span>
+        </button>
+
+        <button class="contact-item js-copy" data-copy="Mrozark894@gmail.com" type="button" aria-label="Copy personal email">
+          <span class="contact-ico">✉️</span>
+          <div>
+            <div class="contact-label">Personal Inbox</div>
+            <div class="contact-value">Mrozark894@gmail.com</div>
+          </div>
+          <span class="contact-action">Copy</span>
+        </button>
+
+        <a class="contact-item" href="tel:+918105088456" aria-label="Call">
+          <span class="contact-ico">📞</span>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">+91 81050 88456</div>
+          </div>
+          <span class="contact-action">Call</span>
+        </a>
+
+        <a class="contact-item" href="https://maps.google.com/?q=Bengaluru%2C%20Karnataka" target="_blank" rel="noopener" aria-label="Open map">
+          <span class="contact-ico">📍</span>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Bengaluru, Karnataka</div>
+          </div>
+          <span class="contact-action">Map</span>
+        </a>
+      </div>
+
+      <div class="contact-social">
+<!-- Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<a class="social-btn" href="https://www.linkedin.com/in/mujahid1321101894/" target="_blank" rel="noopener">
+  <i class="fa fa-linkedin"></i> 
+</a>
+<a class="social-btn" href="https://github.com/mohammad-mujahid894" target="_blank" rel="noopener">
+  <i class="fa fa-github"></i> 
+</a>
+<a class="social-btn" href="https://twitter.com/ozark894" target="_blank" rel="noopener">
+  <i class="fa fa-twitter"></i> 
+</a>
+<a class="social-btn" href="https://instagram.com/ozark1321" target="_blank" rel="noopener">
+  <i class="fa fa-instagram"></i> 
+</a>
+<a class="social-btn" href="https://www.snapchat.com/add/mohamad_mujju02" target="_blank" rel="noopener">
+  <i class="fa fa-snapchat-ghost"></i> 
+</a>
+<a class="social-btn" href="https://t.me/ozark179" target="_blank" rel="noopener">
+  <i class="fa fa-telegram"></i> 
+</a> 
+      </div>
+<br>
+<div class="contact-meta">
+  <div><span class="meta-label">Response</span><span class="meta-val">Within 24 hrs</span></div>
+  <div><span class="meta-label">Working Hours</span><span class="meta-val">17:30 – 3:00 IST (US Shift)</span></div>
+</div>
+
+    </aside>
+
+    <!-- Form card -->
+    <div class="contact-form glass">
+
+<form id="contactForm" enctype="multipart/form-data">
+  
+        <div class="form-row">
+          <div class="field">
+            <input class="input" id="cf-name" name="name" type="text" required placeholder=" ">
+            <label for="cf-name">Full name</label>
+            <div class="err" id="err-name"></div>
+          </div>
+          <div class="field">
+            <input class="input" id="cf-email" name="email" type="email" required placeholder=" ">
+            <label for="cf-email">Email</label>
+            <div class="err" id="err-email"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <textarea class="textarea" id="cf-message" name="message" rows="6" required placeholder=" "></textarea>
+          <label for="cf-message">Your message</label>
+          <div class="err" id="err-message"></div>
+        </div>
+
+        <div class="field">
+          <input class="input" id="cf-files" name="files" type="file" multiple
+                 accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.txt,.csv">
+          <label for="cf-files">Attach files (optional)</label>
+          <div class="err" id="err-files"></div>
+        </div>
+
+        <button id="cf-submit" class="btn" type="submit">
+          <span class="btn-text">Send message</span>
+          <span class="btn-spin" aria-hidden="true"></span>
+        </button>
+
+        
+        <div class="form-success" id="cf-success" hidden>
+          <div class="succ-ico">Wuuuhu! 💫</div>
+          <h4>Message sent</h4>
+          <p>Thanks for reaching out I'll Connect with you within 24 hours.</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="contact-quick glass">
+      <h3>Quick actions</h3>
+      <a href="Mujahid.Accenture.OTC.pdf" target="_blank">
+  <button class="qa" type="button" id="qa-resume">📄 Download Resume</button>
+</a>
+      <button class="qa" type="button" id="qa-meet"> 🎗️ My Certification's</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-ico">✓</span>
+  </div>
+</section> 
+  </main>
+  <script>
+    /* ========= Parallax starfields (3 layers for depth) ========= */
+    const DPR = Math.min(2, window.devicePixelRatio || 1);
+    const layers = [
+      { id: 'stars1', count: 110, speed: 0.15, size: 1.0 }, // far
+      { id: 'stars2', count: 90, speed: 0.35, size: 1.6 }, // mid
+      { id: 'stars3', count: 60,  speed: 0.65, size: 2.0 }  // near
+    ];
+
+    function Starfield(layer){
+      const cvs = document.getElementById(layer.id); const ctx = cvs.getContext('2d');
+      let w, h, stars=[]; let mx=0, my=0; // parallax
+      function resize(){ w = cvs.width = innerWidth * DPR; h = cvs.height = innerHeight * DPR; cvs.style.width = innerWidth+'px'; cvs.style.height = innerHeight+'px';
+        stars = Array.from({length: layer.count}, ()=>({ x: Math.random()*w, y: Math.random()*h, a: Math.random()*0.7+0.2 })); }
+      resize(); addEventListener('resize', resize);
+      addEventListener('mousemove', (e)=>{ mx = (e.clientX/innerWidth - .5); my = (e.clientY/innerHeight - .5); });
+      function draw(){ ctx.clearRect(0,0,w,h); ctx.fillStyle = '#fff';
+        for(const s of stars){ const px = s.x + mx*20*layer.speed; const py = s.y + my*20*layer.speed; ctx.globalAlpha = s.a; ctx.fillRect(px, py, layer.size*DPR, layer.size*DPR); }
+        requestAnimationFrame(draw); }
+      draw();
+      return {ctx, get size(){return {w,h}}, pushMeteor};
+
+      function pushMeteor(x,y,vx,vy){ // gradient trail line
+        const grad = ctx.createLinearGradient(x,y, x-vx*14, y-vy*14);
+        grad.addColorStop(0,'rgba(255,255,255,.95)'); grad.addColorStop(1,'rgba(122,162,255,0)');
+        ctx.strokeStyle = grad; ctx.lineWidth = 1.5*DPR; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-vx*14, y-vy*14); ctx.stroke();
+      }
+    }
+    const fields = layers.map(Starfield);
+
+    /* ========= Random shooting stars ========= */
+    const meteors = [];
+    function spawnMeteor(){ if(document.visibilityState !== 'visible') return; const {w,h} = fields[2].size;
+      meteors.push({ x: Math.random()*w, y: -20, vx: -6*DPR, vy: 6*DPR, life: 180 }); }
+    setInterval(spawnMeteor, 2200);
+    function drawMeteors(){ for(let i=meteors.length-1;i>=0;i--){ const m = meteors[i]; m.x += m.vx; m.y += m.vy; m.life -= 1; fields[2].pushMeteor(m.x,m.y,m.vx,m.vy); if(m.x < -50 || m.y > fields[2].size.h+50 || m.life<=0){ meteors.splice(i,1); } }
+      requestAnimationFrame(drawMeteors); }
+    drawMeteors();
+
+    /* ========= Glitter comet cursor ========= */
+    const sparks=[]; let last=0; function spawnSpark(x,y){ const s=document.createElement('span'); s.className='spark'; s.style.left=x+'px'; s.style.top=y+'px'; document.body.appendChild(s); sparks.push(s); if(sparks.length>40){ const old=sparks.shift(); old.remove(); } setTimeout(()=>s.remove(), 900); }
+    addEventListener('mousemove', (e)=>{ if(matchMedia('(pointer:fine)').matches) { const now=performance.now(); if(now-last>12){ spawnSpark(e.clientX, e.clientY); last=now; } } });
+
+    /* ========= 3D Hover Tilt ========= */
+    const tilts = [...document.querySelectorAll('.tilt')];
+    tilts.forEach(el=>{
+      el.addEventListener('mousemove', (e)=>{ const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width; const y = (e.clientY - r.top) / r.height; const rx = (0.5 - y) * 10; const ry = (x - 0.5) * 10; el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`; });
+      el.addEventListener('mouseleave', ()=>{ el.style.transform = 'rotateX(0deg) rotateY(0deg)'; });
+    });
+
+
+    /* ========= Reduce motion toggle ========= */
+    let motionReduced = false; function toggleMotion(){ motionReduced = !motionReduced; document.body.style.setProperty('animation-play-state', motionReduced ? 'paused' : 'running'); }
+    window.toggleMotion = toggleMotion;
+  </script>
+  <script>
+  function goHome() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+    // Counter animation
+const counters = document.querySelectorAll('.counter');
+const speed = 200; // smaller = faster
+
+const animateCounters = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const counter = entry.target;
+
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+
+        const increment = Math.ceil(target / speed);
+
+        if (current < target) {
+          counter.innerText = current + increment;
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+      updateCount();
+      observer.unobserve(counter);
+    }
+  });
+};
+
+const observer = new IntersectionObserver(animateCounters, { threshold: 0.3 });
+counters.forEach(counter => observer.observe(counter));
+</script>
+    <script>
+const entries = document.querySelectorAll('.entry');
+const stars = document.querySelectorAll('.star');
+
+window.addEventListener('scroll', () => {
+  entries.forEach((entry, i) => {
+    const rect = entry.getBoundingClientRect();
+    if (rect.top >= 100 && rect.top < window.innerHeight / 2) {
+      entries.forEach(e => e.classList.remove('active'));
+      stars.forEach(s => s.classList.remove('active'));
+      entry.classList.add('active');
+      stars[i].classList.add('active');
+    }
+  });
+});
+</script>
+    <script>
+  // Fade-in timeline items on scroll
+  const timelineItems = document.querySelectorAll('.timeline-content');
+  const observerTimeline = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "translateY(0)";
+        observerTimeline.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  timelineItems.forEach(item => observerTimeline.observe(item));
+</script>
+    <script>
+function toggleDetails(btn) {
+  const details = btn.nextElementSibling;
+
+  if (details.style.maxHeight && details.style.maxHeight !== "0px") {
+    // collapse
+    details.style.maxHeight = "0";
+    details.style.padding = "0 0";
+    btn.innerText = "View Details ▾";
+  } else {
+    // expand
+    details.style.maxHeight = details.scrollHeight + "px";
+    details.style.padding = "10px 0";
+    btn.innerText = "Hide Details ▴";
+  }
+}
+</script>
+    <script>
+const texts = [
+  "Order to Cash New Associate",
+  "Process Optimization Enthusiast",
+  "B.Com Graduate",
+  "ICMAI Intermediate Student"
+];
+
+const typewriter = document.getElementById("typewriter");
+let textIndex = 0, charIndex = 0, typing = true;
+
+function animateTyping() {
+  if (typing) {
+    if (charIndex < texts[textIndex].length) {
+      typewriter.textContent += texts[textIndex].charAt(charIndex++);
+      setTimeout(animateTyping, 70);
+    } else {
+      typing = false;
+      setTimeout(animateTyping, 1000);
+    }
+  } else {
+    if (charIndex > 0) {
+      typewriter.textContent = texts[textIndex].substr(0, --charIndex);
+      setTimeout(animateTyping, 35);
+    } else {
+      typing = true;
+      textIndex = (textIndex + 1) % texts.length;
+      setTimeout(animateTyping, 400);
+    }
+  }
+}
+animateTyping();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// === Animate skill bars once ===
+const bars = document.querySelectorAll('.skillbar span');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      en.target.style.width = en.target.style.getPropertyValue('--w') || '0%';
+      io.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.3 });
+bars.forEach(b => io.observe(b));
+
+
+// === Radar Chart ===
+const ctx = document.getElementById('radarChart').getContext('2d');
+
+window.radarChart = new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ['Finance','Banking Platforms','ERPs','Analytics','O2C Operations','Professional'],
+    datasets: [{
+      label: 'Skill Map',
+      data: [85, 80, 60, 75, 82, 88],
+      fill: true,
+      backgroundColor: 'rgba(122,162,255,0.15)',
+      borderColor: '#7aa2ff',
+      borderWidth: 2,
+      pointBackgroundColor: '#4ff0b0',
+      pointBorderColor: '#fff',
+      pointRadius: 6,
+      pointHoverRadius: 9,
+      pointHoverBackgroundColor: '#ffcc00'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      r: {
+        angleLines: { color: 'rgba(255,255,255,0.3)' },
+        grid: { color: 'rgba(122,162,255,0.3)' },
+        pointLabels: { color: '#eaf2ff', font: { size: 15, weight: 'bold' } },
+        ticks: { display: false }
+      }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: 'rgba(0,0,0,0.75)',
+        callbacks: { label: x => `${x.label}: ${x.raw}%` }
+      }
+    },
+    animation: { duration: 600, easing: 'easeOutQuad' }
+  }
+});
+
+
+// === Radar data (must match data-filter keys) ===
+window.radarSets = {
+  all:       [85, 80, 60, 75, 82, 88],
+  ops:       [90, 55, 50, 65, 95, 72],
+  banking:   [55, 92, 60, 50, 70, 68],
+  tools:     [65, 70, 55, 60, 68, 66],
+  erp:       [60, 55, 85, 50, 65, 70],
+  analytics: [60, 50, 55, 92, 65, 72],
+  soft:      [70, 60, 55, 65, 68, 90]
+};
+
+
+// === Skills filter with moving pill ===
+(function () {
+  const tab = document.querySelector('.skills-filter-tab');
+  if (!tab) return;
+
+  const buttons = [...tab.querySelectorAll('.filter-btn')];
+  const pill = tab.querySelector('.filter-active-pill');
+
+ function movePill(btn) {
+  if (!pill || !btn) return;
+
+  // Position relative to parent container
+  const container = btn.parentElement;
+
+  pill.style.left = btn.offsetLeft + 'px';
+  pill.style.top  = btn.offsetTop + 'px';
+  pill.style.width = btn.offsetWidth + 'px';
+  pill.style.height = btn.offsetHeight + 'px';
+}
+
+  function setActive(btn) {
+    buttons.forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-selected','true');
+    movePill(btn);
+  }
+
+  function applyFilter(filter) {
+    document.querySelectorAll('#skills-grid .skill-tag').forEach(tag => {
+      tag.style.display = (filter === 'all' || tag.dataset.cat === filter) ? 'inline-block' : 'none';
+    });
+  }
+
+  function updateRadar(filter) {
+    const data = window.radarSets[filter] || window.radarSets.all;
+    window.radarChart.data.datasets[0].data = data;
+    window.radarChart.update();
+  }
+
+  // Initialize
+  const initial = tab.querySelector('.filter-btn.is-active') || buttons[0];
+  if (initial) {
+    setActive(initial);
+    const f = initial.dataset.filter || 'all';
+    applyFilter(f);
+    updateRadar(f);
+  }
+
+  // Handle clicks
+  tab.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    setActive(btn);
+    const f = btn.dataset.filter || 'all';
+    applyFilter(f);
+    updateRadar(f);
+  });
+
+  // Keep pill aligned
+  const realign = () => {
+    const current = tab.querySelector('.filter-btn.is-active') || buttons[0];
+    if (current) movePill(current);
+  };
+  window.addEventListener('resize', realign);
+  window.addEventListener('load', realign);
+  setTimeout(realign, 0);
+})();
+</script>
+<script>
+  const hamburger = document.querySelector('.hamburger');
+const navbar = document.getElementById('navbar');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navbar.classList.toggle('show');
+});
+</script>
+    <script>
+  function toggleDetails(btn) {
+    const details = btn.nextElementSibling;
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    if (!details) return;
+
+    if (!open) {
+      if (details.hasAttribute('hidden')) details.removeAttribute('hidden');
+      details.style.maxHeight = details.scrollHeight + 'px';
+      details.style.paddingTop = '8px';
+      btn.setAttribute('aria-expanded', 'true');
+      btn.textContent = 'Hide Details ▴';
+      details.addEventListener('transitionend', function onEnd() {
+        details.style.maxHeight = 'none';
+        details.removeEventListener('transitionend', onEnd);
+      });
+    } else {
+      const h = details.scrollHeight;
+      details.style.maxHeight = h + 'px';
+      requestAnimationFrame(() => {
+        details.style.maxHeight = '0px';
+        details.style.paddingTop = '0px';
+      });
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = 'View Details ▾';
+      details.addEventListener('transitionend', function onEnd() {
+        details.setAttribute('hidden', '');
+        details.removeEventListener('transitionend', onEnd);
+      });
+    }
+  }
+
+  // Optional: Disable scroll fade-in on small screens to avoid jank
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    document.querySelectorAll('.timeline-content').forEach(el => {
+      el.style.opacity = 1;
+      el.style.transform = "none";
+    });
+  }
+</script>
+    <script>
+document.querySelectorAll('.dropdown > .dropbtn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    if (window.innerWidth <= 768) { // mobile only
+      e.preventDefault(); // stop navigation
+      const parent = btn.parentElement;
+
+      // Optional: close other dropdowns
+      document.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== parent) d.classList.remove('open');
+      });
+
+      parent.classList.toggle('open'); // toggle current dropdown
+    }
+  });
+});
+</script>
+    <!-- D3 Library -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+/* ============================
+   DATA: 34 strengths with domains and short descriptions
+   ============================ */
+const strengths = [
+  { rank:1, name:"Relator", domain:"RELATIONSHIP", short:"I build close relationships and trust.", tips:"Use with customers: develop one-to-one rapport; in O2C, call the same AR contact to nurture relationships." },
+  { rank:2, name:"Deliberative", domain:"EXECUTING", short:"Careful, cautious, risk-aware decision maker.", tips:"Use to evaluate exceptions and ACH/NSF cases before pushing for automation." },
+  { rank:3, name:"Learner", domain:"STRATEGIC", short:"I love learning and improving.", tips:"Great for studying ICMAI — set micro-goals and learn one accounting concept per shift." },
+  { rank:4, name:"Intellection", domain:"STRATEGIC", short:"I enjoy deep thinking and reflection.", tips:"Use for root-cause analysis when investigating complex payment mismatches." },
+  { rank:5, name:"Input", domain:"STRATEGIC", short:"I collect ideas, facts and resources.", tips:"Build and maintain a quick-reference folder for bank codes and comment codes." },
+  { rank:6, name:"Empathy", domain:"RELATIONSHIP", short:"I sense other people's feelings.", tips:"Helpful when handling upset customers; reflect back feelings to de-escalate." },
+  { rank:7, name:"Individualization", domain:"RELATIONSHIP", short:"I see each person's uniqueness.", tips:"Customize communication templates — some customers prefer short emails, others phone calls." },
+  { rank:8, name:"Developer", domain:"RELATIONSHIP", short:"I see and grow potential in others.", tips:"Mentor a new teammate on TANDEM processes gradually." },
+  { rank:9, name:"Harmony", domain:"RELATIONSHIP", short:"I look for agreement and avoid conflict.", tips:"In dispute resolution, focus on shared goals to reach a compromise." },
+  { rank:10, name:"Restorative", domain:"EXECUTING", short:"I love solving problems and fixing issues.", tips:"Perfect for exception queues — you’ll enjoy resolving partial remits and unclear checks." },
+
+  { rank:11, name:"Ideation", domain:"STRATEGIC", short:"I generate fresh, creative ideas.", tips:"Propose small automation or template ideas to reduce repetitive manual steps." },
+  { rank:12, name:"Connectedness", domain:"RELATIONSHIP", short:"I see links and a larger story.", tips:"Use when mapping how payments, credit holds, and statements affect customers." },
+  { rank:13, name:"Competition", domain:"INFLUENCING", short:"I measure myself and like to win.", tips:"Set a safe productivity target (e.g., daily matched checks) and beat your own score." },
+  { rank:14, name:"Strategic", domain:"STRATEGIC", short:"I spot patterns and best paths forward.", tips:"Use to design an efficient daily workflow for ACH + check queues." },
+  { rank:15, name:"Positivity", domain:"RELATIONSHIP", short:"I bring energy and enthusiasm.", tips:"Lift team morale on tough night shifts with short wins and celebrations." },
+  { rank:16, name:"Discipline", domain:"EXECUTING", short:"I create structure, procedures, and routines.", tips:"Create a standard start-of-shift checklist for reviewing ACH and bank files." },
+  { rank:17, name:"Futuristic", domain:"STRATEGIC", short:"I imagine exciting futures and possibilities.", tips:"Sketch a 6-month improvements roadmap for faster invoice retrievals." },
+  { rank:18, name:"Significance", domain:"INFLUENCING", short:"I want to make an impact and be noticed.", tips:"Volunteer for a small cross-team project to raise visibility." },
+  { rank:19, name:"Maximizer", domain:"INFLUENCING", short:"I turn good into great, focus on strengths.", tips:"Spot colleagues’ strengths and pair them for complex exceptions." },
+  { rank:20, name:"Achiever", domain:"EXECUTING", short:"I have stamina and like finishing tasks.", tips:"Use a visible daily checklist to get the satisfaction of crossing off items." },
+
+  { rank:21, name:"Responsibility", domain:"EXECUTING", short:"I am reliable and keep promises.", tips:"Own a weekly folder cleanup task (invoice folder) and show consistent follow-through." },
+  { rank:22, name:"Analytical", domain:"STRATEGIC", short:"I examine data and look for cause and effect.", tips:"Use when reviewing chargeback patterns by bank/comment code." },
+  { rank:23, name:"Focus", domain:"EXECUTING", short:"I concentrate and prioritize what matters.", tips:"Block 45 minutes for deep exception handling without Slack/phone." },
+  { rank:24, name:"Self-Assurance", domain:"INFLUENCING", short:"Confident and decisive in my choices.", tips:"Take ownership when clarifying ambiguous remits with customers." },
+  { rank:25, name:"Adaptability", domain:"RELATIONSHIP", short:"Flexible and present-centered; go with the flow.", tips:"Great on shift when priorities change; pivot to urgent bank items." },
+  { rank:26, name:"Arranger", domain:"EXECUTING", short:"I organize but stay flexible to optimize.", tips:"Design an efficient folder & routing structure for invoice distribution." },
+  { rank:27, name:"Consistency", domain:"EXECUTING", short:"Fairness, rules and same treatment for all.", tips:"Use consistent templates and SLAs to keep customer experience uniform." },
+  { rank:28, name:"Belief", domain:"EXECUTING", short:"Values-driven and principled.", tips:"Bring ethics and clarity to disputes — document decisions for audits." },
+  { rank:29, name:"Communication", domain:"INFLUENCING", short:"I explain and express ideas clearly.", tips:"Write crisp emails explaining remittance mismatches — customers appreciate clarity." },
+
+  { rank:30, name:"Context", domain:"STRATEGIC", short:"I look to the past to understand the present.", tips:"When something repeats, check the historical transaction trail to learn patterns." },
+  { rank:31, name:"Activator", domain:"INFLUENCING", short:"I make things happen — quick to start.", tips:"Launch small process tests to speed up a manual reconciliation step." },
+  { rank:32, name:"Command", domain:"INFLUENCING", short:"I lead confidently and take charge.", tips:"Step up to drive a cross-team decision when there’s ambiguity." },
+  { rank:33, name:"Woo", domain:"INFLUENCING", short:"I win others over and start conversations easily.", tips:"Use at onboarding calls to build rapport with new vendors." },
+  { rank:34, name:"Includer", domain:"RELATIONSHIP", short:"You make people feel part of a group.", tips:"Make sure quieter teammates get credit in team updates." }
+];
+
+/* Domain order & colors */
+const domainOrder = [
+  { key:"EXECUTING", label:"Executing", css:"domain-executing", color:"#8b61ff" },
+  { key:"INFLUENCING", label:"Influencing", css:"domain-influencing", color:"#ff9b3f" },
+  { key:"RELATIONSHIP", label:"Relationship Building", css:"domain-relationship", color:"#3aa0ff" },
+  { key:"STRATEGIC", label:"Strategic Thinking", css:"domain-strategic", color:"#38d07a" }
+];
+
+/* ====== Build UI with D3 (grid columns + tiles) ====== */
+const grid = d3.select('#grid');
+
+/* Create one column per domain */
+const columns = grid.selectAll('.column')
+  .data(domainOrder)
+  .join('div')
+    .attr('class','column')
+    .attr('data-domain', d => d.key)
+    .each(function(domainInfo){
+      const col = d3.select(this);
+      col.append('h3').text(domainInfo.label);
+      col.append('div').attr('class','count').text('0');
+      col.append('div').attr('class','list'); // will hold tiles
+    });
+
+/* function to update counts and tiles */
+function renderTiles(data){
+  domainOrder.forEach(dom => {
+    const items = data.filter(d => d.domain === dom.key).sort((a,b)=> a.rank - b.rank);
+    const list = grid.select(`[data-domain="${dom.key}"] .list`);
+    // update count
+    grid.select(`[data-domain="${dom.key}"] .count`).text(items.length);
+
+    // bind tiles
+    const tiles = list.selectAll('.tile')
+      .data(items, d => d.rank);
+
+    // exit
+    tiles.exit().transition().duration(250).style('opacity',0).remove();
+
+    // enter
+    const enter = tiles.enter()
+      .append('div')
+        .attr('class', d => `tile ${dom.css}`)
+        .style('opacity',0)
+        .on('mousemove', tileMouseMove)
+        .on('mouseout', tileMouseOut)
+        .on('click', tileClick);
+
+    enter.append('div').attr('class','rank').text(d => d.rank);
+    const info = enter.append('div').style('min-width','0px'); // wrapper
+    info.append('div').attr('class','name').text(d => d.name);
+    info.append('div').attr('class','sub').text(d => `#${d.rank} • ${dom.label}`);
+
+    // merge + transition
+    enter.merge(tiles)
+      .transition().duration(350)
+      .style('opacity',1)
+      .style('transform','translateY(0)');
+  });
+}
+
+/* initial render */
+renderTiles(strengths);
+  renderCliftonSVGBar(strengths);
+
+
+/* TOOLTIP elements */
+const tooltip = d3.select('#tooltip');
+
+function tileMouseMove(event, d){
+  // show tooltip with short description
+  tooltip.style('display','block')
+         .html(`<strong style="display:block;margin-bottom:6px">${d.rank}. ${d.name}</strong>
+                <div style="color:var(--muted);font-size:13px">${d.short}</div>`);
+  // position tooltip near pointer, with small offset
+  const [mx,my] = d3.pointer(event);
+  const left = event.clientX + 12;
+  const top = event.clientY + 12;
+  tooltip.style('left', left + 'px').style('top', top + 'px');
+  // highlight same-domain tiles
+  d3.selectAll('.tile').classed('muted', t => t.domain !== d.domain);
+  highlightRank(d.rank);
+
+}
+
+
+function tileMouseOut(){
+  tooltip.style('display','none');
+  d3.selectAll('.tile').classed('muted', false);
+  clearAllHighlights();
+
+}
+
+function tileClick(event, d) {
+  const isMobile = window.innerWidth <= 900;
+
+  // Desktop: update in-section panel; no modal, no scroll lock
+  if (!isMobile) {
+    const details = d3.select('#details');
+    const domColor = (domainOrder.find(x => x.key===d.domain) || {}).color || 'var(--domColor)';
+    details.html(`
+      <h2 style="color:${domColor}">${d.rank}. ${d.name}
+        <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+      </h2>
+      <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+      <p><strong>How to use this strength (practical):</strong> ${d.tips}</p>
+      <p style="margin-top:8px;font-size:13px;color:var(--muted)">
+        Tap another tile to view its notes. Use the Search to filter.
+      </p>
+    `);
+
+    d3.select('#svgBarWrap svg').selectAll('rect').attr('stroke', null).attr('stroke-width', null);
+    d3.select('#svgBarWrap svg rect[data-rank="' + d.rank + '"]').attr('stroke', '#fff').attr('stroke-width', 2);
+    highlightRank(d.rank);
+    return;
+  }
+
+  // Mobile: open modal with robust close logic
+  const modal = document.getElementById("mobileModal");
+  const body = document.getElementById("mobileModalBody");
+  const dom = domainOrder.find(x => x.key === d.domain);
+  const content = modal.querySelector('.mobile-modal-content');
+  const closeBtn = modal.querySelector('.close-btn');
+
+  body.innerHTML = `
+    <h2 style="color:${dom ? dom.color : 'var(--domColor)'}; margin:0 0 6px 0;">
+      ${d.rank}. ${d.name}
+      <span style="font-size:13px;color:var(--muted);margin-left:8px">(${d.domain})</span>
+    </h2>
+    <p style="font-size:14px;margin:4px 0 10px 0;color:#fff">${d.short}</p>
+    <p><strong>How to use this strength:</strong> ${d.tips}</p>
+  `;
+
+  const closeModal = () => {
+    modal.classList.remove('open');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    modal.onclick = null;
+    if (closeBtn) closeBtn.onclick = null;
+    if (modal._escHandler) {
+      document.removeEventListener('keydown', modal._escHandler);
+      delete modal._escHandler;
+    }
+  };
+
+  // Open + lock background scroll
+  modal.classList.add('open');
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  // Close by X
+  if (closeBtn) closeBtn.onclick = closeModal;
+
+  // Close by backdrop (ignore clicks inside sheet)
+  modal.onclick = (e) => { if (!content.contains(e.target)) closeModal(); };
+
+  // Close by ESC
+  modal._escHandler = (e) => { if (e.key === 'Escape') closeModal(); };
+  document.addEventListener('keydown', modal._escHandler);
+}
+
+
+
+/* ===== Stack bar showing distribution of domains ===== */
+function clearAllHighlights(){
+  d3.select('#svgBarWrap svg').selectAll('rect')
+    .attr('stroke', null).attr('stroke-width', null);
+  d3.selectAll('.tile').classed('muted', false);
+  d3.selectAll('.stack-seg')
+    .attr('opacity', 1)
+    .attr('stroke', null)
+    .attr('stroke-width', null);
+}
+function highlightRank(rank){
+  // Top barcode
+  d3.select('#svgBarWrap svg').selectAll('rect')
+    .attr('stroke', null).attr('stroke-width', null);
+  d3.select('#svgBarWrap svg rect[data-rank="' + rank + '"]')
+    .attr('stroke', '#fff').attr('stroke-width', 2);
+  // Tiles
+  d3.selectAll('.tile').classed('muted', t => t.rank !== rank);
+  // Stackbar segments
+  const strength = strengths.find(s => s.rank === rank);
+  if(strength){
+    d3.selectAll('.stack-seg')
+      .attr('opacity', s => s.key === strength.domain ? 1 : 0.25)
+      .attr('stroke', s => s.key === strength.domain ? '#fff' : null)
+      .attr('stroke-width', s => s.key === strength.domain ? 2 : null);
+  }
+}
+function highlightDomain(domainKey){
+  // tiles by domain
+  d3.selectAll('.tile').classed('muted', t => t.domain !== domainKey);
+
+  // top bars by domain
+  const bars = d3.select('#svgBarWrap svg').selectAll('rect');
+  bars.attr('stroke', null).attr('stroke-width', null);
+  bars.filter(d => d && d.domain === domainKey)
+      .attr('stroke', '#fff').attr('stroke-width', 2);
+
+  // stackbar emphasize the selected segment
+  d3.selectAll('.stack-seg')
+    .attr('opacity', s => s && s.key === domainKey ? 1 : 0.25)
+    .attr('stroke', s => s && s.key === domainKey ? '#fff' : null)
+    .attr('stroke-width', s => s && s.key === domainKey ? 2 : null);
+}
+function renderStackBar(data){
+  const counts = domainOrder.map(dom => {
+    return { key: dom.key, label: dom.label, color: dom.color, count: data.filter(d => d.domain===dom.key).length };
+  });
+  const total = d3.sum(counts, d => d.count);
+
+  const width = 520;
+  const height = 16;
+  d3.select('#stackbar').html(''); // clear
+const svg = d3.select('#stackbar').append('svg')
+  .attr('viewBox', `0 0 ${width} ${height}`)
+  .attr('preserveAspectRatio', 'xMidYMid meet')
+  .attr('width', null)
+  .attr('height', null);
+  let x = 0;
+counts.forEach(segment => {
+  const segW = Math.round((segment.count / total) * width);
+svg.append('rect')
+  .attr('x', x)
+  .attr('y', 0)
+  .attr('width', segW)
+  .attr('height', height)
+  .attr('fill', segment.color)
+  .attr('rx', 4)
+  .attr('class', 'stack-seg')
+  .append('title').text(`${segment.label}: ${segment.count}`);
+  x += segW; // advance x for next segment
+}); // <- close forEach properly
+
+  // legend to right
+  const legend = d3.select('#stackLegend').html('');
+  counts.forEach(seg => {
+    legend.append('div').style('display','flex').style('gap','6px').style('align-items','center').html(`
+      <div style="width:12px;height:12px;border-radius:3px;background:${seg.color}"></div>
+      <div style="font-size:13px;color:var(--muted)">${seg.label} (${seg.count})</div>
+    `);
+  });
+}
+renderStackBar(strengths);
+
+/* ===== Controls: Search, Top5, Export CSV ===== */
+d3.select('#search').on('input', function(){
+  const q = this.value.trim().toLowerCase();
+  if(!q){
+    d3.selectAll('.tile').style('opacity',1);
+    return;
+  }
+  d3.selectAll('.tile').each(function(d){
+    const match = d.name.toLowerCase().includes(q) || String(d.rank) === q;
+    d3.select(this).style('opacity', match ? 1 : 0.18);
+  });
+});
+
+let top5Active = false;
+
+d3.select('#top5').on('click', function(){
+  if (!top5Active) {
+    // activate
+    d3.selectAll('.tile').style('opacity', t => (t.rank <= 5 ? 1 : 0.12)); // highlight top 5 tiles [web:74]
+    // outline the top 5 bars
+    const svgBars = d3.select('#svgBarWrap svg').selectAll('rect');
+    svgBars.attr('stroke', null).attr('stroke-width', null);
+    strengths.filter(s => s.rank <= 5).forEach(s => {
+      d3.select('#svgBarWrap svg rect[data-rank="' + s.rank + '"]')
+        .attr('stroke', '#fff').attr('stroke-width', 2);
+    });
+    top5Active = true;
+  } else {
+    // deactivate: full reset
+    d3.selectAll('.tile').style('opacity', 1);
+    clearAllHighlights(); // clears strokes and mutes [web:74]
+    top5Active = false;
+  }
+});
+
+
+d3.select('#exportCSV').on('click', function(){
+  const rows = ["rank,name,domain,short"];
+  strengths.forEach(s => rows.push(`${s.rank},"${s.name.replace(/"/g,'""')}","${s.domain}","${s.short.replace(/"/g,'""')}"`));
+  const blob = new Blob([rows.join("\n")], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'clifton_strengths_34.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+/* ===== Responsive niceties: if header overlaps, add top padding (optional) ===== */
+/* If you embed into a page with a fixed header, call:
+     document.querySelector('#app').style.paddingTop = '80px';
+   (example included in integration notes)
+*/
+
+/* If you want to re-render after editing data, call:
+     renderTiles(newData); renderStackBar(newData);
+*/
+
+/* END OF SCRIPT */
+ function renderCliftonSVGBar(data) {
+  const domainColors = {
+    EXECUTING: "#8b61ff",
+    INFLUENCING: "#ff9b3f",
+    RELATIONSHIP: "#3aa0ff",
+    STRATEGIC: "#38d07a"
+  };
+
+  const svgWidth = 500, svgHeight = 60;
+  const barWidth = 8, barHeight = 40, spacing = 12;
+
+  // Reset
+  d3.select('#svgBarWrap').html('');
+ const svg = d3.select('#svgBarWrap')
+  .append('svg')
+  .attr('viewBox', `0 0 ${svgWidth} ${svgHeight}`)
+  .attr('preserveAspectRatio','xMidYMid meet')
+  .attr('width', null)
+  .attr('height', null);
+
+
+  // ---- helper function to draw a group of bars ----
+  function drawBars(container, bars) {
+    container.selectAll('rect')
+      .data(bars)
+      .enter()
+      .append('rect')
+        .attr('x', (d,i) => i * spacing)
+        .attr('y', 0)
+        .attr('width', barWidth)
+        .attr('height', barHeight)
+        .attr('rx', 2)
+        .attr('fill', d => domainColors[d.domain] || '#ccc')
+        .attr('data-rank', d => d.rank)
+        .style('cursor','pointer')
+.on('mouseover', function(e,d) {
+  barHoverOnly(d); // highlight only — no tooltip or details
+})
+.on('mouseout', function() {
+  clearAllHighlights(); // reset everything
+})
+.on('click', function(e,d) {
+  tileClick(e,d); // open details panel if clicked
+});
+
+  }
+
+  // ---- LEFT 5 bars ----
+  const leftBars = data.filter(d => d.rank <= 5);
+  const leftG = svg.append('g').attr('transform','translate(0,10)');
+  drawBars(leftG, leftBars);
+
+  // ---- Decorative lines left ----
+  svg.append('line').attr('x1',0).attr('y1',5).attr('x2',56).attr('y2',5)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+  svg.append('line').attr('x1',0).attr('y1',55).attr('x2',56).attr('y2',55)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+
+  // ---- Diagonals after 5 bars ----
+  svg.append('line').attr('x1',56).attr('y1',5).attr('x2',116).attr('y2',55)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+  svg.append('line').attr('x1',56).attr('y1',55).attr('x2',116).attr('y2',5)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+
+  // ---- RIGHT 29 bars ----
+  const rightBars = data.filter(d => d.rank > 5);
+  const rightG = svg.append('g').attr('transform','translate(116,10)');
+  drawBars(rightG, rightBars);
+
+  // ---- Decorative lines right ----
+  svg.append('line')
+    .attr('x1',116).attr('y1',5).attr('x2',500).attr('y2',5)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+  svg.append('line')
+    .attr('x1',116).attr('y1',55).attr('x2',500).attr('y2',55)
+    .attr('stroke','#bfbfbf').attr('stroke-width',6).attr('stroke-linecap','round');
+}
+function barHoverOnly(d){
+  // Reset previous highlights
+  d3.selectAll('.tile').classed('muted', false).classed('highlighted', false);
+  clearAllHighlights(); // clears stackbar and top bar strokes
+
+  // Highlight the top barcode
+  d3.select('#svgBarWrap svg rect[data-rank="' + d.rank + '"]')
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 2);
+
+  // Highlight the corresponding tile
+  d3.selectAll('.tile')
+    .filter(t => t.rank === d.rank)
+    .classed('highlighted', true);
+
+  // Muted effect for other tiles (optional)
+  d3.selectAll('.tile')
+    .filter(t => t.rank !== d.rank)
+    .classed('muted', true);
+
+  // Highlight stackbar
+  const strength = strengths.find(s => s.rank === d.rank);
+  if(strength){
+    d3.selectAll('.stack-seg')
+      .attr('opacity', s => s.key === strength.domain ? 1 : 0.25)
+      .attr('stroke', s => s.key === strength.domain ? '#fff' : null)
+      .attr('stroke-width', s => s.key === strength.domain ? 2 : null);
+  }
+}
+
+
+</script>
+  <script>
+function openMobileModal(html){
+  const modal = document.getElementById("mobileModal");
+  const body = document.getElementById("mobileModalBody");
+  if (!modal || !body) return;
+
+  body.innerHTML = html;
+  modal.classList.add('open');
+
+  // Lock page scroll while modal is open
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  const content = modal.querySelector('.mobile-modal-content');
+  const closeBtn = modal.querySelector('.close-btn');
+
+  const close = () => closeMobileModal();
+
+  // Close by X
+  if (closeBtn) closeBtn.onclick = close;
+
+  // Close by tapping backdrop (outside content)
+  modal.onclick = (e) => {
+    if (!content.contains(e.target)) close();
+  };
+
+  // Close by ESC
+  modal._escHandler = (e) => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', modal._escHandler);
+}
+
+function closeMobileModal(){
+  const modal = document.getElementById("mobileModal");
+  if (!modal) return;
+
+  modal.classList.remove('open');
+
+  // Restore page scroll
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
+
+  // Remove handlers
+  const closeBtn = modal.querySelector('.close-btn');
+  if (closeBtn) closeBtn.onclick = null;
+  modal.onclick = null;
+  if (modal._escHandler){
+    document.removeEventListener('keydown', modal._escHandler);
+    delete modal._escHandler;
+  }
+}
+
+// Safety: if resized to desktop, ensure modal is closed and scroll unlocked
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) closeMobileModal();
+});
+</script>
+<script>
+(() => {
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+  const form = $('#contactForm');
+  const btn = $('#cf-submit');
+  const success = $('#cf-success');
+  const count = $('#cf-count'); // optional if you add a counter element
+  const toast = $('#toast');
+  const msg = $('#cf-message');
+
+  /* ========== Character counter (no hard cap) ========== */
+  if (msg && count) {
+    const update = () => { count.textContent = msg.value.length; };
+    msg.addEventListener('input', update); update();
+  }
+
+  /* ========== Validation (no Subject) ========== */
+  const rules = {
+    name: v => v.trim().length >= 2 || 'Your name’s too tiny. Physically and metaphorically 🥹',
+    email: v => /\S+@\S+\.\S+/.test(v) || 'Looks like you forgot the ‘@’—it’s not optional!',
+    message: v => v.trim().length >= 10 || 'We accept prose here, not Morse code. Minimum 10 character please.'
+  };
+
+  function setError(id, msg) {
+    const el = $('#err-' + id);
+    if (el) el.textContent = msg || '';
+  }
+
+  function validateField(id, value) {
+    const rule = rules[id];
+    if (!rule) return true;
+    const ok = rule(value);
+    setError(id, ok === true ? '' : ok);
+    return ok === true;
+  }
+
+  [['name','cf-name'],['email','cf-email'],['message','cf-message']].forEach(([key, id]) => {
+    const input = document.getElementById(id);
+    if (!input) return;
+    input.addEventListener('blur', () => validateField(key, input.value));
+    input.addEventListener('input', () => setError(key, ''));
+  });
+
+  /* ========== Submit handling (simulate network) ========== */
+form?.addEventListener('submit', async e => {
+  e.preventDefault(); // ✅ stop page refresh
+  console.log('Form submit triggered');
+
+  const data = {
+    name: $('#cf-name')?.value.trim() || '',
+    email: $('#cf-email')?.value.trim() || '',
+    message: $('#cf-message')?.value.trim() || '',
+    files: Array.from($('#cf-files')?.files || [])
+  };
+
+  // ✅ Validation
+  const valid = ['name','email','message'].every(k => validateField(k, data[k]));
+  if (!valid) return;
+
+  btn?.classList.add('loading');
+  btn?.setAttribute('disabled', 'true');
+
+  // ✅ Prepare FormData
+  const fd = new FormData();
+  fd.append('name', data.name);
+  fd.append('email', data.email);
+  fd.append('message', data.message);
+  data.files.forEach(f => fd.append('files', f));
+
+  try {
+    const res = await fetch(
+      'https://script.google.com/macros/s/AKfycbzIkWLd83Vv-cS4jampaN_oYCElc3bc0XDjtGc75GNyRM5q4p0ARhH7HSahBjak7qcf/exec',
+      {
+        method: 'POST',
+        body: fd,
+      }
+    );
+
+    console.log('Fetch done ✅', res);
+
+    // Since no-cors hides response, assume success visually
+await new Promise(r => setTimeout(r, 500));
+success?.removeAttribute('hidden');
+form.querySelectorAll('input, textarea, select, button').forEach(el => el.setAttribute('disabled', 'true'));
+
+// ✅ Auto-reset form after 5 seconds
+setTimeout(() => {
+  success?.setAttribute('hidden','true');
+  form.reset();
+  form.querySelectorAll('input, textarea, select, button').forEach(el => el.removeAttribute('disabled'));
+  btn?.classList.remove('loading');
+  btn?.removeAttribute('disabled');
+  // Clear validation errors
+  setError('name',''); setError('email',''); setError('message','');
+  if (msg) msg.dispatchEvent(new Event('input')); // refresh counter if present
+}, 5000); // 5000ms = 5 seconds
+
+
+  } catch (err) {
+    console.error('Error sending message:', err);
+    alert('⚠️ Message not sent. Try again later.');
+    btn?.classList.remove('loading');
+    btn?.removeAttribute('disabled');
+  }
+});
+
+  $('#cf-send-another')?.addEventListener('click', () => {
+    success?.setAttribute('hidden','true');
+    form?.reset();
+    form?.querySelectorAll('input, textarea, select, button').forEach(el => el.removeAttribute('disabled'));
+    btn?.classList.remove('loading');
+    btn?.removeAttribute('disabled');
+    setError('name',''); setError('email',''); setError('message','');
+    if (msg) msg.dispatchEvent(new Event('input')); // refresh counter if present
+  });
+
+  /* ========== Copy email with feedback ========== */
+  async function copyText(text) {
+    if (!text) throw new Error('No text to copy');
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); }
+    finally { document.body.removeChild(ta); }
+  }
+
+  function flashAction(el, ok = true) {
+    const label = el.querySelector('.contact-action');
+    const original = label?.textContent || 'Copy';
+    if (label) label.textContent = ok ? 'Copied' : 'Failed';
+    el.classList.add(ok ? 'copied' : 'copy-failed');
+    setTimeout(() => {
+      if (label) label.textContent = original;
+      el.classList.remove('copied', 'copy-failed');
+    }, 1100);
+  }
+
+  function showToast(message) {
+    if (!toast) return;
+    const msgEl = toast.querySelector('.toast-msg');
+    if (msgEl) msgEl.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.js-copy');
+    if (!btn) return;
+    const text = btn.dataset.copy?.trim() || btn.querySelector('.contact-value')?.textContent.trim() || '';
+    try {
+      await copyText(text);
+      flashAction(btn, true);
+      showToast('Copied to clipboard');
+    } catch (err) {
+      console.error('Copy failed:', err);
+      flashAction(btn, false);
+      showToast('Copy failed');
+    }
+  });
+
+  /* ========== Quick actions ========== */
+  $('#qa-resume')?.addEventListener('click', () => showToast('Resume download starting...'));
+  $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
+})();
+</script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+  <!-- Mobile modal popup -->
+<div id="mobileModal" class="mobile-modal">
+  <div class="mobile-modal-content">
+    <span class="close-btn">&times;</span>
+    <div id="mobileModalBody"></div>
+  </div>
+</div>
+<footer class="copyright">
+  <p>© <span id="year"></span> Mohammad Mujahid. All rights reserved.</p>
+</footer>
+</body>
+</html>
