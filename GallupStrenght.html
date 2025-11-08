@@ -945,7 +945,7 @@ html, body{ overflow-x: hidden; }
       <div class="dropdown-content">
         <a href="./Mujahid.Accenture.OTC.pdf" target="_blank" rel="noopener">Download Resume</a>
         <a href="./GallupStrenght.html">Gallup Strengths</a>
-        <a href="./index.html#achievements">Achievements</a>
+        <a href="./Certifications.html#achievements">Achievements</a>
         <a href="./index.html#projects">Projects</a>
         <a href="./index.html#blogs">Blogs</a>
         <a href="./index.html#interests">Interests</a>
@@ -1237,6 +1237,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+
+  <script>
+  const certsBtn = document.getElementById("certsBtn");
+
+  certsBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    gsap.to("body", {
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.inOut",
+      onComplete: () => (window.location.href = "Certifications.html")
+    });
+  });
+</script>
+
 
 <script>
 /* ============================
