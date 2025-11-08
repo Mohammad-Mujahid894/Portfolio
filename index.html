@@ -2455,7 +2455,7 @@ I Lead with Relationship Building
       <div class="controls">
         <input type="search" id="search" placeholder="Search strength name or rank (e.g., 'Relator' or '1')">
         <button class="btn" id="top5">Highlight Top 5</button>
-        <button class="btn" id="viewCertifications">🥇 View My Certifications</button>
+       <button class="btn" id="openCertifications">🥇 View My Certifications</button>
         <div style="flex:1"></div>
       </div>
 
@@ -2738,6 +2738,19 @@ window.addEventListener('scroll', () => {
 });
 </script>
     <script>
+  const openCertifications = document.getElementById("openCertifications");
+
+  openCertifications.addEventListener("click", (e) => {
+    e.preventDefault();
+    gsap.to("body", {
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.inOut",
+      onComplete: () => (window.location.href = "Certifications.html")
+    });
+  });
+</script>
+    <script>
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".hamburger");
   const navbar = document.getElementById("navbar");
@@ -2779,6 +2792,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+    <script>
+  const qaMeetBtn = document.getElementById("qa-meet");
+
+  qaMeetBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    gsap.to("body", {
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.inOut",
+      onComplete: () => (window.location.href = "Certifications.html")
+    });
+  });
+</script>
+
 
     <script>
   // Fade-in timeline items on scroll
