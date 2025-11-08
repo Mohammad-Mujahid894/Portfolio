@@ -2455,7 +2455,7 @@ I Lead with Relationship Building
       <div class="controls">
         <input type="search" id="search" placeholder="Search strength name or rank (e.g., 'Relator' or '1')">
         <button class="btn" id="top5">Highlight Top 5</button>
-        <button class="btn" id="viewCertifications">View Certification's</button>
+        <button class="btn" id="viewCertifications">🥇 View My Certifications</button>
         <div style="flex:1"></div>
       </div>
 
@@ -2620,7 +2620,7 @@ I Lead with Relationship Building
       <a href="Mujahid.Accenture.OTC.pdf" target="_blank">
   <button class="qa" type="button" id="qa-resume">📄 Download Resume</button>
 </a>
-      <button class="qa" type="button" id="qa-meet"> 🎗️ My Certification's</button>
+      <button class="qa" type="button" id="qa-meet">🥇 View My Certifications</button>
     </div>
   </div>
 
@@ -2737,6 +2737,49 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const navbar = document.getElementById("navbar");
+
+  // 🔹 Toggle hamburger & menu
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    hamburger.classList.toggle("active");
+    navbar.classList.toggle("show");
+  });
+
+  // 🔹 Toggle dropdown ("More ▾") on mobile
+  document.querySelectorAll(".dropdown > .dropbtn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation();
+        const parent = btn.parentElement;
+        parent.classList.toggle("open");
+      }
+    });
+  });
+
+  // 🔹 Close all menus when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!navbar.contains(e.target) && !hamburger.contains(e.target)) {
+      navbar.classList.remove("show");
+      hamburger.classList.remove("active");
+      document.querySelectorAll(".dropdown").forEach((d) => d.classList.remove("open"));
+    }
+  });
+
+  // 🔹 Optional: disable scroll fade animations on small screens for smoother experience
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    document.querySelectorAll(".timeline-content").forEach((el) => {
+      el.style.opacity = 1;
+      el.style.transform = "none";
+    });
+  }
+});
+</script>
+
     <script>
   // Fade-in timeline items on scroll
   const timelineItems = document.querySelectorAll('.timeline-content');
@@ -2941,15 +2984,6 @@ window.radarSets = {
   setTimeout(realign, 0);
 })();
 </script>
-<script>
-  const hamburger = document.querySelector('.hamburger');
-const navbar = document.getElementById('navbar');
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navbar.classList.toggle('show');
-});
-</script>
     <script>
   function toggleDetails(btn) {
     const details = btn.nextElementSibling;
@@ -2989,23 +3023,6 @@ hamburger.addEventListener('click', () => {
       el.style.transform = "none";
     });
   }
-</script>
-    <script>
-document.querySelectorAll('.dropdown > .dropbtn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    if (window.innerWidth <= 768) { // mobile only
-      e.preventDefault(); // stop navigation
-      const parent = btn.parentElement;
-
-      // Optional: close other dropdowns
-      document.querySelectorAll('.dropdown').forEach(d => {
-        if (d !== parent) d.classList.remove('open');
-      });
-
-      parent.classList.toggle('open'); // toggle current dropdown
-    }
-  });
-});
 </script>
     <!-- D3 Library -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
