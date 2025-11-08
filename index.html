@@ -19,8 +19,11 @@
   <!-- Twitter / X (text-only card) -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Mohammad Mujahid | Finance & O2C Professional">
-  <meta name="twitter:description" content="Crafting clarity out of chaos in finance and operations. O2C, cash apps, and data-driven decisions. Delivering solutions that matter. This portfolio isn’t just a showcase of my work — it’s a lens into how I think, solve, and create impact.">
-<style>
+ 
+<meta name="twitter:description" content="Crafting clarity out of chaos in finance and operations. O2C, cash apps, and data-driven decisions. Delivering solutions that matter. This portfolio isn’t just a showcase of my work — it’s a lens into how I think, solve, and create impact.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
     :root{
       --bg:#04060b; --fg:#eaf2ff; --muted:#9fb2d8; --glass:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
       --radius:18px; --shadow:0 30px 80px rgba(0,0,0,.6);
@@ -248,6 +251,17 @@ display: flex;
   }
   .dropdown.active .dropdown-content { display: block; }
 }
+    /* Hide hamburger in desktop view */
+.hamburger {
+  display: none; /* hidden on desktop */
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex; /* visible on mobile */
+  }
+}
+
     /* Hero layout */
 .hero-content {
   display: flex;
