@@ -58,11 +58,16 @@ header h2::after {
       margin: auto;
     }
 
-    p.subtitle {
-      text-align: center;
-      color: #64748b;
-      margin-bottom: 3rem;
-    }
+   p.subtitle {
+  text-align: center;
+  color: #64748b;
+  margin-bottom: 1rem; /* tighter space between lines */
+}
+
+p.subtitle:last-of-type {
+  margin-bottom: 3rem; /* keep spacing below the second one */
+}
+
     body.dark p.subtitle { color: #94a3b8; }
 
 
