@@ -7,6 +7,7 @@
   <title>Clifton - Strengths</title>
   <!-- D3 v7 -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
     :root{
@@ -283,6 +284,18 @@ display: flex;
     padding-left: 15px;
   }
 }
+
+    /* Hide hamburger in desktop view */
+.hamburger {
+  display: none; /* hidden on desktop */
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex; /* visible on mobile */
+  }
+}
+
 
 
 
