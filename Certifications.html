@@ -710,840 +710,829 @@ document.querySelectorAll(".dropdown > .dropbtn").forEach((btn) => {
   <script>
     gsap.registerPlugin(ScrollTrigger);  
     const CERTIFICATIONS = [
-{
-  title: "Tally ERP, Zoho & ERPNext Systems",
-  issuer: "ICMAI",
-  date: "2025",
-  hasCredential: true,
-  credentialUrl: "#",
-  fileUrl: "./certificates/TallyERP.pdf",
-  from: "#3b82f6",
-  to: "#6366f1",
-  description: "Certified in practical ERP systems including Tally, Zoho, and ERPNext for accounting, inventory, and finance operations."
-},
-{
-  title: "Communication & Soft Skills",
-  issuer: "ICMAI",
-  date: "2025",
-  hasCredential: true,
-  credentialUrl: "#",
-  fileUrl: "./certificates/SoftSkills.pdf",
-  from: "#06b6d4",
-  to: "#14b8a6",
-  description: "Developed professional communication, presentation, and collaboration skills for corporate environments."
-},
-{
-  title: "Microsoft Office Suite",
-  issuer: "ICMAI",
-  date: "2025",
-  hasCredential: false,
-  credentialUrl: "#",
-  from: "#f59e0b",
-  to: "#f97316",
-  description: "Gained proficiency in MS Excel, Word, and PowerPoint for productivity, data management, and reporting."
-},
-{
-  title: "E-Filing (ITR & GST)",
-  issuer: "ICMAI",
-  date: "2025",
-  hasCredential: false,
-  credentialUrl: "#",
-  from: "#22c55e",
-  to: "#16a34a",
-  description: "Learned procedures for electronic filing of Income Tax Returns and GST forms using government portals."
-},
-
-  {
-    title: "Microsoft Office Professional",
-    issuer: "Pluralsight",
-    date: "Oct 2024",
-    hasCredential: false,
-    credentialUrl: "#",
-    from: "#0ea5e9",
-    to: "#06b6d4",
-    description: "Productivity suite mastery — Excel analytics, PowerPoint storytelling, and Word document automation."
-  },
-  {
-    title: "Power BI for Financial Insights",
-    issuer: "Pluralsight",
-    date: "May 2024",
-    hasCredential: true,
-    credentialUrl: "#",
-    fileUrl: "./certificates/PowerBI.pdf", // ✅
-    from: "#14b8a6",
-    to: "#06b6d4",
-    description: "Built dashboards and visual reports using real O2C data, improving data storytelling and analysis."
-  },
-      {
-  title: "Accenture Foxtrot Practitioner Certification",
-  issuer: "Accenture",
-  date: "02-Mar-25",
-  hasCredential: true,
-  credentialUrl: "#",
-  fileUrl: "./certificates/FoxtrotPractitioner.pdf",
-  from: "#0ea5e9",
-  to: "#14b8a6",
-  description: "Certified in Foxtrot automation for financial control and fraud prevention in vendor data management."
-},
 
 {
-  title: "Six Sigma Black Belt: Lean and Six Sigma Fundamentals",
-  issuer: "Skillsoft",
-  date: "27-May-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/9dad0359-e55c-4345-8d20-19c6f582f24c#acc.RKfqWri3",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#3b82f6",
-  to: "#6366f1",
-  description: "Mastered Six Sigma and Lean principles to enhance process efficiency, minimize waste, and improve organizational performance."
-},
-{
-  title: "Make The Time You Need: Get Organized",
-  issuer: "Skillsoft",
-  date: "17-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/0ca6e5ff-721e-4e3b-b98b-89603c12d6ec#acc.fQrqyY2X",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#06b6d4",
-  to: "#14b8a6",
-  description: "Developed organization and prioritization skills to maximize productivity and manage time effectively in daily work."
-},
-{
-  title: "Leadercamp on-demand: Delegation and Time Management",
-  issuer: "Skillsoft",
-  date: "17-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/7c71300b-fc79-44ec-bac2-9070f67bd960#acc.nF5UAat0",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#9333ea",
-  to: "#ec4899",
-  description: "Learned leadership strategies for delegation, prioritization, and managing workloads efficiently within teams."
-},
-      {
-  title: "Sage Accounting Software",
-  issuer: "Self-Learning",
-  date: "2025",
-  hasCredential: false,
-  credentialUrl: "#",
-  from: "#8b5cf6",
-  to: "#6366f1",
-  description: "Self-learned Sage for bookkeeping, invoicing, and small-business financial management."
-},
-{
-  title: "QuickBooks Accounting ERP",
-  issuer: "Self-Learning",
-  date: "2025",
-  hasCredential: false,
-  credentialUrl: "#",
-  from: "#f97316",
-  to: "#ea580c",
-  description: "Independently explored QuickBooks to manage ledgers, reconcile accounts, and generate financial reports."
-},
-{
-  title: "The Art of Staying Focused",
-  issuer: "Skillsoft",
-  date: "17-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/e0f8fc0e-35c7-4b73-ab3c-68e0dd20f011#acc.lnci3axt",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#22c55e",
-  to: "#10b981",
-  description: "Acquired practical techniques to maintain focus, reduce distractions, and enhance personal effectiveness at work."
-},
-{
-  title: "Maximize Your Productivity by Managing Time and Tasks",
-  issuer: "Skillsoft",
-  date: "17-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/f79c14b4-3ee5-4a3e-b78c-0b27b4896a4d#acc.SnHmp6fb",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#f97316",
-  to: "#f59e0b",
-  description: "Learned advanced methods to optimize schedules and task execution for higher productivity and reduced stress."
-},
-{
-  title: "Becoming a Successful Collaborator",
-  issuer: "Skillsoft",
-  date: "17-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/9be6d5fb-0873-4729-93d2-277e9d6f81bc#acc.QkzRJcKa",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#0ea5e9",
-  to: "#06b6d4",
-  description: "Gained collaboration and interpersonal communication skills essential for effective teamwork in business settings."
-},
-{
-  title: "Be Productive by Working Efficiently",
-  issuer: "Skillsoft",
-  date: "16-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/bd307d14-029b-4dc5-9168-35e184bb5950#acc.w2f5h76j",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#8b5cf6",
-  to: "#6366f1",
-  description: "Improved task management and time allocation through methods designed for efficiency and reduced workload stress."
-},
-{
-  title: "Sharpening Your Focus to Stay on Track",
-  issuer: "Skillsoft",
-  date: "16-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/2e91dc1b-b2f9-42bb-8411-991d34082a7d#acc.qSoKf1GH",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#ec4899",
-  to: "#f472b6",
-  description: "Developed cognitive and behavioral strategies to sharpen focus, prioritize key tasks, and minimize distractions."
-},
-{
-  title: "Managing Your Time So It Doesn’t Manage You",
-  issuer: "Skillsoft",
-  date: "16-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/3cb167e4-2f50-46cb-88a5-e73c325e82f6#acc.KLg9J7E8",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#14b8a6",
-  to: "#0ea5e9",
-  description: "Explored frameworks for proactive time management to stay in control of priorities and work commitments."
-},
-{
-  title: "Saving Time by Setting Goals",
-  issuer: "Skillsoft",
-  date: "16-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/ef3af9d9-552a-4004-81bc-e7f0549912a4#acc.Vodm2LG7",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#22c55e",
-  to: "#16a34a",
-  description: "Learned how goal-setting enhances time efficiency and drives progress through clear, measurable objectives."
-},
-{
-  title: "Aligning Goals and Priorities To Manage Time",
-  issuer: "Skillsoft",
-  date: "16-Apr-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/09fa3687-7e02-4139-b8d2-beb300c75e4d#acc.KrNyS2gV",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#facc15",
-  to: "#eab308",
-  description: "Developed strategies to align business goals and personal priorities for better time and performance management."
-},
-{
-  title: "Preparing Financial Statements and Closing Accounts",
-  issuer: "Skillsoft",
-  date: "02-Feb-25",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/eaeedcf2-2df5-404f-b969-e178fc46c3f1#acc.L6ijBybY",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#2563eb",
-  to: "#3b82f6",
-  description: "Learned the complete process of preparing, adjusting, and closing accounts to create accurate financial statements."
-},
-{
-  title: "Clarity and Conciseness in Business Writing",
-  issuer: "Skillsoft",
-  date: "20-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/303a702a-7ca6-4abb-843a-2ef24f28e6ca#acc.iFAwkzrQ",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#7c3aed",
-  to: "#9333ea",
-  description: "Enhanced written communication skills to deliver clear, concise, and professional business correspondence."
-},
-{
-  title: "Performing data analysis and forecasting in Excel 365",
-  issuer: "Skillsoft",
-  date: "19-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/11398b04-82f6-4fd5-82bb-bf5112d1fea8#acc.M2h4YpGo",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#0ea5e9",
-  to: "#06b6d4",
-  description: "Applied advanced Excel functions to perform data analysis, create forecasts, and visualize business insights."
-},
-{
-  title: "Creating & Saving Apps in Microsoft PowerApps",
-  issuer: "Skillsoft",
-  date: "18-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/e66475e2-4b97-4e60-9285-4fcffc2b1714#acc.KdBQqpeT",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#14b8a6",
-  to: "#0ea5e9",
-  description: "Built and deployed low-code business applications using Microsoft PowerApps for process automation."
-},
-{
-  title: "Getting to Know the Platform in Microsoft PowerApps",
-  issuer: "Skillsoft",
-  date: "17-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/5fa4ebc6-420c-4d9b-9b98-bd0a604431ab#acc.XKruabTV",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#22c55e",
-  to: "#16a34a",
-  description: "Explored PowerApps’ interface and functionality to build business applications integrated with Microsoft 365 tools."
-},
-{
-  title: "Key Accounting Concepts and Principles",
-  issuer: "Skillsoft",
-  date: "16-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/10de5199-0fec-422e-9933-67c500f89526#acc.avnCkFIu",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#f59e0b",
-  to: "#d97706",
-  description: "Learned foundational accounting concepts including double-entry, accruals, and the accounting equation."
-},
-{
-  title: "Developing Emotional Intelligence",
-  issuer: "Skillsoft",
-  date: "12-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/f8c13830-1d33-474c-bc46-3b81f2f851c0#acc.O2hHXFsg",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#ef4444",
-  to: "#f97316",
-  description: "Strengthened emotional awareness and empathy to improve relationships, leadership, and communication skills."
-},
-{
-  title: "Writing with a Professional Mindset",
-  issuer: "Skillsoft",
-  date: "12-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/30ffe5a4-df4f-4885-8f51-4ac3fa03b1f5#acc.o02OqMZk",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#6366f1",
-  to: "#3b82f6",
-  description: "Mastered techniques for writing polished, professional business content that communicates with clarity and tone."
-},
-{
-  title: "Taking Effective and Professional Notes",
-  issuer: "Skillsoft",
-  date: "12-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/800bceeb-5c74-48c7-845d-97a2c71bc8b3#acc.VwunLpel",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#06b6d4",
-  to: "#14b8a6",
-  description: "Learned structured note-taking methods to improve retention, accuracy, and reference value in meetings and training."
-},
-{
-  title: "CCSP 2019: Identity & Access Management",
-  issuer: "Skillsoft",
-  date: "09-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/d3649dcb-eb09-4318-84cf-f25bb15b367e#acc.Dnxi92Yq",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#8b5cf6",
-  to: "#7c3aed",
-  description: "Explored identity and access management concepts including authentication, authorization, and cloud security frameworks."
-},
-{
-  title: "Leading Security Teams for GenAI Solutions: Use of Generative AI",
-  issuer: "Skillsoft",
-  date: "09-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/ae6033db-58d9-434a-88a1-acb7be24c27b#acc.wdb3fXLc",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#9333ea",
-  to: "#a855f7",
-  description: "Learned leadership practices for managing cybersecurity teams using generative AI responsibly and effectively."
-},
-{
-  title: "Responsible Use of AI",
-  issuer: "Skillsoft",
-  date: "09-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/441f126a-02bf-4cdf-8ded-8dc6e2fe92f6#acc.0OeuW5HV",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#22c55e",
-  to: "#16a34a",
-  description: "Gained understanding of ethical AI practices, governance, and data privacy for responsible AI implementation."
-},
-{
-  title: "Data Access & Governance Policies: Data Classification, Encryption, & Monitoring",
-  issuer: "Skillsoft",
-  date: "09-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/ef12317f-b65f-4a35-a8a2-9c92db2a4b2e#acc.e0gVGtdv",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#0ea5e9",
-  to: "#06b6d4",
-  description: "Learned to develop and apply policies for secure data management including encryption and classification standards."
-},
-{
-  title: "Git & GitHub: Introduction",
-  issuer: "Skillsoft",
-  date: "08-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/4cc04759-c8c4-409e-9404-91615c0662f4#acc.QluFhgVd",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#f97316",
-  to: "#ea580c",
-  description: "Introduced to Git and GitHub version control systems including commits, branching, and repository collaboration."
-},
-{
-  title: "Automation Design & Robotics",
-  issuer: "Skillsoft",
-  date: "08-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/942218dc-e372-48c8-a9db-5b9e2f81cadd#acc.zw24GuA8",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#3b82f6",
-  to: "#6366f1",
-  description: "Explored fundamentals of automation design, robotic process automation (RPA), and intelligent workflow creation."
-},
-{
-  title: "Exploring Business Process Automation",
-  issuer: "Skillsoft",
-  date: "08-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/b2c7ab45-8c98-4d0d-bb22-cd6cd3910a56#acc.fZ3bkyWA",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#f59e0b",
-  to: "#d97706",
-  description: "Learned to identify and automate repetitive business processes using modern digital automation tools."
-},
-{
-  title: "PRINCE2® Project Management Overview (2017 Update)",
-  issuer: "Skillsoft",
-  date: "03-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/274978c8-80ba-48c4-b216-48f91c092a8a#acc.POUGHThr",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#8b5cf6",
-  to: "#7c3aed",
-  description: "Covered PRINCE2 project management framework principles, processes, and roles for successful project delivery."
-},
-{
-  title: "Identifying Risk (PMBOK® Guide Sixth Edition)",
-  issuer: "Skillsoft",
-  date: "03-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/e29db2cb-4309-4250-a6c8-b2803048a55b#acc.N5VDyzjP",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#06b6d4",
-  to: "#14b8a6",
-  description: "Developed ability to identify and assess project risks in alignment with PMI’s PMBOK Sixth Edition guidelines."
-},
-{
-  title: "Effective Team Communication",
-  issuer: "Skillsoft",
-  date: "03-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/e5ba2fc4-efa4-44d6-8403-eba685e583bc#acc.5UYc4oEu",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#f43f5e",
-  to: "#e11d48",
-  description: "Enhanced collaborative and verbal communication skills to improve teamwork and reduce workplace friction."
-},
-{
-  title: "Enabling Business Process Improvement",
-  issuer: "Skillsoft",
-  date: "27-Nov-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/51677ed6-fa87-4596-aabf-60a7a581b2a7#acc.CYBZFLNQ",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#10b981",
-  to: "#22c55e",
-  description: "Learned tools and strategies to analyze, map, and optimize existing business processes for operational excellence."
-},
-{
-  title: "Critical Thinking: Challenging Assumptions",
-  issuer: "Skillsoft",
-  date: "26-Nov-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/a52058cd-8ce8-433d-9ee7-0083a7347890#acc.NyWUmMGc",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#2563eb",
-  to: "#3b82f6",
-  description: "Developed analytical reasoning to identify and challenge assumptions for better decision-making and problem-solving."
-},
-{
-  title: "Knowing When to Take Strategic Risks",
-  issuer: "Skillsoft",
-  date: "25-Nov-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/5b406b1a-079b-4a85-8e4a-530ce11e6983#acc.AmBnSCjl",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#f97316",
-  to: "#f59e0b",
-  description: "Gained insights on evaluating potential outcomes and taking calculated risks aligned with organizational strategy."
-},
-{
-  title: "Being an Effective Team Member",
-  issuer: "Skillsoft",
-  date: "24-Nov-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/cf363929-ec85-48f1-bb75-31765fd5f4e0#acc.ACrYHexg",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#06b6d4",
-  to: "#0ea5e9",
-  description: "Learned the principles of accountability, collaboration, and adaptability to contribute effectively to team success."
-},
-{
-  title: "Developing Diplomacy and Tact",
-  issuer: "Skillsoft",
-  date: "04-Nov-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/df16304e-4591-42df-a03c-ecf2b2af9efb#acc.7NhCjqnZ",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#8b5cf6",
-  to: "#7c3aed",
-  description: "Enhanced interpersonal and communication skills to handle sensitive situations with professionalism and grace."
-},
-{
-  title: "Taking Responsibility for Your Accountability",
-  issuer: "Skillsoft",
-  date: "03-Nov-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/d105d1e3-6ed5-45cb-913b-77a3cfb92f54#acc.0vLD5kQj",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#22c55e",
-  to: "#16a34a",
-  description: "Learned the value of personal accountability and ownership for achieving consistent professional performance."
-},
-{
-  title: "Taking the Lead with Workplace Motivation and Engagement",
-  issuer: "Skillsoft",
-  date: "02-Nov-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/2441b2fa-df24-45bb-b2cf-6492a8164bdc#acc.DPGX4C7f",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#ec4899",
-  to: "#f472b6",
-  description: "Learned motivational leadership techniques to boost engagement and morale across diverse teams."
-},
-{
-  title: "Developing Your Business Acumen",
-  issuer: "Skillsoft",
-  date: "26-Oct-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/7b6abb88-3607-438e-9bca-8c00f6a53db4#acc.K4pSbWI1",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#f43f5e",
-  to: "#e11d48",
-  description: "Built strong business understanding, analyzing how financial and operational decisions drive overall company performance."
-},
-{
-  title: "Keeping Business Calls Professional",
-  issuer: "Skillsoft",
-  date: "26-Oct-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/db796cee-9c1b-4ab7-a0d2-8e4364a9c033#acc.WYPZydwn",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#14b8a6",
-  to: "#10b981",
-  description: "Learned etiquette and communication strategies for managing professional and productive business calls."
-},
-{
-  title: "The Art and Science of Communication",
-  issuer: "Skillsoft",
-  date: "25-Oct-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/5205f7d9-0aaa-463a-9fc9-e6a2a204eb14#acc.Q6tR70IO",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#3b82f6",
-  to: "#2563eb",
-  description: "Mastered the fundamentals of communication—balancing clarity, empathy, and influence for professional impact."
-},
-{
-  title: "Writing Effective E-mails and Instant Messages",
-  issuer: "Skillsoft",
-  date: "16-Oct-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/a85e0583-842e-4b5c-834b-94ede7a412d7#acc.WsHjgSn3",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#f59e0b",
-  to: "#d97706",
-  description: "Improved written communication by crafting concise, professional, and audience-appropriate messages."
-},
-{
-  title: "Understanding Financial Statements",
-  issuer: "Skillsoft",
-  date: "16-Oct-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/unknown", // Add actual link if available
-  fileUrl: "./certificates/sample.pdf",
-  from: "#8b5cf6",
-  to: "#6366f1",
-  description: "Gained practical understanding of balance sheets, income statements, and cash flow reports to analyze business performance."
-},
-{
-  title: "Configure Flow Control in Power Automate Desktop",
-  issuer: "Skillsoft",
-  date: "13-Oct-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/unknown", // Add actual link if available
-  fileUrl: "./certificates/sample.pdf",
-  from: "#22c55e",
-  to: "#16a34a",
-  description: "Learned to design and automate workflows in Microsoft Power Automate Desktop using control flow and conditional logic."
-},
-{
-  title: "Responsible Use of AI",
-  issuer: "Skillsoft",
-  date: "09-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/441f126a-02bf-4cdf-8ded-8dc6e2fe92f6#acc.0OeuW5HV",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#0ea5e9",
-  to: "#06b6d4",
-  description: "Developed an ethical framework for applying artificial intelligence responsibly and transparently within organizations."
-},
-{
-  title: "Automation Design & Robotics",
-  issuer: "Skillsoft",
-  date: "08-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/942218dc-e372-48c8-a9db-5b9e2f81cadd#acc.zw24GuA8",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#9333ea",
-  to: "#a855f7",
-  description: "Explored core concepts in robotic process automation (RPA) and automation design for streamlining repetitive business tasks."
-},
-{
-  title: "Developing Emotional Intelligence",
-  issuer: "Skillsoft",
-  date: "12-Dec-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/f8c13830-1d33-474c-bc46-3b81f2f851c0#acc.O2hHXFsg",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#ef4444",
-  to: "#f97316",
-  description: "Strengthened emotional intelligence to improve leadership, empathy, and workplace relationships."
-},
-{
-  title: "Developing Your Business Acumen",
-  issuer: "Skillsoft",
-  date: "26-Oct-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/7b6abb88-3607-438e-9bca-8c00f6a53db4#acc.K4pSbWI1",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#3b82f6",
-  to: "#2563eb",
-  description: "Developed understanding of business models, revenue strategies, and market analysis for better decision-making."
-},
-{
-  title: "Enabling Business Process Improvement",
-  issuer: "Skillsoft",
-  date: "27-Nov-24",
-  hasCredential: true,
-  credentialUrl: "https://skillsoft.digitalbadges.skillsoft.com/51677ed6-fa87-4596-aabf-60a7a581b2a7#acc.CYBZFLNQ",
-  fileUrl: "./certificates/sample.pdf",
-  from: "#22c55e",
-  to: "#10b981",
-  description: "Learned process mapping, KPI analysis, and continuous improvement methods to drive operational excellence."
-},
-      {
-  title: "Power to automate your repetitive tasks (Know How Studio Workshop Recording)",
-  issuer: "Accenture",
-  date: "14-Oct-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#2563eb",
-  to: "#3b82f6",
-  description: "Workshop covering Microsoft Power Automate tools to streamline and automate repetitive tasks efficiently."
-},
-{
-  title: "Customer WOW - Experience",
-  issuer: "NeuCode Talent",
-  date: "17-Sep-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#9333ea",
-  to: "#c084fc",
-  description: "Training focused on delivering exceptional customer experiences through empathy and service excellence."
-},
-{
-  title: "Domain Quotient for Finance & Accounting: Procure to Pay (PTP)",
-  issuer: "Accenture",
-  date: "15-Oct-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#0ea5e9",
-  to: "#22d3ee",
-  description: "Covered the Procure-to-Pay cycle including purchase orders, invoices, and payment processes in enterprise systems."
-},
-{
-  title: "SAP S4HANA for Finance and Accounting PTP",
-  issuer: "Accenture",
-  date: "15-Oct-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#22c55e",
-  to: "#4ade80",
-  description: "Introduced SAP S/4HANA financial workflows, focusing on procurement and payment automation."
-},
-{
-  title: "(SAP Learning Journey) Describing the Receivables Management Process in SAP S/4HANA",
-  issuer: "Accenture",
-  date: "12-Jul-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#f59e0b",
-  to: "#fbbf24",
-  description: "Learned how receivables are tracked, reconciled, and automated within SAP S/4HANA financial modules."
-},
-{
-  title: "Importance of Confidentiality",
-  issuer: "Accenture",
-  date: "05-Jun-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#ef4444",
-  to: "#f87171",
-  description: "Covered data privacy, confidentiality policies, and professional ethics within corporate environments."
-},
-{
-  title: "Domain Quotient for Finance & Accounting: Order to Cash (OTC)",
-  issuer: "Accenture",
-  date: "06-Jul-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#8b5cf6",
-  to: "#a78bfa",
-  description: "Learned the complete Order-to-Cash process from order entry to payment and reconciliation."
-},
-{
-  title: "SAP S4 Hana for Finance and Accounting_OTC",
-  issuer: "Accenture",
-  date: "06-Jul-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#06b6d4",
-  to: "#67e8f9",
-  description: "Explored SAP financial modules managing order fulfillment, billing, and revenue recognition."
-},
-{
-  title: "(Video) The Beginner's Guide to Excel - Excel Basics Tutorial",
-  issuer: "Accenture",
-  date: "19-Apr-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#14b8a6",
-  to: "#2dd4bf",
-  description: "Introduced fundamental Excel features including formulas, data formatting, and visualization basics."
-},
-{
-  title: "(Course) Leadercamp on-demand: Delegation and Time Management",
-  issuer: "Accenture",
-  date: "18-Apr-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#f43f5e",
-  to: "#fb7185",
-  description: "Leadership session focused on effective task delegation, prioritization, and managing team workload."
-},
-{
-  title: "Advanced MS Excel",
-  issuer: "Accenture vendor",
-  date: "08-Jan-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#ec4899",
-  to: "#f9a8d4",
-  description: "Advanced Excel workshop covering pivot tables, data analytics, and formula-based automation."
-},
-{
-  title: "Assertive Communication",
-  issuer: "Acc Learning Event",
-  date: "06-Jan-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#f97316",
-  to: "#fdba74",
-  description: "Improved assertive communication and confidence in workplace discussions and collaboration."
-},
-{
-  title: "Automation for Beginners",
-  issuer: "Accenture",
-  date: "09-Dec-24",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#16a34a",
-  to: "#4ade80",
-  description: "Introduced core automation principles and digital tools to streamline manual business tasks."
-},
-{
-  title: "Finance Back-To-Basics",
-  issuer: "Acc Internal training",
-  date: "18-Dec-24",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#7c3aed",
-  to: "#c084fc",
-  description: "Refresher training on accounting principles, journal entries, and reporting fundamentals."
-},
-{
-  title: "Order to Cash: Overview and Framework",
-  issuer: "Acc Internal training",
-  date: "27-Nov-24",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#06b6d4",
-  to: "#38bdf8",
-  description: "Learned about the structure and lifecycle of Order-to-Cash operations in corporate finance."
-},
-{
-  title: "(Course) Developing Your Business Acumen",
-  issuer: "Accenture",
-  date: "27-Oct-24",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#22c55e",
-  to: "#86efac",
-  description: "Developed deeper understanding of business strategy, operations, and decision-making skills."
-},
-{
-  title: "(Course) Keeping Business Calls Professional",
-  issuer: "Accenture",
-  date: "27-Oct-24",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#3b82f6",
-  to: "#60a5fa",
-  description: "Learned etiquette, tone, and structure for maintaining professionalism during business calls."
-},
-{
-  title: "Campus to Corporate",
-  issuer: "Acc Learning Event",
-  date: "16-Jul-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#f59e0b",
-  to: "#fcd34d",
-  description: "Prepared for the professional environment with sessions on adaptability, workplace culture, and communication."
-},
-{
-  title: "Accessibility at Work",
-  issuer: "Acc Learning Event",
-  date: "16-Jul-25",
-  hasCredential: false,
-  credentialUrl: "#",
-  fileUrl: "#",
-  from: "#9333ea",
-  to: "#a855f7",
-  description: "Awareness training emphasizing inclusivity and digital accessibility best practices in the workplace."
+"title": "Tally ERP, Zoho & ERPNext Systems",
+"issuer": "ICMAI",
+"date": "2025",
+"hasCredential": true,
+"credentialUrl": "",
+"fileUrl": "./certificates/TallyERP.pdf",
+"from": "#3b82f6",
+"to": "#6366f1",
+"description": "Certified in practical ERP systems including Tally, Zoho, and ERPNext for accounting, inventory, and finance operations."
+},
+{
+"title": "Communication & Soft Skills",
+"issuer": "ICMAI",
+"date": "2025",
+"hasCredential": true,
+"credentialUrl": "",
+"fileUrl": "./certificates/SoftSkills.pdf",
+"from": "#06b6d4",
+"to": "#14b8a6",
+"description": "Developed professional communication, presentation, and collaboration skills for corporate environments."
+},
+{
+"title": "Microsoft Office Suite",
+"issuer": "ICMAI",
+"date": "2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#f59e0b",
+"to": "#f97316",
+"description": "Gained proficiency in MS Excel, Word, and PowerPoint for productivity, data management, and reporting."
+},
+{
+"title": "E-Filing (ITR & GST)",
+"issuer": "ICMAI",
+"date": "2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#22c55e",
+"to": "#16a34a",
+"description": "Learned procedures for electronic filing of Income Tax Returns and GST forms using government portals."
+},
+{
+"title": "Microsoft Office Professional",
+"issuer": "Pluralsight",
+"date": "Oct 2024",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#0ea5e9",
+"to": "#06b6d4",
+"description": "Productivity suite mastery — Excel analytics, PowerPoint storytelling, and Word document automation."
+},
+{
+"title": "Power BI for Financial Insights",
+"issuer": "Pluralsight",
+"date": "May 2024",
+"hasCredential": true,
+"credentialUrl": "",
+"fileUrl": "./certificates/PowerBI.pdf",
+"from": "#14b8a6",
+"to": "#06b6d4",
+"description": "Built dashboards and visual reports using real O2C data, improving data storytelling and analysis."
+},
+{
+"title": "Accenture Foxtrot Practitioner Certification",
+"issuer": "Accenture",
+"date": "Mar 2025",
+"hasCredential": true,
+"credentialUrl": "",
+"fileUrl": "./certificates/FoxtrotPractitioner.pdf",
+"from": "#0ea5e9",
+"to": "#14b8a6",
+"description": "Certified in Foxtrot automation for financial control and fraud prevention in vendor data management."
+},
+{
+"title": "Six Sigma Black Belt: Lean and Six Sigma Fundamentals",
+"issuer": "Skillsoft",
+"date": "May 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/9dad0359-e55c-4345-8d20-19c6f582f24c#acc.RKfqWri3
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#3b82f6",
+"to": "#6366f1",
+"description": "Mastered Six Sigma and Lean principles to enhance process efficiency, minimize waste, and improve organizational performance."
+},
+{
+"title": "Make The Time You Need: Get Organized",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/0ca6e5ff-721e-4e3b-b98b-89603c12d6ec#acc.fQrqyY2X
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#06b6d4",
+"to": "#14b8a6",
+"description": "Developed organization and prioritization skills to maximize productivity and manage time effectively in daily work."
+},
+{
+"title": "Leadercamp on-demand: Delegation and Time Management",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/7c71300b-fc79-44ec-bac2-9070f67bd960#acc.nF5UAat0
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#9333ea",
+"to": "#ec4899",
+"description": "Learned leadership strategies for delegation, prioritization, and managing workloads efficiently within teams."
+},
+{
+"title": "Sage Accounting Software",
+"issuer": "Self-Learning",
+"date": "2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#8b5cf6",
+"to": "#6366f1",
+"description": "Self-learned Sage for bookkeeping, invoicing, and small-business financial management."
+},
+{
+"title": "QuickBooks Accounting ERP",
+"issuer": "Self-Learning",
+"date": "2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#f97316",
+"to": "#ea580c",
+"description": "Independently explored QuickBooks to manage ledgers, reconcile accounts, and generate financial reports."
+},
+{
+"title": "The Art of Staying Focused",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/e0f8fc0e-35c7-4b73-ab3c-68e0dd20f011#acc.lnci3axt
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#22c55e",
+"to": "#10b981",
+"description": "Acquired practical techniques to maintain focus, reduce distractions, and enhance personal effectiveness at work."
+},
+{
+"title": "Maximize Your Productivity by Managing Time and Tasks",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/f79c14b4-3ee5-4a3e-b78c-0b27b4896a4d#acc.SnHmp6fb
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#f97316",
+"to": "#f59e0b",
+"description": "Learned advanced methods to optimize schedules and task execution for higher productivity and reduced stress."
+},
+{
+"title": "Becoming a Successful Collaborator",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/9be6d5fb-0873-4729-93d2-277e9d6f81bc#acc.QkzRJcKa
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#0ea5e9",
+"to": "#06b6d4",
+"description": "Gained collaboration and interpersonal communication skills essential for effective teamwork in business settings."
+},
+{
+"title": "Be Productive by Working Efficiently",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/bd307d14-029b-4dc5-9168-35e184bb5950#acc.w2f5h76j
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#8b5cf6",
+"to": "#6366f1",
+"description": "Improved task management and time allocation through methods designed for efficiency and reduced workload stress."
+},
+{
+"title": "Sharpening Your Focus to Stay on Track",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/2e91dc1b-b2f9-42bb-8411-991d34082a7d#acc.qSoKf1GH
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#ec4899",
+"to": "#f472b6",
+"description": "Developed cognitive and behavioral strategies to sharpen focus, prioritize key tasks, and minimize distractions."
+},
+{
+"title": "Managing Your Time So It Doesn’t Manage You",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/3cb167e4-2f50-46cb-88a5-e73c325e82f6#acc.KLg9J7E8
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#14b8a6",
+"to": "#0ea5e9",
+"description": "Explored frameworks for proactive time management to stay in control of priorities and work commitments."
+},
+{
+"title": "Saving Time by Setting Goals",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/ef3af9d9-552a-4004-81bc-e7f0549912a4#acc.Vodm2LG7
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#22c55e",
+"to": "#16a34a",
+"description": "Learned how goal-setting enhances time efficiency and drives progress through clear, measurable objectives."
+},
+{
+"title": "Aligning Goals and Priorities To Manage Time",
+"issuer": "Skillsoft",
+"date": "Apr 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/09fa3687-7e02-4139-b8d2-beb300c75e4d#acc.KrNyS2gV
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#facc15",
+"to": "#eab308",
+"description": "Developed strategies to align business goals and personal priorities for better time and performance management."
+},
+{
+"title": "Preparing Financial Statements and Closing Accounts",
+"issuer": "Skillsoft",
+"date": "Feb 2025",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/eaeedcf2-2df5-404f-b969-e178fc46c3f1#acc.L6ijBybY
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#2563eb",
+"to": "#3b82f6",
+"description": "Learned the complete process of preparing, adjusting, and closing accounts to create accurate financial statements."
+},
+{
+"title": "Clarity and Conciseness in Business Writing",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/303a702a-7ca6-4abb-843a-2ef24f28e6ca#acc.iFAwkzrQ
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#7c3aed",
+"to": "#9333ea",
+"description": "Enhanced written communication skills to deliver clear, concise, and professional business correspondence."
+},
+{
+"title": "Performing Data Analysis and Forecasting in Excel 365",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/11398b04-82f6-4fd5-82bb-bf5112d1fea8#acc.M2h4YpGo
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#0ea5e9",
+"to": "#06b6d4",
+"description": "Applied advanced Excel functions to perform data analysis, create forecasts, and visualize business insights."
+},
+{
+"title": "Creating & Saving Apps in Microsoft PowerApps",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/e66475e2-4b97-4e60-9285-4fcffc2b1714#acc.KdBQqpeT
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#14b8a6",
+"to": "#0ea5e9",
+"description": "Built and deployed low-code business applications using Microsoft PowerApps for process automation."
+},
+{
+"title": "Getting to Know the Platform in Microsoft PowerApps",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/5fa4ebc6-420c-4d9b-9b98-bd0a604431ab#acc.XKruabTV
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#22c55e",
+"to": "#16a34a",
+"description": "Explored PowerApps’ interface and functionality to build business applications integrated with Microsoft 365 tools."
+},
+{
+"title": "Key Accounting Concepts and Principles",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/10de5199-0fec-422e-9933-67c500f89526#acc.avnCkFIu
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#f59e0b",
+"to": "#d97706",
+"description": "Learned foundational accounting concepts including double-entry, accruals, and the accounting equation."
+},
+{
+"title": "Developing Emotional Intelligence",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/f8c13830-1d33-474c-bc46-3b81f2f851c0#acc.O2hHXFsg
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#ef4444",
+"to": "#f97316",
+"description": "Strengthened emotional awareness and empathy to improve relationships, leadership, and communication skills."
+},
+{
+"title": "Writing with a Professional Mindset",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/30ffe5a4-df4f-4885-8f51-4ac3fa03b1f5#acc.o02OqMZk
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#6366f1",
+"to": "#3b82f6",
+"description": "Mastered techniques for writing polished, professional business content that communicates with clarity and tone."
+},
+{
+"title": "Taking Effective and Professional Notes",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/800bceeb-5c74-48c7-845d-97a2c71bc8b3#acc.VwunLpel
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#06b6d4",
+"to": "#14b8a6",
+"description": "Learned structured note-taking methods to improve retention, accuracy, and reference value in meetings and training."
+},
+{
+"title": "CCSP 2019: Identity & Access Management",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/d3649dcb-eb09-4318-84cf-f25bb15b367e#acc.Dnxi92Yq
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#8b5cf6",
+"to": "#7c3aed",
+"description": "Explored identity and access management concepts including authentication, authorization, and cloud security frameworks."
+},
+{
+"title": "Leading Security Teams for GenAI Solutions: Use of Generative AI",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/ae6033db-58d9-434a-88a1-acb7be24c27b#acc.wdb3fXLc
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#9333ea",
+"to": "#a855f7",
+"description": "Learned leadership practices for managing cybersecurity teams using generative AI responsibly and effectively."
+},
+{
+"title": "Responsible Use of AI",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/441f126a-02bf-4cdf-8ded-8dc6e2fe92f6#acc.0OeuW5HV
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#22c55e",
+"to": "#16a34a",
+"description": "Gained understanding of ethical AI practices, governance, and data privacy for responsible AI implementation."
+},
+{
+"title": "Data Access & Governance Policies: Data Classification, Encryption, & Monitoring",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/ef12317f-b65f-4a35-a8a2-9c92db2a4b2e#acc.e0gVGtdv
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#0ea5e9",
+"to": "#06b6d4",
+"description": "Learned to develop and apply policies for secure data management including encryption and classification standards."
+},
+{
+"title": "Git & GitHub: Introduction",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/4cc04759-c8c4-409e-9404-91615c0662f4#acc.QluFhgVd
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#f97316",
+"to": "#ea580c",
+"description": "Introduced to Git and GitHub version control systems including commits, branching, and repository collaboration."
+},
+{
+"title": "Automation Design & Robotics",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/942218dc-e372-48c8-a9db-5b9e2f81cadd#acc.zw24GuA8
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#3b82f6",
+"to": "#6366f1",
+"description": "Explored fundamentals of automation design, robotic process automation (RPA), and intelligent workflow creation."
+},
+{
+"title": "Exploring Business Process Automation",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/b2c7ab45-8c98-4d0d-bb22-cd6cd3910a56#acc.fZ3bkyWA
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#f59e0b",
+"to": "#d97706",
+"description": "Learned to identify and automate repetitive business processes using modern digital automation tools."
+},
+{
+"title": "PRINCE2® Project Management Overview",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/274978c8-80ba-48c4-b216-48f91c092a8a#acc.POUGHThr
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#8b5cf6",
+"to": "#7c3aed",
+"description": "Covered PRINCE2 project management framework principles, processes, and roles for successful project delivery."
+},
+{
+"title": "Identifying Risk (PMBOK® Guide Sixth Edition)",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/e29db2cb-4309-4250-a6c8-b2803048a55b#acc.N5VDyzjP
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#06b6d4",
+"to": "#14b8a6",
+"description": "Developed ability to identify and assess project risks in alignment with PMI’s PMBOK Sixth Edition guidelines."
+},
+{
+"title": "Effective Team Communication",
+"issuer": "Skillsoft",
+"date": "Dec 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/e5ba2fc4-efa4-44d6-8403-eba685e583bc#acc.5UYc4oEu
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#f43f5e",
+"to": "#e11d48",
+"description": "Enhanced collaborative and verbal communication skills to improve teamwork and reduce workplace friction."
+},
+{
+"title": "Enabling Business Process Improvement",
+"issuer": "Skillsoft",
+"date": "Nov 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/51677ed6-fa87-4596-aabf-60a7a581b2a7#acc.CYBZFLNQ
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#10b981",
+"to": "#22c55e",
+"description": "Learned tools and strategies to analyze, map, and optimize existing business processes for operational excellence."
+},
+{
+"title": "Critical Thinking: Challenging Assumptions",
+"issuer": "Skillsoft",
+"date": "Nov 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/a52058cd-8ce8-433d-9ee7-0083a7347890#acc.NyWUmMGc
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#2563eb",
+"to": "#3b82f6",
+"description": "Developed analytical reasoning to identify and challenge assumptions for better decision-making and problem-solving."
+},
+{
+"title": "Knowing When to Take Strategic Risks",
+"issuer": "Skillsoft",
+"date": "Nov 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/5b406b1a-079b-4a85-8e4a-530ce11e6983#acc.AmBnSCjl
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#f97316",
+"to": "#f59e0b",
+"description": "Gained insights on evaluating potential outcomes and taking calculated risks aligned with organizational strategy."
+},
+{
+"title": "Being an Effective Team Member",
+"issuer": "Skillsoft",
+"date": "Nov 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/cf363929-ec85-48f1-bb75-31765fd5f4e0#acc.ACrYHexg
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#06b6d4",
+"to": "#0ea5e9",
+"description": "Learned the principles of accountability, collaboration, and adaptability to contribute effectively to team success."
+},
+{
+"title": "Developing Diplomacy and Tact",
+"issuer": "Skillsoft",
+"date": "Nov 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/df16304e-4591-42df-a03c-ecf2b2af9efb#acc.7NhCjqnZ
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#8b5cf6",
+"to": "#7c3aed",
+"description": "Enhanced interpersonal and communication skills to handle sensitive situations with professionalism and grace."
+},
+{
+"title": "Taking Responsibility for Your Accountability",
+"issuer": "Skillsoft",
+"date": "Nov 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/d105d1e3-6ed5-45cb-913b-77a3cfb92f54#acc.0vLD5kQj
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#22c55e",
+"to": "#16a34a",
+"description": "Learned the value of personal accountability and ownership for achieving consistent professional performance."
+},
+{
+"title": "Taking the Lead with Workplace Motivation and Engagement",
+"issuer": "Skillsoft",
+"date": "Nov 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/2441b2fa-df24-45bb-b2cf-6492a8164bdc#acc.DPGX4C7f
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#ec4899",
+"to": "#f472b6",
+"description": "Learned motivational leadership techniques to boost engagement and morale across diverse teams."
+},
+{
+"title": "Developing Your Business Acumen",
+"issuer": "Skillsoft",
+"date": "Oct 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/7b6abb88-3607-438e-9bca-8c00f6a53db4#acc.K4pSbWI1
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#f43f5e",
+"to": "#e11d48",
+"description": "Built strong business understanding, analyzing how financial and operational decisions drive overall company performance."
+},
+{
+"title": "Keeping Business Calls Professional",
+"issuer": "Skillsoft",
+"date": "Oct 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/db796cee-9c1b-4ab7-a0d2-8e4364a9c033#acc.WYPZydwn
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#14b8a6",
+"to": "#10b981",
+"description": "Learned etiquette and communication strategies for managing professional and productive business calls."
+},
+{
+"title": "The Art and Science of Communication",
+"issuer": "Skillsoft",
+"date": "Oct 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/5205f7d9-0aaa-463a-9fc9-e6a2a204eb14#acc.Q6tR70IO
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#3b82f6",
+"to": "#2563eb",
+"description": "Mastered the fundamentals of communication—balancing clarity, empathy, and influence for professional impact."
+},
+{
+"title": "Writing Effective E-mails and Instant Messages",
+"issuer": "Skillsoft",
+"date": "Oct 2024",
+"hasCredential": true,
+"credentialUrl": "https://skillsoft.digitalbadges.skillsoft.com/a85e0583-842e-4b5c-834b-94ede7a412d7#acc.WsHjgSn3
+",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#f59e0b",
+"to": "#d97706",
+"description": "Improved written communication by crafting concise, professional, and audience-appropriate messages."
+},
+{
+"title": "Understanding Financial Statements",
+"issuer": "Skillsoft",
+"date": "Oct 2024",
+"hasCredential": true,
+"credentialUrl": "",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#8b5cf6",
+"to": "#6366f1",
+"description": "Gained practical understanding of balance sheets, income statements, and cash flow reports to analyze business performance."
+},
+{
+"title": "Configure Flow Control in Power Automate Desktop",
+"issuer": "Skillsoft",
+"date": "Oct 2024",
+"hasCredential": true,
+"credentialUrl": "",
+"fileUrl": "./certificates/sample.pdf",
+"from": "#22c55e",
+"to": "#16a34a",
+"description": "Learned to design and automate workflows in Microsoft Power Automate Desktop using control flow and conditional logic."
+},
+{
+"title": "Power to Automate Your Repetitive Tasks",
+"issuer": "Accenture",
+"date": "Oct 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#2563eb",
+"to": "#3b82f6",
+"description": "Workshop covering Microsoft Power Automate tools to streamline and automate repetitive tasks efficiently."
+},
+{
+"title": "Customer WOW - Experience",
+"issuer": "NeuCode Talent",
+"date": "Sep 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#9333ea",
+"to": "#c084fc",
+"description": "Training focused on delivering exceptional customer experiences through empathy and service excellence."
+},
+{
+"title": "Domain Quotient for Finance & Accounting: Procure to Pay (PTP)",
+"issuer": "Accenture",
+"date": "Oct 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#0ea5e9",
+"to": "#22d3ee",
+"description": "Covered the Procure-to-Pay cycle including purchase orders, invoices, and payment processes in enterprise systems."
+},
+{
+"title": "SAP S/4HANA for Finance and Accounting (PTP)",
+"issuer": "Accenture",
+"date": "Oct 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#22c55e",
+"to": "#4ade80",
+"description": "Introduced SAP S/4HANA financial workflows, focusing on procurement and payment automation."
+},
+{
+"title": "Describing the Receivables Management Process in SAP S/4HANA",
+"issuer": "Accenture",
+"date": "Jul 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#f59e0b",
+"to": "#fbbf24",
+"description": "Learned how receivables are tracked, reconciled, and automated within SAP S/4HANA financial modules."
+},
+{
+"title": "Importance of Confidentiality",
+"issuer": "Accenture",
+"date": "Jun 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#ef4444",
+"to": "#f87171",
+"description": "Covered data privacy, confidentiality policies, and professional ethics within corporate environments."
+},
+{
+"title": "Domain Quotient for Finance & Accounting: Order to Cash (OTC)",
+"issuer": "Accenture",
+"date": "Jul 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#8b5cf6",
+"to": "#a78bfa",
+"description": "Learned the complete Order-to-Cash process from order entry to payment and reconciliation."
+},
+{
+"title": "SAP S/4HANA for Finance and Accounting (OTC)",
+"issuer": "Accenture",
+"date": "Jul 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#06b6d4",
+"to": "#67e8f9",
+"description": "Explored SAP financial modules managing order fulfillment, billing, and revenue recognition."
+},
+{
+"title": "The Beginner's Guide to Excel - Excel Basics",
+"issuer": "Accenture",
+"date": "Apr 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#14b8a6",
+"to": "#2dd4bf",
+"description": "Introduced fundamental Excel features including formulas, data formatting, and visualization basics."
+},
+{
+"title": "Leadercamp: Delegation and Time Management",
+"issuer": "Accenture",
+"date": "Apr 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#f43f5e",
+"to": "#fb7185",
+"description": "Leadership session focused on effective task delegation, prioritization, and managing team workload."
+},
+{
+"title": "Advanced MS Excel",
+"issuer": "Accenture vendor",
+"date": "Jan 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#ec4899",
+"to": "#f9a8d4",
+"description": "Advanced Excel workshop covering pivot tables, data analytics, and formula-based automation."
+},
+{
+"title": "Assertive Communication",
+"issuer": "Acc Learning Event",
+"date": "Jan 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#f97316",
+"to": "#fdba74",
+"description": "Improved assertive communication and confidence in workplace discussions and collaboration."
+},
+{
+"title": "Automation for Beginners",
+"issuer": "Accenture",
+"date": "Dec 2024",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#16a34a",
+"to": "#4ade80",
+"description": "Introduced core automation principles and digital tools to streamline manual business tasks."
+},
+{
+"title": "Finance Back-To-Basics",
+"issuer": "Acc Internal training",
+"date": "Dec 2024",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#7c3aed",
+"to": "#c084fc",
+"description": "Refresher training on accounting principles, journal entries, and reporting fundamentals."
+},
+{
+"title": "Order to Cash: Overview and Framework",
+"issuer": "Acc Internal training",
+"date": "Nov 2024",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#06b6d4",
+"to": "#38bdf8",
+"description": "Learned about the structure and lifecycle of Order-to-Cash operations in corporate finance."
+},
+{
+"title": "Developing Your Business Acumen",
+"issuer": "Accenture",
+"date": "Oct 2024",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#22c55e",
+"to": "#86efac",
+"description": "Developed deeper understanding of business strategy, operations, and decision-making skills."
+},
+{
+"title": "Keeping Business Calls Professional",
+"issuer": "Accenture",
+"date": "Oct 2024",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#3b82f6",
+"to": "#60a5fa",
+"description": "Learned etiquette, tone, and structure for maintaining professionalism during business calls."
+},
+{
+"title": "Campus to Corporate",
+"issuer": "Acc Learning Event",
+"date": "Jul 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#f59e0b",
+"to": "#fcd34d",
+"description": "Prepared for the professional environment with sessions on adaptability, workplace culture, and communication."
+},
+{
+"title": "Accessibility at Work",
+"issuer": "Acc Learning Event",
+"date": "Jul 2025",
+"hasCredential": false,
+"credentialUrl": "",
+"fileUrl": "",
+"from": "#9333ea",
+"to": "#a855f7",
+"description": "Awareness training emphasizing inclusivity and digital accessibility best practices in the workplace."
 }
-
 
 
 
@@ -1654,10 +1643,8 @@ const disabledBtn = document.getElementById("disabledBtn");
 
 // ✅ Open modal
 function openModal(cert) {
-
-  // Clear previously added credential buttons
-const actions = modal.querySelector(".actions");
-actions.querySelectorAll(".btn.primary:not(#viewBtn)").forEach(btn => btn.remove());
+  const actions = modal.querySelector(".actions");
+  actions.querySelectorAll(".btn.primary:not(#viewBtn)").forEach(btn => btn.remove());
 
   modalTitle.innerHTML = `
     <div class="title-with-icon" style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem;">
@@ -1665,36 +1652,37 @@ actions.querySelectorAll(".btn.primary:not(#viewBtn)").forEach(btn => btn.remove
       <span>${cert.title}</span>
     </div>
   `;
-
   modalDescription.textContent = cert.description;
   modalDetails.textContent = `Issuer: ${cert.issuer} | Date: ${cert.date}`;
 
-if (cert.hasCredential) {
+  // Hide all buttons initially
+  viewBtn.style.display = "none";
   disabledBtn.style.display = "none";
 
-  if (cert.fileUrl && cert.fileUrl !== "#") {
-    viewBtn.style.display = "inline-flex";
-    viewBtn.textContent = "📄 View Certificate";
-    viewBtn.onclick = () => window.open(cert.fileUrl, "_blank");
+  // Clear previous extra buttons
+  actions.querySelectorAll(".btn.primary:not(#viewBtn)").forEach(btn => btn.remove());
 
-    // Add a second button dynamically for Credential URL
-    const credentialBtn = document.createElement("button");
-    credentialBtn.className = "btn primary";
-    credentialBtn.textContent = "🔗 View Credential";
-    credentialBtn.onclick = () => window.open(cert.credentialUrl, "_blank");
+  const hasFile = cert.fileUrl && cert.fileUrl !== "#" && cert.fileUrl.trim() !== "";
+  const hasCredential = cert.credentialUrl && cert.credentialUrl !== "#" && cert.credentialUrl.trim() !== "";
 
-    // Insert it next to the others
-    const actions = modal.querySelector(".actions");
-    actions.insertBefore(credentialBtn, copyBtn);
+  if (hasFile || hasCredential) {
+    if (hasFile) {
+      viewBtn.style.display = "inline-flex";
+      viewBtn.textContent = "📄 View Certificate";
+      viewBtn.onclick = () => window.open(cert.fileUrl, "_blank");
+    }
+
+    if (hasCredential) {
+      const credentialBtn = document.createElement("button");
+      credentialBtn.className = "btn primary";
+      credentialBtn.textContent = "🔗 View Credential";
+      credentialBtn.onclick = () => window.open(cert.credentialUrl, "_blank");
+      actions.insertBefore(credentialBtn, copyBtn);
+    }
   } else {
-    viewBtn.style.display = "inline-flex";
-    viewBtn.textContent = "🔗 View Credential";
-    viewBtn.onclick = () => window.open(cert.credentialUrl, "_blank");
+    disabledBtn.style.display = "inline-flex";
   }
-} else {
-  viewBtn.style.display = "none";
-  disabledBtn.style.display = "inline-flex";
-}
+
   copyBtn.onclick = () => {
     navigator.clipboard.writeText(cert.title);
     copyBtn.textContent = "Copied!";
@@ -1703,8 +1691,6 @@ if (cert.hasCredential) {
 
   overlay.classList.add("active");
   lucide.createIcons();
-
-  // Push a new state for the back button (mobile)
   history.pushState({ modalOpen: true }, "", "#modal");
 
   gsap.fromTo(
@@ -1712,6 +1698,8 @@ if (cert.hasCredential) {
     { scale: 0.8, opacity: 0, y: -30 },
     { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" }
   );
+}
+
 
   gsap.from(".modal .title-with-icon [data-lucide='award']", {
     opacity: 0,
