@@ -1014,14 +1014,6 @@ if (cert.hasCredential) {
   viewBtn.style.display = "none";
   disabledBtn.style.display = "inline-flex";
 }
-
-  
-  
-  else {
-    viewBtn.style.display = "none";
-    disabledBtn.style.display = "inline-flex";
-  }
-
   copyBtn.onclick = () => {
     navigator.clipboard.writeText(cert.title);
     copyBtn.textContent = "Copied!";
