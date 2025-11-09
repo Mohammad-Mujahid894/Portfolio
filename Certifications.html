@@ -1532,6 +1532,11 @@ const disabledBtn = document.getElementById("disabledBtn");
 
 // ✅ Open modal
 function openModal(cert) {
+
+  // Clear previously added credential buttons
+const actions = modal.querySelector(".actions");
+actions.querySelectorAll(".btn.primary:not(#viewBtn)").forEach(btn => btn.remove());
+
   modalTitle.innerHTML = `
     <div class="title-with-icon" style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem;">
       <i data-lucide="award"></i>
