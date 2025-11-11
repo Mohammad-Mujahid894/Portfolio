@@ -783,7 +783,7 @@ document.querySelectorAll(".dropdown > .dropbtn").forEach((btn) => {
 "date": "Mar 2025",
 "hasCredential": true,
 "credentialUrl": "",
-"fileUrl": "./certificates/FoxtrotPractitioner.pdf",
+"fileUrl": "./certificates/mohammad.mujahid_Accenture Foxtrot Practitioner Certification.pdf",
 "from": "#0ea5e9",
 "to": "#14b8a6",
 "description": "Certified in Foxtrot automation for financial control and fraud prevention in vendor data management."
@@ -1708,6 +1708,18 @@ window.addEventListener("popstate", () => {
       document.body.classList.toggle("dark");
       themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
     });
+
+
+    // ✅ Auto-encode all file URLs safely before use
+CERTIFICATIONS.forEach(cert => {
+  if (cert.fileUrl && cert.fileUrl.trim() !== "") {
+    const parts = cert.fileUrl.split("/");
+    const fileName = parts.pop(); // get "Foxtrot Practitioner.pdf"
+    const encodedFileName = encodeURIComponent(fileName); // turn spaces → %20
+    cert.fileUrl = [...parts, encodedFileName].join("/"); // rebuild full path
+  }
+});
+
   </script>
 <script>
 window.addEventListener("scroll", () => {
