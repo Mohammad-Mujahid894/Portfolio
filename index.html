@@ -1985,6 +1985,56 @@ body {
 }
 
 
+/* ===== Final visual override — paste at the END of your CSS ===== */
+:root{
+  --bg: #04060b;
+  --fg: #eaf2ff;
+  --muted: #9fb2d8;
+  --glass: rgba(255,255,255,0.06);
+  --stroke: rgba(255,255,255,0.12);
+}
+
+/* Use Gallup-like base so colored nebula shows as subtle glow, not tint-everything */
+body {
+  background: linear-gradient(180deg, #051022 0%, var(--bg) 100%) !important;
+  color: var(--fg) !important;
+}
+
+/* Tone down nebula so it looks like a galaxy (colorful) but doesn't overpower glass */
+#nebula {
+  z-index: -2 !important;
+  filter: blur(28px) saturate(130%) !important;     /* less blur & slightly less saturate */
+  opacity: 0.95 !important;
+  background:
+    radial-gradient(40% 40% at 15% 20%, rgba(122,162,255,0.32), transparent 70%),
+    radial-gradient(35% 35% at 85% 15%, rgba(79,240,176,0.24), transparent 70%),
+    radial-gradient(50% 50% at 60% 80%, rgba(138,122,255,0.20), transparent 70%),
+    radial-gradient(30% 30% at 20% 85%, rgba(255,200,120,0.18), transparent 70%) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  mix-blend-mode: screen; /* helps nebula glow without darkening */
+}
+
+/* Make header/nav glass less reactive to nebula color (reduces tint) */
+header, .nav, .glass, .card, .btn-secondary, .qa {
+  backdrop-filter: blur(8px) saturate(100%) !important;  /* remove over-saturation */
+  background: rgba(6,8,12,0.4) !important;               /* darker glass so nebula color is muted */
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;    /* remove bluish shadows */
+}
+
+/* If anything still uses an explicit bright bluish box-shadow, reduce it */
+header, .nav, .glass:hover, .stat-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
+}
+
+/* Keep glass accents but avoid heavy colored glows on hover */
+.tag, .glassy-card, .stat-card {
+  box-shadow: 0 0 14px rgba(0,0,0,0.35) !important;
+}
+
+/* If there are duplicate body or :root blocks further down, this WILL override them.
+   For a cleaner long-term fix, remove older duplicate :root / body definitions from the file. */
 
 </style>
   
