@@ -1785,7 +1785,7 @@ const html = `
   </div>
 `;
 wrap.html(html);
-
+}
 
 
 // 1) Make your barcode function accept a highlight rank (default 1)
@@ -2012,7 +2012,7 @@ renderFull34BarcodeContained(strengths, 2, 'deliberativeBarcode');
     </div>
   </div>
 `);
-
+}
 
   function renderLearnerDetailsNoTabs(strengths){
   // Find Learner regardless of exact casing/spaces
@@ -2141,7 +2141,7 @@ renderFull34BarcodeContained(strengths, 3, 'learnerBarcode');
   </div>
 `;
 wrap.html(html);
-
+  }
 
 
   function renderIntellectionDetailsNoTabs(strengths){
@@ -2265,7 +2265,7 @@ const html = `
 `;
 wrap.html(html);
 
-
+  }
 function renderInputDetailsNoTabs(strengths){
   const input = strengths.find(s => (s.name || '').toLowerCase().trim() === 'input');
   if(!input) return;
@@ -2397,7 +2397,7 @@ const html = `
   </div>
 `;
 wrap.html(html);
-
+}
   // Ensure D3 and strengths are available
   document.addEventListener('DOMContentLoaded', function () {
     // 1) Top split barcode (compact version)
