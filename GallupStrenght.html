@@ -1676,117 +1676,116 @@ function renderRelatorDetailsNoTabs(strengths){
   const domColor = "#3aa0ff";
   const wrap = d3.select('#relatorDetails');
 
-  const html = `
-    <div style="max-width:720px;margin:24px auto;text-align:left;">
-      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">1. Relator<sup>®</sup></h2>
+const html = `
+  <div style="max-width:720px;margin:24px auto;text-align:left;">
+    <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">1. Relator<sup>®</sup></h2>
 
-      <h3 style="font-size:15px;margin-top:10px;">What is Relator?</h3>
-      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
-        Relator talents describe a person’s attitude toward their relationships. People with strong Relator talents are drawn to
-others they already know. They do not necessarily shy away from meeting new people — in fact, they may have other
-themes that cause them to enjoy the thrill of turning strangers into friends — but they do derive a great deal of pleasure
-and strength from being around their close friends. A person with strong Relator talents forms close relationships with
-people. 
-      </p>
+    <h3 style="font-size:15px;margin-top:10px;">What is Relator?</h3>
+    <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+      My Relator talents describe my attitude toward relationships. I’m naturally drawn to people I already know and feel close to. 
+      While I don’t shy away from meeting new people — and sometimes even enjoy turning strangers into friends — I find my greatest sense of 
+      strength and fulfillment when I’m around those I’m closest to. I form deep, genuine connections and value strong, lasting relationships.
+    </p>
 
-      <h3 style="font-size:15px;margin-top:18px;">Why Your Relator Is Unique</h3>
-      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
-        These Strengths Insights are personalized based on my CliftonStrengths results.
-      </p>
+    <h3 style="font-size:15px;margin-top:18px;">Why My Relator Is Unique</h3>
+    <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+      These Strengths Insights are personalized based on my CliftonStrengths results.
+    </p>
 
-      <!-- Tabs -->
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
-        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    <!-- Tabs -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+      <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    </div>
+
+    <!-- Insights -->
+    <div style="
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:16px;
+      padding:18px 20px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    ">
+      <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I’m someone who loves to read and explore new ideas. My friends often turn to me for guidance because I can offer different 
+        perspectives based on what I’ve read or learned. Reading opens doors to new insights, and I enjoy sharing what I discover 
+        when it might help others.
       </div>
-
-      <!-- Insights -->
-      <div style="
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:16px;
-  padding:18px 20px;
-  backdrop-filter:blur(10px);
-  box-shadow:0 4px 12px rgba(0,0,0,0.2);
-">
-        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Chances are good that you are a well-read individual. People whom you have befriended turn to you for
-guidance. Often you help them see a situation or problem from a different perspective because of
-something you discovered while surveying a book, article, letter, or Internet site. For you, reading is the key
-that opens the door to a world of fresh ideas. You collect them, never knowing when something you read will
-benefit someone else. 
-        </div>
-        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-         Instinctively, you have a small number of close friends who share a foundation of intimacy and trust. You care
-less about how many friends you have and more about how precious those friends are. 
-        </div>
-        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
- By nature, you bond with and work well with people who tell you what they want to accomplish in life. 
-        </div>
-        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-         Because of your strengths, you often declare you are as productive as you can be, especially when people
-allow you to work independently. Having to deal with teammates, classmates, or group members stymies —
-that is, hinders — your progress. 
-        </div>
-        <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          It’s very likely that you are very fond of and devoted to the people in your life. You thrive when individuals
-reciprocate — that is, return — your feelings of warmth and affection
-        </div>
+      <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I naturally keep a small circle of close friends built on trust and intimacy. I care less about having many acquaintances 
+        and more about nurturing the few meaningful relationships that truly matter to me.
+      </div>
+      <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I work best and connect deeply with people who are open about what they want to accomplish in life. Knowing their goals helps 
+        me build stronger, more supportive relationships.
+      </div>
+      <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I’m most productive when I’m allowed to work independently. Relying too much on others or having to coordinate constantly with 
+        teams can sometimes slow me down and hinder my progress.
+      </div>
+      <div style="background:rgba(58,160,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I deeply value the people in my life and feel happiest when my warmth, loyalty, and affection are returned. Mutual care and 
+        respect mean everything to me.
       </div>
     </div>
-    <!-- Blend Section -->
-<div style="margin-top:24px;">
-  <h3 style="font-size:16px;margin-bottom:12px;">How Relator Blends With Your Other Top Five Strengths</h3>
-
-  <div style="display:flex;flex-direction:column;gap:12px;">
-    
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        Trusting others takes some time for you because you trust only those you know well, and you are careful about who you get to know.
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">LEARNER</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        Your deepest, longest friendships don’t stagnate because you strive to discover something new about those who are familiar.
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">INTELLECTION</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        Even though you find solitude conducive for clarifying your thoughts, it will never take the place of being with your friends.
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">INPUT</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        You value tangible, practical resources, but you also value the human resources of your close friends and family.
-      </p>
-    </div>
-
   </div>
-</div>
-  `;
-  wrap.html(html);
-}
+
+  <!-- Blend Section -->
+  <div style="margin-top:24px;">
+    <h3 style="font-size:16px;margin-bottom:12px;">How My Relator Blends With My Other Top Five Strengths</h3>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          It takes me some time to trust others because I tend to trust only those I know well. I’m thoughtful and cautious about who 
+          I let into my close circle.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">LEARNER</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          My closest relationships never stagnate because I’m curious and constantly discovering new things about the people I care about.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">INTELLECTION</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          While I value time alone to think and reflect, I also know that solitude will never replace the joy and meaning I find in 
+          spending time with my friends.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#3AA0FF;">RELATOR</span> + <span style="color:#38D07A;">INPUT</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          I appreciate tangible, practical resources — but I also see my close friends and family as some of my most valuable resources.
+        </p>
+      </div>
+
+    </div>
+  </div>
+`;
+wrap.html(html);
+
 
 
 // 1) Make your barcode function accept a highlight rank (default 1)
@@ -1916,107 +1915,104 @@ renderFull34BarcodeContained(strengths, 2, 'deliberativeBarcode');
   if (!wrap.node()) return; // container missing
 
   wrap.html(`
-    <div style="max-width:720px;margin:24px auto;text-align:left;">
-      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">2. Deliberative<sup>®</sup></h2>
-      <h3 style="font-size:15px;margin-top:10px;">What is Deliberative?</h3>
-      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
-        People with strong Deliberative talents are careful and vigilant. Everything may seem in order, but beneath the surface,
-they sense many risks. Rather than avoiding these hazards, they draw them out into the open so they can identify, assess
-and ultimately reduce each risk. Thus, those with strong Deliberative talents bring a thorough and conscientious
-approach to making decisions. They take care to consider options, thinking through the pros and cons of each
-alternative. To them, making the correct choice is more important than the time it takes to do so. They see life as
-something of a minefield. Others may run through it recklessly if they so choose, but those with Deliberative talents take
-a different approach. They identify the dangers, weigh these risks’ relative effect and then place their feet deliberately.
-They walk with care. 
-      </p>
+  <div style="max-width:720px;margin:24px auto;text-align:left;">
+    <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">2. Deliberative<sup>®</sup></h2>
+    <h3 style="font-size:15px;margin-top:10px;">What is Deliberative?</h3>
+    <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+      My Deliberative talents make me careful, thoughtful, and vigilant. Even when everything seems fine on the surface, 
+      I instinctively sense potential risks and prefer to bring them into the open so I can identify, assess, and reduce them. 
+      I take a thorough and conscientious approach to decision-making, considering every option carefully and weighing the pros 
+      and cons before moving forward. For me, making the right choice matters far more than making a fast one. I see life as 
+      something of a minefield — while others may rush through it, I prefer to walk deliberately, identifying dangers and placing 
+      my steps with care.
+    </p>
 
-      <h3 style="font-size:15px;margin-top:18px;">Why Your Deliberative Is Unique</h3>
-      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
-        These Strengths Insights are personalized based on my CliftonStrengths results.
-      </p>
+    <h3 style="font-size:15px;margin-top:18px;">Why My Deliberative Is Unique</h3>
+    <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+      These Strengths Insights are personalized based on my CliftonStrengths results.
+    </p>
 
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
-        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+      <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:18px 20px;backdrop-filter:blur(10px);box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+      <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I approach my work and studies with seriousness, dignity, and professionalism. It makes sense that my vocabulary 
+        often includes technical or field-specific language. I naturally take the time to think carefully before I speak or write, 
+        and once I clarify my main ideas, I can express them with accuracy and precision.
       </div>
-
-      <div style="display:flex;flex-direction:column;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:18px 20px;backdrop-filter:blur(10px);box-shadow:0 4px 12px rgba(0,0,0,0.2);">
-        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Driven by your talents, you approach your studies or work with dignity and in a businesslike manner. It makes
-perfect sense, therefore, that you possess a vocabulary rich in complicated, technical, or subject-specific
-words. You habitually take time to carefully think through whatever you are going to say or write before you
-begin. Once you have identified your main theories or concepts, you can express them with clarity and
-precision. 
-        </div>
-        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Because of your strengths, you are uncomfortable making quick decisions. When others reach an outcome
-too fast, you feel unsettled by what you perceive as a lack of concern and reckless behavior
-        </div>
-        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          By nature, you appreciate progress but not at the expense of vigilance. You see yourself as the safeguard
-against poor choices and failed outcomes. 
-        </div>
-        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-         It’s very likely that you will not make reckless choices. While others may need immediate answers, you pause
-to take the time you need to make the best decisions. 
-        </div>
-        <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Chances are good that you choose not to reveal to others too much about yourself, your thoughts, and your
-feelings. You exercise great care and weigh all possible risks when you interact with people. You prefer to give
-sincere and well-deserved compliments. You are likely to refrain from acknowledging the talents,
-contributions, and accomplishments of individuals and groups until you have clear evidence they merit
-special acclaim
-        </div>
+      <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I feel uneasy making quick decisions. When others rush to conclusions, I’m often unsettled by what I see as a lack of care 
+        or recklessness.
       </div>
-
-<div style="margin-top:24px; text-align:center; display:flex; flex-direction:column; align-items:center;">
-  <h3 style="font-size:16px; margin-bottom:12px;">How Deliberative Blends With Your Other Top Five Strengths</h3>
-  
-  <div style="display:flex; flex-direction:column; gap:12px; align-items:center; max-width:600px;">
-    
-    <div style="max-width:480px;">
-      <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
-        <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#3AA0FF;">RELATOR</span>
-      </p>
-      <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
-        Trusting others takes some time for you because you trust only those you know well, and you are careful about who you get to know.
-      </p>
+      <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I appreciate progress but never at the expense of caution. I see myself as a safeguard against poor decisions and failed outcomes.
+      </div>
+      <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I rarely make impulsive choices. Even when others want immediate answers, I prefer to pause and take the time I need 
+        to make the best possible decision.
+      </div>
+      <div style="background:rgba(139,97,255,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I tend to be private about my thoughts and feelings, revealing little until I’ve considered the situation carefully. 
+        I weigh risks before I speak or act. I also prefer to give genuine, well-deserved compliments, and I hold back praise 
+        until I’m certain it’s truly earned.
+      </div>
     </div>
 
-    <div style="max-width:480px;">
-      <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
-        <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">LEARNER</span>
-      </p>
-      <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
-        You are open to new information and experiences, but you want adequate time to study them carefully and thoroughly.
-      </p>
-    </div>
+    <div style="margin-top:24px; text-align:center; display:flex; flex-direction:column; align-items:center;">
+      <h3 style="font-size:16px; margin-bottom:12px;">How My Deliberative Blends With My Other Top Five Strengths</h3>
+      
+      <div style="display:flex; flex-direction:column; gap:12px; align-items:center; max-width:600px;">
+        
+        <div style="max-width:480px;">
+          <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
+            <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#3AA0FF;">RELATOR</span>
+          </p>
+          <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
+            It takes me time to trust people, and I only place deep trust in those I know well. I’m cautious and intentional 
+            about the relationships I build.
+          </p>
+        </div>
 
-    <div style="max-width:480px;">
-      <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
-        <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">INTELLECTION</span>
-      </p>
-      <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
-        Your introspective reflection enhances your self-awareness. Your vigilant anticipation enhances your risk awareness.
-      </p>
-    </div>
+        <div style="max-width:480px;">
+          <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
+            <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">LEARNER</span>
+          </p>
+          <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
+            I’m open to new information and experiences, but I like to take my time studying and understanding them thoroughly 
+            before drawing conclusions.
+          </p>
+        </div>
 
-    <div style="max-width:480px;">
-      <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
-        <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">INPUT</span>
-      </p>
-      <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
-        You gather effective tools and valuable resources that can help manage risk and prevent problems.
-      </p>
-    </div>
+        <div style="max-width:480px;">
+          <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
+            <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">INTELLECTION</span>
+          </p>
+          <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
+            My reflective nature enhances my self-awareness, and my vigilance strengthens my ability to anticipate and manage risks.
+          </p>
+        </div>
 
+        <div style="max-width:480px;">
+          <p style="font-weight:600; font-size:14px; margin-bottom:4px;">
+            <span style="color:#8A4FFF;">DELIBERATIVE</span> + <span style="color:#00B67A;">INPUT</span>
+          </p>
+          <p style="color:var(--muted); font-size:13px; line-height:1.6; margin:0;">
+            I enjoy gathering tools, data, and valuable resources that help me make well-informed decisions, manage risks, 
+            and prevent potential problems.
+          </p>
+        </div>
+
+      </div>
+    </div>
   </div>
-</div>
-  `);
-}
+`);
+
 
   function renderLearnerDetailsNoTabs(strengths){
   // Find Learner regardless of exact casing/spaces
@@ -2032,129 +2028,120 @@ renderFull34BarcodeContained(strengths, 3, 'learnerBarcode');
   const wrap = d3.select('#learnerDetails');
   if(!wrap.node()) return;
 
-  const html = `
-    <div style="max-width:720px;margin:24px auto;text-align:left;">
-      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">3. Learner<sup>®</sup></h2>
+ const html = `
+  <div style="max-width:720px;margin:24px auto;text-align:left;">
+    <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">3. Learner<sup>®</sup></h2>
 
-      <h3 style="font-size:15px;margin-top:10px;">What is Learner?</h3>
-      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
-People with strong Learner talents constantly strive to learn and improve. The process of learning is just as important to
-them as the knowledge they gain. The steady and deliberate journey from ignorance to competence energizes Learners.
-The thrill of learning new facts, beginning a new subject and mastering an important skill excites people with dominant
-Learner talents. Learning builds these people’s confidence. Having Learner as a dominant theme does not necessarily
-motivate someone to become a subject-matter expert or strive for the respect that accompanies earning a professional
-or academic credential. The outcome of learning is less significant than the “getting there.
-      </p>
+    <h3 style="font-size:15px;margin-top:10px;">What is Learner?</h3>
+    <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+      My Learner talents drive me to constantly learn, grow, and improve. For me, the process of learning is just as important as the knowledge I gain. 
+      I find energy and fulfillment in the steady journey from not knowing to understanding — in turning curiosity into competence. 
+      The excitement of learning something new, starting a new subject, or mastering a skill truly motivates me. Learning builds my confidence 
+      and helps me feel alive. I don’t necessarily seek to become an expert for recognition or credentials — the joy lies in the experience 
+      of learning itself.
+    </p>
 
-      <h3 style="font-size:15px;margin-top:18px;">Why Your Learner Is Unique</h3>
-      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
-        These Strengths Insights are personalized based on my CliftonStrengths results.
-      </p>
+    <h3 style="font-size:15px;margin-top:18px;">Why My Learner Is Unique</h3>
+    <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+      These Strengths Insights are personalized based on my CliftonStrengths results.
+    </p>
 
-      <!-- Tabs -->
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
-        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    <!-- Tabs -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+      <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    </div>
+
+    <!-- Insights -->
+    <div style="
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:16px;
+      padding:18px 20px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    ">
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I enjoy being part of groups and teams whose activities or challenges genuinely intrigue me. When something captures my curiosity, 
+        I can give it my full, undivided attention and dive deeply into learning everything about it.
       </div>
-
-      <!-- Insights -->
-      <div style="
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        background:rgba(255,255,255,0.05);
-        border:1px solid rgba(255,255,255,0.15);
-        border-radius:16px;
-        padding:18px 20px;
-        backdrop-filter:blur(10px);
-        box-shadow:0 4px 12px rgba(0,0,0,0.2);
-      ">
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-It’s very likely that you may prefer to work in certain groups. Perhaps you are attracted to teams whose
-activities or challenges intrigue you. Periodically you choose to give specific matters your undivided
-attention. 
-        </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Instinctively, you make sure you comprehend more than any of your opponents do about what it takes to win
-something. Whenever your results are going to be compared to those of others, you are determined to be
-the sole victor. Consequently, you welcome opportunities to put your talents, knowledge, and skills to the
-test. You are especially interested when meaningful and objective measurements are used to pinpoint the
-best performer.</div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Driven by your talents, you thrive when you are encouraged to acquire knowledge and skills. You enjoy
-studying, reading, listening and thinking. Your mind is crowded with information on numerous subjects. The
-act of processing it excites you. You probably have a special place or time to reflect on your discoveries. You
-are unwilling to accept someone’s ideas just because they have been published or are considered an expert.
-You often test the validity of their conclusions, main points, theories or concepts. 
-        </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          You are unwilling to accept someone’s ideas just because they have been published or are considered an expert. You often test the validity of their conclusions, main points, theories or concepts.
-        </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Chances are good that you may enjoy pondering what you can revise, correct, renovate, upgrade, or
-relocate. When you are curious about a person, event, topic, project, activity, or idea, you probably devote a
-bit more energy and time to studying it. 
-        </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          By nature, you comprehend what has gone wrong. Eagerly, you uncover facts. Sorting through lots of
-information rarely intimidates you. You welcome the abundance of information. Like a detective, you sort
-through it and identify key pieces of evidence. Following these leads, you bring the big picture into view. Next,
-you generate schemes for solving the problem. Finally, you choose the best option after considering
-prevailing circumstances, available resources, and desired outcomes. 
-        </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I always make sure I fully understand what it takes to succeed. When I’m in a situation where results are being compared, 
+        I’m determined to perform my best — and I welcome opportunities to test my abilities through fair, meaningful measurements.
+      </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I thrive when I’m encouraged to acquire new knowledge and skills. I love reading, studying, reflecting, and exploring ideas across many subjects. 
+        My mind is often full of information, and I get excited by the act of processing it. I have special times and places where I like to think and reflect 
+        on what I’ve learned. I rarely accept ideas just because they come from experts — I prefer to question, test, and understand them myself.
+      </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I question ideas and theories, testing their validity before accepting them. I like to explore the logic behind conclusions rather than taking them at face value.
+      </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I often find myself thinking about what can be improved, updated, or refined. When something sparks my curiosity — whether it’s a topic, project, or idea — 
+        I dedicate time and energy to studying it more deeply.
+      </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I have a natural ability to identify what’s gone wrong and uncover the facts behind it. I enjoy sorting through large amounts of information, 
+        connecting patterns, and seeing the bigger picture. Like a detective, I piece together evidence, develop solutions, and choose the best path 
+        after carefully weighing all the circumstances and options.
       </div>
     </div>
-
-    <!-- Blend Section -->
-<div style="margin-top:24px;">
-  <h3 style="font-size:16px;margin-bottom:12px;">How Learner Blends With Your Other Top Five Strengths</h3>
-
-  <div style="display:flex;flex-direction:column;gap:12px;">
-    
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">LEARNER</span> + <span style="color:#3AA0FF;">RELATOR</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        Your deepest, longest friendships don’t stagnate because you strive to discover something new about those who are familiar.
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">LEARNER</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        You are open to new information and experiences, but you want adequate time to study them carefully and thoroughly.
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">LEARNER</span> + <span style="color:#38D07A;">INTELLECTION</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        You are a student of the world in which you live, and you are a student of the world of thoughts that lives within you.
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">LEARNER</span> + <span style="color:#38D07A;">INPUT</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        As a natural student/teacher, you love the process of learning, and you are always looking for useful resources that can enhance learning.
-      </p>
-    </div>
-
   </div>
-</div>
-  `;
-  wrap.html(html);
-}
+
+  <!-- Blend Section -->
+  <div style="margin-top:24px;">
+    <h3 style="font-size:16px;margin-bottom:12px;">How My Learner Blends With My Other Top Five Strengths</h3>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">LEARNER</span> + <span style="color:#3AA0FF;">RELATOR</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          My closest friendships never stagnate because I’m always curious and eager to learn new things about the people I care about.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">LEARNER</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          I’m open to new information and experiences, but I prefer to take my time exploring them thoroughly and thoughtfully.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">LEARNER</span> + <span style="color:#38D07A;">INTELLECTION</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          I’m both a student of the world around me and of the inner world of my thoughts. Learning fuels both my understanding and my reflection.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">LEARNER</span> + <span style="color:#38D07A;">INPUT</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          As a natural student and teacher, I love the process of learning and I’m always gathering useful resources to deepen my knowledge and share it with others.
+        </p>
+      </div>
+
+    </div>
+  </div>
+`;
+wrap.html(html);
+
 
 
   function renderIntellectionDetailsNoTabs(strengths){
@@ -2170,128 +2157,113 @@ renderFull34BarcodeContained(strengths, 4, 'intellectionBarcode');
   const wrap = d3.select('#intellectionDetails');
   if(!wrap.node()) return;
 
-  const html = `
-    <div style="max-width:720px;margin:24px auto;text-align:left;">
-      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">4. Intellection<sup>®</sup></h2>
+const html = `
+  <div style="max-width:720px;margin:24px auto;text-align:left;">
+    <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">4. Intellection<sup>®</sup></h2>
 
-      <h3 style="font-size:15px;margin-top:10px;">What is Intellection?</h3>
-      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
-        People with strong Intellection talents like to think. They like mental activity. They like to exercise the “muscles” of their
-brain, stretching them in multiple directions. This need for mental activity may be focused; for example, they may be
-trying to solve a problem, develop an idea or understand another person’s feelings. The exact focus will depend on their
-other strengths. The theme of Intellection does not dictate what these people are thinking about; it simply describes that
-they like to think. They like to let their thoughts go in many directions. People with strong Intellection talents are
-introspective. This introspection gives them time to reflect and ponder. Wherever it leads them, their mental hum is a
-constant in their lives
-      </p>
+    <h3 style="font-size:15px;margin-top:10px;">What is Intellection?</h3>
+    <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+      My Intellection talents mean that I love to think deeply. I enjoy mental activity and exercising my mind in different directions. 
+      Sometimes my thinking is focused on solving a problem, developing an idea, or understanding how someone feels. 
+      Other times, I simply let my thoughts wander and explore possibilities. I’m naturally introspective and value time alone to reflect and process ideas. 
+      No matter where my thoughts lead me, that inner hum of reflection and curiosity is a constant part of my life.
+    </p>
 
-      <h3 style="font-size:15px;margin-top:18px;">Why Your Intellection Is Unique</h3>
-      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
-        These Strengths Insights are personalized based on my CliftonStrengths results.
-      </p>
+    <h3 style="font-size:15px;margin-top:18px;">Why My Intellection Is Unique</h3>
+    <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+      These Strengths Insights are personalized based on my CliftonStrengths results.
+    </p>
 
-      <!-- Tabs -->
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
-        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    <!-- Tabs -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+      <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    </div>
+
+    <!-- Insights -->
+    <div style="
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:16px;
+      padding:18px 20px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    ">
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I like to analyze facts, data, and sequences of events to understand why things happen. 
+        I naturally use logic and reasoning to make sense of what’s going on in my life.
       </div>
-
-      <!-- Insights -->
-      <div style="
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        background:rgba(255,255,255,0.05);
-        border:1px solid rgba(255,255,255,0.15);
-        border-radius:16px;
-        padding:18px 20px;
-        backdrop-filter:blur(10px);
-        box-shadow:0 4px 12px rgba(0,0,0,0.2);
-      ">
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-Because of your strengths, you probably examine facts, data, or the sequence of events to determine why
-something happened. You customarily use reason to make sense of whatever is going on in your life. 
-        </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-         Instinctively, you delight in the opportunity to hear leading thinkers discuss their theories and insights. The
-“life of the mind” appeals to you greatly. You relish acquiring new information about profound, out-of-theordinary, or scholarly ideas. 
-        </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
- It’s very likely that you are more interested in gathering ideas, theories, or concepts during conversations
-with intelligent people than you are in being well known or famous. You tend to be most satisfied when your
-mind is absorbing thoughts you have never before considered. In addition, you enjoy broadening the thinking
-of others. 
-        </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-Chances are good that you automatically reflect on all the good people, events, experiences, or
-opportunities you have encountered in life. You frequently pause to consider everything for which you are
-grateful. You probably avoid individuals who seldom say “thank you” or rarely express appreciation. They
-think there is a scarcity of good things in life. You, on the other hand, think there is an overwhelming
-abundance of good things to enjoy
-        </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
- By nature, you commonly reflect on tomorrow’s possibilities and their potential impact on your life.
-Understandably, you seek the company of intelligent, forward-looking individuals. You talk with them. You
-listen. You ask questions. You offer your own ideas. Every step of the way, you keep pulling together intriguing
-bits of information that can help you shape your future. There are thoughts you treasure even though they
-are not immediately useful. 
-        </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I truly enjoy listening to great thinkers share their theories and insights. The “life of the mind” deeply appeals to me. 
+        I find joy in learning about complex, profound, or unusual ideas and exploring new perspectives.
       </div>
-    </div>
-
-    <!-- Blend Section -->
-<div style="margin-top:24px;">
-  <h3 style="font-size:16px;margin-bottom:12px;">How Intellection Blends With Your Other Top Five Strengths</h3>
-
-  <div style="display:flex;flex-direction:column;gap:12px;">
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#3AA0FF;">RELATOR</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        Even though you find solitude conducive for clarifying your thoughts, it will never take the place
-        of being with your friends. 
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-       Your introspective reflection enhances your self-awareness. Your vigilant anticipation enhances
-      your risk awareness. 
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#38D07A;">LEARNER</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        You are a student of the world in which you live, and you are student of the world of thoughts
-      that lives within you. 
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#38D07A;">INPUT</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-       Just because your thinking can be deep and philosophical does not mean that it cannot be
-      practical and useful. 
-      </p>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I’m far more interested in exchanging ideas and insights with thoughtful people than in being recognized or famous. 
+        I feel most fulfilled when I’m absorbing new concepts and broadening not only my own thinking but also that of others.
+      </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I often reflect on the good people, experiences, and opportunities I’ve had. 
+        Gratitude comes naturally to me — I regularly pause to appreciate all that I have. 
+        I tend to stay away from those who are rarely thankful or who focus on scarcity, because I genuinely believe there’s an abundance of good in life.
+      </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I often think about future possibilities and how they might shape my life. 
+        I enjoy spending time with intelligent, forward-looking people — exchanging ideas, asking questions, and sharing insights. 
+        I collect intriguing bits of information, even if they aren’t immediately useful, because I value the process of thinking and discovery itself.
+      </div>
     </div>
   </div>
-</div>
 
-  `;
-  wrap.html(html);
-}
+  <!-- Blend Section -->
+  <div style="margin-top:24px;">
+    <h3 style="font-size:16px;margin-bottom:12px;">How My Intellection Blends With My Other Top Five Strengths</h3>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#3AA0FF;">RELATOR</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          While I find solitude helpful for clarifying my thoughts, it never replaces the meaning and joy I find in spending time with my close friends.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          My introspection deepens my self-awareness, and my cautious nature sharpens my awareness of potential risks and outcomes.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#38D07A;">LEARNER</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          I’m both a student of the world around me and of the inner world within me. My curiosity and reflection complement each other perfectly.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">INTELLECTION</span> + <span style="color:#38D07A;">INPUT</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          Even though my thinking can be deep and philosophical, I also make it practical and useful. I love applying thoughtful insights to real-life situations.
+        </p>
+      </div>
+    </div>
+  </div>
+`;
+wrap.html(html);
 
 
 function renderInputDetailsNoTabs(strengths){
@@ -2307,119 +2279,125 @@ function renderInputDetailsNoTabs(strengths){
   const wrap = d3.select('#inputDetails');
   if(!wrap.node()) return;
 
-  const html = `
-    <div style="max-width:720px;margin:24px auto;text-align:left;">
-      <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">5. Input<sup>®</sup></h2>
+const html = `
+  <div style="max-width:720px;margin:24px auto;text-align:left;">
+    <h2 style="color:${domColor};font-size:26px;margin-bottom:8px;">5. Input<sup>®</sup></h2>
 
-      <h3 style="font-size:15px;margin-top:10px;">What is Input?</h3>
-      <p style="color:var(--muted);font-size:14px;line-height:1.6;">
-        People with strong Input talents are inquisitive and always want to know more. They crave information. They might collect
-ideas, books, memorabilia, quotations or facts. Whatever they collect, they do so because it interests them. They find
-many things interesting and have a natural curiosity. The world is exciting precisely because of its infinite variety and
-complexity. A few minutes spent surfing the internet may turn into hours once their curiosity takes off. They constantly
-acquire, compile and file things away. Their pursuits keep their minds fresh. They know that one day the information or
-things they’ve gathered will prove valuable. 
-      </p>
+    <h3 style="font-size:15px;margin-top:10px;">What is Input?</h3>
+    <p style="color:var(--muted);font-size:14px;line-height:1.6;">
+      My Input talents make me naturally inquisitive and deeply curious about the world around me. I love to learn, collect, and explore — 
+      whether it’s ideas, books, facts, or insights. I find many things interesting and am fascinated by the world’s endless variety and complexity. 
+      A quick search or article can turn into hours of exploration when my curiosity takes hold. I constantly gather, organize, and store information, 
+      trusting that what I learn today may prove valuable tomorrow. This continuous pursuit of knowledge keeps my mind alive and always growing.
+    </p>
 
-      <h3 style="font-size:15px;margin-top:18px;">Why Your Input Is Unique</h3>
-      <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
-        These Strengths Insights are personalized based on my CliftonStrengths results.
-      </p>
+    <h3 style="font-size:15px;margin-top:18px;">Why My Input Is Unique</h3>
+    <p style="font-style:italic;color:var(--muted);font-size:13px;margin-bottom:10px;">
+      These Strengths Insights are personalized based on my CliftonStrengths results.
+    </p>
 
-      <!-- Tabs -->
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
-        <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
-        <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    <!-- Tabs -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Relator</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Deliberative</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Learner</div>
+      <div style="background:#ddd;color:#333;padding:6px 14px;border-radius:6px;font-size:13px;">Intellection</div>
+      <div style="background:${domColor};color:#fff;padding:6px 14px;border-radius:6px;font-size:13px;">Input</div>
+    </div>
+
+    <!-- Insights -->
+    <div style="
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:16px;
+      padding:18px 20px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    ">
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I gain great satisfaction from reading — whether it’s books, articles, blogs, or research papers. 
+        Acquiring knowledge is both a joy and a necessity for me. Writers and thinkers often spark new ideas in my mind 
+        about how I can improve or understand people, situations, and ideas more deeply.
       </div>
 
-      <!-- Insights -->
-      <div style="
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        background:rgba(255,255,255,0.05);
-        border:1px solid rgba(255,255,255,0.15);
-        border-radius:16px;
-        padding:18px 20px;
-        backdrop-filter:blur(10px);
-        box-shadow:0 4px 12px rgba(0,0,0,0.2);
-      ">
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Instinctively, you derive much satisfaction from reading books, magazines, newspapers, websites, blogs or
-documents. Acquiring knowledge is as much a pastime for you as it is a necessity of life. Often writers
-stimulate your thinking about the people, situations or things you need to make better. </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Driven by your talents, you combine your fascination for reading with your ability to figure out what sets
-individuals apart. You are likely to discover what interests someone and then read more about their interests.
-You want to collect insights that can inspire them to take advantage of their one-of-a-kind talents,
-knowledge, and skills.</div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          By nature, you tend to read several books or publications at the same time. Without confusing yourself, you
-can peruse — that is, studiously examine — one for a while, then put it down, pick up another, and continue
-reading where you left off the last time. Your need to gather lots of information probably explains your
-capacity for juggling a variety of topics, plots, and authors in the same time span. </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-          Chances are good that you simply cannot have too much information. It is impossible. Like a miner searches
-for gold day after day, you continually collect new bits of knowledge. Depending on your other talents, you
-can delve into one or two interesting topics, or you can opt to know a little about a wide range of subjects.
-Your longing for knowledge is unlikely to be satisfied until you are recognized by others as the ultimate expert
-in a field or the grand champion of trivia. </div>
-        <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
-         Because of your strengths, you compel individuals or groups to quickly move into action by using officialsounding words. Your extensive vocabulary also contains hard-to-understand terminology that sets you
-apart. Thus, you speak with an air of authority that you often fail to hear. So, when you display impatience and
-say, “Let’s get started right now!” many people refrain from questioning your decision. </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        My curiosity about people combines with my love of learning. I enjoy discovering what interests others and then 
+        diving into those topics myself. I collect insights that might inspire others to make the most of their unique talents, 
+        skills, and knowledge.
       </div>
-    </div>
 
-    <!-- Blend Section -->
-    <div style="margin-top:24px;">
-  <h3 style="font-size:16px;margin-bottom:12px;">How Input Blends With Your Other Top Five Strengths</h3>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I often read several books or articles at the same time. I can easily switch between them without losing focus or 
+        mixing things up. My need to gather information fuels my ability to keep multiple ideas and sources in mind at once, 
+        making learning feel effortless and exciting.
+      </div>
 
-  <div style="display:flex;flex-direction:column;gap:12px;">
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">INPUT</span> + <span style="color:#3AA0FF;">RELATOR</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        You value tangible, practical resources, and you equally value the human resources of your close friends and family.
-      </p>
-    </div>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I can never have too much information — there’s always more to explore and discover. Like a miner searching for hidden gold, 
+        I constantly seek new knowledge. Sometimes I go deep into one or two subjects; other times, I sample from many. 
+        My thirst for learning is rarely satisfied, and I take pride in being the one others turn to for facts, insights, or solutions.
+      </div>
 
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">INPUT</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        You gather effective tools and valuable resources that can help manage risk and prevent problems.
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">INPUT</span> + <span style="color:#38D07A;">LEARNER</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        As a natural student/teacher, you love the process of learning and you’re always finding useful resources that enhance learning.
-      </p>
-    </div>
-
-    <div>
-      <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
-        <span style="color:#38D07A;">INPUT</span> + <span style="color:#38D07A;">INTELLECTION</span>
-      </p>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">
-        Even deep, philosophical thinking becomes practical and useful when paired with strong resource gathering.
-      </p>
+      <div style="background:rgba(56,208,122,0.15);padding:12px 14px;border-radius:10px;color:#eaf2ff;font-size:13px;line-height:1.55;">
+        I communicate with confidence and often motivate others to take action through my words. 
+        My vocabulary is broad and expressive, and while I sometimes don’t realize it, I naturally speak with authority and conviction. 
+        When I’m passionate about an idea, I inspire others to move forward with energy and purpose.
+      </div>
     </div>
   </div>
-</div>
 
-  `;
-  wrap.html(html);
-}
+  <!-- Blend Section -->
+  <div style="margin-top:24px;">
+    <h3 style="font-size:16px;margin-bottom:12px;">How My Input Blends With My Other Top Five Strengths</h3>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">INPUT</span> + <span style="color:#3AA0FF;">RELATOR</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          I value both practical resources and the people I’m close to. My friendships and family connections are 
+          as meaningful to me as the knowledge and materials I collect.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">INPUT</span> + <span style="color:#8A4FFF;">DELIBERATIVE</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          I like to gather effective tools and reliable resources that help me make careful decisions, manage risk, 
+          and avoid unnecessary problems.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">INPUT</span> + <span style="color:#38D07A;">LEARNER</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          As a lifelong student and teacher, I love learning for its own sake — and I’m always searching for useful, 
+          inspiring resources to share and apply.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;font-size:14px;margin-bottom:4px;">
+          <span style="color:#38D07A;">INPUT</span> + <span style="color:#38D07A;">INTELLECTION</span>
+        </p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">
+          My reflective thinking becomes more powerful when paired with my ability to collect ideas, tools, and facts — 
+          turning deep thought into something practical and useful.
+        </p>
+      </div>
+    </div>
+  </div>
+`;
+wrap.html(html);
+
   // Ensure D3 and strengths are available
   document.addEventListener('DOMContentLoaded', function () {
     // 1) Top split barcode (compact version)
