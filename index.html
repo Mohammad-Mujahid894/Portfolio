@@ -2038,30 +2038,22 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
-  /* Invasion-style container */
 .invasion-svg-wrap {
   width: 100%;
-  display: flex;
-  justify-content: flex-start; /* left aligned inside intro-text */
   margin-bottom: 10px;
 }
 
-#invasion-name path {
-  stroke: url(#grad) !important;
-  stroke-width: 3;
+#invasion-name {
+  stroke: #d0d0d0;
+  stroke-width: 2;
   fill: none;
-  vector-effect: non-scaling-stroke;
 }
 
-/* Gradient stroke definition */
-#invasion-name defs linearGradient stop:first-child {
-  stop-color: #7aa2ff;
-}
-#invasion-name defs linearGradient stop:nth-child(2) {
-  stop-color: #8a7aff;
-}
-#invasion-name defs linearGradient stop:last-child {
-  stop-color: #4ff0b0;
+#invasion-name .stroke {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0; /* will fade in */
 }
 
   
@@ -2120,85 +2112,54 @@ header, .nav, .glass:hover, .stat-card:hover {
 <!-- Right side - Name and Subtitles -->
 <div class="intro-text">
 <div class="invasion-svg-wrap">
-  <svg id="invasion-name" viewBox="0 0 1260 200" width="100%" height="120" preserveAspectRatio="xMidYMid meet">
+  <svg id="invasion-name" viewBox="0 0 1200 160" width="100%" height="110" preserveAspectRatio="xMidYMid meet">
 
     <!-- M -->
-    <g transform="translate(20,0)">
-      <path class="skeleton" d="M10 150 L10 40 M70 150 L70 40" />
-      <path class="full" d="M10 150 L10 40 L40 110 L70 40 L70 150" />
-    </g>
+    <path class="stroke" d="M20 140 L20 40 L55 100 L90 40 L90 140" />
 
     <!-- O -->
-    <g transform="translate(110,0)">
-      <path class="skeleton" d="M40 60 L40 130 M120 60 L120 130" />
-      <path class="full" d="M80 40 a40 55 0 1 0 0.01 0" />
-    </g>
+    <path class="stroke" d="M130 90 A40 50 0 1 1 129.9 90" />
 
     <!-- H -->
-    <g transform="translate(210,0)">
-      <path class="skeleton" d="M10 40 L10 150 M70 40 L70 150" />
-      <path class="full" d="M10 40 L10 150 M70 40 L70 150 M10 95 L70 95" />
-    </g>
+    <path class="stroke" d="M180 40 L180 140 M230 40 L230 140 M180 90 L230 90" />
 
     <!-- A -->
-    <g transform="translate(300,0)">
-      <path class="skeleton" d="M40 40 L40 150" />
-      <path class="full" d="M10 150 L40 40 L70 150 M30 100 L50 100" />
-    </g>
+    <path class="stroke" d="M280 140 L310 40 L340 140 M295 95 L325 95" />
 
     <!-- M -->
-    <g transform="translate(380,0)">
-      <path class="skeleton" d="M10 150 L10 40 M70 150 L70 40" />
-      <path class="full" d="M10 150 L10 40 L40 110 L70 40 L70 150" />
-    </g>
+    <path class="stroke" d="M380 140 L380 40 L415 100 L450 40 L450 140" />
 
     <!-- M -->
-    <g transform="translate(480,0)">
-      <path class="skeleton" d="M10 150 L10 40 M70 150 L70 40" />
-      <path class="full" d="M10 150 L10 40 L40 110 L70 40 L70 150" />
-    </g>
+    <path class="stroke" d="M480 140 L480 40 L515 100 L550 40 L550 140" />
 
     <!-- A -->
-    <g transform="translate(580,0)">
-      <path class="skeleton" d="M40 40 L40 150" />
-      <path class="full" d="M10 150 L40 40 L70 150 M30 100 L50 100" />
-    </g>
+    <path class="stroke" d="M580 140 L610 40 L640 140 M595 95 L625 95" />
 
     <!-- D -->
-    <g transform="translate(660,0)">
-      <path class="skeleton" d="M10 40 L10 150" />
-      <path class="full" d="M10 40 L10 150 M10 40 Q80 95 10 150" />
-    </g>
+    <path class="stroke" d="M680 40 L680 140 M680 40 Q750 90 680 140" />
+
+    <!-- SPACE -->
 
     <!-- M -->
-    <g transform="translate(820,0)">
-      <path class="skeleton" d="M10 150 L10 40 M70 150 L70 40" />
-      <path class="full" d="M10 150 L10 40 L40 110 L70 40 L70 150" />
-    </g>
+    <path class="stroke" d="M820 140 L820 40 L855 100 L890 40 L890 140" />
 
     <!-- U -->
-    <g transform="translate(920,0)">
-      <path class="skeleton" d="M10 40 L10 120 M70 40 L70 120" />
-      <path class="full" d="M10 40 L10 120 Q40 160 70 120 L70 40" />
-    </g>
+    <path class="stroke" d="M930 40 L930 120 Q930 150 960 150 Q990 150 990 120 L990 40" />
 
     <!-- J -->
-    <g transform="translate(1000,0)">
-      <path class="skeleton" d="M40 40 L40 120" />
-      <path class="full" d="M70 40 L70 110 Q70 150 40 150 Q20 150 20 130" />
-    </g>
+    <path class="stroke" d="M1030 40 L1030 110 Q1030 150 1000 150 Q980 150 980 130" />
 
     <!-- A -->
-    <g transform="translate(1080,0)">
-      <path class="skeleton" d="M40 40 L40 150" />
-      <path class="full" d="M10 150 L40 40 L70 150 M30 100 L50 100" />
-    </g>
+    <path class="stroke" d="M1080 140 L1110 40 L1140 140 M1095 95 L1125 95" />
 
     <!-- H -->
-    <g transform="translate(1160,0)">
-      <path class="skeleton" d="M10 40 L10 150 M70 40 L70 150" />
-      <path class="full" d="M10 40 L10 150 M70 40 L70 150 M10 95 L70 95" />
-    </g>
+    <path class="stroke" d="M1180 40 L1180 140 M1230 40 L1230 140 M1180 90 L1230 90" />
+
+    <!-- I -->
+    <path class="stroke" d="M1270 40 L1270 140" />
+
+    <!-- D -->
+    <path class="stroke" d="M1310 40 L1310 140 M1310 40 Q1380 90 1310 140" />
 
   </svg>
 </div>
@@ -2855,51 +2816,21 @@ I Lead with Relationship Building
   </main>
     <script>
 window.addEventListener("load", () => {
+  const paths = document.querySelectorAll("#invasion-name .stroke");
 
-  const svg = document.querySelector("#invasion-name");
-
-  // Apply gradient dynamically
-  let defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-  defs.innerHTML = `
-    <linearGradient id="grad" x1="0%" x2="100%">
-      <stop offset="0%" stop-color="#7aa2ff"/>
-      <stop offset="50%" stop-color="#8a7aff"/>
-      <stop offset="100%" stop-color="#4ff0b0"/>
-    </linearGradient>
-  `;
-  svg.prepend(defs);
-
-  // Prepare path lengths
-  const allPaths = svg.querySelectorAll("path");
-  allPaths.forEach(p => {
-    let len = p.getTotalLength();
+  paths.forEach(p => {
+    const len = p.getTotalLength();
     p.style.strokeDasharray = len;
     p.style.strokeDashoffset = len;
   });
 
-  // GSAP animation
-  const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-
-  // Skeleton first
-  tl.to("#invasion-name .skeleton", {
+  gsap.to(paths, {
     strokeDashoffset: 0,
-    duration: 0.7,
-    stagger: 0.06
+    opacity: 1,
+    duration: 1.6,
+    ease: "power2.out",
+    stagger: 0.04
   });
-
-  // Full strokes
-  tl.to("#invasion-name .full", {
-    strokeDashoffset: 0,
-    duration: 1.2,
-    stagger: 0.05
-  }, "-=0.4");
-
-  // Fade skeleton
-  tl.to("#invasion-name .skeleton", {
-    opacity: 0.15,
-    duration: 0.5
-  }, "-=0.3");
-
 });
     </script>
   <script>
