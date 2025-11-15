@@ -2036,6 +2036,37 @@ header, .nav, .glass:hover, .stat-card:hover {
 /* If there are duplicate body or :root blocks further down, this WILL override them.
    For a cleaner long-term fix, remove older duplicate :root / body definitions from the file. */
 
+
+
+  /* Invasion-style container */
+.invasion-title {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+/* Glowing animated line */
+.title-line {
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
+  box-shadow: 0 0 20px #7aa2ff, 0 0 30px #4ff0b0;
+  opacity: 0;
+  margin-bottom: 10px;
+}
+
+/* Text reveal animation state */
+.invasion-text {
+  display: inline-block;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: center;
+  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+  
 </style>
   
 </head>
@@ -2090,7 +2121,13 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 <!-- Right side - Name and Subtitles -->
 <div class="intro-text">
-  <h1 class="title"><span>Mohammad Mujahid</span></h1>
+<div class="invasion-title">
+  <div class="title-line"></div>
+
+  <h1 class="title">
+    <span class="invasion-text">Mohammad Mujahid</span>
+  </h1>
+</div>
   <br>
   <div id="typewriter"></div>
     <!-- Hard line break between typewriter and buttons -->
@@ -2742,6 +2779,30 @@ I Lead with Relationship Building
   </div>
 </section> 
   </main>
+    <script>
+window.addEventListener("load", () => {
+  const tl = gsap.timeline({ delay: 0.4 });
+
+  tl.to(".title-line", {
+    width: "85%",
+    opacity: 1,
+    duration: 1.6,
+    ease: "power2.out"
+  })
+  .to(".invasion-text", {
+    opacity: 1,
+    scaleY: 1,
+    duration: 1.3,
+    ease: "power3.out"
+  }, "-=0.5")
+  .to(".title-line", {
+    width: "45%",
+    opacity: 0.35,
+    duration: 1.4,
+    ease: "power2.inOut"
+  });
+});
+    </script>
   <script>
     /* ========= Parallax starfields (3 layers for depth) ========= */
     const DPR = Math.min(2, window.devicePixelRatio || 1);
