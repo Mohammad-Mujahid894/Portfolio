@@ -2039,31 +2039,29 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
   /* Invasion-style container */
-.invasion-title {
-  position: relative;
-  display: inline-block;
-  text-align: left;
-}
-
-/* Glowing animated line */
-.title-line {
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
-  box-shadow: 0 0 20px #7aa2ff, 0 0 30px #4ff0b0;
-  opacity: 0;
+.invasion-svg-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* left aligned inside intro-text */
   margin-bottom: 10px;
 }
 
-/* Text reveal animation state */
-.invasion-text {
-  display: inline-block;
-  opacity: 0;
-  transform: scaleY(0);
-  transform-origin: center;
-  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+#invasion-name path {
+  stroke: url(#grad) !important;
+  stroke-width: 3;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Gradient stroke definition */
+#invasion-name defs linearGradient stop:first-child {
+  stop-color: #7aa2ff;
+}
+#invasion-name defs linearGradient stop:nth-child(2) {
+  stop-color: #8a7aff;
+}
+#invasion-name defs linearGradient stop:last-child {
+  stop-color: #4ff0b0;
 }
 
   
@@ -2080,7 +2078,7 @@ header, .nav, .glass:hover, .stat-card:hover {
   <!-- ===== CONTENT ===== -->
 <header>
   <div class="brand">
-    <img src="062325.png" alt="Profile" />
+    <img src="062325.png" alt="Proile" />
     <strong>Mohammad Mujahid</strong>
   </div>
 
@@ -2121,12 +2119,88 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 <!-- Right side - Name and Subtitles -->
 <div class="intro-text">
-<div class="invasion-title">
-  <div class="title-line"></div>
+<div class="invasion-svg-wrap">
+  <svg id="invasion-name" viewBox="0 0 1260 200" width="100%" height="120" preserveAspectRatio="xMidYMid meet">
 
-  <h1 class="title">
-    <span class="invasion-text">Mohammad Mujahid</span>
-  </h1>
+    <!-- M -->
+    <g transform="translate(20,0)">
+      <path class="skeleton" d="M10 150 L10 40 M70 150 L70 40" />
+      <path class="full" d="M10 150 L10 40 L40 110 L70 40 L70 150" />
+    </g>
+
+    <!-- O -->
+    <g transform="translate(110,0)">
+      <path class="skeleton" d="M40 60 L40 130 M120 60 L120 130" />
+      <path class="full" d="M80 40 a40 55 0 1 0 0.01 0" />
+    </g>
+
+    <!-- H -->
+    <g transform="translate(210,0)">
+      <path class="skeleton" d="M10 40 L10 150 M70 40 L70 150" />
+      <path class="full" d="M10 40 L10 150 M70 40 L70 150 M10 95 L70 95" />
+    </g>
+
+    <!-- A -->
+    <g transform="translate(300,0)">
+      <path class="skeleton" d="M40 40 L40 150" />
+      <path class="full" d="M10 150 L40 40 L70 150 M30 100 L50 100" />
+    </g>
+
+    <!-- M -->
+    <g transform="translate(380,0)">
+      <path class="skeleton" d="M10 150 L10 40 M70 150 L70 40" />
+      <path class="full" d="M10 150 L10 40 L40 110 L70 40 L70 150" />
+    </g>
+
+    <!-- M -->
+    <g transform="translate(480,0)">
+      <path class="skeleton" d="M10 150 L10 40 M70 150 L70 40" />
+      <path class="full" d="M10 150 L10 40 L40 110 L70 40 L70 150" />
+    </g>
+
+    <!-- A -->
+    <g transform="translate(580,0)">
+      <path class="skeleton" d="M40 40 L40 150" />
+      <path class="full" d="M10 150 L40 40 L70 150 M30 100 L50 100" />
+    </g>
+
+    <!-- D -->
+    <g transform="translate(660,0)">
+      <path class="skeleton" d="M10 40 L10 150" />
+      <path class="full" d="M10 40 L10 150 M10 40 Q80 95 10 150" />
+    </g>
+
+    <!-- M -->
+    <g transform="translate(820,0)">
+      <path class="skeleton" d="M10 150 L10 40 M70 150 L70 40" />
+      <path class="full" d="M10 150 L10 40 L40 110 L70 40 L70 150" />
+    </g>
+
+    <!-- U -->
+    <g transform="translate(920,0)">
+      <path class="skeleton" d="M10 40 L10 120 M70 40 L70 120" />
+      <path class="full" d="M10 40 L10 120 Q40 160 70 120 L70 40" />
+    </g>
+
+    <!-- J -->
+    <g transform="translate(1000,0)">
+      <path class="skeleton" d="M40 40 L40 120" />
+      <path class="full" d="M70 40 L70 110 Q70 150 40 150 Q20 150 20 130" />
+    </g>
+
+    <!-- A -->
+    <g transform="translate(1080,0)">
+      <path class="skeleton" d="M40 40 L40 150" />
+      <path class="full" d="M10 150 L40 40 L70 150 M30 100 L50 100" />
+    </g>
+
+    <!-- H -->
+    <g transform="translate(1160,0)">
+      <path class="skeleton" d="M10 40 L10 150 M70 40 L70 150" />
+      <path class="full" d="M10 40 L10 150 M70 40 L70 150 M10 95 L70 95" />
+    </g>
+
+  </svg>
 </div>
   <br>
   <div id="typewriter"></div>
@@ -2781,26 +2855,51 @@ I Lead with Relationship Building
   </main>
     <script>
 window.addEventListener("load", () => {
-  const tl = gsap.timeline({ delay: 0.4 });
 
-  tl.to(".title-line", {
-    width: "85%",
-    opacity: 1,
-    duration: 1.6,
-    ease: "power2.out"
-  })
-  .to(".invasion-text", {
-    opacity: 1,
-    scaleY: 1,
-    duration: 1.3,
-    ease: "power3.out"
-  }, "-=0.5")
-  .to(".title-line", {
-    width: "45%",
-    opacity: 0.35,
-    duration: 1.4,
-    ease: "power2.inOut"
+  const svg = document.querySelector("#invasion-name");
+
+  // Apply gradient dynamically
+  let defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  defs.innerHTML = `
+    <linearGradient id="grad" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#7aa2ff"/>
+      <stop offset="50%" stop-color="#8a7aff"/>
+      <stop offset="100%" stop-color="#4ff0b0"/>
+    </linearGradient>
+  `;
+  svg.prepend(defs);
+
+  // Prepare path lengths
+  const allPaths = svg.querySelectorAll("path");
+  allPaths.forEach(p => {
+    let len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
   });
+
+  // GSAP animation
+  const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+  // Skeleton first
+  tl.to("#invasion-name .skeleton", {
+    strokeDashoffset: 0,
+    duration: 0.7,
+    stagger: 0.06
+  });
+
+  // Full strokes
+  tl.to("#invasion-name .full", {
+    strokeDashoffset: 0,
+    duration: 1.2,
+    stagger: 0.05
+  }, "-=0.4");
+
+  // Fade skeleton
+  tl.to("#invasion-name .skeleton", {
+    opacity: 0.15,
+    duration: 0.5
+  }, "-=0.3");
+
 });
     </script>
   <script>
