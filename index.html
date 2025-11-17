@@ -2057,6 +2057,24 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 /* reduce opacity on finished skeleton vs final if needed (not used here) */
+.name-strokes {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#name-svg {
+  display: block;
+  margin: auto;
+}
+
+
+  .contact-subtitle {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+}
 
   
 </style>
@@ -2113,70 +2131,84 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 <!-- Right side - Name and Subtitles -->
 <div class="intro-text">
-<!-- put this inside .intro-text where your name should show -->
-<div class="hero-name-wrap">
-  <svg id="name-svg" viewBox="0 0 1400 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-    <!-- MOHAMMAD -->
-    <path d="M10 120 L10 20" />             <!-- M left vertical -->
-    <path d="M50 120 L50 20" />             <!-- M right vertical -->
-    <path d="M10 20 L30 70" />              <!-- M left diagonal -->
-    <path d="M50 20 L30 70" />              <!-- M right diagonal -->
+<div class="name-strokes" style="text-align:center; width:100%;">
+  <svg id="name-svg" viewBox="0 0 1600 160" width="70%" style="margin:auto; display:block;">
 
-    <circle cx="110" cy="70" r="50" />     <!-- O fixed baseline (low point = 120) -->
+    <!-- M -->
+    <path d="M50 130 L50 30" />
+    <path d="M90 130 L90 30" />
+    <path d="M50 30 L70 80" />
+    <path d="M90 30 L70 80" />
 
-    <path d="M160 20 L160 120" />           <!-- H left vertical -->
-    <path d="M200 20 L200 120" />           <!-- H right vertical -->
-    <path d="M160 70 L200 70" />            <!-- H middle -->
+    <!-- O (FIXED — tall thin perfect ellipse) -->
+    <path d="M140 80
+             A30 50 0 1 1 139.9 80" />
 
-    <path d="M240 120 L265 20" />           <!-- A left -->
-    <path d="M290 120 L265 20" />           <!-- A right -->
-    <path d="M255 75 L275 75" />            <!-- A cross -->
+    <!-- H -->
+    <path d="M190 30 L190 130" />
+    <path d="M230 30 L230 130" />
+    <path d="M190 80 L230 80" />
 
-    <path d="M320 120 L320 20" />
-    <path d="M360 120 L360 20" />
-    <path d="M320 20 L340 70" />
-    <path d="M360 20 L340 70" />
+    <!-- A -->
+    <path d="M270 130 L295 30" />
+    <path d="M320 130 L295 30" />
+    <path d="M280 85 L310 85" />
 
-    <path d="M400 120 L400 20" />
-    <path d="M440 120 L440 20" />
-    <path d="M400 20 L420 70" />
-    <path d="M440 20 L420 70" />
+    <!-- M -->
+    <path d="M360 130 L360 30" />
+    <path d="M400 130 L400 30" />
+    <path d="M360 30 L380 80" />
+    <path d="M400 30 L380 80" />
 
-    <path d="M480 120 L480 20" />
-    <path d="M520 120 L520 20" />
-    <path d="M480 20 L500 70" />
-    <path d="M520 20 L500 70" />
+    <!-- M -->
+    <path d="M440 130 L440 30" />
+    <path d="M480 130 L480 30" />
+    <path d="M440 30 L460 80" />
+    <path d="M480 30 L460 80" />
 
-    <path d="M560 120 L560 20" />
-    <path d="M560 20 Q620 70 560 120" />
+    <!-- A -->
+    <path d="M520 130 L545 30" />
+    <path d="M570 130 L545 30" />
+    <path d="M530 85 L560 85" />
 
-    <!-- SPACE gap -->
+    <!-- D -->
+    <path d="M610 30 L610 130" />
+    <path d="M610 30 Q670 80 610 130" />
 
-    <!-- MUJAHID -->
-    <path d="M700 120 L700 20" />
-    <path d="M740 120 L740 20" />
-    <path d="M700 20 L720 70" />
-    <path d="M740 20 L720 70" />
+    <!-- SPACE -->
 
-    <path d="M780 20 L780 90" />
-    <path d="M820 20 L820 90" />
-    <path d="M780 90 Q800 120 820 90" />
+    <!-- M -->
+    <path d="M710 130 L710 30" />
+    <path d="M750 130 L750 30" />
+    <path d="M710 30 L730 80" />
+    <path d="M750 30 L730 80" />
 
-    <path d="M860 20 L860 80" />
-    <path d="M860 80 Q860 120 830 120 Q810 120 810 100" />
+    <!-- U (FIXED — no dip, consistent height) -->
+    <path d="M790 30 L790 100" />
+    <path d="M830 30 L830 100" />
+    <path d="M790 100 Q810 130 830 100" />
 
-    <path d="M900 120 L925 20" />
-    <path d="M950 120 L925 20" />
-    <path d="M915 75 L945 75" />
+    <!-- J (FIXED — no low tail, same baseline) -->
+    <path d="M870 30 L870 90" />
+    <path d="M870 90 Q870 130 845 130" />
 
-    <path d="M980 20 L980 120" />
-    <path d="M1020 20 L1020 120" />
-    <path d="M980 70 L1020 70" />
+    <!-- A -->
+    <path d="M910 130 L935 30" />
+    <path d="M960 130 L935 30" />
+    <path d="M920 85 L950 85" />
 
-    <path d="M1060 20 L1060 120" />
+    <!-- H -->
+    <path d="M1000 30 L1000 130" />
+    <path d="M1040 30 L1040 130" />
+    <path d="M1000 80 L1040 80" />
 
-    <path d="M1100 20 L1100 120" />
-    <path d="M1100 20 Q1160 70 1100 120" />
+    <!-- I -->
+    <path d="M1080 30 L1080 130" />
+
+    <!-- D -->
+    <path d="M1120 30 L1120 130" />
+    <path d="M1120 30 Q1180 80 1120 130" />
+
   </svg>
 </div>
 
