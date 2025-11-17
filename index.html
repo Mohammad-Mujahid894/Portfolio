@@ -2041,46 +2041,29 @@ header, .nav, .glass:hover, .stat-card:hover {
 /* --- alignment helpers --- */
 /* tweak this value if you need to align exactly under your profile / typewriter */
 /* make intro column left-aligned and ensure name and typewriter align */
-.intro-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;  /* left align name + typewriter */
-  width: 60%;
-  margin-left: 48px;        /* adjust if needed to line up under profile */
-}
-
-/* container for the svg name */
 .hero-name-wrap {
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-/* strong safety: prevent page CSS from filling paths accidentally */
-#name-svg-safe path,
-#name-svg-safe circle {
-  fill: none !important;
+#name-svg path {
+  stroke: #d8dbe0;
+  stroke-width: 2.2;
+  fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
-  opacity: 0; /* will be animated visible by JS */
+  opacity: 0; /* for GSAP draw */
 }
 
-/* size: make it larger (you said you want it bigger) */
-#name-svg-safe {
-  width: 980px;     /* bigger size — change to 1100px if you want even larger */
+#name-svg {
+  width: 950px;   /* BIGGER text */
   max-width: 100%;
   height: auto;
-  display: block;
-  margin-left: 10px; /* tiny nudge if you want a bit more left spacing */
 }
 
-/* responsive fallback */
-@media (max-width: 1000px) {
-  #name-svg-safe { width: 88vw; }
-  .intro-text { width: 86%; margin-left: 24px; }
-}
 
 
 
@@ -2148,42 +2131,90 @@ header, .nav, .glass:hover, .stat-card:hover {
 <div class="intro-text">
 <!-- HERO NAME: safe inline-stroked SVG (replace previous name SVG) -->
 <div class="hero-name-wrap">
-  <svg id="name-svg-safe" viewBox="0 0 1500 200" width="100%" height="160" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-    <!-- M -->
-    <path d="M20 150 L20 50 L60 120 L100 50 L100 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- O (fixed baseline) -->
-    <path d="M150 100 A40 55 0 1 1 149.9 100" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- H -->
-    <path d="M210 50 L210 150 M260 50 L260 150 M210 100 L260 100" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- A -->
-    <path d="M310 150 L340 50 L370 150 M325 105 L355 105" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- M -->
-    <path d="M420 150 L420 50 L460 120 L500 50 L500 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- M -->
-    <path d="M530 150 L530 50 L570 120 L610 50 L610 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- A -->
-    <path d="M640 150 L670 50 L700 150 M655 105 L685 105" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- D -->
-    <path d="M730 50 L730 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M730 50 Q800 100 730 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- SPACE -->
-    <!-- M -->
-    <path d="M870 150 L870 50 L910 120 L950 50 L950 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- U -->
-    <path d="M990 50 L990 130 Q990 160 1020 160 Q1050 160 1050 130 L1050 50" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- J -->
-    <path d="M1090 50 L1090 130 Q1090 165 1060 165 Q1040 165 1040 145" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- A -->
-    <path d="M1130 150 L1160 50 L1190 150 M1145 105 L1175 105" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- H -->
-    <path d="M1230 50 L1230 150 M1280 50 L1280 150 M1230 100 L1280 100" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- I -->
-    <path d="M1320 50 L1320 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- D -->
-    <path d="M1360 50 L1360 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M1360 50 Q1430 100 1360 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
+<svg id="name-svg" viewBox="0 0 1600 200" width="100%" height="160" preserveAspectRatio="xMinYMid meet">
+
+  <!-- M -->
+  <path d="M20 150 L20 50" />
+  <path d="M60 150 L60 50" />
+  <path d="M20 50 L40 100" />
+  <path d="M60 50 L40 100" />
+
+  <!-- O (GEOMETRIC TWO-STROKE — baseline perfect) -->
+  <!-- Left half -->
+  <path d="M110 100 
+           A40 50 0 0 0 110 100.1" />
+  <!-- Right half -->
+  <path d="M110 100 
+           A40 50 0 0 1 110 100.1" />
+
+  <!-- H -->
+  <path d="M170 50 L170 150" />
+  <path d="M210 50 L210 150" />
+  <path d="M170 100 L210 100" />
+
+  <!-- A -->
+  <path d="M250 150 L275 50" />
+  <path d="M300 150 L275 50" />
+  <path d="M260 105 L290 105" />
+
+  <!-- M -->
+  <path d="M340 150 L340 50" />
+  <path d="M380 150 L380 50" />
+  <path d="M340 50 L360 100" />
+  <path d="M380 50 L360 100" />
+
+  <!-- M -->
+  <path d="M420 150 L420 50" />
+  <path d="M460 150 L460 50" />
+  <path d="M420 50 L440 100" />
+  <path d="M460 50 L440 100" />
+
+  <!-- A -->
+  <path d="M500 150 L525 50" />
+  <path d="M550 150 L525 50" />
+  <path d="M510 105 L540 105" />
+
+  <!-- D -->
+  <path d="M580 50 L580 150" />
+  <path d="M580 50 Q640 100 580 150" />
+
+  <!-- SPACE -->
+
+  <!-- M -->
+  <path d="M700 150 L700 50" />
+  <path d="M740 150 L740 50" />
+  <path d="M700 50 L720 100" />
+  <path d="M740 50 L720 100" />
+
+  <!-- U -->
+  <path d="M780 50 L780 120" />
+  <path d="M820 50 L820 120" />
+  <path d="M780 120 Q800 150 820 120" />
+
+  <!-- J -->
+  <path d="M860 50 L860 120" />
+  <path d="M860 120 Q860 150 830 150" />
+
+  <!-- A -->
+  <path d="M900 150 L925 50" />
+  <path d="M950 150 L925 50" />
+  <path d="M910 105 L940 105" />
+
+  <!-- H -->
+  <path d="M990 50 L990 150" />
+  <path d="M1030 50 L1030 150" />
+  <path d="M990 100 L1030 100" />
+
+  <!-- I -->
+  <path d="M1070 50 L1070 150" />
+
+  <!-- D -->
+  <path d="M1110 50 L1110 150" />
+  <path d="M1110 50 Q1170 100 1110 150" />
+
+</svg>
 </div>
+
 
 
 
@@ -2848,32 +2879,25 @@ I Lead with Relationship Building
 
 
 <script>
-window.addEventListener('load', () => {
-  const nodes = Array.from(document.querySelectorAll('#name-svg path'));
+window.addEventListener("load", () => {
+  const paths = document.querySelectorAll("#name-svg path");
 
-  nodes.forEach(n => {
-    try {
-      const len = n.getTotalLength();
-      n.style.strokeDasharray = len;
-      n.style.strokeDashoffset = len;
-      n.style.opacity = 1;
-    } catch (e) {
-      n.style.opacity = 1;
-    }
+  paths.forEach(p => {
+    const len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
   });
 
-  const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-
-  tl.to(nodes, {
+  gsap.to(paths, {
     strokeDashoffset: 0,
-    duration: 0.9,
-    stagger: { each: 0.14, from: 'start' }
+    opacity: 1,
+    duration: 1.1,
+    ease: "power2.out",
+    stagger: 0.10
   });
-
-  // optional final subtle desaturation (tweak or remove)
-  tl.to(nodes, { stroke: '#cfd3d8', duration: 0.3 }, '>-0.2');
 });
 </script>
+
 
 
 
