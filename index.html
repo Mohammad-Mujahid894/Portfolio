@@ -2038,19 +2038,25 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
-.name-strokes svg {
-  width: 360px;
-  height: auto;
-}
+/* name block container */
+.hero-name-wrap { display:flex; align-items:center; justify-content:flex-start; }
 
-#name-svg path {
-  stroke: white;
-  stroke-width: 3;
+/* SVG sizing: make it large but responsive */
+#name-svg { width: 860px; max-width: 88vw; height: auto; display:block; }
+
+/* stroke look (thin, cinematic) */
+#name-svg path,
+#name-svg circle {
+  stroke: #d8dbe0;           /* soft off-white */
+  stroke-width: 2.2;         /* thin cinematic stroke */
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
   opacity: 0;
 }
+
+/* reduce opacity on finished skeleton vs final if needed (not used here) */
 
   
 </style>
@@ -2107,86 +2113,73 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 <!-- Right side - Name and Subtitles -->
 <div class="intro-text">
-<div class="name-strokes">
-  <svg id="name-svg" viewBox="0 0 1400 140">
+<!-- put this inside .intro-text where your name should show -->
+<div class="hero-name-wrap">
+  <svg id="name-svg" viewBox="0 0 1400 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <!-- MOHAMMAD -->
+    <path d="M10 120 L10 20" />             <!-- M left vertical -->
+    <path d="M50 120 L50 20" />             <!-- M right vertical -->
+    <path d="M10 20 L30 70" />              <!-- M left diagonal -->
+    <path d="M50 20 L30 70" />              <!-- M right diagonal -->
 
-    <!-- M -->
-    <path d="M10 120 L10 20" />
-    <path d="M50 120 L50 20" />
-    <path d="M10 20 L30 70" />
-    <path d="M50 20 L30 70" />
+    <circle cx="110" cy="70" r="50" />     <!-- O fixed baseline (low point = 120) -->
 
-    <!-- O (FIXED BASELINE!) -->
-    <path d="M90 70 
-             A30 50 0 1 1 89.99 70" />
+    <path d="M160 20 L160 120" />           <!-- H left vertical -->
+    <path d="M200 20 L200 120" />           <!-- H right vertical -->
+    <path d="M160 70 L200 70" />            <!-- H middle -->
 
-    <!-- H -->
-    <path d="M140 20 L140 120" />
-    <path d="M180 20 L180 120" />
-    <path d="M140 70 L180 70" />
+    <path d="M240 120 L265 20" />           <!-- A left -->
+    <path d="M290 120 L265 20" />           <!-- A right -->
+    <path d="M255 75 L275 75" />            <!-- A cross -->
 
-    <!-- A -->
-    <path d="M220 120 L245 20" />
-    <path d="M270 120 L245 20" />
-    <path d="M230 75 L260 75" />
+    <path d="M320 120 L320 20" />
+    <path d="M360 120 L360 20" />
+    <path d="M320 20 L340 70" />
+    <path d="M360 20 L340 70" />
 
-    <!-- M -->
-    <path d="M310 120 L310 20" />
-    <path d="M350 120 L350 20" />
-    <path d="M310 20 L330 70" />
-    <path d="M350 20 L330 70" />
+    <path d="M400 120 L400 20" />
+    <path d="M440 120 L440 20" />
+    <path d="M400 20 L420 70" />
+    <path d="M440 20 L420 70" />
 
-    <!-- M -->
-    <path d="M390 120 L390 20" />
-    <path d="M430 120 L430 20" />
-    <path d="M390 20 L410 70" />
-    <path d="M430 20 L410 70" />
+    <path d="M480 120 L480 20" />
+    <path d="M520 120 L520 20" />
+    <path d="M480 20 L500 70" />
+    <path d="M520 20 L500 70" />
 
-    <!-- A -->
-    <path d="M470 120 L495 20" />
-    <path d="M520 120 L495 20" />
-    <path d="M480 75 L510 75" />
-
-    <!-- D -->
-    <path d="M560 20 L560 120" />
+    <path d="M560 120 L560 20" />
     <path d="M560 20 Q620 70 560 120" />
 
-    <!-- SPACE -->
+    <!-- SPACE gap -->
 
-    <!-- M -->
-    <path d="M660 120 L660 20" />
+    <!-- MUJAHID -->
     <path d="M700 120 L700 20" />
-    <path d="M660 20 L680 70" />
-    <path d="M700 20 L680 70" />
+    <path d="M740 120 L740 20" />
+    <path d="M700 20 L720 70" />
+    <path d="M740 20 L720 70" />
 
-    <!-- U -->
-    <path d="M740 20 L740 90" />
     <path d="M780 20 L780 90" />
-    <path d="M740 90 Q760 120 780 90" />
+    <path d="M820 20 L820 90" />
+    <path d="M780 90 Q800 120 820 90" />
 
-    <!-- J -->
-    <path d="M820 20 L820 80" />
-    <path d="M820 80 Q820 120 790 120 Q770 120 770 100" />
+    <path d="M860 20 L860 80" />
+    <path d="M860 80 Q860 120 830 120 Q810 120 810 100" />
 
-    <!-- A -->
-    <path d="M860 120 L885 20" />
-    <path d="M910 120 L885 20" />
-    <path d="M870 75 L900 75" />
+    <path d="M900 120 L925 20" />
+    <path d="M950 120 L925 20" />
+    <path d="M915 75 L945 75" />
 
-    <!-- H -->
-    <path d="M950 20 L950 120" />
-    <path d="M990 20 L990 120" />
-    <path d="M950 70 L990 70" />
+    <path d="M980 20 L980 120" />
+    <path d="M1020 20 L1020 120" />
+    <path d="M980 70 L1020 70" />
 
-    <!-- I -->
-    <path d="M1030 20 L1030 120" />
+    <path d="M1060 20 L1060 120" />
 
-    <!-- D -->
-    <path d="M1070 20 L1070 120" />
-    <path d="M1070 20 Q1130 70 1070 120" />
-
+    <path d="M1100 20 L1100 120" />
+    <path d="M1100 20 Q1160 70 1100 120" />
   </svg>
 </div>
+
 
 
 
@@ -2846,23 +2839,38 @@ I Lead with Relationship Building
 
 
 
-    <script>
-window.addEventListener("load", () => {
-  const strokes = document.querySelectorAll("#name-svg path");
+<script>
+window.addEventListener('load', () => {
+  const nodes = Array.from(document.querySelectorAll('#name-svg path, #name-svg circle'));
 
-  strokes.forEach((p, i) => {
-    const len = p.getTotalLength();
-    p.style.strokeDasharray = len;
-    p.style.strokeDashoffset = len;
-
-    gsap.to(p, {
-      strokeDashoffset: 0,
-      opacity: 1,
-      duration: 0.9,
-      delay: i * 0.15,
-      ease: "power2.out"
-    });
+  // prepare stroke-draw
+  nodes.forEach(n => {
+    try {
+      const len = n.getTotalLength();
+      n.style.strokeDasharray = len;
+      n.style.strokeDashoffset = len;
+      n.style.opacity = 1; // animate opacity with stroke
+    } catch (e) {
+      // some shapes may not support getTotalLength in some browsers — ignore
+      n.style.opacity = 1;
+    }
   });
+
+  // timeline: slower and cinematic
+  const tl = gsap.timeline({defaults:{ease:'power2.out'}});
+
+  // animate each stroke one by one
+  tl.to(nodes, {
+    strokeDashoffset: 0,
+    duration: 0.9,
+    stagger: { each: 0.14, from: 'start' }
+  });
+
+  // small final settle: reduce stroke opacity slightly to look subtle
+  tl.to(nodes, {
+    stroke: '#cfd3d8',
+    duration: 0.3
+  }, '>-0.2');
 });
 </script>
 
