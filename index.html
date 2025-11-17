@@ -2040,52 +2040,48 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 /* --- alignment helpers --- */
 /* tweak this value if you need to align exactly under your profile / typewriter */
-:root {
-  --intro-offset: 48px; /* adjust this if you want more/less left offset */
-}
-
-/* make the intro-text left-aligned column so name + typewriter sit in the same column */
+/* make intro column left-aligned and ensure name and typewriter align */
 .intro-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;     /* <-- left align everything in this column */
-  width: 60%;                   /* keep intro text narrower than full-width */
-  margin-left: var(--intro-offset); /* position the column relative to hero */
+  align-items: flex-start;  /* left align name + typewriter */
+  width: 60%;
+  margin-left: 48px;        /* adjust if needed to line up under profile */
 }
 
 /* container for the svg name */
 .hero-name-wrap {
   width: 100%;
   display: flex;
-  justify-content: flex-start; /* left align inside the intro-text column */
-  margin-bottom: 12px;
+  justify-content: flex-start;
+  margin-bottom: 8px;
 }
 
-/* responsive svg sizing — large but responsive */
-#name-svg {
-  width: 860px;        /* large — change to 960px if you want bigger */
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* stroke style and baseline correction */
-#name-svg path {
-  stroke: #d8dbe0;           /* soft off-white */
-  stroke-width: 2.2;         /* cinematic thin stroke */
-  fill: none;
+/* strong safety: prevent page CSS from filling paths accidentally */
+#name-svg-safe path,
+#name-svg-safe circle {
+  fill: none !important;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
-  opacity: 0;                /* will be animated to visible by GSAP */
+  opacity: 0; /* will be animated visible by JS */
 }
 
-/* small media tweak: reduce size on small screens */
-@media (max-width: 900px) {
-  :root { --intro-offset: 24px; }
-  #name-svg { width: 92vw; }
-  .intro-text { width: 86%; }
+/* size: make it larger (you said you want it bigger) */
+#name-svg-safe {
+  width: 980px;     /* bigger size — change to 1100px if you want even larger */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: 10px; /* tiny nudge if you want a bit more left spacing */
 }
+
+/* responsive fallback */
+@media (max-width: 1000px) {
+  #name-svg-safe { width: 88vw; }
+  .intro-text { width: 86%; margin-left: 24px; }
+}
+
 
 
 
@@ -2150,58 +2146,45 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 <!-- Right side - Name and Subtitles -->
 <div class="intro-text">
-<div class="invasion-svg-wrap">
-<svg id="invasion-name" viewBox="0 0 1500 200" width="100%" height="140" preserveAspectRatio="xMidYMid meet">
-
-  <!-- M -->
-  <path class="stroke" d="M20 150 L20 50 L60 120 L100 50 L100 150" />
-
-  <!-- O (FIXED — raised baseline, perfect oval) -->
-  <path class="stroke" d="M150 100 A40 55 0 1 1 149.9 100" />
-
-  <!-- H -->
-  <path class="stroke" d="M210 50 L210 150 M260 50 L260 150 M210 100 L260 100" />
-
-  <!-- A -->
-  <path class="stroke" d="M310 150 L340 50 L370 150 M325 105 L355 105" />
-
-  <!-- M -->
-  <path class="stroke" d="M420 150 L420 50 L460 120 L500 50 L500 150" />
-
-  <!-- M -->
-  <path class="stroke" d="M530 150 L530 50 L570 120 L610 50 L610 150" />
-
-  <!-- A -->
-  <path class="stroke" d="M640 150 L670 50 L700 150 M655 105 L685 105" />
-
-  <!-- D -->
-  <path class="stroke" d="M730 50 L730 150 M730 50 Q800 100 730 150" />
-
-  <!-- SPACE -->
-
-  <!-- M -->
-  <path class="stroke" d="M870 150 L870 50 L910 120 L950 50 L950 150" />
-
-  <!-- U -->
-  <path class="stroke" d="M990 50 L990 130 Q990 160 1020 160 Q1050 160 1050 130 L1050 50" />
-
-  <!-- J -->
-  <path class="stroke" d="M1090 50 L1090 130 Q1090 165 1060 165 Q1040 165 1040 145" />
-
-  <!-- A -->
-  <path class="stroke" d="M1130 150 L1160 50 L1190 150 M1145 105 L1175 105" />
-
-  <!-- H -->
-  <path class="stroke" d="M1230 50 L1230 150 M1280 50 L1280 150 M1230 100 L1280 100" />
-
-  <!-- I -->
-  <path class="stroke" d="M1320 50 L1320 150" />
-
-  <!-- D -->
-  <path class="stroke" d="M1360 50 L1360 150 M1360 50 Q1430 100 1360 150" />
-
-</svg>
+<!-- HERO NAME: safe inline-stroked SVG (replace previous name SVG) -->
+<div class="hero-name-wrap">
+  <svg id="name-svg-safe" viewBox="0 0 1500 200" width="100%" height="160" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <!-- M -->
+    <path d="M20 150 L20 50 L60 120 L100 50 L100 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- O (fixed baseline) -->
+    <path d="M150 100 A40 55 0 1 1 149.9 100" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- H -->
+    <path d="M210 50 L210 150 M260 50 L260 150 M210 100 L260 100" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- A -->
+    <path d="M310 150 L340 50 L370 150 M325 105 L355 105" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- M -->
+    <path d="M420 150 L420 50 L460 120 L500 50 L500 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- M -->
+    <path d="M530 150 L530 50 L570 120 L610 50 L610 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- A -->
+    <path d="M640 150 L670 50 L700 150 M655 105 L685 105" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- D -->
+    <path d="M730 50 L730 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M730 50 Q800 100 730 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- SPACE -->
+    <!-- M -->
+    <path d="M870 150 L870 50 L910 120 L950 50 L950 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- U -->
+    <path d="M990 50 L990 130 Q990 160 1020 160 Q1050 160 1050 130 L1050 50" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- J -->
+    <path d="M1090 50 L1090 130 Q1090 165 1060 165 Q1040 165 1040 145" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- A -->
+    <path d="M1130 150 L1160 50 L1190 150 M1145 105 L1175 105" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- H -->
+    <path d="M1230 50 L1230 150 M1280 50 L1280 150 M1230 100 L1280 100" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- I -->
+    <path d="M1320 50 L1320 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- D -->
+    <path d="M1360 50 L1360 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1360 50 Q1430 100 1360 150" stroke="#d8dbe0" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
 </div>
+
 
 
 
