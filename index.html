@@ -2125,6 +2125,21 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
+/* ===== Innovation & Impact Credentials block ===== */
+.cert-section {
+  margin-top: 50px;
+  text-align: center;
+}
+
+/* description text */
+.cert-text {
+  max-width: 720px;
+  margin: 0 auto 26px;               /* more gap above badges */
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 /* ===== Slider Layout (Premium, No Glow) ===== */
 .cert-slider-container {
   position: relative;
@@ -2132,9 +2147,9 @@ header, .nav, .glass:hover, .stat-card:hover {
   margin: 28px auto 0;
   padding: 18px 56px;                 /* space for arrows inside */
   border-radius: 24px;
-  background: rgba(15, 23, 42, 0.90); /* clean glassy panel, no glow */
+  background: rgba(15, 23, 42, 0.90);
   border: 1px solid rgba(148, 163, 184, 0.55);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.85); /* neutral shadow, not neon */
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.85);
   overflow: hidden;
 }
 
@@ -2150,15 +2165,16 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 .cert-slide {
-  min-width: 100%;
+  flex: 0 0 100%;                    /* 🔑 EXACTLY 1 image per “screen” */
+  width: 100%;
   height: 420px;
-  object-fit: contain;                /* show full certificate, not cropped */
+  object-fit: contain;               /* show full certificate */
   border-radius: 18px;
   background: radial-gradient(circle at top,
               rgba(148,163,184,0.22),
               rgba(15,23,42,0.98));
   border: 1px solid rgba(148,163,184,0.55);
-  box-shadow: none;                   /* 🔥 no glow around the tab */
+  box-shadow: none;                  /* no glow */
   transition: transform 0.25s ease,
               border-color 0.25s ease,
               box-shadow 0.25s ease;
@@ -2168,10 +2184,10 @@ header, .nav, .glass:hover, .stat-card:hover {
 .cert-slide:hover {
   transform: translateY(-2px);
   border-color: rgba(226, 232, 240, 0.9);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85); /* subtle premium shadow */
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
 }
 
-/* Arrows (overlayed, visible both sides) */
+/* Arrows on slider */
 .cert-arrow {
   position: absolute;
   top: 50%;
@@ -2209,45 +2225,7 @@ header, .nav, .glass:hover, .stat-card:hover {
   transform: translateY(-50%) scale(1.06);
 }
 
-/* On very small screens, reduce height & padding */
-@media (max-width: 640px) {
-  .cert-slider-container {
-    padding: 14px 44px;
-    max-width: 100%;
-  }
-
-  .cert-slide {
-    height: 320px;
-  }
-
-  .cert-arrow {
-    width: 34px;
-    height: 34px;
-    font-size: 22px;
-  }
-}
-
-
-/* ===== Modal (Blurred Background) ===== */
-.cert-modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(20px);
-  z-index: 9999;
-}
-
-.cert-modal.show {
-  display: flex;
-}
-
-.cert-backdrop {
-  position: absolute;
-  inset: 0;
-}
-/* Inner modal layout */
+/* ===== Modal (popup) arrows over the big image ===== */
 .cert-modal-inner {
   position: relative;
   max-width: 1100px;
@@ -2260,7 +2238,6 @@ header, .nav, .glass:hover, .stat-card:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
   z-index: 1;
 }
 
@@ -2272,8 +2249,11 @@ header, .nav, .glass:hover, .stat-card:hover {
   object-fit: contain;
 }
 
-/* Modal arrows (inside enlarged certificate view) */
+/* modal arrows now overlay like in slider */
 .modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 40px;
   height: 40px;
   border-radius: 999px;
@@ -2291,21 +2271,45 @@ header, .nav, .glass:hover, .stat-card:hover {
               border-color 0.2s ease;
 }
 
-.modal-arrow:hover {
-  background: rgba(30,64,175,0.95);
-  border-color: rgba(191,219,254,1);
-  transform: scale(1.06);
-}
-
 .modal-left {
-  margin-right: 4px;
+  left: 16px;
 }
 
 .modal-right {
-  margin-left: 4px;
+  right: 16px;
+}
+
+.modal-arrow:hover {
+  background: rgba(30,64,175,0.95);
+  border-color: rgba(191,219,254,1);
+  transform: translateY(-50%) scale(1.06);
+}
+
+/* Badge row under description */
+.badge-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 @media (max-width: 640px) {
+  .cert-slider-container {
+    padding: 14px 44px;
+    max-width: 100%;
+  }
+
+  .cert-slide {
+    height: 320px;
+  }
+
+  .cert-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 22px;
+  }
+
   .cert-modal-inner {
     padding: 16px;
     border-radius: 18px;
@@ -2321,37 +2325,6 @@ header, .nav, .glass:hover, .stat-card:hover {
     font-size: 20px;
   }
 }
-
-
-/* ===== Badge Row ===== */
-.badge-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;       /* allows wrapping on mobile */
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.badge {
-  font-size: 13px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.18);
-  color: #eaf2ff;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 14px rgba(122,162,255,0.35),
-              inset 0 0 8px rgba(255,255,255,0.15);
-  white-space: nowrap;   /* keeps text on one line */
-  transition: 0.25s ease;
-}
-
-.badge:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 22px rgba(122,162,255,0.6),
-              inset 0 0 12px rgba(255,255,255,0.22);
-}
-
 
 
 
@@ -2956,7 +2929,10 @@ and making processes faster, cleaner, and scalable.
   <!-- ===== Certificates Section Below Skills ===== -->
 <!-- ===== Certificates Slider Section ===== -->
 <div class="cert-section">
-  <h3 class="cert-title">Innovation & Impact Credentials</h3>
+  <h2 class="section-title" style="margin-bottom:10px;">
+    Innovation &amp; Impact Credentials
+  </h2>
+
 
   <p class="cert-text">
     A focused view of certificates recognising my implemented automation ideas,
@@ -4143,26 +4119,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const leftBtn = document.querySelector(".cert-arrow.left");
   const rightBtn = document.querySelector(".cert-arrow.right");
 
-  if (!slider || !slides.length) return;
+  if (!slider || !slides.length) return;.
+  
+const container = document.querySelector(".cert-slider-container");
 
-  const container = document.querySelector(".cert-slider-container");
+let index = 0;
+let slideWidth = 0;
+let startX = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+let isDragging = false;
 
-  let index = 0;
-  let slideWidth = container.getBoundingClientRect().width;
-  let startX = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-  let isDragging = false;
+function setSlideWidth() {
+  if (!container) return;
 
-  function setSlideWidth() {
-    slideWidth = container.getBoundingClientRect().width;
-    // Keep width in sync when resizing
-    slider.style.transition = "none";
-    updateSlider();
-    setTimeout(() => {
-      slider.style.transition = "transform 0.35s ease";
-    }, 50);
-  }
+  // inner width of the container (so exactly one slide fills it)
+  slideWidth = container.clientWidth;
+
+  // each slide = same width
+  slides.forEach(slide => {
+    slide.style.width = `${slideWidth}px`;
+  });
+
+  // keep track width = N * slideWidth (optional but clean)
+  slider.style.width = `${slides.length * slideWidth}px`;
+
+  // freeze transition while recalculating
+  const oldTransition = slider.style.transition;
+  slider.style.transition = "none";
+  updateSlider();
+  requestAnimationFrame(() => {
+    slider.style.transition = oldTransition || "transform 0.35s ease";
+  });
+}
+
 
   function updateSlider() {
     slider.style.transform = `translateX(-${index * slideWidth}px)`;
