@@ -435,13 +435,24 @@ body.dark .modal .title-with-icon svg[data-lucide="award"] {
 
 
 
-    .card p {
-      font-size: 0.9rem;
-      color: #475569;
-      margin-bottom: 1.5rem;
-      line-height: 1.4;
-    }
-    body.dark .card p { color: #cbd5e1; }
+ .card p {
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+
+  /* 🔽 4-line clamp with ... */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;      /* number of lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.dark .card p {
+  color: #cbd5e1;
+}
+
 
     .card-footer {
       display: flex;
