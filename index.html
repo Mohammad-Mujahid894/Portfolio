@@ -2088,6 +2088,103 @@ header, .nav, .glass:hover, .stat-card:hover {
   margin-right: auto;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .cert-section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.cert-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg,#7aa2ff,#4ff0b0,#8a7aff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cert-collage {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.cert-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 18px rgba(122,162,255,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cert-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 26px rgba(122,162,255,0.7),
+              0 0 40px rgba(79,240,176,0.5);
+}
+
+.cert-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media(max-width: 640px) {
+  .cert-collage {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   
 </style>
   
@@ -2675,6 +2772,30 @@ and making processes faster, cleaner, and scalable.
 </a>
 
   </div>
+
+  <!-- ===== Certificates Section Below Skills ===== -->
+<div class="cert-section">
+  <h3 class="cert-title">Innovation Certificates</h3>
+
+  <div class="cert-collage">
+    <div class="cert-card">
+      <img src="20251125194217_2259449.png" alt="Certificate 1">
+    </div>
+
+    <div class="cert-card">
+      <img src="20251125192320_2259014.png" alt="Certificate 2">
+    </div>
+
+    <div class="cert-card">
+      <img src="20251125185720_2259023.png" alt="Certificate 3">
+    </div>
+
+    <div class="cert-card">
+      <img src="20251125191522_2242165.png" alt="Certificate 4">
+    </div>
+  </div>
+</div>
+
 </div>
 </section>
 
