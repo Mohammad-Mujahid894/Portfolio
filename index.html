@@ -2162,17 +2162,20 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 /* ===== Slider Layout (Premium, no glow) ===== */
+/* ===== Slider Layout (Premium, no glow) ===== */
 .cert-slider-container {
   position: relative;
-  max-width: 880px;
+  width: 100%;
+  max-width: 960px;            /* a bit wider, still aligned with page */
   margin: 28px auto 0;
-  padding: 18px 56px;                 /* space for arrows inside */
+  padding: 18px 0;             /* 🔥 no left/right padding = no empty bands */
   border-radius: 24px;
   background: rgba(15, 23, 42, 0.90);
   border: 1px solid rgba(148, 163, 184, 0.55);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.85);
   overflow: hidden;
 }
+
 
 .cert-slider {
   display: flex;
@@ -2186,20 +2189,19 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 .cert-slide {
-  flex: 0 0 100%;                    /* 🔑 EXACTLY 1 image per screen */
+  flex: 0 0 100%;                 /* exactly one slide per screen */
   width: 100%;
-  height: 420px;
-  object-fit: contain;               /* show full certificate */
-  border-radius: 18px;
-  background: radial-gradient(circle at top,
-              rgba(148,163,184,0.22),
-              rgba(15,23,42,0.98));
-  border: 1px solid rgba(148,163,184,0.55);
-  box-shadow: none;                  /* no neon glow */
-  transition: transform 0.25s ease,
-              border-color 0.25s ease,
-              box-shadow 0.25s ease;
+  height: clamp(360px, 70vh, 520px);
+  object-fit: contain;            /* show whole certificate */
+  border-radius: 0;               /* ❌ no inner rounded “tab” */
+  border: none;
+  background: transparent;        /* ❌ no mini background card */
+  box-shadow: none;
   cursor: pointer;
+}
+
+.cert-slide:hover {
+  transform: translateY(-2px);
 }
 
 .cert-slide:hover {
@@ -2208,29 +2210,6 @@ header, .nav, .glass:hover, .stat-card:hover {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
 }
 
-/* Arrows on slider */
-.cert-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  font-size: 26px;
-  line-height: 1;
-  color: #e5e7eb;
-  border: 1px solid rgba(148,163,184,0.7);
-  background: rgba(15,23,42,0.95);
-  backdrop-filter: blur(10px);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease,
-              background 0.2s ease,
-              border-color 0.2s ease;
-}
 
 .cert-arrow.left  { left: 18px; }
 .cert-arrow.right { right: 18px; }
