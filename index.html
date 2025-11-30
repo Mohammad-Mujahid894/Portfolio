@@ -2355,8 +2355,13 @@ header, .nav, .glass:hover, .stat-card:hover {
   }
 }
 
-/* ===== QR POPUP (forces overlay on ALL screens) ===== */
-/* QR code modal overlay */
+
+
+
+
+
+
+
 #qr-modal {
   position: fixed;
   inset: 0;
@@ -2387,6 +2392,18 @@ header, .nav, .glass:hover, .stat-card:hover {
   max-width: min(340px, 90vw);
   height: auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
@@ -4893,74 +4910,145 @@ setTimeout(() => {
   $('#qa-resume')?.addEventListener('click', () => showToast('Resume download starting...'));
   $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const qrBtn        = document.getElementById("view-qr-btn");
+  const navQrLink    = document.getElementById("nav-qr-link");
+  const shareBtn     = document.getElementById("share-portfolio-btn");
+  const navShareLink = document.getElementById("nav-share-link");
 
+  const qrModal    = document.getElementById("qr-modal");
+  const qrBackdrop = qrModal ? qrModal.querySelector(".qr-backdrop") : null;
+  const qrInner    = qrModal ? qrModal.querySelector(".qr-inner") : null;
 
-  document.addEventListener("DOMContentLoaded", function () {
-  const qrBtn     = document.getElementById("view-qr-btn");
-  const navQrLink = document.getElementById("nav-qr-link");
-  const qrModal   = document.getElementById("qr-modal");
-  const qrBackdrop= qrModal.querySelector(".qr-backdrop");
-  const qrInner   = qrModal.querySelector(".qr-inner");
+  const portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
+  const shareText    = "Check out my portfolio website:";
 
+  /* ===== QR POPUP ===== */
   function openQr() {
     if (!qrModal) return;
     qrModal.classList.add("open");
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
+
+    // for Android back button
     if (history && history.pushState) {
       history.pushState({ qrOpen: true }, "");
     }
   }
+
   function closeQr() {
     if (!qrModal) return;
     qrModal.classList.remove("open");
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
   }
+
+  // Quick actions button
   if (qrBtn) {
-    qrBtn.addEventListener("click", function(e) {
+    qrBtn.addEventListener("click", function (e) {
       e.preventDefault();
       openQr();
     });
   }
+
+  // Navbar "QR Code" link
   if (navQrLink) {
-    navQrLink.addEventListener("click", function(e) {
+    navQrLink.addEventListener("click", function (e) {
       e.preventDefault();
-      // (Optional: close mobile menu here if open)
+
+      // Close mobile menu if open
+      const navbar    = document.getElementById("navbar");
+      const hamburger = document.querySelector(".hamburger");
+      const dropdown  = navQrLink.closest(".dropdown");
+
+      if (navbar)   navbar.classList.remove("show");
+      if (hamburger) hamburger.classList.remove("active");
+      if (dropdown) dropdown.classList.remove("active");
+
       openQr();
     });
   }
-  // Close modal when clicking backdrop
+
+  // Close when clicking backdrop
   if (qrBackdrop) {
     qrBackdrop.addEventListener("click", closeQr);
   }
-  // Prevent clicks inside modal content from closing
+
+  // Prevent closing when clicking inside the card
   if (qrInner) {
-    qrInner.addEventListener("click", function(e) {
+    qrInner.addEventListener("click", function (e) {
       e.stopPropagation();
     });
-    // Also close if clicking the overlay outside inner
-    qrModal.addEventListener("click", closeQr);
+    if (qrModal) {
+      qrModal.addEventListener("click", closeQr);
+    }
   }
-  // Close on Escape key
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape" && qrModal.classList.contains("open")) {
+
+  // ESC key (desktop)
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && qrModal && qrModal.classList.contains("open")) {
       closeQr();
     }
   });
-  // Close on mobile “back” (history) button
-  window.addEventListener("popstate", function() {
-    if (qrModal.classList.contains("open")) {
+
+  // Android back button (history back)
+  window.addEventListener("popstate", function () {
+    if (qrModal && qrModal.classList.contains("open")) {
       closeQr();
     }
   });
+
+  /* ===== SHARE PORTFOLIO ===== */
+  async function sharePortfolio(e) {
+    if (e) e.preventDefault();
+
+    // Use native share sheet if available
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Mohammad Mujahid – Portfolio",
+          text: shareText,
+          url: portfolioUrl
+        });
+      } catch (err) {
+        // user cancelled – ignore
+        console.log("Share cancelled or failed:", err);
+      }
+      return;
+    }
+
+    // Fallback: copy link to clipboard + alert
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(portfolioUrl);
+        alert("Link copied to clipboard:\n" + portfolioUrl);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = portfolioUrl;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        alert("Link copied to clipboard:\n" + portfolioUrl);
+      }
+    } catch (err) {
+      alert("Portfolio URL: " + portfolioUrl);
+    }
+  }
+
+  if (shareBtn) {
+    shareBtn.addEventListener("click", sharePortfolio);
+  }
+  if (navShareLink) {
+    navShareLink.addEventListener("click", sharePortfolio);
+  }
 });
-
 </script>
-
-
-
-
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -4973,6 +5061,13 @@ setTimeout(() => {
   </div>
 </div>
     <!-- QR POPUP -->
+<!-- Fullscreen QR code modal (hidden by default) -->
+<div id="qr-modal">
+  <div class="qr-backdrop"></div>
+  <div class="qr-inner">
+    <img src="qr.png" alt="Portfolio QR code" class="qr-image">
+  </div>
+</div>
 
 
 
