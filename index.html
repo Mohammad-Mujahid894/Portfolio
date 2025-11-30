@@ -2352,7 +2352,32 @@ header, .nav, .glass:hover, .stat-card:hover {
   }
 }
 
+.qr-wrapper {
+  margin-top: 14px;
+  text-align: center;
+}
 
+.qr-image {
+  width: 180px;
+  max-width: 60%;
+  border-radius: 18px;
+  padding: 10px 12px;
+  background: rgba(15,23,42,0.92);
+  border: 1px solid rgba(148,163,184,0.65);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.9);
+}
+
+.visitor-box {
+  margin-top: 16px;
+  padding: 10px 14px;
+  display: inline-block;
+  font-size: 14px;
+  color: #e5e7eb;
+  border-radius: 10px;
+  background: rgba(15,23,42,0.82);
+  border: 1px solid rgba(148,163,184,0.5);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
 
 
 
@@ -2608,7 +2633,7 @@ and making processes faster, cleaner, and scalable.
     <h3>⚡</h3>
     <p>Process Optimization & Automation</p>
     <div class="hover-info">
-      Drove AI Automated workflows @ Accenture bolstering turnaround by 407 Hrs/Yr 
+      Steered AI Centric workflows @ Accenture saving turnaround by 407 Hrs/Yr 
     </div>
   </div>
 </div>
@@ -3195,7 +3220,7 @@ I Lead with Relationship Building
     <button class="qa" type="button">📄 Download Resume</button>
   </a>
 
-  <!-- Certifications Button -->
+  <!-- Gallup Strengths Button -->
   <a href="GallupStrenght.html">
     <button class="qa" type="button">🎗️ View My Gallup Strenghts</button>
   </a>
@@ -3204,15 +3229,35 @@ I Lead with Relationship Building
   <a href="Certifications.html">
     <button class="qa" type="button">🥇 View My Certifications</button>
   </a>
-</div>
-  </div>
 
-  <!-- Toast -->
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <span class="toast-ico">✓</span>
+  <!-- ✅ View QR Code Button -->
+  <button class="qa" type="button" id="view-qr-btn">
+    🔳 View QR Code
+  </button>
+
+  <!-- ✅ Share My Portfolio Button -->
+  <button class="qa" type="button" id="share-portfolio-btn">
+    📤 Share My Portfolio
+  </button>
+
+  <!-- ✅ QR Code Box (hidden by default) -->
+  <div id="qr-wrapper" class="qr-wrapper" style="display:none;">
+    <img src="qr.png" alt="QR code to open my portfolio" class="qr-image">
   </div>
-</section> 
-  </main>
+  <div class="visitor-box glass" id="visitor-box">
+  👁️ Visitors: <span id="visitor-count">0</span>
+</div>
+
+</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="toast-ico">✓</span>
+</div>
+</section>
+</main>
+
 
 
 
@@ -3234,6 +3279,14 @@ window.addEventListener("load", () => {
     stagger: 0.10
   });
 });
+</script>
+<script>
+// 🔥 Real-time visitor counter using CountAPI
+fetch("https://api.countapi.xyz/hit/mujahid-portfolio/visits")
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById("visitor-count").textContent = data.value;
+  });
 </script>
 
 
@@ -4610,6 +4663,61 @@ setTimeout(() => {
   $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
 </script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+  var qrBtn     = document.getElementById("view-qr-btn");
+  var shareBtn  = document.getElementById("share-portfolio-btn");
+  var qrWrapper = document.getElementById("qr-wrapper");
+
+  var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
+  var shareText    = "Check out my portfolio website:";
+
+  // 📱 Toggle QR visibility
+  if (qrBtn && qrWrapper) {
+    qrBtn.addEventListener("click", function () {
+      var isHidden = (qrWrapper.style.display === "none" || qrWrapper.style.display === "");
+      qrWrapper.style.display = isHidden ? "block" : "none";
+    });
+  }
+
+  // 📤 Share my portfolio
+  if (shareBtn) {
+    shareBtn.addEventListener("click", function () {
+      // 1) Mobile / browsers that support native share
+      if (navigator.share) {
+        navigator.share({
+          title: "My Portfolio – Mohammad Mujahid",
+          text: shareText,
+          url: portfolioUrl
+        }).catch(function () {
+          // user cancelled or share failed – do nothing
+        });
+      } else {
+        // 2) Desktop / no native share: copy link to clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(portfolioUrl)
+            .then(function () {
+              alert("Portfolio link copied to clipboard.\nYou can now paste it into WhatsApp, email, etc.");
+            })
+            .catch(function () {
+              alert("Could not copy automatically. You can share this link:\n" + portfolioUrl);
+            });
+        } else {
+          // 3) Very old browsers – manual fallback
+          var temp = document.createElement("input");
+          temp.value = portfolioUrl;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+          alert("Portfolio link copied to clipboard.\nYou can now paste it into WhatsApp, email, etc.");
+        }
+      }
+    });
+  }
+});
+</script>
+
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
