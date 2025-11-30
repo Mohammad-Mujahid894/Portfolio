@@ -1,112 +1,124 @@
-Mohammad Mujahid – Portfolio Website
+<p align="center">
+  <img src="https://img.shields.io/badge/Mohammad%20Mujahid-Portfolio-blueviolet?style=for-the-badge&logo=github" />
+</p>
 
-This repository contains my personal portfolio website, which serves as my digital resume.
-It highlights my work experience, skills, achievements, certifications, and education.
+<h1 align="center">💼 Mohammad Mujahid – Portfolio Website</h1>
 
-🔗 Live Portfolio
+<p align="center">
+This repository contains the source code for my personal portfolio website — a digital résumé highlighting my work experience, skills, achievements, certifications, and education.
+</p>
 
-👉 https://mohammad-mujahid894.github.io/Portfolio/
+---
 
-👨‍💼 About Me
+## 🔗 **Live Portfolio**
+<p align="center">
+  <a href="https://mohammad-mujahid894.github.io/Portfolio/">
+    <img src="https://img.shields.io/badge/Visit%20Portfolio-1e90ff?style=for-the-badge&logo=google-chrome&logoColor=white" />
+  </a>
+</p>
 
-I am an organized and dependable professional experienced in Order to Cash (O2C) operations with Accenture (US Foods process).
-I have strong knowledge of Accounts Receivable, Cash Application, Customer Aging Analysis, Exception Handling, Collections, and Process Automation using AI and Excel tools.
+---
 
-I focus on accuracy, workflow optimization, customer centricity, and data-driven process improvements.
+## 📊 **Repository Stats**
 
-💼 Work Experience
-Accenture – Order to Cash Operations (Oct 2024 – Present)
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=Mohammad-Mujahid894&label=Profile%20Views&color=blue&style=for-the-badge" />
+  <img src="https://img.shields.io/github/stars/Mohammad-Mujahid894/Portfolio?style=for-the-badge&color=yellow" />
+  <img src="https://img.shields.io/badge/version-1.0-purple?style=for-the-badge" />
+</p>
 
-Processed 100–150+ daily check/ACH/wire payments using TANDEM, Versapay, US bank portals
+---
 
-Performed remittance–invoice matching and GL coding
+# 👨‍💼 **About Me**
 
-Resolved exceptions (NSF, stop payments, discrepancies, prepayments)
+I am an organized and dependable professional experienced in **Order to Cash (O2C)** operations with Accenture (US Foods process).  
+I possess strong knowledge of:
 
-Automated statement retrievals using Excel macros & AI
+- Accounts Receivable  
+- Cash Application  
+- Customer Aging Analysis  
+- Exception Handling  
+- Collections & Deductions  
+- Process Automation using AI & Excel  
 
-Handled 500+ queries/month, improving customer satisfaction
+I focus heavily on **accuracy, workflow optimization, customer centricity, and data-driven improvements**.
 
-Supported month-end closures, reports, demand letters
+---
 
-Created an exception triage tracker saving 407+ hours/year
+# 💼 **Work Experience**
 
-Recognized for implemented automation ideas
+## **Accenture – Order to Cash Operations (Oct 2024 – Present)**  
+- Processed **100–150+** daily check/ACH/wire payments using TANDEM, Versapay, US bank portals  
+- Performed **remittance–invoice matching** and **GL coding**  
+- Resolved exceptions (NSF, stop payments, discrepancies, prepayments)  
+- Automated statement retrievals using **Excel Macros & AI tools**  
+- Managed **500+ queries/month** improving customer satisfaction  
+- Supported month-end closures, reports, and demand letters  
+- Built an exception triage tracker saving **407+ hours per year**  
+- Recognized for **implemented automation ideas**, completed **Innovation Lifecycle**, earned:  
+  - 🏆 **Co-Pilot Award**  
+  - 🛡️ **Elite IS Advocate**  
+  - 🚀 **Innovation Ambassador**  
+  - ⭐ Client Recognition for performance excellence  
 
-Received Co-Pilot Award, Elite IS Advocate, Innovation Ambassador, and strong client appreciation
+---
 
-K S Ramkumar & Rao – Accounts & Taxation Intern (2024)
+## **K S Ramkumar & Rao – Accounts & Taxation Intern (2024)**  
+- Filed GSTR returns  
+- Performed audits & stock verification at Intek Tapes Pvt Ltd  
+- Worked with Tally Prime & Compu Office  
 
-Filed GSTR returns
+---
 
-Performed audits & stock verification
+# 🎓 **Education**
 
-Hands-on experience with Tally Prime & Compu Office
+- **CMA (Pursuing)** – Institute of Cost Accountants of India  
+- **Bachelor of Commerce (B.Com, 8.9 CGPA)** – Bangalore University  
 
-🎓 Education
+---
 
-CMA (Pursuing) – Institute of Cost Accountants of India
+# 🧠 **Skills**
 
-Bachelor of Commerce (8.9 CGPA) – Bangalore University
+- O2C & Accounts Receivable  
+- E-Filing (ITR/GST)  
+- Cash Application  
+- Tally / Zoho / QuickBooks  
+- Customer Centricity  
+- Emotional Intelligence  
+- Business Ethics & Etiquette  
+- Process Optimization  
+- NSF/ACH Handling  
+- Collections & Dunning  
+- Automation using AI & Excel  
+- Gallup CliftonStrengths  
 
-🧠 Skills
+---
 
-O2C & Accounts Receivable
+# 📜 **Certifications**
 
-E-Filing (ITR/GST)
+- Order to Cash – Finance Expert  
+- Advanced MS Excel  
+- Tally Certified  
+- Foxtrot Practitioner Certification  
+- E-Filing (ITR/GST)  
+- Communication & Soft Skills  
 
-Cash Application
+### **ICMAI Mandatory Trainings**
+- SAP FICO  
+- MS Office  
+- E-Filing  
+- Accounting ERPs  
+- Soft Skills & Analytics  
 
-Tally / Zoho / QuickBooks
+---
 
-Customer Centricity
+# 📞 **Contact**
 
-Emotional Intelligence
+- 📱 **Phone:** +91 8105088456  
+- ✉️ **Email:** mujahid.icmai@gmail.com  
+- 🔗 **LinkedIn:** https://www.linkedin.com/in/mujahid1321101894/  
+- 🌐 **Portfolio Website:** https://mohammad-mujahid894.github.io/Portfolio/  
 
-Process Optimization
+---
 
-NSF/ACH Handling
-
-Collections & Dunning
-
-Business Ethics & Etiquette
-
-Automation using AI/Excel
-
-Gallup CliftonStrengths
-
-📜 Certifications
-
-Order to Cash – Finance Expert
-
-Advanced MS Excel
-
-Tally Certified
-
-Foxtrot Practitioner Certification
-
-E-Filing (ITR/GST)
-
-Communication & Soft Skills
-
-ICMAI Mandatory Trainings
-
-SAP FICO
-
-MS Office
-
-Soft Skills & Analytics
-
-E-Filing
-
-Accounting ERPs
-
-📞 Contact
-
-Phone: +91 8105088456
-
-Email: mujahid.icmai@gmail.com
-
-LinkedIn: https://www.linkedin.com/in/mujahid1321101894/
-
-Portfolio Website: https://mohammad-mujahid894.github.io/Portfolio/
+<p align="center">✨ Thank you for visiting my portfolio repository ✨</p>
