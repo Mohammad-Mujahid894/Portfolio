@@ -3356,26 +3356,52 @@ window.addEventListener("load", () => {
   });
 });
 </script>
+
+
+
 <script>
-// 🔥 Real-time visitor counter (Counter-Pro) - works globally
+// 🌍 Global visitor counter using CountAPI
 (function () {
   const counterEl = document.getElementById("visitor-count");
+  const boxEl = document.getElementById("visitor-box");
   if (!counterEl) return;
 
-  // Shared counter ID for your entire portfolio
-  const COUNTER_URL = "https://counterpro.vercel.app/api/count?id=mujahid-portfolio";
+  // Namespace + key identify your global counter
+  const NAMESPACE = "mohammad-mujahid894.github.io";
+  const KEY = "portfolio-global";
 
-  fetch(COUNTER_URL, { cache: "no-store" })
-    .then(r => r.json())
+  const url = "https://api.countapi.xyz/hit/"
+    + encodeURIComponent(NAMESPACE) + "/"
+    + encodeURIComponent(KEY);
+
+  fetch(url, { cache: "no-store" })
+    .then(res => res.json())
     .then(data => {
-      if (data && typeof data.count === "number") {
-        counterEl.textContent = data.count.toLocaleString();
-        // Pulse animation
-        const boxEl = document.querySelector(".visitor-box");
-        if (boxEl) boxEl.classList.add("pulse");
-      } else {
-        counterEl.textContent = "—";
-        console.warn("Counter response format unexpected:", data);
+      if (!data || typeof data.value !== "number") {
+        throw new Error("Unexpected response: " + JSON.stringify(data));
+      }
+
+      const target = data.value;
+      let current = 0;
+      const steps = 40;
+      const duration = 800;
+      const stepTime = duration / steps;
+      const increment = target / steps;
+      let step = 0;
+
+      const timer = setInterval(() => {
+        step++;
+        current += increment;
+        if (step >= steps) {
+          current = target;
+          clearInterval(timer);
+        }
+        counterEl.textContent = Math.round(current).toLocaleString();
+      }, stepTime);
+
+      // optional pulse effect if you have .pulse CSS
+      if (boxEl) {
+        boxEl.classList.add("pulse");
       }
     })
     .catch(err => {
@@ -3384,8 +3410,6 @@ window.addEventListener("load", () => {
     });
 })();
 </script>
-
-
 
 
 
