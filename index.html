@@ -2368,15 +2368,39 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 .visitor-box {
-  margin-top: 16px;
-  padding: 10px 14px;
-  display: inline-block;
-  font-size: 14px;
+  margin-top: 10px;
+  padding: 10px 18px;              /* same as QA buttons */
+  background: rgba(15,23,42,0.75); /* same glass style */
+  border: 1px solid rgba(148,163,184,0.4);
+  border-radius: 12px;             /* same roundness */
+  width: 100%;                     /* full width like buttons */
+  font-size: 15px;
   color: #e5e7eb;
-  border-radius: 10px;
-  background: rgba(15,23,42,0.82);
-  border: 1px solid rgba(148,163,184,0.5);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  transition: all .25s ease;
+}
+
+/* One-time pulse when value updates */
+.visitor-box.pulse {
+  animation: visitorPulse 0.9s ease-out;
+}
+
+@keyframes visitorPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  40% {
+    transform: scale(1.05);
+    box-shadow: 0 16px 44px rgba(0,0,0,0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
 }
 
 
@@ -2633,7 +2657,7 @@ and making processes faster, cleaner, and scalable.
     <h3>⚡</h3>
     <p>Process Optimization & Automation</p>
     <div class="hover-info">
-      Steered AI Centric workflows @ Accenture saving turnaround by 407 Hrs/Yr 
+      Steered AI Centric workflows & Macros @ Accenture by saving 407 Hrs/Yr 
     </div>
   </div>
 </div>
@@ -3281,12 +3305,46 @@ window.addEventListener("load", () => {
 });
 </script>
 <script>
-// 🔥 Real-time visitor counter using CountAPI
-fetch("https://api.countapi.xyz/hit/mujahid-portfolio/visits")
-  .then(r => r.json())
-  .then(data => {
-    document.getElementById("visitor-count").textContent = data.value;
-  });
+// 🔥 Real-time animated visitor counter using CountAPI
+document.addEventListener("DOMContentLoaded", function () {
+  var countEl = document.getElementById("visitor-count");
+  var boxEl   = document.getElementById("visitor-box");
+
+  if (!countEl || !boxEl) return;
+
+  fetch("https://api.countapi.xyz/hit/mohammad-mujahid894.github.io/Portfolio")
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var target = data && data.value ? data.value : 0;
+      var current = 0;
+      var steps = 40;             // how many frames
+      var duration = 800;         // total time in ms
+      var stepTime = duration / steps;
+      var increment = target / steps;
+      var step = 0;
+
+      // count up animation
+      var timer = setInterval(function () {
+        step++;
+        current += increment;
+        if (step >= steps) {
+          current = target;
+          clearInterval(timer);
+        }
+        countEl.textContent = Math.round(current).toLocaleString();
+      }, stepTime);
+
+      // pulse animation on the badge
+      boxEl.classList.add("pulse");
+      setTimeout(function () {
+        boxEl.classList.remove("pulse");
+      }, 900);
+    })
+    .catch(function () {
+      // if API fails, just hide or set a fallback
+      countEl.textContent = "—";
+    });
+});
 </script>
 
 
