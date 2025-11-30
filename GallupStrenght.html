@@ -2470,15 +2470,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <script>
-// Count visit to Gallup Strength page in the same global counter
+// Ping counter when visiting Gallup page
 (function () {
   const COUNTER_URL = "https://counterpro.vercel.app/api/count?id=mujahid-portfolio";
-  fetch(COUNTER_URL, { cache: "no-store" })
-    .catch(function (err) {
-      console.error("Visitor ping (Gallup) failed:", err);
-    });
+  fetch(COUNTER_URL, { cache: "no-store" }).catch(() => {});
 })();
 </script>
+
 
   <!-- ===== MOBILE MODAL (for mobile tile tap) ===== -->
 <div id="mobileModal" class="mobile-modal" role="dialog" aria-modal="true">
