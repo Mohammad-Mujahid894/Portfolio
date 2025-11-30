@@ -3344,18 +3344,18 @@ I Lead with Relationship Building
   <div id="qr-wrapper" class="qr-wrapper" style="display:none;">
     <img src="qr.png" alt="QR code to open my portfolio" class="qr-image">
   </div>
-<div class="qa visitor-card" id="visitor-box">
-  <div class="visitor-left">
-    <div class="visitor-label">Visitors</div>
-  </div>
 
-  <img
-    class="visitor-badge"
-    src="https://komarev.com/ghpvc/?username=Mohammad-Mujahid894&label=&color=0ea5e9&style=flat-square"
-    alt="Total visitors (GitHub profile counter)"
-    loading="lazy"
-  />
+
+  <div class="qa visitor-card" id="visitor-box">
+  <div class="visitor-left">
+    <div class="visitor-icon">✨</div>
+    <div>
+      <div class="visitor-label">Visitors</div>
+      <div class="visitor-count" id="visitor-count">loading…</div>
+    </div>
+  </div>
 </div>
+
 
 
 
@@ -4970,6 +4970,25 @@ if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 </script>
+
+<script>
+  // Called by the Google Apps Script JSONP response
+  function updateVisitorCount(data) {
+    try {
+      var n = data && data.count ? Number(data.count) : 0;
+      var el = document.getElementById("visitor-count");
+      if (el) {
+        el.textContent = n.toLocaleString("en-IN");
+      }
+    } catch (err) {
+      console.error("Visitor counter error:", err);
+    }
+  }
+</script>
+
+<script src="https://script.google.com/macros/s/AKfycbwPRsUBty2jIqRm1XadZCJYgvvC-qIbE2EBKLgY6XFBTTaTiFtJWo7M42StUj4zBq3s/exec?cb=updateVisitorCount"></script>
+
+
   <!-- Mobile modal popup -->
 <div id="mobileModal" class="mobile-modal">
   <div class="mobile-modal-content">
