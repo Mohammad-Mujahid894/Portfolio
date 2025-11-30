@@ -2356,26 +2356,24 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 /* ===== QR POPUP (forces overlay on ALL screens) ===== */
+/* QR code modal overlay */
 #qr-modal {
   position: fixed;
   inset: 0;
-  display: none !important;      /* hidden by default */
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
-
 #qr-modal.open {
-  display: flex !important;      /* show when .open is added */
+  display: flex;
 }
-
 #qr-modal .qr-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(10px);
 }
-
 #qr-modal .qr-inner {
   position: relative;
   z-index: 1;
@@ -2384,7 +2382,6 @@ header, .nav, .glass:hover, .stat-card:hover {
   background: #ffffff;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
 }
-
 #qr-modal .qr-image {
   display: block;
   max-width: min(340px, 90vw);
@@ -4896,6 +4893,69 @@ setTimeout(() => {
   $('#qa-resume')?.addEventListener('click', () => showToast('Resume download starting...'));
   $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const qrBtn     = document.getElementById("view-qr-btn");
+  const navQrLink = document.getElementById("nav-qr-link");
+  const qrModal   = document.getElementById("qr-modal");
+  const qrBackdrop= qrModal.querySelector(".qr-backdrop");
+  const qrInner   = qrModal.querySelector(".qr-inner");
+
+  function openQr() {
+    if (!qrModal) return;
+    qrModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    if (history && history.pushState) {
+      history.pushState({ qrOpen: true }, "");
+    }
+  }
+  function closeQr() {
+    if (!qrModal) return;
+    qrModal.classList.remove("open");
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+  }
+  if (qrBtn) {
+    qrBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      openQr();
+    });
+  }
+  if (navQrLink) {
+    navQrLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      // (Optional: close mobile menu here if open)
+      openQr();
+    });
+  }
+  // Close modal when clicking backdrop
+  if (qrBackdrop) {
+    qrBackdrop.addEventListener("click", closeQr);
+  }
+  // Prevent clicks inside modal content from closing
+  if (qrInner) {
+    qrInner.addEventListener("click", function(e) {
+      e.stopPropagation();
+    });
+    // Also close if clicking the overlay outside inner
+    qrModal.addEventListener("click", closeQr);
+  }
+  // Close on Escape key
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && qrModal.classList.contains("open")) {
+      closeQr();
+    }
+  });
+  // Close on mobile “back” (history) button
+  window.addEventListener("popstate", function() {
+    if (qrModal.classList.contains("open")) {
+      closeQr();
+    }
+  });
+});
+
 </script>
 
 
@@ -4913,16 +4973,14 @@ setTimeout(() => {
   </div>
 </div>
     <!-- QR POPUP -->
+<!-- Fullscreen QR code modal (hidden by default) -->
 <div id="qr-modal">
   <div class="qr-backdrop"></div>
   <div class="qr-inner">
-    <img
-      src="qr.png"
-      alt="Portfolio QR code"
-      class="qr-image"
-    />
+    <img src="qr.png" alt="Portfolio QR code" class="qr-image">
   </div>
 </div>
+
 
 <footer class="copyright">
   <p>© <span id="year"></span> Mohammad Mujahid. All rights reserved.</p>
