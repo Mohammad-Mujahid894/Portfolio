@@ -2209,6 +2209,28 @@ header, .nav, .glass:hover, .stat-card:hover {
   border-color: rgba(226, 232, 240, 0.9);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
 }
+.cert-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  font-size: 26px;
+  line-height: 1;
+  color: #e5e7eb;
+  border: 1px solid rgba(148,163,184,0.7);
+  background: rgba(15,23,42,0.95);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease,
+              background 0.2s ease,
+              border-color 0.2s ease;
+}
 
 
 .cert-arrow.left  { left: 18px; }
@@ -4112,223 +4134,227 @@ function barHoverOnly(d){
 
 
 <script>
-// Certificates slider + modal
 document.addEventListener("DOMContentLoaded", function () {
-  const slider     = document.getElementById("certSlider");
-  const slides     = slider ? slider.querySelectorAll(".cert-slide") : [];
-  const leftBtn    = document.querySelector(".cert-arrow.left");
-  const rightBtn   = document.querySelector(".cert-arrow.right");
-  const container  = document.querySelector(".cert-slider-container");
+  const slider   = document.getElementById("certSlider");
+  const leftBtn  = document.querySelector(".cert-arrow.left");
+  const rightBtn = document.querySelector(".cert-arrow.right");
 
-  if (!slider || !container || slides.length === 0) return;
+  if (!slider || !leftBtn || !rightBtn) return;
 
-  let index = 0;
-  let slideWidth = 0;
-  let startX = 0;
+  // Original slides (real certificates)
+  const realSlides = Array.from(slider.querySelectorAll(".cert-slide"));
+  const realCount  = realSlides.length;
+  if (!realCount) return;
+
+  /* ========= Infinite loop setup: clone edges ========= */
+  const firstClone = realSlides[0].cloneNode(true);
+  const lastClone  = realSlides[realCount - 1].cloneNode(true);
+
+  slider.appendChild(firstClone);             // ... 1 2 3 4 5 [clone of 1]
+  slider.insertBefore(lastClone, realSlides[0]); // [clone of 5] 1 2 3 4 5 ...
+
+  let slides = Array.from(slider.querySelectorAll(".cert-slide"));
+
+  let index           = 1; // start on first REAL slide (after left clone)
+  let slideWidth      = slider.clientWidth;
+  let isDragging      = false;
+  let startX          = 0;
   let currentTranslate = 0;
-  let prevTranslate = 0;
-  let isDragging = false;
-  let autoPlayInterval = null;
+  let prevTranslate    = 0;
 
   function setSlideWidth() {
-    slideWidth = container.clientWidth;
-
-    slides.forEach(function (slide) {
-      slide.style.width = slideWidth + "px";
-      slide.style.flex  = "0 0 " + slideWidth + "px";
-    });
-
-    slider.style.width = (slideWidth * slides.length) + "px";
-
-    // Reposition without animation jank
-    const oldTransition = slider.style.transition;
-    slider.style.transition = "none";
-    updateSlider();
-    requestAnimationFrame(function () {
-      slider.style.transition = oldTransition || "transform 0.35s ease";
-    });
+    slideWidth = slider.clientWidth;
+    goToIndex(index, false);
   }
 
-  function updateSlider() {
-    slider.style.transform = "translateX(-" + (index * slideWidth) + "px)";
+  function goToIndex(targetIndex, withTransition = true) {
+    if (withTransition) {
+      slider.style.transition = "transform 0.35s ease";
+    } else {
+      slider.style.transition = "none";
+    }
+    slider.style.transform = `translateX(-${targetIndex * slideWidth}px)`;
   }
 
-  function stopAutoPlay() {
-    if (autoPlayInterval) {
-      clearInterval(autoPlayInterval);
-      autoPlayInterval = null;
+  // After animating onto a clone, snap back to corresponding real slide
+  function snapIfClone() {
+    if (index === slides.length - 1) {
+      // on right clone (copy of first)
+      index = 1;
+      goToIndex(index, false);
+    } else if (index === 0) {
+      // on left clone (copy of last)
+      index = slides.length - 2;
+      goToIndex(index, false);
     }
   }
 
-  function startAutoPlay() {
-    stopAutoPlay();
-    autoPlayInterval = setInterval(function () {
-      index = (index + 1) % slides.length;   // 🔁 loop forever
-      updateSlider();
-    }, 3000);
-  }
-
-  function goToNext() {
-    index = (index + 1) % slides.length;
-    updateSlider();
-  }
-
-  function goToPrev() {
-    index = (index - 1 + slides.length) % slides.length;
-    updateSlider();
-  }
-
-  // Init
   window.addEventListener("resize", setSlideWidth);
   setSlideWidth();
-  startAutoPlay();
 
-  // Arrow clicks
-  if (rightBtn) {
-    rightBtn.addEventListener("click", function () {
-      stopAutoPlay();
-      goToNext();
-      startAutoPlay();
-    });
+  /* ========= AUTOPLAY ========= */
+  function nextSlide() {
+    index++;
+    goToIndex(index, true);
+    setTimeout(snapIfClone, 360);
   }
 
-  if (leftBtn) {
-    leftBtn.addEventListener("click", function () {
-      stopAutoPlay();
-      goToPrev();
-      startAutoPlay();
-    });
+  function prevSlide() {
+    index--;
+    goToIndex(index, true);
+    setTimeout(snapIfClone, 360);
   }
 
-  // Drag / swipe
-  function getX(e) {
-    return e.type.indexOf("mouse") !== -1 ? e.pageX : e.touches[0].clientX;
+  let autoPlayInterval = setInterval(nextSlide, 3000);
+
+  function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
   }
 
-  slides.forEach(function (slide, i) {
-    function start(e) {
+  function resumeAutoPlay() {
+    autoPlayInterval = setInterval(nextSlide, 3000);
+  }
+
+  // Arrow buttons
+  rightBtn.addEventListener("click", () => {
+    stopAutoPlay();
+    nextSlide();
+    resumeAutoPlay();
+  });
+
+  leftBtn.addEventListener("click", () => {
+    stopAutoPlay();
+    prevSlide();
+    resumeAutoPlay();
+  });
+
+  /* ========= DRAG / SWIPE ========= */
+  const getX = (e) =>
+    e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
+
+  slides.forEach((slide) => {
+    const start = (e) => {
       stopAutoPlay();
       isDragging = true;
-      index = i;
       startX = getX(e);
       prevTranslate = -index * slideWidth;
       slider.style.transition = "none";
-    }
+    };
 
-    function move(e) {
+    const move = (e) => {
       if (!isDragging) return;
       const currentX = getX(e);
       const diff = currentX - startX;
       currentTranslate = prevTranslate + diff;
-      slider.style.transform = "translateX(" + currentTranslate + "px)";
-    }
+      slider.style.transform = `translateX(${currentTranslate}px)`;
+    };
 
-    function end() {
+    const end = () => {
       if (!isDragging) return;
       isDragging = false;
-      slider.style.transition = "transform 0.35s ease";
 
       const moved = currentTranslate - prevTranslate;
-
       if (moved < -60) {
-        index = (index + 1) % slides.length;
+        index++;
       } else if (moved > 60) {
-        index = (index - 1 + slides.length) % slides.length;
+        index--;
       }
 
-      updateSlider();
-      startAutoPlay();
-    }
+      goToIndex(index, true);
+      setTimeout(snapIfClone, 360);
+      resumeAutoPlay();
+    };
 
-    // Mouse events
+    // Mouse
     slide.addEventListener("mousedown", start);
     slide.addEventListener("mousemove", move);
     slide.addEventListener("mouseup", end);
     slide.addEventListener("mouseleave", end);
 
-    // Touch events
+    // Touch
     slide.addEventListener("touchstart", start, { passive: true });
-    slide.addEventListener("touchmove", move,  { passive: true });
+    slide.addEventListener("touchmove", move, { passive: true });
     slide.addEventListener("touchend", end);
   });
 
-  // ===== Modal logic (click slide to open) =====
-  const modal        = document.getElementById("cert-modal");
-  const modalImg     = document.getElementById("cert-modal-img");
-  const modalLeft    = document.querySelector(".modal-arrow.modal-left");
-  const modalRight   = document.querySelector(".modal-arrow.modal-right");
-  const modalBackdrop= document.querySelector(".cert-backdrop");
-  let   modalIndex   = 0;
+  /* ========= MODAL (FULL VIEW) – uses ONLY real slides ========= */
+  const modal         = document.getElementById("cert-modal");
+  const modalImg      = document.getElementById("cert-modal-img");
+  const modalLeft     = document.querySelector(".modal-arrow.modal-left");
+  const modalRight    = document.querySelector(".modal-arrow.modal-right");
+  const modalBackdrop = document.querySelector(".cert-backdrop");
 
-  function openModal(idx) {
-    if (!modal || !modalImg) return;
-    modalIndex = idx;
-    modalImg.src = slides[modalIndex].src;
+  let modalIndex = 0; // 0..realCount-1
+
+  function openModal(realIdx) {
+    modalIndex = realIdx;
+    modalImg.src = realSlides[modalIndex].src;
     modal.classList.add("show");
     document.body.style.overflow = "hidden";
     stopAutoPlay();
   }
 
   function closeModal() {
-    if (!modal) return;
     modal.classList.remove("show");
     document.body.style.overflow = "";
-    startAutoPlay();
+    resumeAutoPlay();
   }
 
   function showNextModal() {
-    modalIndex = (modalIndex + 1) % slides.length;
-    modalImg.src = slides[modalIndex].src;
-    index = modalIndex;
-    updateSlider();
+    modalIndex = (modalIndex + 1) % realCount;
+    modalImg.src = realSlides[modalIndex].src;
+    index = modalIndex + 1; // +1 because of left clone
+    goToIndex(index, true);
   }
 
   function showPrevModal() {
-    modalIndex = (modalIndex - 1 + slides.length) % slides.length;
-    modalImg.src = slides[modalIndex].src;
-    index = modalIndex;
-    updateSlider();
+    modalIndex = (modalIndex - 1 + realCount) % realCount;
+    modalImg.src = realSlides[modalIndex].src;
+    index = modalIndex + 1;
+    goToIndex(index, true);
   }
 
-  // Open modal from any slide
-  slides.forEach(function (slide, i) {
-    slide.addEventListener("click", function () {
-      openModal(i);
+  // Clicking any slide – map clones to correct real index
+  slides.forEach((slide, i) => {
+    slide.addEventListener("click", () => {
+      let realIdx;
+      if (i === 0) {
+        realIdx = realCount - 1;              // left clone → last real
+      } else if (i === slides.length - 1) {
+        realIdx = 0;                          // right clone → first real
+      } else {
+        realIdx = i - 1;                      // normal case
+      }
+      openModal(realIdx);
     });
   });
 
   // Modal arrows
   if (modalRight) {
-    modalRight.addEventListener("click", function (e) {
+    modalRight.addEventListener("click", (e) => {
       e.stopPropagation();
       showNextModal();
     });
   }
-
   if (modalLeft) {
-    modalLeft.addEventListener("click", function (e) {
+    modalLeft.addEventListener("click", (e) => {
       e.stopPropagation();
       showPrevModal();
     });
   }
 
-  // Click blurred backdrop to close
+  // Click blur background to close
   if (modalBackdrop) {
-    modalBackdrop.addEventListener("click", function () {
+    modalBackdrop.addEventListener("click", () => {
       closeModal();
     });
   }
 
-  // Keyboard: ESC / Backspace closes, arrows move
-  document.addEventListener("keydown", function (e) {
-    if (!modal || !modal.classList.contains("show")) return;
-
-    if (e.key === "Escape" || e.key === "Backspace") {
+  // ESC / Backspace to close
+  document.addEventListener("keydown", (e) => {
+    if ((e.key === "Escape" || e.key === "Backspace") &&
+        modal.classList.contains("show")) {
       closeModal();
-    } else if (e.key === "ArrowRight") {
-      showNextModal();
-    } else if (e.key === "ArrowLeft") {
-      showPrevModal();
     }
   });
 });
