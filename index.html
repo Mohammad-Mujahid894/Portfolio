@@ -2423,16 +2423,27 @@ header, .nav, .glass:hover, .stat-card:hover {
 
   
 
-.visitor-box {
-  margin-top: 16px;
-  padding: 10px 14px;
-  display: inline-block;
-  font-size: 14px;
-  color: #e5e7eb;
-  border-radius: 10px;
-  background: rgba(15,23,42,0.82);
-  border: 1px solid rgba(148,163,184,0.5);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+/* Visitors card – make it compact like other quick actions */
+#visitor-box {
+  padding: 10px 14px;          /* smaller padding */
+  min-height: auto;            /* don’t force a big height */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                    /* tight spacing */
+}
+
+/* Smaller label text inside visitors card */
+#visitor-box .quick-label,
+#visitor-box .label,
+#visitor-box-title {
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+/* Number not too huge */
+#visitor-count {
+  font-size: 18px;
+  font-weight: 600;
 }
 
 
@@ -3346,13 +3357,31 @@ window.addEventListener("load", () => {
 });
 </script>
 <script>
-// 🔥 Real-time visitor counter using CountAPI
-fetch("https://api.countapi.xyz/hit/mujahid-portfolio/visits")
-  .then(r => r.json())
-  .then(data => {
-    document.getElementById("visitor-count").textContent = data.value;
-  });
+// 🔥 Real-time visitor counter shared across all portfolio pages
+(function () {
+  const counterEl = document.getElementById("visitor-count");
+  if (!counterEl) return;
+
+  const COUNTER_URL = "https://api.countapi.xyz/hit/mohammad-mujahid894.github.io/portfolio-total";
+
+  fetch(COUNTER_URL)
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data && typeof data.value === "number") {
+        // format nicely: 1,234 etc.
+        counterEl.textContent = data.value.toLocaleString();
+      } else {
+        counterEl.textContent = "—";
+        console.warn("Unexpected CountAPI response:", data);
+      }
+    })
+    .catch(function (err) {
+      console.error("Visitor counter failed:", err);
+      counterEl.textContent = "—";
+    });
+})();
 </script>
+
 
 
 
