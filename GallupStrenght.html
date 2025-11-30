@@ -841,6 +841,50 @@ html, body{ overflow-x: hidden; }
   color: #9fb2d8; margin-bottom: 8px;
 }
 .details-backdrop.show { display: flex; }
+
+    /* ===== QR fullscreen modal (used by nav QR + works on mobile + desktop) ===== */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  display: none;                 /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(20px);   /* blur background */
+  background: rgba(0,0,0,0.45);  /* slight dark overlay */
+  z-index: 9999;
+}
+
+.qr-modal.show {
+  display: flex;
+}
+
+.qr-modal-backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.qr-modal-inner {
+  position: relative;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(15,23,42,0.97);
+  border: 1px solid rgba(148,163,184,0.7);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 320px;
+  width: 80vw;
+}
+
+.qr-modal-img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 18px;
+  background: #020617;
+  object-fit: contain;
+}
+
   </style>
 
 </head>
@@ -869,8 +913,8 @@ html, body{ overflow-x: hidden; }
         <a href="./Mujahid.Accenture.OTC.pdf" target="_blank" rel="noopener">Download Resume</a>
         <a href="./GallupStrenght.html">Gallup Strengths</a>
         <a href="./Certifications.html#achievements">Achievements</a>
-        <a href="./index.html#projects">Projects</a>
-        <a href="./index.html#blogs">Blogs</a>
+    <a href="#" id="nav-qr">QR code</a>
+    <a href="#" id="nav-share">Share my profile</a>
         <a href="./index.html#interests">Interests</a>
       </div>
     </div>
@@ -2469,6 +2513,115 @@ document.addEventListener('DOMContentLoaded', function () {
   renderInputDetailsNoTabs(strengths);
 });
 </script>
+
+
+  <!-- 🔳 Fullscreen QR modal (same as index) -->
+<div id="qr-modal" class="qr-modal">
+  <div class="qr-modal-backdrop"></div>
+  <div class="qr-modal-inner">
+    <img
+      src="qr.png"
+      alt="QR code to open my portfolio"
+      id="qr-modal-img"
+      class="qr-modal-img"
+    />
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // ===== Grab nav + dropdown bits (for closing on mobile) =====
+  const navbar    = document.getElementById('navbar');
+  const hamburger = document.querySelector('.hamburger');
+  const dropdown  = document.querySelector('.dropdown');
+
+  function closeMobileMenu() {
+    navbar?.classList.remove('show');
+    hamburger?.classList.remove('active');
+    dropdown?.classList.remove('open');
+  }
+
+  // ===== Nav links we just added =====
+  const navQr    = document.getElementById('nav-qr');
+  const navShare = document.getElementById('nav-share');
+
+  // ===== QR modal elements =====
+  const qrModal     = document.getElementById('qr-modal');
+  const qrBackdrop  = qrModal ? qrModal.querySelector('.qr-modal-backdrop') : null;
+  const qrModalImg  = document.getElementById('qr-modal-img');
+
+  function openQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.add('show');
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.remove('show');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
+  // Close modal on backdrop click / image click / Esc
+  if (qrBackdrop) {
+    qrBackdrop.addEventListener('click', closeQrModal);
+  }
+  if (qrModalImg) {
+    qrModalImg.addEventListener('click', closeQrModal);
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && qrModal && qrModal.classList.contains('show')) {
+      closeQrModal();
+    }
+  });
+
+  // ===== Hook up "QR code" in More ▾ =====
+  if (navQr) {
+    navQr.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeMobileMenu();
+      if (qrModal && qrModal.classList.contains('show')) {
+        closeQrModal();
+      } else {
+        openQrModal();
+      }
+    });
+  }
+
+  // ===== Hook up "Share my profile" in More ▾ =====
+  if (navShare) {
+    navShare.addEventListener('click', async function (e) {
+      e.preventDefault();
+      closeMobileMenu();
+
+      const shareText   = 'Check out my portfolio website:';
+      const portfolioUrl = 'https://mohammad-mujahid894.github.io/Portfolio/';
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Mohammad Mujahid – Portfolio',
+            text: shareText,
+            url: portfolioUrl
+          });
+        } catch (err) {
+          // user cancelled – ignore
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(portfolioUrl);
+          alert('Link copied to clipboard:\n' + portfolioUrl);
+        } catch (err) {
+          alert('Here is the link to share:\n' + portfolioUrl);
+        }
+      }
+    });
+  }
+});
+</script>
+
 <script>
   // We define the callback so the JSONP doesn't throw an error,
   // but we don't show anything on this page.
