@@ -2372,6 +2372,49 @@ header, .nav, .glass:hover, .stat-card:hover {
   box-shadow: 0 14px 40px rgba(0,0,0,0.9);
 }
 
+  /* ===== QR Modal (separate from certificate modal) ===== */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  display: none;                 /* hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.qr-modal.open {
+  display: flex;                 /* show when .open is added */
+}
+
+.qr-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(18px);
+}
+
+.qr-modal-inner {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.65);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95);
+}
+
+.qr-modal-img {
+  max-width: min(420px, 90vw);
+  max-height: min(420px, 80vh);
+  display: block;
+}
+
+
+
+
+
+  
+
 .visitor-box {
   margin-top: 10px;
   padding: 10px 18px;              /* same as QA buttons */
@@ -3287,17 +3330,19 @@ I Lead with Relationship Building
   </div>
 </div>
 
-<!-- Fullscreen QR modal ONLY (no inline QR anymore) -->
-<!-- Fullscreen QR modal ONLY (no inline QR anymore) -->
-<div id="qr-modal" class="cert-modal" style="display:none;">
-  <div class="cert-backdrop"></div>
-  <div class="cert-modal-inner">
-    <img id="qr-modal-img"
-         class="cert-modal-img"
-         src="qr.png"
-         alt="QR code to open my portfolio (full view)">
+<!-- Dedicated QR modal (separate from certificate modal) -->
+<div id="qr-modal" class="qr-modal">
+  <div class="qr-modal-backdrop"></div>
+  <div class="qr-modal-inner">
+    <img
+      id="qr-modal-img"
+      class="qr-modal-img"
+      src="qr.png"
+      alt="QR code to open my portfolio"
+    />
   </div>
 </div>
+
 
 
 <!-- Toast -->
@@ -3390,33 +3435,35 @@ document.addEventListener("DOMContentLoaded", function () {
   var navQrLink    = document.getElementById("nav-qr-link");
   var navShareLink = document.getElementById("nav-share-link");
 
-  var qrModal    = document.getElementById("qr-modal");
-  var qrModalImg = document.getElementById("qr-modal-img");
-  var qrBackdrop = qrModal ? qrModal.querySelector(".cert-backdrop") : null;
+  var qrModal      = document.getElementById("qr-modal");
+  var qrBackdrop   = qrModal ? qrModal.querySelector(".qr-modal-backdrop") : null;
+  var qrModalInner = qrModal ? qrModal.querySelector(".qr-modal-inner") : null;
+  var qrModalImg   = document.getElementById("qr-modal-img");
 
   var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
   var shareText    = "Check out my portfolio website:";
 
   /* ========= QR FULLSCREEN MODAL ========= */
-  /* ========= QR FULLSCREEN MODAL ========= */
   function openQrModal() {
     if (!qrModal) return;
-    qrModal.style.display = "flex";          // 👈 show it
-    qrModal.classList.add("show");
+
+    qrModal.classList.add("open");
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+
+    // So mobile back button closes the modal first
+    history.pushState({ qrOpen: true }, "");
   }
 
   function closeQrModal() {
     if (!qrModal) return;
-    qrModal.classList.remove("show");
-    qrModal.style.display = "none";          // 👈 hide it
+
+    qrModal.classList.remove("open");
     document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
   }
 
-
-  // Contact card → View QR Code
+  // Quick action button (Contact → View QR Code)
   if (qrBtn) {
     qrBtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -3424,21 +3471,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Navbar → More → QR Code
+  // Navbar "QR Code" (More → View QR Code)
   if (navQrLink) {
     navQrLink.addEventListener("click", function (e) {
       e.preventDefault();
+
+      // Close mobile dropdown / hamburger if open
+      var navbar    = document.getElementById("navbar");
+      var hamburger = document.querySelector(".hamburger");
+      var dropdown  = navQrLink.closest(".dropdown");
+
+      if (navbar)   navbar.classList.remove("show");
+      if (hamburger) hamburger.classList.remove("active");
+      if (dropdown) dropdown.classList.remove("active");
+
       openQrModal();
     });
   }
 
-  // Click backdrop or QR image to close
-  if (qrBackdrop) qrBackdrop.addEventListener("click", closeQrModal);
-  if (qrModalImg) qrModalImg.addEventListener("click", closeQrModal);
+  // Click backdrop or QR to close
+  if (qrBackdrop)  qrBackdrop.addEventListener("click", closeQrModal);
+  if (qrModalImg)  qrModalImg.addEventListener("click", closeQrModal);
 
   // ESC to close
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && qrModal && qrModal.classList.contains("show")) {
+    if (e.key === "Escape" && qrModal && qrModal.classList.contains("open")) {
+      closeQrModal();
+    }
+  });
+
+  // Mobile back button: close modal instead of leaving page
+  window.addEventListener("popstate", function (e) {
+    if (qrModal && qrModal.classList.contains("open")) {
+      // Close modal, but don't navigate away
       closeQrModal();
     }
   });
@@ -3482,11 +3547,21 @@ document.addEventListener("DOMContentLoaded", function () {
   if (navShareLink) {
     navShareLink.addEventListener("click", function (e) {
       e.preventDefault();
+
+      var navbar    = document.getElementById("navbar");
+      var hamburger = document.querySelector(".hamburger");
+      var dropdown  = navShareLink.closest(".dropdown");
+
+      if (navbar)   navbar.classList.remove("show");
+      if (hamburger) hamburger.classList.remove("active");
+      if (dropdown) dropdown.classList.remove("active");
+
       doShare();
     });
   }
 });
 </script>
+
 
 
 
