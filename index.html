@@ -3357,31 +3357,34 @@ window.addEventListener("load", () => {
 });
 </script>
 <script>
-// 🔥 Real-time visitor counter shared across all portfolio pages (using Counter-Pro)
+// 🔥 Real-time visitor counter (Counter-Pro) - works globally
 (function () {
   const counterEl = document.getElementById("visitor-count");
   if (!counterEl) return;
 
-  // One global ID for your whole portfolio
+  // Shared counter ID for your entire portfolio
   const COUNTER_URL = "https://counterpro.vercel.app/api/count?id=mujahid-portfolio";
 
   fetch(COUNTER_URL, { cache: "no-store" })
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      // Counter-Pro returns { status: "success", message: "...", count: 1 }
+    .then(r => r.json())
+    .then(data => {
       if (data && typeof data.count === "number") {
         counterEl.textContent = data.count.toLocaleString();
+        // Pulse animation
+        const boxEl = document.querySelector(".visitor-box");
+        if (boxEl) boxEl.classList.add("pulse");
       } else {
         counterEl.textContent = "—";
-        console.warn("Unexpected counter response:", data);
+        console.warn("Counter response format unexpected:", data);
       }
     })
-    .catch(function (err) {
+    .catch(err => {
       console.error("Visitor counter failed:", err);
       counterEl.textContent = "—";
     });
 })();
 </script>
+
 
 
 
