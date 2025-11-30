@@ -2479,8 +2479,8 @@ header, .nav, .glass:hover, .stat-card:hover {
         <a href="./Mujahid.Accenture.OTC.pdf?v=1" target="_blank" rel="noopener">Download Resume</a>
         <a href="./GallupStrenght.html">Gallup Strengths</a>
         <a href="./Certifications.html">Achievements</a>
-        <a href="./index.html#projects">Projects</a>
-        <a href="./index.html#blogs">Blogs</a>
+        <a href="./index.html#projects">QR Code</a>
+        <a href="./index.html#blogs">Share my Prfile</a>
         <a href="./index.html#interests">Interests</a>
       </div>
     </div>
@@ -4744,6 +4744,17 @@ document.addEventListener("DOMContentLoaded", function () {
   var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
   var shareText    = "Check out my portfolio website:";
 
+  // 🔹 Helper: close mobile menu (hamburger + dropdown)
+  function closeMobileMenu() {
+    var navbarEl  = document.getElementById("navbar");
+    var burgerEl  = document.querySelector(".hamburger");
+    if (navbarEl)  navbarEl.classList.remove("show");
+    if (burgerEl)  burgerEl.classList.remove("active");
+    document.querySelectorAll(".dropdown").forEach(function (d) {
+      d.classList.remove("open");
+    });
+  }
+
   // Helper: ensure small QR box is visible
   function openQrBox() {
     if (!qrWrapper) return;
@@ -4774,7 +4785,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "";
   }
 
-  // 🔳 Button: show/hide small QR box
+  // 🔳 Quick actions: button → show/hide small QR box
   if (qrBtn) {
     qrBtn.addEventListener("click", function () {
       toggleQrBox();
@@ -4799,7 +4810,7 @@ document.addEventListener("DOMContentLoaded", function () {
     qrModalImg.addEventListener("click", closeQrModal);
   }
 
-  // ESC / Backspace → close
+  // ESC / Backspace → close (desktop + external keyboard on mobile)
   document.addEventListener("keydown", function (e) {
     if (
       (e.key === "Escape" || e.key === "Backspace") &&
@@ -4810,7 +4821,47 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 📤 Share my portfolio (unchanged)
+  /* ===============================
+   * 🔗 NAVBAR DROPDOWN HOOKS
+   * =============================== */
+
+  // "Projects" in More ▾ → open / close QR popup (same as QR behaviour)
+  var navProjectsLink = document.querySelector('.dropdown-content a[href="./index.html#projects"]');
+
+  if (navProjectsLink) {
+    navProjectsLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      // close mobile menu (hamburger) if open
+      closeMobileMenu();
+
+      // Toggle QR modal
+      if (qrModal && qrModal.classList.contains("show")) {
+        // Currently open → close everything
+        closeQrModal();
+        if (qrWrapper) {
+          qrWrapper.style.display = "none";
+        }
+      } else {
+        // Currently closed → show dropdown QR + popup centered
+        openQrBox();
+        openQrModal();
+      }
+    });
+  }
+
+  // "Blogs" in More ▾ → same as "Share My Portfolio" quick action
+  var navBlogsLink = document.querySelector('.dropdown-content a[href="./index.html#blogs"]');
+
+  if (navBlogsLink && shareBtn) {
+    navBlogsLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      closeMobileMenu();
+      // Reuse same logic as the Quick Action button
+      shareBtn.click();
+    });
+  }
+
+  // 📤 Share my portfolio (Quick actions button)
   if (shareBtn) {
     shareBtn.addEventListener("click", function () {
       if (navigator.share) {
@@ -4844,6 +4895,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+
 
 <script>
 const yearEl = document.getElementById("year");
