@@ -3304,11 +3304,6 @@ I Lead with Relationship Building
 </div>
 
 </div>
-
-<!-- Toast -->
-<div class="toast" id="toast" role="status" aria-live="polite">
-  <span class="toast-ico">✓</span>
-</div>
 </section>
 </main>
 
@@ -3386,6 +3381,119 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var qrBtn        = document.getElementById("view-qr-btn");
+  var shareBtn     = document.getElementById("share-portfolio-btn");
+  var navQrLink    = document.getElementById("nav-qr-link");
+  var navShareLink = document.getElementById("nav-share-link");
+
+  var qrModal    = document.getElementById("qr-modal");
+  var qrModalImg = document.getElementById("qr-modal-img");
+  var qrBackdrop = qrModal ? qrModal.querySelector(".cert-backdrop") : null;
+
+  var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
+  var shareText    = "Check out my portfolio website:";
+
+  /* ========= QR FULLSCREEN MODAL ========= */
+  function openQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.add("show");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.remove("show");
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }
+
+  // Quick action button (Contact → View QR Code)
+  if (qrBtn) {
+    qrBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      openQrModal();
+    });
+  }
+
+  // Navbar "QR Code" (More → View QR Code)
+  if (navQrLink) {
+    navQrLink.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Close dropdown if open (mobile)
+      var dd = document.querySelector(".dropdown-content");
+      if (dd) {
+        dd.style.display = "none";
+      }
+
+      openQrModal();
+    });
+  }
+
+  // Click backdrop or big QR to close
+  if (qrBackdrop) qrBackdrop.addEventListener("click", closeQrModal);
+  if (qrModalImg) qrModalImg.addEventListener("click", closeQrModal);
+
+  // ESC to close
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && qrModal && qrModal.classList.contains("show")) {
+      closeQrModal();
+    }
+  });
+
+  /* ========= SHARE PORTFOLIO ========= */
+  function doShare() {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Mohammad Mujahid – Portfolio",
+          text: shareText,
+          url: portfolioUrl,
+        })
+        .catch(function (err) {
+          console.log("Share cancelled / failed:", err);
+        });
+    } else {
+      // Fallback: copy link
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard
+          .writeText(portfolioUrl)
+          .then(function () {
+            alert("Link copied to clipboard!");
+          })
+          .catch(function () {
+            alert("Your browser blocked clipboard access. Link: " + portfolioUrl);
+          });
+      } else {
+        alert("Link: " + portfolioUrl);
+      }
+    }
+  }
+
+  if (shareBtn) {
+    shareBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      doShare();
+    });
+  }
+
+  if (navShareLink) {
+    navShareLink.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      var dd = document.querySelector(".dropdown-content");
+      if (dd) {
+        dd.style.display = "none";
+      }
+
+      doShare();
+    });
+  }
+});
+</script>
 
 
 
@@ -4767,130 +4875,7 @@ setTimeout(() => {
   $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
 </script>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  var qrBtn        = document.getElementById("view-qr-btn");
-  var shareBtn     = document.getElementById("share-portfolio-btn");
-  var navQrLink    = document.getElementById("nav-qr-link");
-  var navShareLink = document.getElementById("nav-share-link");
 
-  var qrModal    = document.getElementById("qr-modal");
-  var qrModalImg = document.getElementById("qr-modal-img");
-  var qrBackdrop = qrModal ? qrModal.querySelector(".cert-backdrop") : null;
-
-  var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
-  var shareText    = "Check out my portfolio website:";
-
-  /* ========= QR FULLSCREEN MODAL ONLY ========= */
-  function openQrModal() {
-    if (!qrModal) return;
-
-    qrModal.classList.add("show");
-    document.body.style.overflow = "hidden";
-
-    // Android back button support
-    if (history && history.pushState && !qrModal._hasState) {
-      history.pushState({ qrOpen: true }, "", location.href);
-      qrModal._hasState = true;
-    }
-  }
-
-  function closeQrModal() {
-    if (!qrModal) return;
-
-    qrModal.classList.remove("show");
-    document.body.style.overflow = "";
-
-    if (qrModal._hasState && history && history.state && history.state.qrOpen) {
-      qrModal._hasState = false;
-      history.back();
-    }
-  }
-
-  // Quick action button
-  if (qrBtn) {
-    qrBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      openQrModal();
-    });
-  }
-
-  // Navbar "QR Code" (desktop + mobile dropdown)
-  if (navQrLink) {
-    navQrLink.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      // Close dropdown if open (mobile)
-      var dd = document.querySelector(".dropdown-content");
-      if (dd && getComputedStyle(dd).display !== "none") {
-        dd.style.display = "none";
-      }
-
-      openQrModal();
-    });
-  }
-
-  // Click backdrop or big QR to close
-  if (qrBackdrop) qrBackdrop.addEventListener("click", closeQrModal);
-  if (qrModalImg) qrModalImg.addEventListener("click", closeQrModal);
-
-  // ESC + back button
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && qrModal && qrModal.classList.contains("show")) {
-      closeQrModal();
-    }
-  });
-
-  window.addEventListener("popstate", function () {
-    if (qrModal && qrModal.classList.contains("show")) {
-      closeQrModal();
-    }
-  });
-
-  /* ========= SHARE (button + navbar) ========= */
-  function doShare() {
-    if (navigator.share) {
-      navigator.share({
-        title: "My Portfolio – Mohammad Mujahid",
-        text: shareText,
-        url: portfolioUrl
-      }).catch(function () {
-        // user cancelled – ignore
-      });
-    } else if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(portfolioUrl)
-        .then(function () {
-          alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
-        })
-        .catch(function () {
-          alert("Could not copy automatically. Share this link:\n" + portfolioUrl);
-        });
-    } else {
-      var temp = document.createElement("input");
-      temp.value = portfolioUrl;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      document.body.removeChild(temp);
-      alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
-    }
-  }
-
-  if (shareBtn) {
-    shareBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      doShare();
-    });
-  }
-
-  if (navShareLink) {
-    navShareLink.addEventListener("click", function (e) {
-      e.preventDefault();
-      doShare();
-    });
-  }
-});
-</script>
 
 
 
