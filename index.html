@@ -3338,7 +3338,15 @@ I Lead with Relationship Building
 </section>
 </main>
 
-
+<!-- QR fullscreen modal (used by navbar + Quick actions) -->
+<div id="qr-modal" aria-hidden="true">
+  <div class="qr-backdrop"></div>
+  <div class="qr-inner">
+    <img src="qr.png"
+         alt="Scan to view my portfolio"
+         class="qr-image">
+  </div>
+</div>
 
 
 <script>
@@ -3408,132 +3416,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
-
-
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  var qrBtn        = document.getElementById("view-qr-btn");
-  var navQrLink    = document.getElementById("nav-qr-link");
-  var shareBtn     = document.getElementById("share-portfolio-btn");
-  var navShareLink = document.getElementById("nav-share-link");
-
-  var qrModal    = document.getElementById("qr-modal");
-  var qrBackdrop = qrModal ? qrModal.querySelector(".qr-backdrop") : null;
-  var qrInner    = qrModal ? qrModal.querySelector(".qr-inner") : null;
-
-  var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
-  var shareText    = "Check out my portfolio website:";
-
-  /* ==== QR POPUP ==== */
-  function openQr() {
-    if (!qrModal) return;
-    qrModal.classList.add("open");
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-    if (history && history.pushState) {
-      history.pushState({ qrOpen: true }, "");
-    }
-  }
-
-  function closeQr() {
-    if (!qrModal) return;
-    qrModal.classList.remove("open");
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
-  }
-
-  if (qrBtn) {
-    qrBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      openQr();
-    });
-  }
-
-  if (navQrLink) {
-    navQrLink.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      // close mobile dropdown / hamburger if open
-      var navbar    = document.getElementById("navbar");
-      var hamburger = document.querySelector(".hamburger");
-      var dropdown  = navQrLink.closest(".dropdown");
-
-      if (navbar)   navbar.classList.remove("show");
-      if (hamburger) hamburger.classList.remove("active");
-      if (dropdown) dropdown.classList.remove("active");
-
-      openQr();
-    });
-  }
-
-  // click outside or on card to close
-  if (qrBackdrop) qrBackdrop.addEventListener("click", closeQr);
-  if (qrInner)    qrInner.addEventListener("click", function (e) {
-    // don't close when clicking inside card
-    e.stopPropagation();
-  });
-  if (qrModal)    qrModal.addEventListener("click", closeQr);
-
-  // ESC (desktop)
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && qrModal && qrModal.classList.contains("open")) {
-      closeQr();
-    }
-  });
-
-  // Mobile back button
-  window.addEventListener("popstate", function () {
-    if (qrModal && qrModal.classList.contains("open")) {
-      closeQr();
-    }
-  });
-
-  /* ==== SHARE (same behaviour as before) ==== */
-  function doShare() {
-    if (navigator.share) {
-      navigator.share({
-        title: "Mohammad Mujahid – Portfolio",
-        text: shareText,
-        url: portfolioUrl
-      }).catch(function (err) {
-        console.log("Share cancelled / failed:", err);
-      });
-    } else if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(portfolioUrl).then(function () {
-        alert("Link copied to clipboard!");
-      }).catch(function () {
-        alert("Your browser blocked clipboard access. Link: " + portfolioUrl);
-      });
-    } else {
-      alert("Link: " + portfolioUrl);
-    }
-  }
-
-  if (shareBtn) {
-    shareBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      doShare();
-    });
-  }
-
-  if (navShareLink) {
-    navShareLink.addEventListener("click", function (e) {
-      e.preventDefault();
-      doShare();
-    });
-  }
-});
-</script>
-
-
-
-
-
-
-
-    
   <script>
     /* ========= Parallax starfields (3 layers for depth) ========= */
     const DPR = Math.min(2, window.devicePixelRatio || 1);
@@ -5061,13 +4943,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </div>
     <!-- QR POPUP -->
-<!-- Fullscreen QR code modal (hidden by default) -->
-<div id="qr-modal">
-  <div class="qr-backdrop"></div>
-  <div class="qr-inner">
-    <img src="qr.png" alt="Portfolio QR code" class="qr-image">
-  </div>
-</div>
+
 
 
 
