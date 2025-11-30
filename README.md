@@ -31,7 +31,7 @@ This repository contains the source code for my personal portfolio website — a
 
 # 👨‍💼 **About Me**
 
-I am an organized and dependable professional experienced in **Order to Cash (O2C)** operations with Accenture (US Foods process).  
+I am an organized and dependable professional experienced in **Order to Cash (O2C)** operations with Accenture.  
 I possess strong knowledge of:
 
 - Accounts Receivable  
@@ -54,7 +54,7 @@ I focus heavily on **accuracy, workflow optimization, customer centricity, and d
 - Automated statement retrievals using **Excel Macros & AI tools**  
 - Managed **500+ queries/month** improving customer satisfaction  
 - Supported month-end closures, reports, and demand letters  
-- Built an exception triage tracker saving **407+ hours per year**  
+- Built an exception triage saving **407+ hours per year**  
 - Recognized for **implemented automation ideas**, completed **Innovation Lifecycle**, earned:  
   - 🏆 **Co-Pilot Award**  
   - 🛡️ **Elite IS Advocate**  
