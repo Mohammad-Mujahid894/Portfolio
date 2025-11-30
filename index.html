@@ -3410,7 +3410,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "";
   }
 
-  // Quick action button (Contact → View QR Code)
+  // Contact card → View QR Code
   if (qrBtn) {
     qrBtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -3418,22 +3418,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Navbar "QR Code" (More → View QR Code)
+  // Navbar → More → QR Code
   if (navQrLink) {
     navQrLink.addEventListener("click", function (e) {
       e.preventDefault();
-
-      // Close dropdown if open (mobile)
-      var dd = document.querySelector(".dropdown-content");
-      if (dd) {
-        dd.style.display = "none";
-      }
-
       openQrModal();
     });
   }
 
-  // Click backdrop or big QR to close
+  // Click backdrop or QR image to close
   if (qrBackdrop) qrBackdrop.addEventListener("click", closeQrModal);
   if (qrModalImg) qrModalImg.addEventListener("click", closeQrModal);
 
@@ -3483,17 +3476,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (navShareLink) {
     navShareLink.addEventListener("click", function (e) {
       e.preventDefault();
-
-      var dd = document.querySelector(".dropdown-content");
-      if (dd) {
-        dd.style.display = "none";
-      }
-
       doShare();
     });
   }
 });
 </script>
+
 
 
 
