@@ -2244,10 +2244,8 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 /* On very small screens, reduce height & padding */
 @media (max-width: 640px) {
-/* On very small screens, full-bleed 1-per-screen */
-@media (max-width: 640px) {
   .cert-slider-container {
-    padding: 14px 0;      /* ← no side padding */
+    padding: 14px 44px;
     max-width: 100%;
   }
 
@@ -2261,7 +2259,6 @@ header, .nav, .glass:hover, .stat-card:hover {
     font-size: 22px;
   }
 }
-
 
 /* ===== Modal (blurred background + arrows) ===== */
 .cert-modal {
@@ -2355,114 +2352,33 @@ header, .nav, .glass:hover, .stat-card:hover {
   }
 }
 
-
-
-
-
-
-
-
-/* ===== QR POPUP ===== */
-#qr-modal {
-  position: fixed;
-  inset: 0;
-  display: none;           /* hidden by default */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+.qr-wrapper {
+  margin-top: 14px;
+  text-align: center;
 }
 
-#qr-modal.open {
-  display: flex;           /* show when .open is added */
+.qr-image {
+  width: 180px;
+  max-width: 60%;
+  border-radius: 18px;
+  padding: 10px 12px;
+  background: rgba(15,23,42,0.92);
+  border: 1px solid rgba(148,163,184,0.65);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.9);
 }
-
-#qr-modal .qr-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(10px);
-}
-
-#qr-modal .qr-inner {
-  position: relative;
-  z-index: 1;
-  padding: 18px;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-}
-
-#qr-modal .qr-image {
-  display: block;
-  max-width: min(340px, 90vw);
-  height: auto;
-}
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-  
 
 .visitor-box {
-  margin-top: 10px;
-  padding: 10px 18px;              /* same as QA buttons */
-  background: rgba(15,23,42,0.75); /* same glass style */
-  border: 1px solid rgba(148,163,184,0.4);
-  border-radius: 12px;             /* same roundness */
-  width: 100%;                     /* full width like buttons */
-  font-size: 15px;
+  margin-top: 16px;
+  padding: 10px 14px;
+  display: inline-block;
+  font-size: 14px;
   color: #e5e7eb;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-  transition: all .25s ease;
+  border-radius: 10px;
+  background: rgba(15,23,42,0.82);
+  border: 1px solid rgba(148,163,184,0.5);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* One-time pulse when value updates */
-.visitor-box.pulse {
-  animation: visitorPulse 0.9s ease-out;
-}
-
-@keyframes visitorPulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-  40% {
-    transform: scale(1.05);
-    box-shadow: 0 16px 44px rgba(0,0,0,0.8);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-}
-
-/* --- Visitor badge size tweak --- */
-.visitor-box {
-  margin-top: 6px;
-  padding: 6px 10px;        /* smaller height */
-  font-size: 13px;          /* slightly smaller text */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.35); /* lighter shadow */
-}
-
-.visitor-box #visitor-count {
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
 
 
 
@@ -2508,8 +2424,8 @@ header, .nav, .glass:hover, .stat-card:hover {
         <a href="./Mujahid.Accenture.OTC.pdf?v=1" target="_blank" rel="noopener">Download Resume</a>
         <a href="./GallupStrenght.html">Gallup Strengths</a>
         <a href="./Certifications.html">Achievements</a>
-<a href="#" id="nav-qr-link">QR Code</a>
-<a href="#" id="nav-share-link">Share Profile</a>
+        <a href="./index.html#projects">Projects</a>
+        <a href="./index.html#blogs">Blogs</a>
         <a href="./index.html#interests">Interests</a>
       </div>
     </div>
@@ -2717,7 +2633,7 @@ and making processes faster, cleaner, and scalable.
     <h3>⚡</h3>
     <p>Process Optimization & Automation</p>
     <div class="hover-info">
-      Steered AI Centric workflows & Macros @ Accenture by saving 407 Hrs/Yr 
+      Steered AI Centric workflows @ Accenture saving turnaround by 407 Hrs/Yr 
     </div>
   </div>
 </div>
@@ -3314,25 +3230,26 @@ I Lead with Relationship Building
     <button class="qa" type="button">🥇 View My Certifications</button>
   </a>
 
-  <!-- View QR Code Button (opens fullscreen modal) -->
+  <!-- ✅ View QR Code Button -->
   <button class="qa" type="button" id="view-qr-btn">
     🔳 View QR Code
   </button>
 
-  <!-- Share My Portfolio Button -->
+  <!-- ✅ Share My Portfolio Button -->
   <button class="qa" type="button" id="share-portfolio-btn">
     📤 Share My Portfolio
   </button>
 
-  <!-- Visitors box -->
-  <div class="visitor-box glass" id="visitor-box">
-    👁️ Visitors: <span id="visitor-count">0</span>
+  <!-- ✅ QR Code Box (hidden by default) -->
+  <div id="qr-wrapper" class="qr-wrapper" style="display:none;">
+    <img src="qr.png" alt="QR code to open my portfolio" class="qr-image">
   </div>
+  <div class="visitor-box glass" id="visitor-box">
+  👁️ Visitors: <span id="visitor-count">0</span>
+</div>
+
 </div>
 </div>
-
-
-
 
 <!-- Toast -->
 <div class="toast" id="toast" role="status" aria-live="polite">
@@ -3341,15 +3258,6 @@ I Lead with Relationship Building
 </section>
 </main>
 
-<!-- QR fullscreen modal (used by navbar + Quick actions) -->
-<div id="qr-modal" aria-hidden="true">
-  <div class="qr-backdrop"></div>
-  <div class="qr-inner">
-    <img src="qr.png"
-         alt="Scan to view my portfolio"
-         class="qr-image">
-  </div>
-</div>
 
 
 
@@ -3373,53 +3281,20 @@ window.addEventListener("load", () => {
 });
 </script>
 <script>
-// 🔥 Real-time animated visitor counter using CountAPI
-document.addEventListener("DOMContentLoaded", function () {
-  var countEl = document.getElementById("visitor-count");
-  var boxEl   = document.getElementById("visitor-box");
-  if (!countEl || !boxEl) return;
-
-  // Use a clean, dedicated bucket key
-  fetch("https://api.countapi.xyz/hit/mujahid_portfolio/visits")
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      console.log("Visitor API response:", data);
-
-      // Support both { value } and { count } shapes
-      var raw = (typeof data.value === "number")
-        ? data.value
-        : (typeof data.count === "number" ? data.count : 0);
-
-      var target   = raw < 0 ? 0 : raw;
-      var current  = 0;
-      var steps    = 40;
-      var duration = 800;
-      var stepTime = duration / steps;
-      var increment= target / steps;
-      var step     = 0;
-
-      var timer = setInterval(function () {
-        step++;
-        current += increment;
-        if (step >= steps) {
-          current = target;
-          clearInterval(timer);
-        }
-        countEl.textContent = Math.round(current).toLocaleString("en-IN");
-      }, stepTime);
-
-      // Pulse animation when updated
-      boxEl.classList.add("pulse");
-      setTimeout(function () {
-        boxEl.classList.remove("pulse");
-      }, 900);
-    })
-    .catch(function (err) {
-      console.error("Visitor API failed:", err);
-      countEl.textContent = "—";
-    });
-});
+// 🔥 Real-time visitor counter using CountAPI
+fetch("https://api.countapi.xyz/hit/mujahid-portfolio/visits")
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById("visitor-count").textContent = data.value;
+  });
 </script>
+
+
+
+
+
+
+    
   <script>
     /* ========= Parallax starfields (3 layers for depth) ========= */
     const DPR = Math.min(2, window.devicePixelRatio || 1);
@@ -3583,9 +3458,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
     <script>
-const qaMeetBtn = document.getElementById("qa-meet");
+  const qaMeetBtn = document.getElementById("qa-meet");
 
-if (qaMeetBtn) {
   qaMeetBtn.addEventListener("click", (e) => {
     e.preventDefault();
     gsap.to("body", {
@@ -3595,7 +3469,6 @@ if (qaMeetBtn) {
       onComplete: () => (window.location.href = "Certifications.html")
     });
   });
-}
 </script>
 
 
@@ -4311,14 +4184,6 @@ function barHoverOnly(d){
 
 
 
-
-
-
-
-
-
-
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const slider   = document.getElementById("certSlider");
@@ -4326,8 +4191,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const rightBtn = document.querySelector(".cert-arrow.right");
 
   if (!slider || !leftBtn || !rightBtn) return;
-
-  const container = slider.parentElement; // .cert-slider-container
 
   // Original slides (real certificates)
   const realSlides = Array.from(slider.querySelectorAll(".cert-slide"));
@@ -4338,36 +4201,33 @@ document.addEventListener("DOMContentLoaded", function () {
   const firstClone = realSlides[0].cloneNode(true);
   const lastClone  = realSlides[realCount - 1].cloneNode(true);
 
-  slider.appendChild(firstClone);               // ... 1 2 3 4 5 [clone of 1]
+  slider.appendChild(firstClone);             // ... 1 2 3 4 5 [clone of 1]
   slider.insertBefore(lastClone, realSlides[0]); // [clone of 5] 1 2 3 4 5 ...
 
   let slides = Array.from(slider.querySelectorAll(".cert-slide"));
 
-  let index            = 1; // start on first REAL slide (after left clone)
-  let slideWidth       = container.clientWidth;
-  let isDragging       = false;
-  let didDrag          = false;
-  let startX           = 0;
+  let index           = 1; // start on first REAL slide (after left clone)
+  let slideWidth      = slider.clientWidth;
+  let isDragging      = false;
+  let startX          = 0;
   let currentTranslate = 0;
   let prevTranslate    = 0;
 
   function setSlideWidth() {
-    slideWidth = container.clientWidth;
-
-    // Force each slide to exactly fill the visible area
-    slides.forEach((s) => {
-      s.style.width = slideWidth + "px";
-    });
-
+    slideWidth = slider.clientWidth;
     goToIndex(index, false);
   }
 
   function goToIndex(targetIndex, withTransition = true) {
-    slider.style.transition = withTransition ? "transform 0.35s ease" : "none";
+    if (withTransition) {
+      slider.style.transition = "transform 0.35s ease";
+    } else {
+      slider.style.transition = "none";
+    }
     slider.style.transform = `translateX(-${targetIndex * slideWidth}px)`;
   }
 
-  // After animating onto a clone, snap back to the corresponding real slide
+  // After animating onto a clone, snap back to corresponding real slide
   function snapIfClone() {
     if (index === slides.length - 1) {
       // on right clone (copy of first)
@@ -4427,7 +4287,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const start = (e) => {
       stopAutoPlay();
       isDragging = true;
-      didDrag = false;
       startX = getX(e);
       prevTranslate = -index * slideWidth;
       slider.style.transition = "none";
@@ -4437,11 +4296,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!isDragging) return;
       const currentX = getX(e);
       const diff = currentX - startX;
-
-      if (Math.abs(diff) > 10) {
-        didDrag = true; // treat as swipe, not a tap
-      }
-
       currentTranslate = prevTranslate + diff;
       slider.style.transform = `translateX(${currentTranslate}px)`;
     };
@@ -4511,18 +4365,20 @@ document.addEventListener("DOMContentLoaded", function () {
     goToIndex(index, true);
   }
 
-  // ✅ Clicking only REAL slides opens the modal (no clones, no drag)
-  // Desktop & mobile: click REAL slides to open modal (ignore swipes)
-  realSlides.forEach((slide, realIdx) => {
+  // Clicking any slide – map clones to correct real index
+  slides.forEach((slide, i) => {
     slide.addEventListener("click", () => {
-      if (didDrag) {
-        didDrag = false;
-        return;
+      let realIdx;
+      if (i === 0) {
+        realIdx = realCount - 1;              // left clone → last real
+      } else if (i === slides.length - 1) {
+        realIdx = 0;                          // right clone → first real
+      } else {
+        realIdx = i - 1;                      // normal case
       }
       openModal(realIdx);
     });
   });
-
 
   // Modal arrows
   if (modalRight) {
@@ -4554,6 +4410,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
+
+
+
+
+
+
+
 
 
 
@@ -4799,149 +4663,63 @@ setTimeout(() => {
   $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
 </script>
-<script>
+    <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const qrBtn        = document.getElementById("view-qr-btn");
-  const navQrLink    = document.getElementById("nav-qr-link");
-  const shareBtn     = document.getElementById("share-portfolio-btn");
-  const navShareLink = document.getElementById("nav-share-link");
+  var qrBtn     = document.getElementById("view-qr-btn");
+  var shareBtn  = document.getElementById("share-portfolio-btn");
+  var qrWrapper = document.getElementById("qr-wrapper");
 
-  const qrModal    = document.getElementById("qr-modal");
-  const qrBackdrop = qrModal ? qrModal.querySelector(".qr-backdrop") : null;
-  const qrInner    = qrModal ? qrModal.querySelector(".qr-inner") : null;
+  var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
+  var shareText    = "Check out my portfolio website:";
 
-  const portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
-  const shareText    = "Check out my portfolio website:";
-
-  /* ===== QR POPUP ===== */
-  function openQr() {
-    if (!qrModal) return;
-    qrModal.classList.add("open");
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-
-    if (history && history.pushState) {
-      history.pushState({ qrOpen: true }, "");
-    }
-  }
-
-  function closeQr() {
-    if (!qrModal) return;
-    qrModal.classList.remove("open");
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
-  }
-
-  // Quick actions button
-  if (qrBtn) {
-    qrBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      openQr();
+  // 📱 Toggle QR visibility
+  if (qrBtn && qrWrapper) {
+    qrBtn.addEventListener("click", function () {
+      var isHidden = (qrWrapper.style.display === "none" || qrWrapper.style.display === "");
+      qrWrapper.style.display = isHidden ? "block" : "none";
     });
   }
 
-  // Navbar "QR Code" link
-  if (navQrLink) {
-    navQrLink.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      // Close mobile menu if open
-      const navbar    = document.getElementById("navbar");
-      const hamburger = document.querySelector(".hamburger");
-      const dropdown  = navQrLink.closest(".dropdown");
-
-      if (navbar)   navbar.classList.remove("show");
-      if (hamburger) hamburger.classList.remove("active");
-      if (dropdown) dropdown.classList.remove("active");
-
-      openQr();
-    });
-  }
-
-  // Close when clicking backdrop
-  if (qrBackdrop) {
-    qrBackdrop.addEventListener("click", closeQr);
-  }
-
-  // Prevent closing when clicking inside card
-  if (qrInner) {
-    qrInner.addEventListener("click", function (e) {
-      e.stopPropagation();
-    });
-    if (qrModal) {
-      qrModal.addEventListener("click", closeQr);
-    }
-  }
-
-  // ESC key (desktop)
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && qrModal && qrModal.classList.contains("open")) {
-      closeQr();
-    }
-  });
-
-  // Android back / browser back
-  window.addEventListener("popstate", function () {
-    if (qrModal && qrModal.classList.contains("open")) {
-      closeQr();
-    }
-  });
-
-  /* ===== SHARE PORTFOLIO ===== */
-  async function sharePortfolio(e) {
-    if (e) e.preventDefault();
-
-    // Native share if available
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Mohammad Mujahid – Portfolio",
+  // 📤 Share my portfolio
+  if (shareBtn) {
+    shareBtn.addEventListener("click", function () {
+      // 1) Mobile / browsers that support native share
+      if (navigator.share) {
+        navigator.share({
+          title: "My Portfolio – Mohammad Mujahid",
           text: shareText,
           url: portfolioUrl
+        }).catch(function () {
+          // user cancelled or share failed – do nothing
         });
-      } catch (err) {
-        console.log("Share cancelled or failed:", err);
-      }
-      return;
-    }
-
-    // Fallback: copy link
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(portfolioUrl);
-        alert("Link copied to clipboard:\n" + portfolioUrl);
       } else {
-        const ta = document.createElement("textarea");
-        ta.value = portfolioUrl;
-        ta.style.position = "fixed";
-        ta.style.left = "-9999px";
-        document.body.appendChild(ta);
-        ta.focus();
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        alert("Link copied to clipboard:\n" + portfolioUrl);
+        // 2) Desktop / no native share: copy link to clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(portfolioUrl)
+            .then(function () {
+              alert("Portfolio link copied to clipboard.\nYou can now paste it into WhatsApp, email, etc.");
+            })
+            .catch(function () {
+              alert("Could not copy automatically. You can share this link:\n" + portfolioUrl);
+            });
+        } else {
+          // 3) Very old browsers – manual fallback
+          var temp = document.createElement("input");
+          temp.value = portfolioUrl;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+          alert("Portfolio link copied to clipboard.\nYou can now paste it into WhatsApp, email, etc.");
+        }
       }
-    } catch (err) {
-      alert("Portfolio URL: " + portfolioUrl);
-    }
-  }
-
-  if (shareBtn) {
-    shareBtn.addEventListener("click", sharePortfolio);
-  }
-  if (navShareLink) {
-    navShareLink.addEventListener("click", sharePortfolio);
+    });
   }
 });
 </script>
 
-
 <script>
-const yearEl = document.getElementById("year");
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
   <!-- Mobile modal popup -->
 <div id="mobileModal" class="mobile-modal">
@@ -4950,11 +4728,6 @@ if (yearEl) {
     <div id="mobileModalBody"></div>
   </div>
 </div>
-    <!-- QR POPUP -->
-
-
-
-
 <footer class="copyright">
   <p>© <span id="year"></span> Mohammad Mujahid. All rights reserved.</p>
 </footer>
