@@ -2423,28 +2423,59 @@ header, .nav, .glass:hover, .stat-card:hover {
 
   
 
-/* Visitors card – make it compact like other quick actions */
-#visitor-box {
-  padding: 10px 14px;
-  min-height: auto;
+/* === Visitor card (styled like a quick action button) === */
+.visitor-card {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.04);
+  color: var(--fg);
+  padding: 10px 12px;
+  margin-bottom: 6px;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  justify-content: space-between; /* icon+label left, badge right */
+  gap: 12px;
 }
 
-/* Smaller label text inside visitors card */
-#visitor-box .quick-label,
-#visitor-box .label,
-#visitor-box-title {
-  font-size: 11px;
-  line-height: 1.3;
+/* Hover effect same as buttons */
+.visitor-card:hover {
+  border-color: rgba(255,255,255,0.18);
 }
 
-/* Number not too huge */
-#visitor-count {
-  font-size: 18px;
-  font-weight: 600;
+/* Left side: icon + label */
+.visitor-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
+/* Icon circle (matches your design style) */
+.visitor-icon {
+  font-size: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--stroke);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Label */
+.visitor-label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Badge image */
+.visitor-badge {
+  height: 22px;
+  object-fit: contain;
+}
+
 
 
 
@@ -3313,15 +3344,20 @@ I Lead with Relationship Building
   <div id="qr-wrapper" class="qr-wrapper" style="display:none;">
     <img src="qr.png" alt="QR code to open my portfolio" class="qr-image">
   </div>
-<div class="visitor-box glass" id="visitor-box">
-  <span class="visitor-label"></span>
+<div class="qa visitor-card" id="visitor-box">
+  <div class="visitor-left">
+    <div class="visitor-icon">👁️</div>
+    <div class="visitor-label">Visitors</div>
+  </div>
+
   <img
     class="visitor-badge"
-    src="https://komarev.com/ghpvc/?username=Mohammad-Mujahid894&label=Visitors&color=0ea5e9&style=flat-square"
+    src="https://komarev.com/ghpvc/?username=Mohammad-Mujahid894&label=&color=0ea5e9&style=flat-square"
     alt="Total visitors (GitHub profile counter)"
     loading="lazy"
   />
 </div>
+
 
 
 </div>
