@@ -2437,20 +2437,25 @@ header, .nav, .glass:hover, .stat-card:hover {
 #visitor-box .visitor-left {
   display: flex;
   align-items: center;
-  gap: 10px;   /* increases space between each item */
+  gap: 8px;
+}
+
+#visitor-box .visitor-text-row {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* space between "Visitors" and number */
+  white-space: nowrap;
 }
 
 #visitor-box .visitor-label {
   font-size: 0.95rem;
-  margin-right: 2px;   /* more space between 'Visitors' and the count */
 }
 
 #visitor-box .visitor-count {
-  font-size: 0.85rem;  /* makes the number smaller */
-  opacity: 0.9;        /* optional: slight fade for softer look */
-  padding-left: 4px;   /* slight push to the right */
-  white-space: nowrap;
+  font-size: 0.82rem;
+  opacity: 0.9;
 }
+
 </style> 
 </head>
 <body>
@@ -3292,15 +3297,18 @@ I Lead with Relationship Building
   </div>
 
 
-  <div class="qa visitor-card" id="visitor-box">
+<div class="qa visitor-card" id="visitor-box">
   <div class="visitor-left">
     <div class="visitor-icon">✨</div>
-    <div>
-      <div class="visitor-label">Visitors</div>
-      <div class="visitor-count" id="visitor-count">loading…</div>
+
+    <div class="visitor-text-row">
+      <span class="visitor-label">Visitors</span>
+      <span class="visitor-count" id="visitor-count">loading…</span>
     </div>
+
   </div>
 </div>
+
 
 
 
