@@ -2470,12 +2470,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <script>
-// Ping counter when visiting Gallup page
-(function () {
-  const COUNTER_URL = "https://counterpro.vercel.app/api/count?id=mujahid-portfolio";
-  fetch(COUNTER_URL, { cache: "no-store" }).catch(() => {});
-})();
+  // We define the callback so the JSONP doesn't throw an error,
+  // but we don't show anything on this page.
+  function updateVisitorCount(data) {
+    // console.log("Visitor count updated", data); // optional
+  }
 </script>
+
+<script src="https://script.google.com/macros/s/AKfycbwPRsUBty2jIqRm1XadZCJYgvvC-qIbE2EBKLgY6XFBTTaTiFtJWo7M42StUj4zBq3s/exec?cb=updateVisitorCount"></script>
+
 
 
   <!-- ===== MOBILE MODAL (for mobile tile tap) ===== -->
