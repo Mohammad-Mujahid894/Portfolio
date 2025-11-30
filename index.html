@@ -2423,24 +2423,29 @@ header, .nav, .glass:hover, .stat-card:hover {
 
   
 
+/* Visitors card – make it compact like other quick actions */
 #visitor-box {
   padding: 10px 14px;
   min-height: auto;
   display: flex;
-  flex-direction: row;   /* put label + badge in a row */
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.visitor-label {
+/* Smaller label text inside visitors card */
+#visitor-box .quick-label,
+#visitor-box .label,
+#visitor-box-title {
   font-size: 11px;
   line-height: 1.3;
-  color: var(--muted);
 }
 
-.visitor-badge {
-  height: 20px;
+/* Number not too huge */
+#visitor-count {
+  font-size: 18px;
+  font-weight: 600;
 }
+
 
 
 
