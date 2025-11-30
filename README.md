@@ -121,4 +121,13 @@ I focus heavily on **accuracy, workflow optimization, customer centricity, and d
 
 ---
 
+## 📱 Scan to View My Portfolio
+
+<p align="center">
+  <img src="qr.png" width="180" />
+</p>
+
+
+---
+
 <p align="center">✨ Thank you for visiting my portfolio repository ✨</p>
