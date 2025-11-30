@@ -2244,8 +2244,10 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 /* On very small screens, reduce height & padding */
 @media (max-width: 640px) {
+/* On very small screens, full-bleed 1-per-screen */
+@media (max-width: 640px) {
   .cert-slider-container {
-    padding: 14px 44px;
+    padding: 14px 0;      /* ← no side padding */
     max-width: 100%;
   }
 
@@ -2259,6 +2261,7 @@ header, .nav, .glass:hover, .stat-card:hover {
     font-size: 22px;
   }
 }
+
 
 /* ===== Modal (blurred background + arrows) ===== */
 .cert-modal {
@@ -2460,8 +2463,8 @@ header, .nav, .glass:hover, .stat-card:hover {
         <a href="./Mujahid.Accenture.OTC.pdf?v=1" target="_blank" rel="noopener">Download Resume</a>
         <a href="./GallupStrenght.html">Gallup Strengths</a>
         <a href="./Certifications.html">Achievements</a>
-        <a href="./index.html#projects">QR Code</a>
-        <a href="./index.html#blogs">Share Profile</a>
+<a href="#" id="nav-qr-link">QR Code</a>
+<a href="#" id="nav-share-link">Share Profile</a>
         <a href="./index.html#interests">Interests</a>
       </div>
     </div>
@@ -4267,6 +4270,14 @@ function barHoverOnly(d){
 
 
 
+
+
+
+
+
+
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const slider   = document.getElementById("certSlider");
@@ -4274,6 +4285,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const rightBtn = document.querySelector(".cert-arrow.right");
 
   if (!slider || !leftBtn || !rightBtn) return;
+
+  const container = slider.parentElement; // .cert-slider-container
 
   // Original slides (real certificates)
   const realSlides = Array.from(slider.querySelectorAll(".cert-slide"));
@@ -4284,33 +4297,36 @@ document.addEventListener("DOMContentLoaded", function () {
   const firstClone = realSlides[0].cloneNode(true);
   const lastClone  = realSlides[realCount - 1].cloneNode(true);
 
-  slider.appendChild(firstClone);             // ... 1 2 3 4 5 [clone of 1]
+  slider.appendChild(firstClone);               // ... 1 2 3 4 5 [clone of 1]
   slider.insertBefore(lastClone, realSlides[0]); // [clone of 5] 1 2 3 4 5 ...
 
   let slides = Array.from(slider.querySelectorAll(".cert-slide"));
 
-  let index           = 1; // start on first REAL slide (after left clone)
-  let slideWidth      = slider.clientWidth;
-  let isDragging      = false;
-  let startX          = 0;
+  let index            = 1; // start on first REAL slide (after left clone)
+  let slideWidth       = container.clientWidth;
+  let isDragging       = false;
+  let didDrag          = false;
+  let startX           = 0;
   let currentTranslate = 0;
   let prevTranslate    = 0;
 
   function setSlideWidth() {
-    slideWidth = slider.clientWidth;
+    slideWidth = container.clientWidth;
+
+    // Force each slide to exactly fill the visible area
+    slides.forEach((s) => {
+      s.style.width = slideWidth + "px";
+    });
+
     goToIndex(index, false);
   }
 
   function goToIndex(targetIndex, withTransition = true) {
-    if (withTransition) {
-      slider.style.transition = "transform 0.35s ease";
-    } else {
-      slider.style.transition = "none";
-    }
+    slider.style.transition = withTransition ? "transform 0.35s ease" : "none";
     slider.style.transform = `translateX(-${targetIndex * slideWidth}px)`;
   }
 
-  // After animating onto a clone, snap back to corresponding real slide
+  // After animating onto a clone, snap back to the corresponding real slide
   function snapIfClone() {
     if (index === slides.length - 1) {
       // on right clone (copy of first)
@@ -4370,6 +4386,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const start = (e) => {
       stopAutoPlay();
       isDragging = true;
+      didDrag = false;
       startX = getX(e);
       prevTranslate = -index * slideWidth;
       slider.style.transition = "none";
@@ -4379,6 +4396,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!isDragging) return;
       const currentX = getX(e);
       const diff = currentX - startX;
+
+      if (Math.abs(diff) > 10) {
+        didDrag = true; // treat as swipe, not a tap
+      }
+
       currentTranslate = prevTranslate + diff;
       slider.style.transform = `translateX(${currentTranslate}px)`;
     };
@@ -4448,17 +4470,10 @@ document.addEventListener("DOMContentLoaded", function () {
     goToIndex(index, true);
   }
 
-  // Clicking any slide – map clones to correct real index
-  slides.forEach((slide, i) => {
+  // ✅ Clicking only REAL slides opens the modal (no clones, no drag)
+  realSlides.forEach((slide, realIdx) => {
     slide.addEventListener("click", () => {
-      let realIdx;
-      if (i === 0) {
-        realIdx = realCount - 1;              // left clone → last real
-      } else if (i === slides.length - 1) {
-        realIdx = 0;                          // right clone → first real
-      } else {
-        realIdx = i - 1;                      // normal case
-      }
+      if (didDrag) return; // ignore if it was actually a swipe
       openModal(realIdx);
     });
   });
@@ -4493,14 +4508,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-
-
-
-
-
-
-
-
 
 
 
@@ -4748,8 +4755,11 @@ setTimeout(() => {
 </script>
     <script>
 document.addEventListener("DOMContentLoaded", function () {
-  var qrBtn      = document.getElementById("view-qr-btn");
-  var shareBtn   = document.getElementById("share-portfolio-btn");
+  var qrBtn        = document.getElementById("view-qr-btn");
+  var shareBtn     = document.getElementById("share-portfolio-btn");
+  var navQrLink    = document.getElementById("nav-qr-link");
+  var navShareLink = document.getElementById("nav-share-link");
+
   var qrWrapper  = document.getElementById("qr-wrapper");
   var qrImg      = document.querySelector(".qr-image");
   var qrModal    = document.getElementById("qr-modal");
@@ -4759,11 +4769,22 @@ document.addEventListener("DOMContentLoaded", function () {
   var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
   var shareText    = "Check out my portfolio website:";
 
-  // 🔳 Toggle small inline QR box
-  if (qrBtn && qrWrapper) {
+  // 🔳 Small inline QR toggle (contact section button)
+  function toggleInlineQr() {
+    if (!qrWrapper) return;
+
+    var isHidden = (qrWrapper.style.display === "none" || qrWrapper.style.display === "");
+    qrWrapper.style.display = isHidden ? "block" : "none";
+
+    if (isHidden) {
+      // Scroll into view when we just opened it
+      qrWrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+
+  if (qrBtn) {
     qrBtn.addEventListener("click", function () {
-      var isHidden = (qrWrapper.style.display === "none" || qrWrapper.style.display === "");
-      qrWrapper.style.display = isHidden ? "block" : "none";
+      toggleInlineQr();
     });
   }
 
@@ -4779,7 +4800,7 @@ document.addEventListener("DOMContentLoaded", function () {
     qrModal.classList.add("show");
     document.body.style.overflow = "hidden";
 
-    // Push history state so Android back closes the modal
+    // Push history state so Android back button closes modal
     if (history && history.pushState) {
       history.pushState({ qrOpen: true }, "", location.href);
       qrModal._hasState = true;
@@ -4791,7 +4812,7 @@ document.addEventListener("DOMContentLoaded", function () {
     qrModal.classList.remove("show");
     document.body.style.overflow = "";
 
-    // If we pushed a state, make sure going "back" doesn’t leave a ghost state
+    // Clean up history state if we pushed one
     if (qrModal._hasState) {
       qrModal._hasState = false;
       if (history.state && history.state.qrOpen) {
@@ -4800,7 +4821,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Click on QR (inline) → open fullscreen
+  // Click on inline QR image → open fullscreen modal
   if (qrImg) {
     qrImg.style.cursor = "pointer";
     qrImg.addEventListener("click", function (e) {
@@ -4809,62 +4830,92 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Click backdrop / outside to close
+  // ✅ Navbar “QR Code” → directly open fullscreen QR
+  if (navQrLink) {
+    navQrLink.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Make sure inline QR is visible so qrImg exists
+      if (qrWrapper && (qrWrapper.style.display === "" || qrWrapper.style.display === "none")) {
+        qrWrapper.style.display = "block";
+      }
+
+      openQrModal();
+    });
+  }
+
+  // Close modal by clicking blurred background
   if (qrBackdrop) {
     qrBackdrop.addEventListener("click", closeQrModal);
   }
+
+  // Close when clicking outside the inner card
   if (qrModal) {
     qrModal.addEventListener("click", function (e) {
       if (e.target === qrModal) closeQrModal();
     });
   }
 
-  // ESC to close (desktop)
+  // ESC key closes modal (desktop)
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && qrModal && qrModal.classList.contains("show")) {
       closeQrModal();
     }
   });
 
-  // Android back button: when state pops, close modal
+  // Android back button: when history pops, close modal
   window.addEventListener("popstate", function () {
     if (qrModal && qrModal.classList.contains("show")) {
       closeQrModal();
     }
   });
 
-  // 📤 Share my portfolio (same behaviour as before)
+  // ========== SHARE (button + navbar) ==========
+  function doShare() {
+    if (navigator.share) {
+      navigator.share({
+        title: "My Portfolio – Mohammad Mujahid",
+        text: shareText,
+        url: portfolioUrl
+      }).catch(function () {
+        // user cancelled – ignore
+      });
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(portfolioUrl)
+        .then(function () {
+          alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
+        })
+        .catch(function () {
+          alert("Could not copy automatically. Share this link:\n" + portfolioUrl);
+        });
+    } else {
+      var temp = document.createElement("input");
+      temp.value = portfolioUrl;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
+    }
+  }
+
+  // Contact section button
   if (shareBtn) {
     shareBtn.addEventListener("click", function () {
-      if (navigator.share) {
-        navigator.share({
-          title: "My Portfolio – Mohammad Mujahid",
-          text: shareText,
-          url: portfolioUrl
-        }).catch(function () {
-          // user cancelled – ignore
-        });
-      } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(portfolioUrl)
-          .then(function () {
-            alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
-          })
-          .catch(function () {
-            alert("Could not copy automatically. Share this link:\n" + portfolioUrl);
-          });
-      } else {
-        var temp = document.createElement("input");
-        temp.value = portfolioUrl;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand("copy");
-        document.body.removeChild(temp);
-        alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
-      }
+      doShare();
+    });
+  }
+
+  // ✅ Navbar “Share Profile”
+  if (navShareLink) {
+    navShareLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      doShare();
     });
   }
 });
 </script>
+
 
 
 <script>
