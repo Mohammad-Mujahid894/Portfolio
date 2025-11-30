@@ -3288,7 +3288,8 @@ I Lead with Relationship Building
 </div>
 
 <!-- Fullscreen QR modal ONLY (no inline QR anymore) -->
-<div id="qr-modal" class="cert-modal">
+<!-- Fullscreen QR modal ONLY (no inline QR anymore) -->
+<div id="qr-modal" class="cert-modal" style="display:none;">
   <div class="cert-backdrop"></div>
   <div class="cert-modal-inner">
     <img id="qr-modal-img"
@@ -3297,6 +3298,7 @@ I Lead with Relationship Building
          alt="QR code to open my portfolio (full view)">
   </div>
 </div>
+
 
 <!-- Toast -->
 <div class="toast" id="toast" role="status" aria-live="polite">
@@ -3396,8 +3398,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var shareText    = "Check out my portfolio website:";
 
   /* ========= QR FULLSCREEN MODAL ========= */
+  /* ========= QR FULLSCREEN MODAL ========= */
   function openQrModal() {
     if (!qrModal) return;
+    qrModal.style.display = "flex";          // 👈 show it
     qrModal.classList.add("show");
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
@@ -3406,9 +3410,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function closeQrModal() {
     if (!qrModal) return;
     qrModal.classList.remove("show");
+    qrModal.style.display = "none";          // 👈 hide it
     document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
   }
+
 
   // Contact card → View QR Code
   if (qrBtn) {
