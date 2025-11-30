@@ -2367,6 +2367,61 @@ header, .nav, .glass:hover, .stat-card:hover {
   box-shadow: 0 14px 40px rgba(0,0,0,0.9);
 }
 
+  /* ===== QR fullscreen modal (used by contact QR & works on mobile + desktop) ===== */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  display: none;                 /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(20px);   /* blur background */
+  background: rgba(0,0,0,0.45);  /* slight dark overlay */
+  z-index: 9999;
+}
+
+.qr-modal.show {
+  display: flex;
+}
+
+.qr-modal-backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.qr-modal-inner {
+  position: relative;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(15,23,42,0.97);
+  border: 1px solid rgba(148,163,184,0.7);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 320px;
+  width: 80vw;
+}
+
+.qr-modal-img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 18px;
+  background: #020617;
+  object-fit: contain;
+}
+
+/* Slightly smaller on very small phones */
+@media (max-width: 480px) {
+  .qr-modal-inner {
+    max-width: 280px;
+    width: 82vw;
+    padding: 16px;
+  }
+}
+
+
+  
+
 .visitor-box {
   margin-top: 16px;
   padding: 10px 14px;
@@ -3247,9 +3302,18 @@ I Lead with Relationship Building
   <div class="visitor-box glass" id="visitor-box">
   👁️ Visitors: <span id="visitor-count">0</span>
 </div>
+</div>
+  <!-- Fullscreen QR modal -->
+<div id="qr-modal" class="qr-modal">
+  <div class="qr-modal-backdrop"></div>
+  <div class="qr-modal-inner">
+    <img src="qr.png"
+         alt="QR code to open my portfolio"
+         id="qr-modal-img"
+         class="qr-modal-img">
+  </div>
+</div>
 
-</div>
-</div>
 
 <!-- Toast -->
 <div class="toast" id="toast" role="status" aria-live="polite">
@@ -3460,6 +3524,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <script>
   const qaMeetBtn = document.getElementById("qa-meet");
 
+if (qaMeetBtn) {
   qaMeetBtn.addEventListener("click", (e) => {
     e.preventDefault();
     gsap.to("body", {
@@ -3469,6 +3534,7 @@ document.addEventListener("DOMContentLoaded", () => {
       onComplete: () => (window.location.href = "Certifications.html")
     });
   });
+}
 </script>
 
 
@@ -4663,37 +4729,99 @@ setTimeout(() => {
   $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
 </script>
-    <script>
+  <script>
 document.addEventListener("DOMContentLoaded", function () {
-  var qrBtn     = document.getElementById("view-qr-btn");
-  var shareBtn  = document.getElementById("share-portfolio-btn");
-  var qrWrapper = document.getElementById("qr-wrapper");
+  var qrBtn      = document.getElementById("view-qr-btn");
+  var shareBtn   = document.getElementById("share-portfolio-btn");
+  var qrWrapper  = document.getElementById("qr-wrapper");
+  var qrImage    = qrWrapper ? qrWrapper.querySelector(".qr-image") : null;
+
+  // New modal elements
+  var qrModal         = document.getElementById("qr-modal");
+  var qrModalImg      = document.getElementById("qr-modal-img");
+  var qrModalBackdrop = document.querySelector(".qr-modal-backdrop");
 
   var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
   var shareText    = "Check out my portfolio website:";
 
-  // 📱 Toggle QR visibility
-  if (qrBtn && qrWrapper) {
+  // Helper: ensure small QR box is visible
+  function openQrBox() {
+    if (!qrWrapper) return;
+    qrWrapper.style.display = "block";
+  }
+
+  // Helper: toggle small QR box (dropdown style)
+  function toggleQrBox() {
+    if (!qrWrapper) return;
+    var isHidden = (qrWrapper.style.display === "none" || qrWrapper.style.display === "");
+    qrWrapper.style.display = isHidden ? "block" : "none";
+  }
+
+  // ===== Modal open / close =====
+  function openQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.add("show");
+    // Lock background scroll
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.remove("show");
+    // Restore scroll
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }
+
+  // 🔳 Button: show/hide small QR box
+  if (qrBtn) {
     qrBtn.addEventListener("click", function () {
-      var isHidden = (qrWrapper.style.display === "none" || qrWrapper.style.display === "");
-      qrWrapper.style.display = isHidden ? "block" : "none";
+      toggleQrBox();
     });
   }
 
-  // 📤 Share my portfolio
+  // 🖼️ Click on small QR → open centered modal
+  if (qrImage) {
+    qrImage.addEventListener("click", function () {
+      openQrBox();    // make sure it's visible
+      openQrModal();  // open fullscreen popup
+    });
+  }
+
+  // Click outside (backdrop) → close modal
+  if (qrModalBackdrop) {
+    qrModalBackdrop.addEventListener("click", closeQrModal);
+  }
+
+  // Click on big QR itself → also close
+  if (qrModalImg) {
+    qrModalImg.addEventListener("click", closeQrModal);
+  }
+
+  // ESC / Backspace → close
+  document.addEventListener("keydown", function (e) {
+    if (
+      (e.key === "Escape" || e.key === "Backspace") &&
+      qrModal &&
+      qrModal.classList.contains("show")
+    ) {
+      closeQrModal();
+    }
+  });
+
+  // 📤 Share my portfolio (unchanged)
   if (shareBtn) {
     shareBtn.addEventListener("click", function () {
-      // 1) Mobile / browsers that support native share
       if (navigator.share) {
         navigator.share({
           title: "My Portfolio – Mohammad Mujahid",
           text: shareText,
           url: portfolioUrl
         }).catch(function () {
-          // user cancelled or share failed – do nothing
+          // user cancelled or failed – ignore
         });
       } else {
-        // 2) Desktop / no native share: copy link to clipboard
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(portfolioUrl)
             .then(function () {
@@ -4703,7 +4831,6 @@ document.addEventListener("DOMContentLoaded", function () {
               alert("Could not copy automatically. You can share this link:\n" + portfolioUrl);
             });
         } else {
-          // 3) Very old browsers – manual fallback
           var temp = document.createElement("input");
           temp.value = portfolioUrl;
           document.body.appendChild(temp);
@@ -4719,7 +4846,10 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
 </script>
   <!-- Mobile modal popup -->
 <div id="mobileModal" class="mobile-modal">
