@@ -2479,14 +2479,19 @@ header, .nav, .glass:hover, .stat-card:hover {
 #visitor-box .visitor-left {
   display: flex;
   align-items: center;
-  gap: 6px; /* space between "Visitors" and the number */
+  gap: 10px;   /* increases space between each item */
 }
 
-#visitor-box .visitor-label,
+#visitor-box .visitor-label {
+  font-size: 0.95rem;
+  margin-right: 6px;   /* more space between 'Visitors' and the count */
+}
+
 #visitor-box .visitor-count {
-  display: inline-block;
+  font-size: 0.85rem;  /* makes the number smaller */
+  opacity: 0.9;        /* optional: slight fade for softer look */
+  padding-left: 4px;   /* slight push to the right */
   white-space: nowrap;
-  line-height: 1;
 }
 
 
