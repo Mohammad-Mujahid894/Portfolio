@@ -1921,17 +1921,7 @@ html, body {
 }
 
 /* Ultra-safe gradient mask at the bottom */
-body::after {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 30px;                    /* taller to cover mobile bounce */
-  background: linear-gradient(to bottom, rgba(4,6,11,0) 0%, rgba(4,6,11,0.2) 100%);
-  pointer-events: none;
-  z-index: 9999;                   /* overlays scroll flash without affecting content */
-}
+
 
   .copyright {
   text-align: center;
@@ -2455,6 +2445,15 @@ header, .nav, .glass:hover, .stat-card:hover {
   font-size: 0.82rem;
   opacity: 0.9;
 }
+
+  /* Remove stray check and cross marks leaking from buttons */
+.filter-btn::before,
+.filter-btn::after,
+.skills-filter-tab::before,
+.skills-filter-tab::after {
+    content: "" !important;
+}
+
 
 </style> 
 </head>
