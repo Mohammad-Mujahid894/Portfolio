@@ -3312,7 +3312,12 @@ I Lead with Relationship Building
     <img src="qr.png" alt="QR code to open my portfolio" class="qr-image">
   </div>
   <div class="visitor-box glass" id="visitor-box">
-  👁️ Visitors: <span id="visitor-count">0</span>
+  👁️
+  <img
+    src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fmohammad-mujahid894.github.io?color=0ea5e9&label=Visitors&size=large"
+    alt="Portfolio visitors"
+    style="max-width: 100%; height: 32px; vertical-align: middle;"
+  >
 </div>
 </div>
   <!-- Fullscreen QR modal -->
@@ -3359,57 +3364,7 @@ window.addEventListener("load", () => {
 
 
 
-<script>
-// 🌍 Global visitor counter using CountAPI
-(function () {
-  const counterEl = document.getElementById("visitor-count");
-  const boxEl = document.getElementById("visitor-box");
-  if (!counterEl) return;
 
-  // Namespace + key identify your global counter
-  const NAMESPACE = "mohammad-mujahid894.github.io";
-  const KEY = "portfolio-global";
-
-  const url = "https://api.countapi.xyz/hit/"
-    + encodeURIComponent(NAMESPACE) + "/"
-    + encodeURIComponent(KEY);
-
-  fetch(url, { cache: "no-store" })
-    .then(res => res.json())
-    .then(data => {
-      if (!data || typeof data.value !== "number") {
-        throw new Error("Unexpected response: " + JSON.stringify(data));
-      }
-
-      const target = data.value;
-      let current = 0;
-      const steps = 40;
-      const duration = 800;
-      const stepTime = duration / steps;
-      const increment = target / steps;
-      let step = 0;
-
-      const timer = setInterval(() => {
-        step++;
-        current += increment;
-        if (step >= steps) {
-          current = target;
-          clearInterval(timer);
-        }
-        counterEl.textContent = Math.round(current).toLocaleString();
-      }, stepTime);
-
-      // optional pulse effect if you have .pulse CSS
-      if (boxEl) {
-        boxEl.classList.add("pulse");
-      }
-    })
-    .catch(err => {
-      console.error("Visitor counter failed:", err);
-      counterEl.textContent = "—";
-    });
-})();
-</script>
 
 
 
