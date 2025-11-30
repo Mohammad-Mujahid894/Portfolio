@@ -3271,31 +3271,38 @@ I Lead with Relationship Building
     <button class="qa" type="button">🥇 View My Certifications</button>
   </a>
 
-  <!-- ✅ View QR Code Button -->
+  <!-- View QR Code Button (opens fullscreen modal) -->
   <button class="qa" type="button" id="view-qr-btn">
     🔳 View QR Code
   </button>
 
-  <!-- ✅ Share My Portfolio Button -->
+  <!-- Share My Portfolio Button -->
   <button class="qa" type="button" id="share-portfolio-btn">
     📤 Share My Portfolio
   </button>
 
-  <!-- ✅ QR Code Box (hidden by default) -->
-  <div id="qr-wrapper" class="qr-wrapper" style="display:none;">
-    <img src="qr.png" alt="QR code to open my portfolio" class="qr-image">
-  </div>
+  <!-- Visitors box -->
   <div class="visitor-box glass" id="visitor-box">
-  👁️ Visitors: <span id="visitor-count">0</span>
+    👁️ Visitors: <span id="visitor-count">0</span>
+  </div>
 </div>
-<!-- Fullscreen QR modal -->
-  <div id="qr-modal" class="cert-modal">
-    <div class="cert-backdrop"></div>
-    <div class="cert-modal-inner">
-      <img id="qr-modal-img" class="cert-modal-img"
-           src="qr.png"
-           alt="QR code to open my portfolio (full view)">
+
+<!-- Fullscreen QR modal ONLY (no inline QR anymore) -->
+<div id="qr-modal" class="cert-modal">
+  <div class="cert-backdrop"></div>
+  <div class="cert-modal-inner">
+    <img id="qr-modal-img"
+         class="cert-modal-img"
+         src="qr.png"
+         alt="QR code to open my portfolio (full view)">
+  </div>
 </div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="toast-ico">✓</span>
+</div>
+
 </div>
 
 <!-- Toast -->
@@ -4473,26 +4480,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ✅ Clicking only REAL slides opens the modal (no clones, no drag)
-  // Clicking any slide – map clones to correct real index
-  slides.forEach((slide, i) => {
+  // Desktop & mobile: click REAL slides to open modal (ignore swipes)
+  realSlides.forEach((slide, realIdx) => {
     slide.addEventListener("click", () => {
-      // If it was a swipe/drag, don't treat as a click
       if (didDrag) {
         didDrag = false;
         return;
       }
-
-      let realIdx;
-      if (i === 0) {
-        realIdx = realCount - 1;             // left clone → last real
-      } else if (i === slides.length - 1) {
-        realIdx = 0;                         // right clone → first real
-      } else {
-        realIdx = i - 1;                     // normal case
-      }
       openModal(realIdx);
     });
   });
+
 
   // Modal arrows
   if (modalRight) {
@@ -4769,15 +4767,13 @@ setTimeout(() => {
   $('#qa-meet')?.addEventListener('click', () => showToast('Opening meeting scheduler...'));
 })();
 </script>
-   <script>
+  <script>
 document.addEventListener("DOMContentLoaded", function () {
   var qrBtn        = document.getElementById("view-qr-btn");
   var shareBtn     = document.getElementById("share-portfolio-btn");
   var navQrLink    = document.getElementById("nav-qr-link");
   var navShareLink = document.getElementById("nav-share-link");
 
-  var qrWrapper  = document.getElementById("qr-wrapper");
-  var qrImg      = document.querySelector(".qr-image");
   var qrModal    = document.getElementById("qr-modal");
   var qrModalImg = document.getElementById("qr-modal-img");
   var qrBackdrop = qrModal ? qrModal.querySelector(".cert-backdrop") : null;
@@ -4785,37 +4781,15 @@ document.addEventListener("DOMContentLoaded", function () {
   var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
   var shareText    = "Check out my portfolio website:";
 
-  /* ========= SMALL INLINE QR IN CONTACT BOX ========= */
-  function toggleInlineQr() {
-    if (!qrWrapper) return;
-
-    var isHidden = (qrWrapper.style.display === "none" || qrWrapper.style.display === "");
-    qrWrapper.style.display = isHidden ? "block" : "none";
-
-    if (isHidden) {
-      qrWrapper.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  }
-
-  if (qrBtn) {
-    qrBtn.addEventListener("click", function () {
-      toggleInlineQr();
-    });
-  }
-
-  /* ========= FULLSCREEN QR MODAL ========= */
+  /* ========= QR FULLSCREEN MODAL ONLY ========= */
   function openQrModal() {
     if (!qrModal) return;
-
-    if (qrModalImg && qrImg) {
-      qrModalImg.src = qrImg.src;
-    }
 
     qrModal.classList.add("show");
     document.body.style.overflow = "hidden";
 
-    // Android back button closes modal
-    if (history && history.pushState) {
+    // Android back button support
+    if (history && history.pushState && !qrModal._hasState) {
       history.pushState({ qrOpen: true }, "", location.href);
       qrModal._hasState = true;
     }
@@ -4827,21 +4801,45 @@ document.addEventListener("DOMContentLoaded", function () {
     qrModal.classList.remove("show");
     document.body.style.overflow = "";
 
-    // Clean up history state if we added one
     if (qrModal._hasState && history && history.state && history.state.qrOpen) {
-      history.back();
       qrModal._hasState = false;
+      history.back();
     }
   }
 
-  if (qrBackdrop) {
-    qrBackdrop.addEventListener("click", closeQrModal);
+  // Quick action button
+  if (qrBtn) {
+    qrBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      openQrModal();
+    });
   }
 
-  // Clicking on the big QR closes it as well
-  if (qrModalImg) {
-    qrModalImg.addEventListener("click", closeQrModal);
+  // Navbar "QR Code" (desktop + mobile dropdown)
+  if (navQrLink) {
+    navQrLink.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Close dropdown if open (mobile)
+      var dd = document.querySelector(".dropdown-content");
+      if (dd && getComputedStyle(dd).display !== "none") {
+        dd.style.display = "none";
+      }
+
+      openQrModal();
+    });
   }
+
+  // Click backdrop or big QR to close
+  if (qrBackdrop) qrBackdrop.addEventListener("click", closeQrModal);
+  if (qrModalImg) qrModalImg.addEventListener("click", closeQrModal);
+
+  // ESC + back button
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && qrModal && qrModal.classList.contains("show")) {
+      closeQrModal();
+    }
+  });
 
   window.addEventListener("popstate", function () {
     if (qrModal && qrModal.classList.contains("show")) {
@@ -4849,57 +4847,45 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* ========= SHARE PORTFOLIO ========= */
+  /* ========= SHARE (button + navbar) ========= */
   function doShare() {
     if (navigator.share) {
       navigator.share({
-        title: "Mohammad Mujahid | Portfolio",
+        title: "My Portfolio – Mohammad Mujahid",
         text: shareText,
         url: portfolioUrl
-      }).catch(function (err) {
-        console.log("Share cancelled/failed:", err);
-      });
-    } else {
-      navigator.clipboard.writeText(portfolioUrl).then(function () {
-        alert("Link copied to clipboard:\n" + portfolioUrl);
       }).catch(function () {
-        alert("Could not copy link. URL:\n" + portfolioUrl);
+        // user cancelled – ignore
       });
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(portfolioUrl)
+        .then(function () {
+          alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
+        })
+        .catch(function () {
+          alert("Could not copy automatically. Share this link:\n" + portfolioUrl);
+        });
+    } else {
+      var temp = document.createElement("input");
+      temp.value = portfolioUrl;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
     }
   }
 
   if (shareBtn) {
-    shareBtn.addEventListener("click", function () {
+    shareBtn.addEventListener("click", function (e) {
+      e.preventDefault();
       doShare();
     });
   }
 
-  /* ========= NAVBAR LINKS (desktop + mobile dropdown) ========= */
-
-  function closeNavMenus() {
-    var navbar    = document.getElementById("navbar");
-    var hamburger = document.querySelector(".hamburger");
-    var dropdowns = document.querySelectorAll(".dropdown");
-
-    if (navbar)   navbar.classList.remove("show");
-    if (hamburger) hamburger.classList.remove("active");
-    dropdowns.forEach(function (d) { d.classList.remove("open"); });
-  }
-
-  // "View QR Code" from nav / dropdown
-  if (navQrLink) {
-    navQrLink.addEventListener("click", function (e) {
-      e.preventDefault();          // don't jump anywhere
-      closeNavMenus();             // close mobile dropdown so you don't get stuck
-      openQrModal();               // directly open fullscreen QR
-    });
-  }
-
-  // "Share Profile" from nav / dropdown
   if (navShareLink) {
     navShareLink.addEventListener("click", function (e) {
       e.preventDefault();
-      closeNavMenus();
       doShare();
     });
   }
