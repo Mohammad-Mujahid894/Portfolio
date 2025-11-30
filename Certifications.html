@@ -1751,15 +1751,13 @@ window.addEventListener("scroll", () => {
 });
 </script>
 <script>
-// Count visit to Certifications page in the same global counter
+// Ping counter when visiting Certifications page
 (function () {
   const COUNTER_URL = "https://counterpro.vercel.app/api/count?id=mujahid-portfolio";
-  fetch(COUNTER_URL, { cache: "no-store" })
-    .catch(function (err) {
-      console.error("Visitor ping (Certifications) failed:", err);
-    });
+  fetch(COUNTER_URL, { cache: "no-store" }).catch(() => {});
 })();
 </script>
+
 
 
 </body>
