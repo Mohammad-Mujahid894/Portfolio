@@ -2403,6 +2403,18 @@ header, .nav, .glass:hover, .stat-card:hover {
   }
 }
 
+/* --- Visitor badge size tweak --- */
+.visitor-box {
+  margin-top: 6px;
+  padding: 6px 10px;        /* smaller height */
+  font-size: 13px;          /* slightly smaller text */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35); /* lighter shadow */
+}
+
+.visitor-box #visitor-count {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
 
 
 
@@ -2448,8 +2460,8 @@ header, .nav, .glass:hover, .stat-card:hover {
         <a href="./Mujahid.Accenture.OTC.pdf?v=1" target="_blank" rel="noopener">Download Resume</a>
         <a href="./GallupStrenght.html">Gallup Strengths</a>
         <a href="./Certifications.html">Achievements</a>
-        <a href="./index.html#projects">Projects</a>
-        <a href="./index.html#blogs">Blogs</a>
+        <a href="./index.html#projects">QR Code</a>
+        <a href="./index.html#blogs">Share Profile</a>
         <a href="./index.html#interests">Interests</a>
       </div>
     </div>
@@ -3271,7 +3283,13 @@ I Lead with Relationship Building
   <div class="visitor-box glass" id="visitor-box">
   👁️ Visitors: <span id="visitor-count">0</span>
 </div>
-
+<!-- Fullscreen QR modal -->
+  <div id="qr-modal" class="cert-modal">
+    <div class="cert-backdrop"></div>
+    <div class="cert-modal-inner">
+      <img id="qr-modal-img" class="cert-modal-img"
+           src="qr.png"
+           alt="QR code to open my portfolio (full view)">
 </div>
 </div>
 
@@ -3309,21 +3327,27 @@ window.addEventListener("load", () => {
 document.addEventListener("DOMContentLoaded", function () {
   var countEl = document.getElementById("visitor-count");
   var boxEl   = document.getElementById("visitor-box");
-
   if (!countEl || !boxEl) return;
 
-  fetch("https://api.countapi.xyz/hit/mohammad-mujahid894.github.io/Portfolio")
+  // Use a clean, dedicated bucket key
+  fetch("https://api.countapi.xyz/hit/mujahid_portfolio/visits")
     .then(function (r) { return r.json(); })
     .then(function (data) {
-      var target = data && data.value ? data.value : 0;
-      var current = 0;
-      var steps = 40;             // how many frames
-      var duration = 800;         // total time in ms
-      var stepTime = duration / steps;
-      var increment = target / steps;
-      var step = 0;
+      console.log("Visitor API response:", data);
 
-      // count up animation
+      // Support both { value } and { count } shapes
+      var raw = (typeof data.value === "number")
+        ? data.value
+        : (typeof data.count === "number" ? data.count : 0);
+
+      var target   = raw < 0 ? 0 : raw;
+      var current  = 0;
+      var steps    = 40;
+      var duration = 800;
+      var stepTime = duration / steps;
+      var increment= target / steps;
+      var step     = 0;
+
       var timer = setInterval(function () {
         step++;
         current += increment;
@@ -3331,21 +3355,22 @@ document.addEventListener("DOMContentLoaded", function () {
           current = target;
           clearInterval(timer);
         }
-        countEl.textContent = Math.round(current).toLocaleString();
+        countEl.textContent = Math.round(current).toLocaleString("en-IN");
       }, stepTime);
 
-      // pulse animation on the badge
+      // Pulse animation when updated
       boxEl.classList.add("pulse");
       setTimeout(function () {
         boxEl.classList.remove("pulse");
       }, 900);
     })
-    .catch(function () {
-      // if API fails, just hide or set a fallback
+    .catch(function (err) {
+      console.error("Visitor API failed:", err);
       countEl.textContent = "—";
     });
 });
 </script>
+
 
 
 
@@ -4723,14 +4748,18 @@ setTimeout(() => {
 </script>
     <script>
 document.addEventListener("DOMContentLoaded", function () {
-  var qrBtn     = document.getElementById("view-qr-btn");
-  var shareBtn  = document.getElementById("share-portfolio-btn");
-  var qrWrapper = document.getElementById("qr-wrapper");
+  var qrBtn      = document.getElementById("view-qr-btn");
+  var shareBtn   = document.getElementById("share-portfolio-btn");
+  var qrWrapper  = document.getElementById("qr-wrapper");
+  var qrImg      = document.querySelector(".qr-image");
+  var qrModal    = document.getElementById("qr-modal");
+  var qrModalImg = document.getElementById("qr-modal-img");
+  var qrBackdrop = qrModal ? qrModal.querySelector(".cert-backdrop") : null;
 
   var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
   var shareText    = "Check out my portfolio website:";
 
-  // 📱 Toggle QR visibility
+  // 🔳 Toggle small inline QR box
   if (qrBtn && qrWrapper) {
     qrBtn.addEventListener("click", function () {
       var isHidden = (qrWrapper.style.display === "none" || qrWrapper.style.display === "");
@@ -4738,43 +4767,105 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 📤 Share my portfolio
+  // ========== QR FULLSCREEN MODAL ==========
+  function openQrModal() {
+    if (!qrModal) return;
+
+    // Use same QR image
+    if (qrModalImg && qrImg) {
+      qrModalImg.src = qrImg.src;
+    }
+
+    qrModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+
+    // Push history state so Android back closes the modal
+    if (history && history.pushState) {
+      history.pushState({ qrOpen: true }, "", location.href);
+      qrModal._hasState = true;
+    }
+  }
+
+  function closeQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.remove("show");
+    document.body.style.overflow = "";
+
+    // If we pushed a state, make sure going "back" doesn’t leave a ghost state
+    if (qrModal._hasState) {
+      qrModal._hasState = false;
+      if (history.state && history.state.qrOpen) {
+        history.back();
+      }
+    }
+  }
+
+  // Click on QR (inline) → open fullscreen
+  if (qrImg) {
+    qrImg.style.cursor = "pointer";
+    qrImg.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openQrModal();
+    });
+  }
+
+  // Click backdrop / outside to close
+  if (qrBackdrop) {
+    qrBackdrop.addEventListener("click", closeQrModal);
+  }
+  if (qrModal) {
+    qrModal.addEventListener("click", function (e) {
+      if (e.target === qrModal) closeQrModal();
+    });
+  }
+
+  // ESC to close (desktop)
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && qrModal && qrModal.classList.contains("show")) {
+      closeQrModal();
+    }
+  });
+
+  // Android back button: when state pops, close modal
+  window.addEventListener("popstate", function () {
+    if (qrModal && qrModal.classList.contains("show")) {
+      closeQrModal();
+    }
+  });
+
+  // 📤 Share my portfolio (same behaviour as before)
   if (shareBtn) {
     shareBtn.addEventListener("click", function () {
-      // 1) Mobile / browsers that support native share
       if (navigator.share) {
         navigator.share({
           title: "My Portfolio – Mohammad Mujahid",
           text: shareText,
           url: portfolioUrl
         }).catch(function () {
-          // user cancelled or share failed – do nothing
+          // user cancelled – ignore
         });
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(portfolioUrl)
+          .then(function () {
+            alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
+          })
+          .catch(function () {
+            alert("Could not copy automatically. Share this link:\n" + portfolioUrl);
+          });
       } else {
-        // 2) Desktop / no native share: copy link to clipboard
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(portfolioUrl)
-            .then(function () {
-              alert("Portfolio link copied to clipboard.\nYou can now paste it into WhatsApp, email, etc.");
-            })
-            .catch(function () {
-              alert("Could not copy automatically. You can share this link:\n" + portfolioUrl);
-            });
-        } else {
-          // 3) Very old browsers – manual fallback
-          var temp = document.createElement("input");
-          temp.value = portfolioUrl;
-          document.body.appendChild(temp);
-          temp.select();
-          document.execCommand("copy");
-          document.body.removeChild(temp);
-          alert("Portfolio link copied to clipboard.\nYou can now paste it into WhatsApp, email, etc.");
-        }
+        var temp = document.createElement("input");
+        temp.value = portfolioUrl;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+        alert("Portfolio link copied to clipboard.\nYou can paste it into WhatsApp, email, etc.");
       }
     });
   }
 });
 </script>
+
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
