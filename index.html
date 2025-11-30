@@ -2245,7 +2245,7 @@ header, .nav, .glass:hover, .stat-card:hover {
 /* On very small screens, reduce height & padding */
 @media (max-width: 640px) {
   .cert-slider-container {
-    padding: 14px 44px;
+    padding: 14px 0;      /* 🔁 was 14px 44px */
     max-width: 100%;
   }
 
@@ -2259,6 +2259,7 @@ header, .nav, .glass:hover, .stat-card:hover {
     font-size: 22px;
   }
 }
+
 
 /* ===== Modal (blurred background + arrows) ===== */
 .cert-modal {
@@ -4278,6 +4279,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let startX          = 0;
   let currentTranslate = 0;
   let prevTranslate    = 0;
+  const isMobile = window.innerWidth <= 768;
 
   function setSlideWidth() {
     slideWidth = slider.clientWidth;
@@ -4346,53 +4348,58 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* ========= DRAG / SWIPE ========= */
+  /* ========= DRAG / SWIPE ========= */
   const getX = (e) =>
     e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
 
-  slides.forEach((slide) => {
-    const start = (e) => {
-      stopAutoPlay();
-      isDragging = true;
-      startX = getX(e);
-      prevTranslate = -index * slideWidth;
-      slider.style.transition = "none";
-    };
+  // ❗ Enable drag/swipe only on desktop/laptop
+  if (!isMobile) {
+    slides.forEach((slide) => {
+      const start = (e) => {
+        stopAutoPlay();
+        isDragging = true;
+        startX = getX(e);
+        prevTranslate = -index * slideWidth;
+        slider.style.transition = "none";
+      };
 
-    const move = (e) => {
-      if (!isDragging) return;
-      const currentX = getX(e);
-      const diff = currentX - startX;
-      currentTranslate = prevTranslate + diff;
-      slider.style.transform = `translateX(${currentTranslate}px)`;
-    };
+      const move = (e) => {
+        if (!isDragging) return;
+        const currentX = getX(e);
+        const diff = currentX - startX;
+        currentTranslate = prevTranslate + diff;
+        slider.style.transform = `translateX(${currentTranslate}px)`;
+      };
 
-    const end = () => {
-      if (!isDragging) return;
-      isDragging = false;
+      const end = () => {
+        if (!isDragging) return;
+        isDragging = false;
 
-      const moved = currentTranslate - prevTranslate;
-      if (moved < -60) {
-        index++;
-      } else if (moved > 60) {
-        index--;
-      }
+        const moved = currentTranslate - prevTranslate;
+        if (moved < -60) {
+          index++;
+        } else if (moved > 60) {
+          index--;
+        }
 
-      goToIndex(index, true);
-      setTimeout(snapIfClone, 360);
-      resumeAutoPlay();
-    };
+        goToIndex(index, true);
+        setTimeout(snapIfClone, 360);
+        resumeAutoPlay();
+      };
 
-    // Mouse
-    slide.addEventListener("mousedown", start);
-    slide.addEventListener("mousemove", move);
-    slide.addEventListener("mouseup", end);
-    slide.addEventListener("mouseleave", end);
+      // Mouse
+      slide.addEventListener("mousedown", start);
+      slide.addEventListener("mousemove", move);
+      slide.addEventListener("mouseup", end);
+      slide.addEventListener("mouseleave", end);
 
-    // Touch
-    slide.addEventListener("touchstart", start, { passive: true });
-    slide.addEventListener("touchmove", move, { passive: true });
-    slide.addEventListener("touchend", end);
-  });
+      // Touch (desktop touchscreens only, still fine)
+      slide.addEventListener("touchstart", start, { passive: true });
+      slide.addEventListener("touchmove", move, { passive: true });
+      slide.addEventListener("touchend", end);
+    });
+  }
+
 
   /* ========= MODAL (FULL VIEW) – uses ONLY real slides ========= */
   const modal         = document.getElementById("cert-modal");
