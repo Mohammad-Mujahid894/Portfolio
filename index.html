@@ -3331,17 +3331,19 @@ I Lead with Relationship Building
 </div>
 
 <!-- Dedicated QR modal (separate from certificate modal) -->
-<div id="qr-modal" class="qr-modal">
-  <div class="qr-modal-backdrop"></div>
-  <div class="qr-modal-inner">
+<!-- Fullscreen QR modal (reuses certificate modal styles) -->
+<div id="qr-modal" class="cert-modal" style="display:none;">
+  <div class="cert-backdrop"></div>
+  <div class="cert-modal-inner">
     <img
       id="qr-modal-img"
-      class="qr-modal-img"
+      class="cert-modal-img"
       src="qr.png"
       alt="QR code to open my portfolio"
     />
   </div>
 </div>
+
 
 
 
@@ -3435,10 +3437,9 @@ document.addEventListener("DOMContentLoaded", function () {
   var navQrLink    = document.getElementById("nav-qr-link");
   var navShareLink = document.getElementById("nav-share-link");
 
-  var qrModal      = document.getElementById("qr-modal");
-  var qrBackdrop   = qrModal ? qrModal.querySelector(".qr-modal-backdrop") : null;
-  var qrModalInner = qrModal ? qrModal.querySelector(".qr-modal-inner") : null;
-  var qrModalImg   = document.getElementById("qr-modal-img");
+  var qrModal    = document.getElementById("qr-modal");
+  var qrBackdrop = qrModal ? qrModal.querySelector(".cert-backdrop") : null;
+  var qrModalImg = document.getElementById("qr-modal-img");
 
   var portfolioUrl = "https://mohammad-mujahid894.github.io/Portfolio/";
   var shareText    = "Check out my portfolio website:";
@@ -3446,24 +3447,22 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ========= QR FULLSCREEN MODAL ========= */
   function openQrModal() {
     if (!qrModal) return;
-
-    qrModal.classList.add("open");
+    qrModal.style.display = "flex";          // show popup
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
 
-    // So mobile back button closes the modal first
+    // so mobile back button closes modal first
     history.pushState({ qrOpen: true }, "");
   }
 
   function closeQrModal() {
     if (!qrModal) return;
-
-    qrModal.classList.remove("open");
+    qrModal.style.display = "none";          // hide popup
     document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
   }
 
-  // Quick action button (Contact → View QR Code)
+  // Quick actions button
   if (qrBtn) {
     qrBtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -3471,12 +3470,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Navbar "QR Code" (More → View QR Code)
+  // Navbar “QR Code” (More ▾)
   if (navQrLink) {
     navQrLink.addEventListener("click", function (e) {
       e.preventDefault();
 
-      // Close mobile dropdown / hamburger if open
+      // close mobile dropdown / hamburger
       var navbar    = document.getElementById("navbar");
       var hamburger = document.querySelector(".hamburger");
       var dropdown  = navQrLink.closest(".dropdown");
@@ -3489,21 +3488,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Click backdrop or QR to close
-  if (qrBackdrop)  qrBackdrop.addEventListener("click", closeQrModal);
-  if (qrModalImg)  qrModalImg.addEventListener("click", closeQrModal);
+  // Click backdrop or QR image to close
+  if (qrBackdrop) qrBackdrop.addEventListener("click", closeQrModal);
+  if (qrModalImg) qrModalImg.addEventListener("click", closeQrModal);
 
-  // ESC to close
+  // ESC key to close (desktop)
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && qrModal && qrModal.classList.contains("open")) {
+    if (e.key === "Escape" && qrModal && qrModal.style.display === "flex") {
       closeQrModal();
     }
   });
 
-  // Mobile back button: close modal instead of leaving page
-  window.addEventListener("popstate", function (e) {
-    if (qrModal && qrModal.classList.contains("open")) {
-      // Close modal, but don't navigate away
+  // Mobile back: close modal instead of exiting page
+  window.addEventListener("popstate", function () {
+    if (qrModal && qrModal.style.display === "flex") {
       closeQrModal();
     }
   });
@@ -3520,20 +3518,17 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(function (err) {
           console.log("Share cancelled / failed:", err);
         });
+    } else if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard
+        .writeText(portfolioUrl)
+        .then(function () {
+          alert("Link copied to clipboard!");
+        })
+        .catch(function () {
+          alert("Your browser blocked clipboard access. Link: " + portfolioUrl);
+        });
     } else {
-      // Fallback: copy link
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard
-          .writeText(portfolioUrl)
-          .then(function () {
-            alert("Link copied to clipboard!");
-          })
-          .catch(function () {
-            alert("Your browser blocked clipboard access. Link: " + portfolioUrl);
-          });
-      } else {
-        alert("Link: " + portfolioUrl);
-      }
+      alert("Link: " + portfolioUrl);
     }
   }
 
@@ -3561,6 +3556,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+
 
 
 
