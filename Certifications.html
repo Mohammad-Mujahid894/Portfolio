@@ -1750,7 +1750,15 @@ window.addEventListener("scroll", () => {
   }
 });
 </script>
-
+<script>
+// Count visit to Certifications page in the same global counter
+(function () {
+  const COUNTER_URL = "https://api.countapi.xyz/hit/mohammad-mujahid894.github.io/portfolio-total";
+  fetch(COUNTER_URL).catch(function () {
+    // ignore errors here as well
+  });
+})();
+</script>
 
 </body>
 </html>
