@@ -4777,13 +4777,21 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "hidden";
   }
 
-  function closeQrModal() {
-    if (!qrModal) return;
-    qrModal.classList.remove("show");
-    // Restore scroll
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
+ function closeQrModal() {
+  if (!qrModal) return;
+
+  qrModal.classList.remove("show");
+
+  // Always hide the small QR box when modal closes
+  if (qrWrapper) {
+    qrWrapper.style.display = "none";
   }
+
+  // Restore scroll
+  document.documentElement.style.overflow = "";
+  document.body.style.overflow = "";
+}
+
 
   // 🔳 Quick actions: button → show/hide small QR box
   if (qrBtn) {
