@@ -3357,22 +3357,23 @@ window.addEventListener("load", () => {
 });
 </script>
 <script>
-// 🔥 Real-time visitor counter shared across all portfolio pages
+// 🔥 Real-time visitor counter shared across all portfolio pages (using Counter-Pro)
 (function () {
   const counterEl = document.getElementById("visitor-count");
   if (!counterEl) return;
 
-  const COUNTER_URL = "https://api.countapi.xyz/hit/mohammad-mujahid894.github.io/portfolio-total";
+  // One global ID for your whole portfolio
+  const COUNTER_URL = "https://counterpro.vercel.app/api/count?id=mujahid-portfolio";
 
-  fetch(COUNTER_URL)
+  fetch(COUNTER_URL, { cache: "no-store" })
     .then(function (r) { return r.json(); })
     .then(function (data) {
-      if (data && typeof data.value === "number") {
-        // format nicely: 1,234 etc.
-        counterEl.textContent = data.value.toLocaleString();
+      // Counter-Pro returns { status: "success", message: "...", count: 1 }
+      if (data && typeof data.count === "number") {
+        counterEl.textContent = data.count.toLocaleString();
       } else {
         counterEl.textContent = "—";
-        console.warn("Unexpected CountAPI response:", data);
+        console.warn("Unexpected counter response:", data);
       }
     })
     .catch(function (err) {
