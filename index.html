@@ -2454,6 +2454,75 @@ header, .nav, .glass:hover, .stat-card:hover {
     content: "" !important;
 }
 
+  /* ========== Toast (copy feedback) ========== */
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+  z-index: 2100;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toast-ico {
+  font-size: 14px;
+}
+
+.toast-msg {
+  white-space: nowrap;
+}
+
+  /* ========== Mobile modal for small screens ========== */
+.mobile-modal {
+  display: none;                /* hidden by default */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.mobile-modal.open {
+  display: flex;                /* JS adds .open when needed */
+}
+
+.mobile-modal-content {
+  position: relative;
+  background: rgba(15, 23, 42, 0.98);
+  border-radius: 18px;
+  padding: 16px 18px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.mobile-modal .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 
 </style> 
 </head>
@@ -3331,6 +3400,7 @@ I Lead with Relationship Building
 <!-- Toast -->
 <div class="toast" id="toast" role="status" aria-live="polite">
   <span class="toast-ico">✓</span>
+  <span class="toast-msg"></span>
 </div>
 </section>
 </main>
