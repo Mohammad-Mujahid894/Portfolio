@@ -2649,7 +2649,27 @@ header, .nav, .glass:hover, .stat-card:hover {
   }
 }
 
+/* Desktop-only size control */
+@media (min-width: 1024px) {
+  .aperian-preview {
+    max-height: 520px;   /* 👈 TWEAK THIS */
+    object-fit: contain;
+  }
 
+  .aperian-card {
+    max-width: 980px;    /* 👈 TWEAK THIS */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* Slightly larger Foundation title for this section only */
+.innovation-scope .section-title {
+  font-size: 34px;   /* 👈 TWEAK THIS */
+}
+
+.aperian-card {
+  margin-top: 14px;   /* reduce vertical emphasis */
+}
 
 
 
@@ -3327,7 +3347,7 @@ and making processes faster, cleaner, and scalable.
 <!-- ===== EXPANDED IMAGE MODAL ===== -->
 <div id="aperianModal" class="aperian-modal" onclick="closeAperianModal();">
   <div class="aperian-modal-inner">
-    <img src="./Aperian.PNG" alt="Expanded Aperian GlobeSmart Profile" />
+    <img src="./Aperian.png" alt="Expanded Aperian GlobeSmart Profile" />
   </div>
 </div>
 
