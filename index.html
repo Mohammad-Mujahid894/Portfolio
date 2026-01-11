@@ -2524,6 +2524,104 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ===== PDF Card ===== */
+.pdf-card {
+  margin-top: 24px;
+  position: relative;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 30px rgba(122,162,255,0.25);
+  overflow: hidden;
+}
+
+.pdf-card iframe {
+  width: 100%;
+  height: 520px;
+  border: none;
+  background: #000;
+}
+
+/* Actions bottom-right */
+.pdf-actions {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.pdf-actions a,
+.pdf-actions button {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.pdf-actions a:hover,
+.pdf-actions button:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+
+/* ===== MODAL ===== */
+.pdf-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.pdf-modal.open {
+  display: flex;
+}
+
+.pdf-modal-inner {
+  width: 92%;
+  height: 90%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 50px rgba(0,0,0,0.8);
+}
+
+.pdf-modal-inner iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 </style> 
 </head>
 <body>
@@ -3157,65 +3255,42 @@ and making processes faster, cleaner, and scalable.
 <!-- ===== Aperian GlobeSmart Profile ===== -->
 <section class="cert-section">
 
-  <h2 class="section-title" style="margin-bottom:10px;">
+  <h2 class="section-title" style="margin-bottom:8px;">
     Aperian Certified – GlobeSmart Profile
   </h2>
 
-  <p class="cert-text" style="max-width:800px;">
-    This Global assessment captures my global working style across independence,
-    hierarchy, communication, certainty, and task orientation—showing how
-    I collaborate, decide, and execute in cross-cultural environments.
+  <p class="cert-text" style="max-width:720px;">
+    A concise view of my GlobeSmart assessment highlighting how I work,
+    communicate, and execute across cultures and global teams.
   </p>
 
-  <!-- PDF Preview Card -->
-  <div class="glassy-card" style="margin-top:24px; position:relative;">
+  <!-- PDF Container -->
+  <div class="pdf-card">
 
-    <!-- Download Button -->
-    <a
-      href="Mohammad_Mujahid_Aperian.pdf"
-      download
-      title="Download GlobeSmart Profile"
-      style="
-        position:absolute;
-        top:16px;
-        right:16px;
-        width:42px;
-        height:42px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        border-radius:12px;
-        background:rgba(255,255,255,0.08);
-        border:1px solid rgba(255,255,255,0.2);
-        backdrop-filter: blur(10px);
-        text-decoration:none;
-        font-size:20px;
-        color:#eaf2ff;
-        transition:all 0.3s ease;
-        z-index:2;
-      "
-      onmouseover="this.style.background='rgba(255,255,255,0.16)'"
-      onmouseout="this.style.background='rgba(255,255,255,0.08)'"
-    >
-      ⬇️
-    </a>
-
-    <!-- Embedded PDF Preview -->
+    <!-- PDF Preview (NO TOOLBAR) -->
     <iframe
-      src="Mohammad_Mujahid_Aperian.pdf"
-      width="100%"
-      height="520"
+      src="Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=1"
       loading="lazy"
-      style="
-        border:none;
-        border-radius:14px;
-        background:#000;
-      "
     ></iframe>
 
-  </div>
+    <!-- Action Buttons -->
+    <div class="pdf-actions">
+      <a href="Aperian_GlobeSmart_Profile.pdf" download title="Download PDF">⬇️</a>
+      <button onclick="openPdfModal()" title="Expand View">⛶</button>
+    </div>
 
+  </div>
 </section>
+
+<!-- ===== PDF MODAL ===== -->
+<div id="pdfModal" class="pdf-modal" onclick="closePdfModal(event)">
+  <div class="pdf-modal-inner">
+    <iframe
+      src="Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=1"
+    ></iframe>
+  </div>
+</div>
+
 
 
 
@@ -5094,6 +5169,53 @@ if (yearEl) {
 </script>
 
 <script src="https://script.google.com/macros/s/AKfycbwPRsUBty2jIqRm1XadZCJYgvvC-qIbE2EBKLgY6XFBTTaTiFtJWo7M42StUj4zBq3s/exec?cb=updateVisitorCount"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    <script>
+  function openPdfModal() {
+    document.getElementById("pdfModal").classList.add("open");
+    document.body.classList.add("modal-lock");
+  }
+
+  function closePdfModal(e) {
+    if (e.target.id === "pdfModal") {
+      document.getElementById("pdfModal").classList.remove("open");
+      document.body.classList.remove("modal-lock");
+    }
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      document.getElementById("pdfModal").classList.remove("open");
+      document.body.classList.remove("modal-lock");
+    }
+  });
+</script>
+
+
+
+
+
+
+
+    
 
 
   <!-- Mobile modal popup -->
