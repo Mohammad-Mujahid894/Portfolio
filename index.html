@@ -2537,66 +2537,78 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
-
-
-
-
-  /* ===== PDF Card ===== */
+/* ===== PDF Card (Refined & Spacious) ===== */
 .pdf-card {
-  margin-top: 24px;
+  margin-top: 18px;
+  padding: 18px; /* breathing room around PDF */
   position: relative;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 0 30px rgba(122,162,255,0.25);
+  border-radius: 22px;
+
+  background: rgba(255,255,255,0.04); /* softer glass */
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(18px) saturate(160%);
+
+  box-shadow:
+    0 0 28px rgba(122,162,255,0.18),
+    inset 0 0 10px rgba(255,255,255,0.05);
+
   overflow: hidden;
 }
 
+/* Inner PDF */
 .pdf-card iframe {
   width: 100%;
   height: 520px;
   border: none;
-  background: #000;
+  border-radius: 16px;   /* smooth inner edges */
+  background: transparent;
 }
 
-/* Actions bottom-right */
+/* ===== Actions (Bottom-right, Clean) ===== */
 .pdf-actions {
   position: absolute;
-  bottom: 14px;
-  right: 14px;
+  bottom: 26px;   /* more spacing from edges */
+  right: 26px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  z-index: 5;
 }
 
 .pdf-actions a,
 .pdf-actions button {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: rgba(0,0,0,0.45);
-  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(0,0,0,0.4);
+  color: #ffffff;
+
   font-size: 18px;
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(8px);
-  transition: all 0.25s ease;
+
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.25s ease;
 }
 
 .pdf-actions a:hover,
 .pdf-actions button:hover {
   background: rgba(255,255,255,0.18);
   transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(122,162,255,0.5);
 }
 
-/* ===== MODAL ===== */
+/* ===== MODAL (Polished Overlay) ===== */
 .pdf-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.75);
   display: none;
   align-items: center;
   justify-content: center;
@@ -2607,20 +2619,55 @@ header, .nav, .glass:hover, .stat-card:hover {
   display: flex;
 }
 
+/* Modal inner container */
 .pdf-modal-inner {
-  width: 92%;
+  width: 94%;
+  max-width: 1400px;
   height: 90%;
-  border-radius: 16px;
+  border-radius: 20px;
+
   overflow: hidden;
-  background: #000;
-  box-shadow: 0 0 50px rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.95);
+
+  box-shadow:
+    0 0 60px rgba(0,0,0,0.85),
+    0 0 40px rgba(122,162,255,0.35);
 }
 
+/* Modal PDF */
 .pdf-modal-inner iframe {
   width: 100%;
   height: 100%;
   border: none;
 }
+
+/* ===== Mobile Optimizations ===== */
+@media (max-width: 768px) {
+  .pdf-card {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .pdf-card iframe {
+    height: 420px;
+  }
+
+  .pdf-actions {
+    bottom: 18px;
+    right: 18px;
+  }
+
+  .pdf-modal-inner {
+    width: 96%;
+    height: 92%;
+    border-radius: 16px;
+  }
+}
+
+
+
+
+
 
 </style> 
 </head>
@@ -3255,37 +3302,50 @@ and making processes faster, cleaner, and scalable.
 <!-- ===== Aperian GlobeSmart Profile ===== -->
 <section class="cert-section">
 
-  <h2 class="section-title" style="margin-bottom:8px;">
+  <!-- Smaller, subordinate heading -->
+  <h3 class="sub-credential-title">
     Aperian Certified – GlobeSmart Profile
-  </h2>
+  </h3>
 
-  <p class="cert-text" style="max-width:720px;">
-    This Global assessment captures my global working style across independence, hierarchy, communication, certainty, and task orientation—showing how I collaborate, decide, and execute in cross-cultural environments.
+  <p class="sub-credential-desc">
+    A concise snapshot of my GlobeSmart assessment, highlighting how I work,
+    communicate, and execute across cultures and global teams.
   </p>
 
   <!-- PDF Container -->
-  <div class="pdf-card">
+  <div class="pdf-card" data-pdf>
 
-    <!-- PDF Preview (NO TOOLBAR) -->
+    <!-- PDF Preview (NO toolbar) -->
     <iframe
-      src="Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=1"
+      src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=1"
       loading="lazy"
     ></iframe>
 
     <!-- Action Buttons -->
     <div class="pdf-actions">
-      <a href="Aperian_GlobeSmart_Profile.pdf" download title="Download PDF">⬇️</a>
-      <button onclick="openPdfModal()" title="Expand View">⛶</button>
+      <a
+        href="./Mohammad_Mujahid_Aperian.pdf"
+        download
+        title="Download PDF"
+      >⬇️</a>
+
+      <button onclick="event.stopPropagation(); openPdfModal()" title="Expand View">
+  ⛶
+</button>
     </div>
 
   </div>
 </section>
 
 <!-- ===== PDF MODAL ===== -->
-<div id="pdfModal" class="pdf-modal" onclick="closePdfModal(event)">
+<div
+  id="pdfModal"
+  class="pdf-modal"
+  onclick="closePdfModal(event)"
+>
   <div class="pdf-modal-inner">
     <iframe
-      src="Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=1"
+      src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=1"
     ></iframe>
   </div>
 </div>
@@ -5187,23 +5247,30 @@ if (yearEl) {
 
     
 
-    <script>
+<script>
+  const pdfModal = document.getElementById("pdfModal");
+
   function openPdfModal() {
-    document.getElementById("pdfModal").classList.add("open");
+    pdfModal.classList.add("open");
     document.body.classList.add("modal-lock");
   }
 
-  function closePdfModal(e) {
-    if (e.target.id === "pdfModal") {
-      document.getElementById("pdfModal").classList.remove("open");
-      document.body.classList.remove("modal-lock");
-    }
+  function closePdfModal() {
+    pdfModal.classList.remove("open");
+    document.body.classList.remove("modal-lock");
   }
 
+  // Close on ANY click when modal is open
+  document.addEventListener("click", function () {
+    if (pdfModal.classList.contains("open")) {
+      closePdfModal();
+    }
+  });
+
+  // ESC key support
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      document.getElementById("pdfModal").classList.remove("open");
-      document.body.classList.remove("modal-lock");
+    if (e.key === "Escape" && pdfModal.classList.contains("open")) {
+      closePdfModal();
     }
   });
 </script>
