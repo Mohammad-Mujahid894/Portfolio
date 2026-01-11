@@ -2557,7 +2557,7 @@ header, .nav, .glass:hover, .stat-card:hover {
 .innovation-scope .section-title {
   font-family: "FoundationTitlesHand", sans-serif;
   font-size: 36px;              /* 👈 TWEAK: 34–38px */
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.5px;
   text-align: center;
 
@@ -2678,14 +2678,14 @@ header, .nav, .glass:hover, .stat-card:hover {
    ========================================================= */
 @media (min-width: 1024px) {
   .aperian-card {
-    max-width: 900px;       /* 👈 TWEAK: 860–980px */
+    max-width: 820px;   /* 👈 REDUCE */
   }
 
   .aperian-preview {
-    max-height: 480px;      /* 👈 TWEAK: 440–520px */
-    object-fit: contain;
+    max-height: 460px;  /* 👈 Optional fine-tune */
   }
 }
+
 
 /* =========================================================
    MOBILE OPTIMISATION (KEEP PREVIEW, NOT OPEN PDF)
@@ -2706,6 +2706,10 @@ header, .nav, .glass:hover, .stat-card:hover {
     max-width: 98%;
     max-height: 90%;
   }
+}
+.cert-section {
+  padding-top: 64px;     /* 👈 was 40px */
+  padding-bottom: 64px;  /* 👈 was 40px */
 }
 
 
