@@ -2116,7 +2116,11 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
-  /* ===== Certificate Collage Container (Premium Grid) ===== */
+
+
+/* =========================================================
+   Certificate Collage Container (Single Tab – Premium)
+   ========================================================= */
 .cert-slider-container {
   position: relative;
   width: 100%;
@@ -2127,40 +2131,73 @@ header, .nav, .glass:hover, .stat-card:hover {
   background: rgba(15, 23, 42, 0.92);
   border: 1px solid rgba(148, 163, 184, 0.55);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
 }
 
-/* Grid instead of slider */
+/* =========================================================
+   Collage Grid (NOT a slider, future-proof)
+   ========================================================= */
 .cert-slider {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 14px;
+  position: relative;
 }
 
-/* Certificate thumbnails */
+/* =========================================================
+   Certificate Thumbnails (Default State)
+   ========================================================= */
 .cert-slide {
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: contain;
+  object-fit: cover;                 /* zoomed-in collage look */
   border-radius: 14px;
   background: #020617;
   cursor: pointer;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.6s ease,
+    filter 0.6s ease;
 }
 
+/* Hover polish (manual interaction only) */
 .cert-slide:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75);
 }
 
-/* ===== Modal (Zoomed Certificate View) ===== */
+/* =========================================================
+   AUTO FOCUS STATE (Instagram-style zoom-out reveal)
+   ========================================================= */
+.cert-slide.is-focus {
+  transform: scale(0.78);            /* zoom OUT */
+  object-fit: contain;               /* show full certificate */
+  z-index: 3;
+  box-shadow: 0 0 40px rgba(122,162,255,0.65);
+  transition:
+    transform 4s ease,
+    object-fit 4s ease,
+    box-shadow 0.6s ease;
+}
+
+/* De-emphasize others while one is focused */
+.cert-slider:has(.is-focus) .cert-slide:not(.is-focus) {
+  opacity: 0.65;
+  filter: saturate(0.85);
+}
+
+/* =========================================================
+   MODAL – Full Certificate View (On Click Only)
+   ========================================================= */
 .cert-modal {
   position: fixed;
   inset: 0;
   display: none;
   align-items: center;
   justify-content: center;
+  background: rgba(2, 6, 23, 0.65);
   backdrop-filter: blur(18px);
-  background: rgba(2, 6, 23, 0.55);
   z-index: 9999;
 }
 
@@ -2173,7 +2210,7 @@ header, .nav, .glass:hover, .stat-card:hover {
   inset: 0;
 }
 
-/* Modal Inner */
+/* Modal Inner Card */
 .cert-modal-inner {
   position: relative;
   max-width: 1100px;
@@ -2189,7 +2226,7 @@ header, .nav, .glass:hover, .stat-card:hover {
   z-index: 1;
 }
 
-/* Zoomed Image */
+/* Full certificate image */
 .cert-modal-img {
   max-width: 100%;
   max-height: calc(100vh - 140px);
@@ -2198,7 +2235,9 @@ header, .nav, .glass:hover, .stat-card:hover {
   background: #020617;
 }
 
-/* Modal Arrows */
+/* =========================================================
+   Modal Navigation Arrows
+   ========================================================= */
 .modal-arrow {
   position: absolute;
   top: 50%;
@@ -2214,18 +2253,14 @@ header, .nav, .glass:hover, .stat-card:hover {
   justify-content: center;
   font-size: 24px;
   cursor: pointer;
-  transition: transform 0.2s ease,
-              background 0.2s ease,
-              border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.modal-left {
-  left: 14px;
-}
-
-.modal-right {
-  right: 14px;
-}
+.modal-left  { left: 14px; }
+.modal-right { right: 14px; }
 
 .modal-arrow:hover {
   background: rgba(30, 64, 175, 0.95);
@@ -2233,7 +2268,9 @@ header, .nav, .glass:hover, .stat-card:hover {
   transform: translateY(-50%) scale(1.08);
 }
 
-/* ===== Mobile Optimization ===== */
+/* =========================================================
+   Mobile Optimisation
+   ========================================================= */
 @media (max-width: 640px) {
   .cert-slider-container {
     padding: 14px;
@@ -2259,6 +2296,12 @@ header, .nav, .glass:hover, .stat-card:hover {
     font-size: 20px;
   }
 }
+
+
+
+
+
+  
 
 
 
@@ -3062,6 +3105,7 @@ and making processes faster, cleaner, and scalable.
 
   </div>
 
+
   <!-- ===== Certificates Section Below Skills ===== -->
 <!-- ===== Certificates Slider Section ===== -->
 <!-- ===== Certificates Section Below Skills ===== -->
@@ -3083,10 +3127,10 @@ and making processes faster, cleaner, and scalable.
 
   <div class="cert-slider-container">
     <div class="cert-slider">
-      <img src="20251125194217_2259449.PNG" class="cert-slide" alt="Innovation Lifecycle Completion 1">
-      <img src="20251125192320_2259014.PNG" class="cert-slide" alt="Innovation Lifecycle Completion 2">
-      <img src="20251125185720_2259023.PNG" class="cert-slide" alt="Innovation Lifecycle Completion 3">
-      <img src="20251125191522_2242165.PNG" class="cert-slide" alt="Innovation Lifecycle Completion 4">
+      <img src="20251125194217_2259449.PNG" class="cert-slide" alt="Innovation Lifecycle Completion 1"loading="lazy">
+      <img src="20251125192320_2259014.PNG" class="cert-slide" alt="Innovation Lifecycle Completion 2"loading="lazy">
+      <img src="20251125185720_2259023.PNG" class="cert-slide" alt="Innovation Lifecycle Completion 3"loading="lazy">
+      <img src="20251125191522_2242165.PNG" class="cert-slide" alt="Innovation Lifecycle Completion 4"loading="lazy">
       <img src="Elite.png" class="cert-slide" alt="Information Security IS Elite Advocate">
     </div>
   </div>
@@ -3101,7 +3145,6 @@ and making processes faster, cleaner, and scalable.
     <button class="modal-arrow modal-right" aria-label="Next certificate">›</button>
   </div>
 </div>
-
 
 
 
@@ -4310,17 +4353,65 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.querySelector(".modal-right");
   const prevBtn = document.querySelector(".modal-left");
 
-  if (!slides.length || !modal || !modalImg) return;
+  if (!slides.length) return;
 
-  let currentIndex = 0;
-  let autoplayInterval = null;
+  let focusIndex = 0;
+  let focusTimer = null;
   let inactivityTimer = null;
   let userActive = false;
 
-  /* ================= OPEN / CLOSE ================= */
+  /* =========================
+     IN-TAB AUTO FOCUS LOGIC
+     ========================= */
+  function clearFocus() {
+    slides.forEach(s => s.classList.remove("is-focus"));
+  }
+
+  function focusSlide(index) {
+    clearFocus();
+    slides[index].classList.add("is-focus");
+
+    // Remove focus after reveal
+    setTimeout(() => {
+      slides[index].classList.remove("is-focus");
+    }, 5000);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    focusTimer = setInterval(() => {
+      if (userActive) return;
+      focusSlide(focusIndex);
+      focusIndex = (focusIndex + 1) % slides.length;
+    }, 6500);
+  }
+
+  function stopAutoplay() {
+    if (focusTimer) clearInterval(focusTimer);
+  }
+
+  /* =========================
+     INACTIVITY CONTROL
+     ========================= */
+  function resetInactivity() {
+    userActive = true;
+    stopAutoplay();
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(() => {
+      userActive = false;
+      startAutoplay();
+    }, 34000);
+  }
+
+  /* =========================
+     MODAL (ON CLICK ONLY)
+     ========================= */
+  let modalIndex = 0;
+
   function openModal(index) {
-    currentIndex = index;
-    modalImg.src = slides[currentIndex].src;
+    modalIndex = index;
+    modalImg.src = slides[index].src;
     modal.classList.add("show");
     document.body.style.overflow = "hidden";
   }
@@ -4330,49 +4421,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
-  /* ================= NAVIGATION ================= */
   function showNext() {
-    currentIndex = (currentIndex + 1) % slides.length;
-    modalImg.src = slides[currentIndex].src;
+    modalIndex = (modalIndex + 1) % slides.length;
+    modalImg.src = slides[modalIndex].src;
   }
 
   function showPrev() {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    modalImg.src = slides[currentIndex].src;
+    modalIndex = (modalIndex - 1 + slides.length) % slides.length;
+    modalImg.src = slides[modalIndex].src;
   }
 
-  /* ================= AUTOPLAY ================= */
-  function startAutoplay() {
-    stopAutoplay();
-    autoplayInterval = setInterval(() => {
-      if (userActive) return;
-
-      openModal(currentIndex);
-
-      setTimeout(() => {
-        closeModal();
-        currentIndex = (currentIndex + 1) % slides.length;
-      }, 5000); // zoomed view time
-    }, 7000);   // gap between zooms
-  }
-
-  function stopAutoplay() {
-    if (autoplayInterval) clearInterval(autoplayInterval);
-  }
-
-  /* ================= INACTIVITY ================= */
-  function resetInactivity() {
-    userActive = true;
-    stopAutoplay();
-    clearTimeout(inactivityTimer);
-
-    inactivityTimer = setTimeout(() => {
-      userActive = false;
-      startAutoplay();
-    }, 5000); // 34 seconds
-  }
-
-  /* ================= EVENTS ================= */
+  /* =========================
+     EVENTS
+     ========================= */
   slides.forEach((img, index) => {
     img.addEventListener("click", () => {
       resetInactivity();
@@ -4380,40 +4441,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  if (nextBtn) {
-    nextBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      resetInactivity();
-      showNext();
-    });
-  }
+  backdrop.addEventListener("click", closeModal);
 
-  if (prevBtn) {
-    prevBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      resetInactivity();
-      showPrev();
-    });
-  }
+  nextBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    resetInactivity();
+    showNext();
+  });
 
-  if (backdrop) {
-    backdrop.addEventListener("click", () => {
-      closeModal();
-    });
-  }
+  prevBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    resetInactivity();
+    showPrev();
+  });
 
   document.addEventListener("keydown", (e) => {
     if (!modal.classList.contains("show")) return;
-
     if (e.key === "Escape") closeModal();
     if (e.key === "ArrowRight") showNext();
     if (e.key === "ArrowLeft") showPrev();
   });
 
-  /* ================= START ================= */
+  /* =========================
+     START
+     ========================= */
   startAutoplay();
 });
 </script>
+
 
 
 
