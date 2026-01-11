@@ -2535,6 +2535,9 @@ header, .nav, .glass:hover, .stat-card:hover {
 /* =========================================================
    FOUNDATION FONT (Required)
    ========================================================= */
+/* =========================================================
+   FOUNDATION FONT
+   ========================================================= */
 @font-face {
   font-family: "FoundationTitlesHand";
   src: url("./FoundationTitlesHand.ttf") format("truetype");
@@ -2544,45 +2547,48 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 /* =========================================================
-   SECTION SPACING (Rhythm with rest of site)
+   SECTION SPACING (ABOVE & BELOW)
    ========================================================= */
 .cert-section {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
 
 /* =========================================================
-   FOUNDATION TITLE (MATCHES OTHER FOUNDATION SECTIONS)
+   FOUNDATION TITLE (BOLD + GRADIENT)
    ========================================================= */
 .innovation-scope .section-title {
   font-family: "FoundationTitlesHand", sans-serif;
-  font-size: 36px;              /* 👈 TWEAK: 34–38px */
+  font-size: 36px;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   text-align: center;
 
-  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
+  background: linear-gradient(90deg, #7aa2ff, #8a7aff, #4ff0b0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 /* =========================================================
-   DESCRIPTION (Uses your existing foundation style)
+   DESCRIPTION
    ========================================================= */
 .cert-text {
   max-width: 760px;
-  margin: 0 auto 18px;
+  margin: 0 auto 20px;
   text-align: center;
 }
 
 /* =========================================================
-   APERIAN PREVIEW CARD
+   APERIAN PREVIEW CARD (GLASS)
    ========================================================= */
 .aperian-card {
   position: relative;
-  margin: 14px auto 0;
+  margin: 32px auto;
+
+  max-width: 780px;           /* 🔑 SIDE GLASS CONTROL */
+  padding: 20px;              /* 🔑 GLASS ABOVE & BELOW */
 
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
@@ -2592,11 +2598,13 @@ header, .nav, .glass:hover, .stat-card:hover {
   overflow: hidden;
 }
 
-/* Image preview */
+/* IMAGE PREVIEW */
 .aperian-preview {
   width: 100%;
+  max-height: 540px;          /* 🔑 IMAGE SIZE */
+  object-fit: contain;
   display: block;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 
 /* =========================================================
@@ -2604,8 +2612,8 @@ header, .nav, .glass:hover, .stat-card:hover {
    ========================================================= */
 .aperian-actions {
   position: absolute;
-  bottom: 22px;
-  right: 22px;
+  bottom: 20px;
+  right: 20px;
 
   display: flex;
   gap: 12px;
@@ -2674,28 +2682,19 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 /* =========================================================
-   DESKTOP SIZE CONTROL (KEY FIX FOR "TOO BIG")
+   MOBILE OPTIMISATION
    ========================================================= */
-@media (min-width: 1024px) {
+@media (max-width: 768px) {
   .aperian-card {
-    max-width: 860px;      /* 👈 KEY FIX (try 820–880) */
-    margin: 24px auto;     /* centers + adds top/bottom spacing */
+    max-width: 100%;
+    margin: 24px 12px;
+    padding: 16px;
   }
 
   .aperian-preview {
-    max-height: 460px;
-    object-fit: contain;
+    max-height: none;
   }
-}
 
-.aperian-card {
-  width: 100%;
-}
-
-/* =========================================================
-   MOBILE OPTIMISATION (KEEP PREVIEW, NOT OPEN PDF)
-   ========================================================= */
-@media (max-width: 768px) {
   .aperian-actions {
     bottom: 16px;
     right: 16px;
@@ -2712,10 +2711,7 @@ header, .nav, .glass:hover, .stat-card:hover {
     max-height: 90%;
   }
 }
-.cert-section {
-  padding-top: 64px;     /* 👈 was 40px */
-  padding-bottom: 64px;  /* 👈 was 40px */
-}
+
 
 
 
