@@ -2533,8 +2533,15 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 /* ================= PDF Credential (Foundation Aligned) ================= */
 
-/* PDF Card */
-.pdf-card {
+/* ===== Foundation Gradient Scope Fix ===== */
+.innovation-scope .section-title {
+  background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Aperian Card ===== */
+.aperian-card {
   margin-top: 18px;
   position: relative;
 
@@ -2543,28 +2550,18 @@ header, .nav, .glass:hover, .stat-card:hover {
   border-radius: 20px;
 
   box-shadow: 0 0 30px rgba(122,162,255,0.25);
+  overflow: hidden;
 }
 
-/* Wrapper creates breathing space without cutting PDF */
-.pdf-frame {
-  padding: 22px;
+/* Image Preview */
+.aperian-preview {
+  width: 100%;
+  display: block;
   border-radius: 20px;
 }
 
-/* PDF Preview */
-.pdf-frame iframe {
-  width: 100%;
-  height: 540px;
-
-  border: none;
-  border-radius: 14px;
-  display: block;
-
-  background: #ffffff; /* IMPORTANT: kills grey/black canvas */
-}
-
 /* Actions */
-.pdf-actions {
+.aperian-actions {
   position: absolute;
   bottom: 22px;
   right: 22px;
@@ -2574,14 +2571,14 @@ header, .nav, .glass:hover, .stat-card:hover {
   z-index: 5;
 }
 
-.pdf-actions a,
-.pdf-actions button {
+.aperian-actions a,
+.aperian-actions button {
   width: 44px;
   height: 44px;
 
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.22);
-  background: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,0.4);
 
   color: #fff;
   font-size: 18px;
@@ -2595,18 +2592,18 @@ header, .nav, .glass:hover, .stat-card:hover {
   transition: all 0.25s ease;
 }
 
-.pdf-actions a:hover,
-.pdf-actions button:hover {
+.aperian-actions a:hover,
+.aperian-actions button:hover {
   background: rgba(255,255,255,0.18);
   transform: translateY(-2px);
   box-shadow: 0 0 12px rgba(122,162,255,0.45);
 }
 
-/* ===== Expanded Modal ===== */
-.pdf-modal {
+/* ===== Modal ===== */
+.aperian-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.8);
 
   display: none;
   align-items: center;
@@ -2615,52 +2612,42 @@ header, .nav, .glass:hover, .stat-card:hover {
   z-index: 99999;
 }
 
-.pdf-modal.open {
+.aperian-modal.open {
   display: flex;
 }
 
-.pdf-modal-inner {
-  width: 94%;
-  max-width: 1400px;
-  height: 90%;
-
-  border-radius: 20px;
+.aperian-modal-inner {
+  max-width: 95%;
+  max-height: 95%;
+  border-radius: 18px;
   overflow: hidden;
-
-  background: #ffffff;
-  box-shadow: 0 0 60px rgba(0,0,0,0.85);
+  box-shadow: 0 0 60px rgba(0,0,0,0.9);
 }
 
-.pdf-modal-inner iframe {
+.aperian-modal-inner img {
   width: 100%;
-  height: 100%;
-  border: none;
-  background: #ffffff;
+  height: auto;
+  display: block;
 }
 
-/* ===== Mobile Preview Fix (NO "Open PDF") ===== */
+/* ===== Mobile Optimisation ===== */
 @media (max-width: 768px) {
-  .pdf-frame iframe {
-    height: 75vh;     /* forces embedded preview */
-    background: #fff;
-  }
-
-  .pdf-frame {
-    padding: 16px;
-  }
-
-  .pdf-actions {
+  .aperian-actions {
     bottom: 16px;
     right: 16px;
   }
 
-  .pdf-modal-inner {
-    width: 96%;
-    height: 92%;
-    border-radius: 16px;
+  .aperian-actions a,
+  .aperian-actions button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .aperian-modal-inner {
+    max-width: 98%;
+    max-height: 90%;
   }
 }
-
 
 
 
@@ -3305,48 +3292,45 @@ and making processes faster, cleaner, and scalable.
 <!-- ===== Aperian GlobeSmart Profile ===== -->
 <!-- ===== Aperian GlobeSmart Profile ===== -->
 <!-- ===== Aperian GlobeSmart Profile ===== -->
-<section class="cert-section">
+<!-- ===== Aperian GlobeSmart Profile ===== -->
+<section class="cert-section innovation-scope">
 
-  <!-- Use FOUNDATION title system (same as Innovation & Impact) -->
+  <!-- FOUNDATION TITLE (same as Innovation & Impact Credentials) -->
   <h2 class="section-title">
     Aperian Certified – GlobeSmart Profile
   </h2>
 
   <p class="cert-text">
-    A Global behavioral assessment that highlights how I collaborate, communicate,
-    and execute effectively within global and cross-cultural work environments.
+    A behavioral assessment highlighting how I collaborate, communicate,
+    and execute effectively across global and cross-cultural environments.
   </p>
 
-  <!-- PDF Card -->
-  <div class="pdf-card">
+  <!-- Image Preview Card -->
+  <div class="aperian-card">
 
-    <!-- Frame wrapper is CRITICAL (prevents grey/black bleed) -->
-    <div class="pdf-frame">
-      <iframe
-        src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=0"
-        loading="lazy"
-        aria-label="Aperian GlobeSmart Profile PDF Preview"
-      ></iframe>
-    </div>
+    <img
+      src="./Aperian.PNG"
+      alt="Aperian GlobeSmart Profile Preview"
+      loading="lazy"
+      class="aperian-preview"
+    />
 
     <!-- Actions -->
-    <div class="pdf-actions">
+    <div class="aperian-actions">
       <a href="./Mohammad_Mujahid_Aperian.pdf" download title="Download PDF">⬇️</a>
-      <button onclick="event.stopPropagation(); openPdfModal();" title="Expand View">⛶</button>
+      <button onclick="event.stopPropagation(); openAperianModal();" title="Expand View">⛶</button>
     </div>
 
   </div>
 </section>
 
-<!-- ===== PDF MODAL (Expanded View) ===== -->
-<div id="pdfModal" class="pdf-modal" onclick="closePdfModal();">
-  <div class="pdf-modal-inner">
-    <iframe
-      src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=0"
-      aria-label="Expanded Aperian GlobeSmart Profile PDF"
-    ></iframe>
+<!-- ===== EXPANDED IMAGE MODAL ===== -->
+<div id="aperianModal" class="aperian-modal" onclick="closeAperianModal();">
+  <div class="aperian-modal-inner">
+    <img src="./Aperian.PNG" alt="Expanded Aperian GlobeSmart Profile" />
   </div>
 </div>
+
 
 
 
@@ -5244,41 +5228,23 @@ if (yearEl) {
 
 
 <script>
-  const pdfModal = document.getElementById("pdfModal");
+  const aperianModal = document.getElementById("aperianModal");
 
-  /* Open expanded view */
-  function openPdfModal() {
-    pdfModal.classList.add("open");
-    document.body.classList.add("modal-lock");
+  function openAperianModal() {
+    aperianModal.classList.add("open");
   }
 
-  /* Close expanded view */
-  function closePdfModal() {
-    pdfModal.classList.remove("open");
-    document.body.classList.remove("modal-lock");
+  function closeAperianModal() {
+    aperianModal.classList.remove("open");
   }
 
-  /* 1️⃣ Close on ANY click anywhere in the document */
-  document.addEventListener("click", function () {
-    if (pdfModal.classList.contains("open")) {
-      closePdfModal();
-    }
-  });
-
-  /* 2️⃣ Close when user interacts with iframe (window loses focus) */
-  window.addEventListener("blur", function () {
-    if (pdfModal.classList.contains("open")) {
-      closePdfModal();
-    }
-  });
-
-  /* 3️⃣ Close on ESC key */
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && pdfModal.classList.contains("open")) {
-      closePdfModal();
+    if (e.key === "Escape") {
+      closeAperianModal();
     }
   });
 </script>
+
 
     
 
