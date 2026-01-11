@@ -634,7 +634,78 @@ body.dark .site-footer {
   object-fit: contain;
 }
 
-  
+
+
+
+
+
+
+
+    /* ===== Featured Certifications ===== */
+.featured-section {
+  margin: 2rem 0 3rem;
+}
+
+.featured-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+}
+
+.featured-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: featuredScroll 40s linear infinite;
+}
+
+.featured-wrapper:hover .featured-track {
+  animation-play-state: paused;
+}
+
+/* Mini card */
+.featured-card {
+  min-width: 260px;
+  max-width: 260px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(30, 41, 59, 0.75);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.featured-card h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.featured-card small {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Auto-scroll animation */
+@keyframes featuredScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .featured-track {
+    animation-duration: 55s;
+  }
+}
+
   </style>
 </head>
 
@@ -679,6 +750,17 @@ body.dark .site-footer {
     <p class="subtitle">Verified learning and professional credentials from ICMAI, Accenture, Skillsoft, Pluralsight and more.</p>  
     <p class="subtitle">Click or Tap on any Tile to view the Corresponding Credential Or Certificate</p>
     <p class="subtitle">(Certificate & Credentials are available for Verified Milestones)</p>
+
+
+    <div class="featured-section">
+  <h3 class="featured-title">⭐ Featured Certifications</h3>
+
+  <div class="featured-wrapper">
+    <div class="featured-track" id="featuredTrack"></div>
+  </div>
+</div>
+
+    
     <div class="grid" id="certGrid"></div>
 
     <div class="overlay" id="overlay">
@@ -1491,6 +1573,7 @@ document.querySelectorAll(".dropdown > .dropbtn").forEach((btn) => {
 "title": "Importance of Confidentiality",
 "issuer": "Accenture",
 "date": "Jun 2025",
+  featured: true,
 "hasCredential": false,
 "credentialUrl": "",
 "fileUrl": "",
@@ -1894,6 +1977,81 @@ const shareText    = "Check out my certifications:";
     });
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const featuredTrack = document.getElementById("featuredTrack");
+const featuredCerts = CERTIFICATIONS.filter(c => c.featured);
+
+// duplicate for seamless loop
+const loopCerts = [...featuredCerts, ...featuredCerts];
+
+loopCerts.forEach(cert => {
+  const card = document.createElement("div");
+  card.className = "featured-card";
+  card.innerHTML = `
+    <h4>${cert.title}</h4>
+    <small>${cert.issuer}</small>
+  `;
+  card.addEventListener("click", () => openModal(cert));
+  featuredTrack.appendChild(card);
+});
+
+/* ===== Drag / Swipe Support ===== */
+let isDown = false;
+let startX;
+let scrollLeft;
+
+featuredTrack.addEventListener("mousedown", e => {
+  isDown = true;
+  featuredTrack.style.animationPlayState = "paused";
+  startX = e.pageX;
+  scrollLeft = featuredTrack.scrollLeft;
+});
+
+featuredTrack.addEventListener("mouseleave", () => isDown = false);
+featuredTrack.addEventListener("mouseup", () => isDown = false);
+
+featuredTrack.addEventListener("mousemove", e => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX;
+  const walk = (x - startX) * 1.5;
+  featuredTrack.scrollLeft = scrollLeft - walk;
+});
+
+/* Touch */
+featuredTrack.addEventListener("touchstart", e => {
+  startX = e.touches[0].pageX;
+  scrollLeft = featuredTrack.scrollLeft;
+  featuredTrack.style.animationPlayState = "paused";
+});
+
+featuredTrack.addEventListener("touchmove", e => {
+  const x = e.touches[0].pageX;
+  const walk = (x - startX) * 1.5;
+  featuredTrack.scrollLeft = scrollLeft - walk;
+});
+
 </script>
 
   
