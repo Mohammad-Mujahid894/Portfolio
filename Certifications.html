@@ -638,6 +638,8 @@ body.dark .site-footer {
   </style>
 </head>
 
+  <body class="dark">
+
 <header>
   <div class="brand">
     <img src="062325.png" alt="Profile" />
@@ -1762,6 +1764,11 @@ window.addEventListener("popstate", () => {
 });
 
 
+// 🔹 Force dark mode on load & sync toggle icon
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("dark");
+  themeToggle.textContent = "☀️";
+});
 
 
     
