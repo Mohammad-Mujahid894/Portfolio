@@ -2531,58 +2531,39 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
+/* ================= PDF Credential (Foundation Aligned) ================= */
 
-
-
-
-
-/* ================= Aperian GlobeSmart Credential ================= */
-
-/* Sub-heading aligned with Innovation & Impact Credentials */
-.cert-subtitle {
-  font-size: 20px;
-  font-weight: 700;
-  color: #eaf2ff;
-  margin: 28px 0 8px;
-}
-
-/* Uses your existing cert-text foundation */
-.cert-text {
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--muted);
-  max-width: 720px;
-}
-
-/* ===== PDF Card (Glassy, not boxed) ===== */
+/* PDF Card */
 .pdf-card {
-  margin-top: 16px;
-  padding: 22px;
+  margin-top: 18px;
   position: relative;
 
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 20px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(14px) saturate(160%);
 
-  box-shadow:
-    0 0 30px rgba(122,162,255,0.35),
-    inset 0 0 8px rgba(255,255,255,0.05);
+  box-shadow: 0 0 30px rgba(122,162,255,0.25);
 }
 
-/* Embedded PDF */
-.pdf-card iframe {
+/* Wrapper creates breathing space without cutting PDF */
+.pdf-frame {
+  padding: 22px;
+  border-radius: 20px;
+}
+
+/* PDF Preview */
+.pdf-frame iframe {
   width: 100%;
   height: 540px;
 
-  display: block;
   border: none;
   border-radius: 14px;
+  display: block;
 
-  background: transparent;   /* removes black / grey slab */
+  background: #ffffff; /* IMPORTANT: kills grey/black canvas */
 }
 
-/* ===== Action Buttons (Secondary, Bottom-right) ===== */
+/* Actions */
 .pdf-actions {
   position: absolute;
   bottom: 22px;
@@ -2590,13 +2571,7 @@ header, .nav, .glass:hover, .stat-card:hover {
 
   display: flex;
   gap: 12px;
-
-  opacity: 0.85;
   z-index: 5;
-}
-
-.pdf-card:hover .pdf-actions {
-  opacity: 1;
 }
 
 .pdf-actions a,
@@ -2627,12 +2602,12 @@ header, .nav, .glass:hover, .stat-card:hover {
   box-shadow: 0 0 12px rgba(122,162,255,0.45);
 }
 
-/* ===== Modal Overlay (Expanded View) ===== */
+/* ===== Expanded Modal ===== */
 .pdf-modal {
   position: fixed;
   inset: 0;
-
   background: rgba(0,0,0,0.75);
+
   display: none;
   align-items: center;
   justify-content: center;
@@ -2652,28 +2627,26 @@ header, .nav, .glass:hover, .stat-card:hover {
   border-radius: 20px;
   overflow: hidden;
 
-  background: rgba(0,0,0,0.95);
-  box-shadow:
-    0 0 60px rgba(0,0,0,0.85),
-    0 0 40px rgba(122,162,255,0.35);
+  background: #ffffff;
+  box-shadow: 0 0 60px rgba(0,0,0,0.85);
 }
 
 .pdf-modal-inner iframe {
   width: 100%;
   height: 100%;
   border: none;
-  background: transparent;
+  background: #ffffff;
 }
 
-/* ===== Mobile Refinements ===== */
+/* ===== Mobile Preview Fix (NO "Open PDF") ===== */
 @media (max-width: 768px) {
-  .pdf-card {
-    padding: 16px;
-    border-radius: 18px;
+  .pdf-frame iframe {
+    height: 75vh;     /* forces embedded preview */
+    background: #fff;
   }
 
-  .pdf-card iframe {
-    height: 420px;
+  .pdf-frame {
+    padding: 16px;
   }
 
   .pdf-actions {
@@ -2687,6 +2660,10 @@ header, .nav, .glass:hover, .stat-card:hover {
     border-radius: 16px;
   }
 }
+
+
+
+
 
 
 
@@ -3327,14 +3304,14 @@ and making processes faster, cleaner, and scalable.
 
 <!-- ===== Aperian GlobeSmart Profile ===== -->
 <!-- ===== Aperian GlobeSmart Profile ===== -->
+<!-- ===== Aperian GlobeSmart Profile ===== -->
 <section class="cert-section">
 
-  <!-- Sub-credential heading (aligned with Innovation & Impact Credentials) -->
-  <h3 class="cert-subtitle">
+  <!-- Use FOUNDATION title system (same as Innovation & Impact) -->
+  <h2 class="section-title">
     Aperian Certified – GlobeSmart Profile
-  </h3>
+  </h2>
 
-  <!-- Refined description (foundation-aligned, no repetition) -->
   <p class="cert-text">
     A Global behavioral assessment that highlights how I collaborate, communicate,
     and execute effectively within global and cross-cultural work environments.
@@ -3343,36 +3320,26 @@ and making processes faster, cleaner, and scalable.
   <!-- PDF Card -->
   <div class="pdf-card">
 
-    <!-- PDF Preview (clean, no chrome, no cut look) -->
-    <iframe
-      src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=0"
-      loading="lazy"
-      aria-label="Aperian GlobeSmart Profile PDF"
-    ></iframe>
+    <!-- Frame wrapper is CRITICAL (prevents grey/black bleed) -->
+    <div class="pdf-frame">
+      <iframe
+        src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=0"
+        loading="lazy"
+        aria-label="Aperian GlobeSmart Profile PDF Preview"
+      ></iframe>
+    </div>
 
     <!-- Actions -->
     <div class="pdf-actions">
-      <a
-        href="./Mohammad_Mujahid_Aperian.pdf"
-        download
-        title="Download PDF"
-      >⬇️</a>
-
-      <button
-        title="Expand View"
-        onclick="event.stopPropagation(); openPdfModal();"
-      >⛶</button>
+      <a href="./Mohammad_Mujahid_Aperian.pdf" download title="Download PDF">⬇️</a>
+      <button onclick="event.stopPropagation(); openPdfModal();" title="Expand View">⛶</button>
     </div>
 
   </div>
 </section>
 
 <!-- ===== PDF MODAL (Expanded View) ===== -->
-<div
-  id="pdfModal"
-  class="pdf-modal"
-  onclick="closePdfModal();"
->
+<div id="pdfModal" class="pdf-modal" onclick="closePdfModal();">
   <div class="pdf-modal-inner">
     <iframe
       src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=0"
