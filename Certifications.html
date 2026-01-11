@@ -645,35 +645,25 @@ body.dark .site-footer {
 /* =========================================================
    FEATURED CERTIFICATIONS SECTION
    ========================================================= */
+/* =========================================================
+   FEATURED CERTIFICATIONS
+   ========================================================= */
+
 .featured-section {
-  margin: 2.5rem 0 3.5rem;
+  margin: 3rem 0 4rem;
 }
 
-/* Title */
 .featured-title {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #1e293b;
-}
-
-body.dark .featured-title {
-  color: #e2e8f0;
+  text-align: center;
 }
 
 /* Wrapper */
 .featured-wrapper {
   position: relative;
   overflow: hidden;
-
-  /* subtle edge fade like premium sliders */
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 6%,
-    black 94%,
-    transparent
-  );
 }
 
 /* Track */
@@ -681,55 +671,33 @@ body.dark .featured-title {
   display: flex;
   gap: 18px;
   width: max-content;
-
-  animation: featuredScroll 45s linear infinite;
   will-change: transform;
 }
 
-/* Pause animation on hover (desktop only) */
-@media (hover: hover) and (pointer: fine) {
-  .featured-wrapper:hover .featured-track {
-    animation-play-state: paused;
-  }
-}
-
 /* =========================================================
-   FEATURED MINI CARD — MATCHES MAIN GRID CARDS
+   FEATURED MINI CARD
    ========================================================= */
 .featured-card {
   min-width: 260px;
   max-width: 260px;
-
-  padding: 1px; /* gradient border shell */
+  padding: 1px;
   border-radius: 14px;
-
-  background: linear-gradient(
-    270deg,
-    #7aa2ff,
-    #8a7aff,
-    #4ff0b0
-  );
-  background-size: 300% 300%;
-  animation: gradientMove 6s ease infinite;
-
+  flex-shrink: 0;
   cursor: grab;
   user-select: none;
-  flex-shrink: 0;
 }
 
 .featured-card:active {
   cursor: grabbing;
 }
 
-/* Inner content (light mode) */
+/* Inner */
 .featured-card-inner {
-  background: #ffffff;
   border-radius: 13px;
   padding: 14px 16px;
-  height: 100%;
+  background: #ffffff;
 }
 
-/* Inner content (dark mode) */
 body.dark .featured-card-inner {
   background: #1e293b;
 }
@@ -739,11 +707,6 @@ body.dark .featured-card-inner {
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #1e293b;
-}
-
-body.dark .featured-card h4 {
-  color: #e2e8f0;
 }
 
 .featured-card small {
@@ -756,30 +719,15 @@ body.dark .featured-card small {
 }
 
 /* =========================================================
-   AUTO-SCROLL KEYFRAMES
-   ========================================================= */
-@keyframes featuredScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* =========================================================
-   MOBILE OPTIMIZATION
+   MOBILE
    ========================================================= */
 @media (max-width: 768px) {
-  .featured-track {
-    animation-duration: 65s; /* slower on mobile */
-  }
-
   .featured-card {
     min-width: 240px;
     max-width: 240px;
   }
 }
+
 
 
   </style>
@@ -2047,28 +1995,54 @@ const shareText    = "Check out my certifications:";
 
 
 
+
+
+</script>
+<script>
+/* =========================================================
+   FEATURED CERTIFICATIONS (RANDOM GRADIENT BORDERS)
+   ========================================================= */
+
 const featuredTrack = document.getElementById("featuredTrack");
 const featuredCerts = CERTIFICATIONS.filter(c => c.featured);
+
+/* 🎨 Gradient palette */
+const gradientPool = [
+  ["#7aa2ff", "#4ff0b0"],
+  ["#8b5cf6", "#22d3ee"],
+  ["#f97316", "#facc15"],
+  ["#ec4899", "#a855f7"],
+  ["#22c55e", "#16a34a"],
+  ["#0ea5e9", "#14b8a6"]
+];
 
 if (featuredCerts.length) {
   const loopCerts = [...featuredCerts, ...featuredCerts];
 
   loopCerts.forEach(cert => {
+    const [from, to] =
+      gradientPool[Math.floor(Math.random() * gradientPool.length)];
+
     const card = document.createElement("div");
     card.className = "featured-card";
+
+    /* 🔥 Gradient border */
+    card.style.background = `linear-gradient(135deg, ${from}, ${to})`;
+
     card.innerHTML = `
       <div class="featured-card-inner">
         <h4>${cert.title}</h4>
         <small>${cert.issuer}</small>
       </div>
     `;
+
     card.addEventListener("click", () => openModal(cert));
     featuredTrack.appendChild(card);
   });
 }
 
 /* =========================
-   AUTO SCROLL (CSS SAFE)
+   AUTO SCROLL CONTROL
    ========================= */
 let autoScroll = true;
 
@@ -2102,12 +2076,12 @@ wrapper.addEventListener("mousedown", e => {
 window.addEventListener("mouseup", () => {
   if (!isDragging) return;
   isDragging = false;
-  setTimeout(resumeAutoScroll, 1200);
+  setTimeout(resumeAutoScroll, 800);
 });
 
 window.addEventListener("mousemove", e => {
   if (!isDragging) return;
-  const walk = (e.pageX - startX) * 1.2;
+  const walk = (e.pageX - startX) * 1.5;
   wrapper.scrollLeft = scrollLeft - walk;
 });
 
@@ -2119,15 +2093,13 @@ wrapper.addEventListener("touchstart", e => {
 }, { passive: true });
 
 wrapper.addEventListener("touchmove", e => {
-  const walk = (e.touches[0].pageX - startX) * 1.2;
+  const walk = (e.touches[0].pageX - startX) * 1.5;
   wrapper.scrollLeft = scrollLeft - walk;
 }, { passive: true });
 
 wrapper.addEventListener("touchend", () => {
-  setTimeout(resumeAutoScroll, 1200);
+  setTimeout(resumeAutoScroll, 800);
 });
-
-
 </script>
 
   
