@@ -2047,95 +2047,84 @@ const shareText    = "Check out my certifications:";
 
 
 
-
 const featuredTrack = document.getElementById("featuredTrack");
 const featuredCerts = CERTIFICATIONS.filter(c => c.featured);
 
-if (!featuredTrack || featuredCerts.length === 0) return;
+if (featuredCerts.length) {
+  const loopCerts = [...featuredCerts, ...featuredCerts];
 
-/* ==================================================
-   BUILD CARDS (DUPLICATED FOR INFINITE LOOP)
-   ================================================== */
-const loopCerts = [...featuredCerts, ...featuredCerts];
+  loopCerts.forEach(cert => {
+    const card = document.createElement("div");
+    card.className = "featured-card";
+    card.innerHTML = `
+      <div class="featured-card-inner">
+        <h4>${cert.title}</h4>
+        <small>${cert.issuer}</small>
+      </div>
+    `;
+    card.addEventListener("click", () => openModal(cert));
+    featuredTrack.appendChild(card);
+  });
+}
 
-loopCerts.forEach(cert => {
-  const card = document.createElement("div");
-  card.className = "featured-card";
-  card.innerHTML = `
-    <div class="featured-card-inner">
-      <h4>${cert.title}</h4>
-      <small>${cert.issuer}</small>
-    </div>
-  `;
-  card.addEventListener("click", () => openModal(cert));
-  featuredTrack.appendChild(card);
-});
+/* =========================
+   AUTO SCROLL (CSS SAFE)
+   ========================= */
+let autoScroll = true;
 
-/* ==================================================
-   SLIDER ENGINE (NO CSS ANIMATION)
-   ================================================== */
-let position = 0;
-let speed = 0.35;          // 👈 auto-slide speed
+/* =========================
+   DRAG / SWIPE (SMOOTH)
+   ========================= */
 let isDragging = false;
 let startX = 0;
-let lastX = 0;
-let velocity = 0;
-let rafId;
+let scrollLeft = 0;
 
-const maxScroll = featuredTrack.scrollWidth / 2;
+const wrapper = document.querySelector(".featured-wrapper");
 
-function animate() {
-  if (!isDragging) {
-    position += speed;
-  } else {
-    position -= velocity;
-    velocity *= 0.92;     // 👈 smooth momentum
-  }
-
-  if (position >= maxScroll) position = 0;
-  if (position < 0) position = maxScroll;
-
-  featuredTrack.style.transform = `translateX(${-position}px)`;
-  rafId = requestAnimationFrame(animate);
+function stopAutoScroll() {
+  featuredTrack.style.animationPlayState = "paused";
+  autoScroll = false;
 }
 
-animate();
-
-/* ==================================================
-   DRAG / SWIPE HANDLING
-   ================================================== */
-function pointerDown(x) {
-  isDragging = true;
-  startX = x;
-  lastX = x;
-  velocity = 0;
-}
-
-function pointerMove(x) {
-  if (!isDragging) return;
-  velocity = x - lastX;
-  lastX = x;
-}
-
-function pointerUp() {
-  isDragging = false;
+function resumeAutoScroll() {
+  featuredTrack.style.animationPlayState = "running";
+  autoScroll = true;
 }
 
 /* Mouse */
-featuredTrack.addEventListener("mousedown", e => pointerDown(e.clientX));
-window.addEventListener("mousemove", e => isDragging && pointerMove(e.clientX));
-window.addEventListener("mouseup", pointerUp);
+wrapper.addEventListener("mousedown", e => {
+  isDragging = true;
+  startX = e.pageX;
+  scrollLeft = wrapper.scrollLeft;
+  stopAutoScroll();
+});
+
+window.addEventListener("mouseup", () => {
+  if (!isDragging) return;
+  isDragging = false;
+  setTimeout(resumeAutoScroll, 1200);
+});
+
+window.addEventListener("mousemove", e => {
+  if (!isDragging) return;
+  const walk = (e.pageX - startX) * 1.2;
+  wrapper.scrollLeft = scrollLeft - walk;
+});
 
 /* Touch */
-featuredTrack.addEventListener("touchstart", e => pointerDown(e.touches[0].clientX), { passive: true });
-featuredTrack.addEventListener("touchmove", e => pointerMove(e.touches[0].clientX), { passive: true });
-featuredTrack.addEventListener("touchend", pointerUp);
+wrapper.addEventListener("touchstart", e => {
+  startX = e.touches[0].pageX;
+  scrollLeft = wrapper.scrollLeft;
+  stopAutoScroll();
+}, { passive: true });
 
-/* ==================================================
-   SAFETY: RESUME AUTO-SLIDE AFTER ANY INTERRUPTION
-   ================================================== */
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden && !rafId) animate();
+wrapper.addEventListener("touchmove", e => {
+  const walk = (e.touches[0].pageX - startX) * 1.2;
+  wrapper.scrollLeft = scrollLeft - walk;
+}, { passive: true });
+
+wrapper.addEventListener("touchend", () => {
+  setTimeout(resumeAutoScroll, 1200);
 });
 
 
