@@ -2536,54 +2536,79 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
+/* ================= Aperian GlobeSmart Credential ================= */
 
-/* ===== PDF Card (Refined & Spacious) ===== */
+/* Sub-heading aligned with Innovation & Impact Credentials */
+.cert-subtitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #eaf2ff;
+  margin: 28px 0 8px;
+}
+
+/* Uses your existing cert-text foundation */
+.cert-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 720px;
+}
+
+/* ===== PDF Card (Glassy, not boxed) ===== */
 .pdf-card {
-  margin-top: 18px;
-  padding: 18px; /* breathing room around PDF */
+  margin-top: 16px;
+  padding: 22px;
   position: relative;
-  border-radius: 22px;
 
-  background: rgba(255,255,255,0.04); /* softer glass */
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(18px) saturate(160%);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px) saturate(160%);
 
   box-shadow:
-    0 0 28px rgba(122,162,255,0.18),
-    inset 0 0 10px rgba(255,255,255,0.05);
-
-  overflow: hidden;
+    0 0 30px rgba(122,162,255,0.35),
+    inset 0 0 8px rgba(255,255,255,0.05);
 }
 
-/* Inner PDF */
+/* Embedded PDF */
 .pdf-card iframe {
   width: 100%;
-  height: 520px;
+  height: 540px;
+
+  display: block;
   border: none;
-  border-radius: 16px;   /* smooth inner edges */
-  background: transparent;
+  border-radius: 14px;
+
+  background: transparent;   /* removes black / grey slab */
 }
 
-/* ===== Actions (Bottom-right, Clean) ===== */
+/* ===== Action Buttons (Secondary, Bottom-right) ===== */
 .pdf-actions {
   position: absolute;
-  bottom: 26px;   /* more spacing from edges */
-  right: 26px;
+  bottom: 22px;
+  right: 22px;
+
   display: flex;
   gap: 12px;
+
+  opacity: 0.85;
   z-index: 5;
+}
+
+.pdf-card:hover .pdf-actions {
+  opacity: 1;
 }
 
 .pdf-actions a,
 .pdf-actions button {
   width: 44px;
   height: 44px;
+
   border-radius: 14px;
-
   border: 1px solid rgba(255,255,255,0.22);
-  background: rgba(0,0,0,0.4);
-  color: #ffffff;
+  background: rgba(0,0,0,0.35);
 
+  color: #fff;
   font-size: 18px;
   cursor: pointer;
 
@@ -2592,26 +2617,26 @@ header, .nav, .glass:hover, .stat-card:hover {
   justify-content: center;
 
   backdrop-filter: blur(10px);
-  transition: transform 0.25s ease,
-              background 0.25s ease,
-              box-shadow 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .pdf-actions a:hover,
 .pdf-actions button:hover {
   background: rgba(255,255,255,0.18);
   transform: translateY(-2px);
-  box-shadow: 0 0 12px rgba(122,162,255,0.5);
+  box-shadow: 0 0 12px rgba(122,162,255,0.45);
 }
 
-/* ===== MODAL (Polished Overlay) ===== */
+/* ===== Modal Overlay (Expanded View) ===== */
 .pdf-modal {
   position: fixed;
   inset: 0;
+
   background: rgba(0,0,0,0.75);
   display: none;
   align-items: center;
   justify-content: center;
+
   z-index: 99999;
 }
 
@@ -2619,32 +2644,31 @@ header, .nav, .glass:hover, .stat-card:hover {
   display: flex;
 }
 
-/* Modal inner container */
 .pdf-modal-inner {
   width: 94%;
   max-width: 1400px;
   height: 90%;
+
   border-radius: 20px;
-
   overflow: hidden;
-  background: rgba(0,0,0,0.95);
 
+  background: rgba(0,0,0,0.95);
   box-shadow:
     0 0 60px rgba(0,0,0,0.85),
     0 0 40px rgba(122,162,255,0.35);
 }
 
-/* Modal PDF */
 .pdf-modal-inner iframe {
   width: 100%;
   height: 100%;
   border: none;
+  background: transparent;
 }
 
-/* ===== Mobile Optimizations ===== */
+/* ===== Mobile Refinements ===== */
 @media (max-width: 768px) {
   .pdf-card {
-    padding: 14px;
+    padding: 16px;
     border-radius: 18px;
   }
 
@@ -2653,8 +2677,8 @@ header, .nav, .glass:hover, .stat-card:hover {
   }
 
   .pdf-actions {
-    bottom: 18px;
-    right: 18px;
+    bottom: 16px;
+    right: 16px;
   }
 
   .pdf-modal-inner {
@@ -2663,6 +2687,8 @@ header, .nav, .glass:hover, .stat-card:hover {
     border-radius: 16px;
   }
 }
+
+
 
 
 
@@ -3300,28 +3326,31 @@ and making processes faster, cleaner, and scalable.
     
 
 <!-- ===== Aperian GlobeSmart Profile ===== -->
+<!-- ===== Aperian GlobeSmart Profile ===== -->
 <section class="cert-section">
 
-  <!-- Smaller, subordinate heading -->
-  <h3 class="sub-credential-title">
+  <!-- Sub-credential heading (aligned with Innovation & Impact Credentials) -->
+  <h3 class="cert-subtitle">
     Aperian Certified – GlobeSmart Profile
   </h3>
 
-  <p class="sub-credential-desc">
-    A concise snapshot of my GlobeSmart assessment, highlighting how I work,
-    communicate, and execute across cultures and global teams.
+  <!-- Refined description (foundation-aligned, no repetition) -->
+  <p class="cert-text">
+    A Global behavioral assessment that highlights how I collaborate, communicate,
+    and execute effectively within global and cross-cultural work environments.
   </p>
 
-  <!-- PDF Container -->
-  <div class="pdf-card" data-pdf>
+  <!-- PDF Card -->
+  <div class="pdf-card">
 
-    <!-- PDF Preview (NO toolbar) -->
+    <!-- PDF Preview (clean, no chrome, no cut look) -->
     <iframe
-      src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=1"
+      src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=0"
       loading="lazy"
+      aria-label="Aperian GlobeSmart Profile PDF"
     ></iframe>
 
-    <!-- Action Buttons -->
+    <!-- Actions -->
     <div class="pdf-actions">
       <a
         href="./Mohammad_Mujahid_Aperian.pdf"
@@ -3329,26 +3358,29 @@ and making processes faster, cleaner, and scalable.
         title="Download PDF"
       >⬇️</a>
 
-      <button onclick="event.stopPropagation(); openPdfModal()" title="Expand View">
-  ⛶
-</button>
+      <button
+        title="Expand View"
+        onclick="event.stopPropagation(); openPdfModal();"
+      >⛶</button>
     </div>
 
   </div>
 </section>
 
-<!-- ===== PDF MODAL ===== -->
+<!-- ===== PDF MODAL (Expanded View) ===== -->
 <div
   id="pdfModal"
   class="pdf-modal"
-  onclick="closePdfModal(event)"
+  onclick="closePdfModal();"
 >
   <div class="pdf-modal-inner">
     <iframe
-      src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=1"
+      src="./Mohammad_Mujahid_Aperian.pdf#toolbar=0&navpanes=0&scrollbar=0"
+      aria-label="Expanded Aperian GlobeSmart Profile PDF"
     ></iframe>
   </div>
 </div>
+
 
 
 
@@ -5244,36 +5276,46 @@ if (yearEl) {
 
 
 
-
-    
-
 <script>
   const pdfModal = document.getElementById("pdfModal");
 
+  /* Open expanded view */
   function openPdfModal() {
     pdfModal.classList.add("open");
     document.body.classList.add("modal-lock");
   }
 
+  /* Close expanded view */
   function closePdfModal() {
     pdfModal.classList.remove("open");
     document.body.classList.remove("modal-lock");
   }
 
-  // Close on ANY click when modal is open
+  /* 1️⃣ Close on ANY click anywhere in the document */
   document.addEventListener("click", function () {
     if (pdfModal.classList.contains("open")) {
       closePdfModal();
     }
   });
 
-  // ESC key support
+  /* 2️⃣ Close when user interacts with iframe (window loses focus) */
+  window.addEventListener("blur", function () {
+    if (pdfModal.classList.contains("open")) {
+      closePdfModal();
+    }
+  });
+
+  /* 3️⃣ Close on ESC key */
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && pdfModal.classList.contains("open")) {
       closePdfModal();
     }
   });
 </script>
+
+    
+
+
 
 
 
