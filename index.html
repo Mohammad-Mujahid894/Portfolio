@@ -2532,18 +2532,57 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 /* ================= PDF Credential (Foundation Aligned) ================= */
+/* =========================================================
+   FOUNDATION FONT (Required)
+   ========================================================= */
+@font-face {
+  font-family: "FoundationTitlesHand";
+  src: url("./FoundationTitlesHand.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
-/* ===== Foundation Gradient Scope Fix ===== */
+/* =========================================================
+   SECTION SPACING (Rhythm with rest of site)
+   ========================================================= */
+.cert-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/* =========================================================
+   FOUNDATION TITLE (MATCHES OTHER FOUNDATION SECTIONS)
+   ========================================================= */
 .innovation-scope .section-title {
+  font-family: "FoundationTitlesHand", sans-serif;
+  font-size: 36px;              /* 👈 TWEAK: 34–38px */
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+
   background: linear-gradient(90deg,#7aa2ff,#8a7aff,#4ff0b0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  margin-bottom: 12px;
 }
 
-/* ===== Aperian Card ===== */
+/* =========================================================
+   DESCRIPTION (Uses your existing foundation style)
+   ========================================================= */
+.cert-text {
+  max-width: 760px;
+  margin: 0 auto 18px;
+  text-align: center;
+}
+
+/* =========================================================
+   APERIAN PREVIEW CARD
+   ========================================================= */
 .aperian-card {
-  margin-top: 18px;
   position: relative;
+  margin: 14px auto 0;
 
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
@@ -2553,14 +2592,16 @@ header, .nav, .glass:hover, .stat-card:hover {
   overflow: hidden;
 }
 
-/* Image Preview */
+/* Image preview */
 .aperian-preview {
   width: 100%;
   display: block;
   border-radius: 20px;
 }
 
-/* Actions */
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
 .aperian-actions {
   position: absolute;
   bottom: 22px;
@@ -2599,7 +2640,9 @@ header, .nav, .glass:hover, .stat-card:hover {
   box-shadow: 0 0 12px rgba(122,162,255,0.45);
 }
 
-/* ===== Modal ===== */
+/* =========================================================
+   EXPANDED MODAL
+   ========================================================= */
 .aperian-modal {
   position: fixed;
   inset: 0;
@@ -2630,7 +2673,23 @@ header, .nav, .glass:hover, .stat-card:hover {
   display: block;
 }
 
-/* ===== Mobile Optimisation ===== */
+/* =========================================================
+   DESKTOP SIZE CONTROL (KEY FIX FOR "TOO BIG")
+   ========================================================= */
+@media (min-width: 1024px) {
+  .aperian-card {
+    max-width: 900px;       /* 👈 TWEAK: 860–980px */
+  }
+
+  .aperian-preview {
+    max-height: 480px;      /* 👈 TWEAK: 440–520px */
+    object-fit: contain;
+  }
+}
+
+/* =========================================================
+   MOBILE OPTIMISATION (KEEP PREVIEW, NOT OPEN PDF)
+   ========================================================= */
 @media (max-width: 768px) {
   .aperian-actions {
     bottom: 16px;
@@ -2649,27 +2708,7 @@ header, .nav, .glass:hover, .stat-card:hover {
   }
 }
 
-/* Desktop-only size control */
-@media (min-width: 1024px) {
-  .aperian-preview {
-    max-height: 520px;   /* 👈 TWEAK THIS */
-    object-fit: contain;
-  }
 
-  .aperian-card {
-    max-width: 980px;    /* 👈 TWEAK THIS */
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-/* Slightly larger Foundation title for this section only */
-.innovation-scope .section-title {
-  font-size: 34px;   /* 👈 TWEAK THIS */
-}
-
-.aperian-card {
-  margin-top: 14px;   /* reduce vertical emphasis */
-}
 
 
 
