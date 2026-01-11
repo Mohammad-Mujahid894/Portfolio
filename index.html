@@ -2678,14 +2678,19 @@ header, .nav, .glass:hover, .stat-card:hover {
    ========================================================= */
 @media (min-width: 1024px) {
   .aperian-card {
-    max-width: 820px;   /* 👈 REDUCE */
+    max-width: 860px;      /* 👈 KEY FIX (try 820–880) */
+    margin: 24px auto;     /* centers + adds top/bottom spacing */
   }
 
   .aperian-preview {
-    max-height: 460px;  /* 👈 Optional fine-tune */
+    max-height: 460px;
+    object-fit: contain;
   }
 }
 
+.aperian-card {
+  width: 100%;
+}
 
 /* =========================================================
    MOBILE OPTIMISATION (KEEP PREVIEW, NOT OPEN PDF)
