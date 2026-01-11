@@ -642,76 +642,145 @@ body.dark .site-footer {
 
 
 /* ===== Featured Certifications ===== */
+/* =========================================================
+   FEATURED CERTIFICATIONS SECTION
+   ========================================================= */
 .featured-section {
   margin: 2.5rem 0 3.5rem;
 }
 
+/* Title */
 .featured-title {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+body.dark .featured-title {
   color: #e2e8f0;
 }
 
+/* Wrapper */
 .featured-wrapper {
   position: relative;
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+
+  /* subtle edge fade like premium sliders */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
 }
 
+/* Track */
 .featured-track {
   display: flex;
   gap: 18px;
   width: max-content;
+
   animation: featuredScroll 45s linear infinite;
   will-change: transform;
 }
 
-/* Mini cards */
+/* Pause animation on hover (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  .featured-wrapper:hover .featured-track {
+    animation-play-state: paused;
+  }
+}
+
+/* =========================================================
+   FEATURED MINI CARD — MATCHES MAIN GRID CARDS
+   ========================================================= */
 .featured-card {
   min-width: 260px;
   max-width: 260px;
-  padding: 16px;
 
+  padding: 1px; /* gradient border shell */
   border-radius: 14px;
-  background: rgba(30, 41, 59, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.18);
 
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.04),
-    0 6px 18px rgba(0,0,0,0.35);
+  background: linear-gradient(
+    270deg,
+    #7aa2ff,
+    #8a7aff,
+    #4ff0b0
+  );
+  background-size: 300% 300%;
+  animation: gradientMove 6s ease infinite;
 
   cursor: grab;
   user-select: none;
+  flex-shrink: 0;
 }
 
 .featured-card:active {
   cursor: grabbing;
 }
 
+/* Inner content (light mode) */
+.featured-card-inner {
+  background: #ffffff;
+  border-radius: 13px;
+  padding: 14px 16px;
+  height: 100%;
+}
+
+/* Inner content (dark mode) */
+body.dark .featured-card-inner {
+  background: #1e293b;
+}
+
+/* Text */
 .featured-card h4 {
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 6px;
+  color: #1e293b;
+}
+
+body.dark .featured-card h4 {
+  color: #e2e8f0;
 }
 
 .featured-card small {
   font-size: 0.8rem;
+  color: #64748b;
+}
+
+body.dark .featured-card small {
   color: #94a3b8;
 }
 
-/* Auto-scroll */
+/* =========================================================
+   AUTO-SCROLL KEYFRAMES
+   ========================================================= */
 @keyframes featuredScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* Mobile speed */
-@media (max-width: 768px) {
-  .featured-track {
-    animation-duration: 65s;
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
+
+/* =========================================================
+   MOBILE OPTIMIZATION
+   ========================================================= */
+@media (max-width: 768px) {
+  .featured-track {
+    animation-duration: 65s; /* slower on mobile */
+  }
+
+  .featured-card {
+    min-width: 240px;
+    max-width: 240px;
+  }
+}
+
 
   </style>
 </head>
@@ -1982,73 +2051,93 @@ const shareText    = "Check out my certifications:";
 const featuredTrack = document.getElementById("featuredTrack");
 const featuredCerts = CERTIFICATIONS.filter(c => c.featured);
 
-if (featuredCerts.length > 0) {
-  const loopCerts = [...featuredCerts, ...featuredCerts];
+if (!featuredTrack || featuredCerts.length === 0) return;
 
-  loopCerts.forEach(cert => {
-    const card = document.createElement("div");
-    card.className = "featured-card";
-    card.innerHTML = `
+/* ==================================================
+   BUILD CARDS (DUPLICATED FOR INFINITE LOOP)
+   ================================================== */
+const loopCerts = [...featuredCerts, ...featuredCerts];
+
+loopCerts.forEach(cert => {
+  const card = document.createElement("div");
+  card.className = "featured-card";
+  card.innerHTML = `
+    <div class="featured-card-inner">
       <h4>${cert.title}</h4>
       <small>${cert.issuer}</small>
-    `;
-    card.addEventListener("click", () => openModal(cert));
-    featuredTrack.appendChild(card);
-  });
-}
+    </div>
+  `;
+  card.addEventListener("click", () => openModal(cert));
+  featuredTrack.appendChild(card);
+});
 
-/* ===== Drag / Swipe Logic ===== */
+/* ==================================================
+   SLIDER ENGINE (NO CSS ANIMATION)
+   ================================================== */
+let position = 0;
+let speed = 0.35;          // 👈 auto-slide speed
 let isDragging = false;
 let startX = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
-let animationPaused = false;
+let lastX = 0;
+let velocity = 0;
+let rafId;
 
-function pauseAnimation() {
-  featuredTrack.style.animationPlayState = "paused";
-  animationPaused = true;
+const maxScroll = featuredTrack.scrollWidth / 2;
+
+function animate() {
+  if (!isDragging) {
+    position += speed;
+  } else {
+    position -= velocity;
+    velocity *= 0.92;     // 👈 smooth momentum
+  }
+
+  if (position >= maxScroll) position = 0;
+  if (position < 0) position = maxScroll;
+
+  featuredTrack.style.transform = `translateX(${-position}px)`;
+  rafId = requestAnimationFrame(animate);
 }
 
-function resumeAnimation() {
-  featuredTrack.style.animation = "none";
-  featuredTrack.offsetHeight; // force reflow
-  featuredTrack.style.animation = "";
-  featuredTrack.style.animationPlayState = "running";
-  animationPaused = false;
-}
+animate();
 
+/* ==================================================
+   DRAG / SWIPE HANDLING
+   ================================================== */
 function pointerDown(x) {
   isDragging = true;
   startX = x;
-  pauseAnimation();
+  lastX = x;
+  velocity = 0;
 }
 
 function pointerMove(x) {
   if (!isDragging) return;
-  const delta = x - startX;
-  featuredTrack.style.transform = `translateX(${prevTranslate + delta}px)`;
+  velocity = x - lastX;
+  lastX = x;
 }
 
-function pointerUp(x) {
-  if (!isDragging) return;
-  const delta = x - startX;
-  prevTranslate += delta;
-  featuredTrack.style.transform = "";
+function pointerUp() {
   isDragging = false;
-
-  // ⏱ resume auto-slide after interaction
-  setTimeout(resumeAnimation, 800);
 }
 
 /* Mouse */
-featuredTrack.addEventListener("mousedown", e => pointerDown(e.pageX));
-window.addEventListener("mousemove", e => pointerMove(e.pageX));
-window.addEventListener("mouseup", e => pointerUp(e.pageX));
+featuredTrack.addEventListener("mousedown", e => pointerDown(e.clientX));
+window.addEventListener("mousemove", e => isDragging && pointerMove(e.clientX));
+window.addEventListener("mouseup", pointerUp);
 
 /* Touch */
-featuredTrack.addEventListener("touchstart", e => pointerDown(e.touches[0].pageX), { passive: true });
-featuredTrack.addEventListener("touchmove", e => pointerMove(e.touches[0].pageX), { passive: true });
-featuredTrack.addEventListener("touchend", e => pointerUp(startX));
+featuredTrack.addEventListener("touchstart", e => pointerDown(e.touches[0].clientX), { passive: true });
+featuredTrack.addEventListener("touchmove", e => pointerMove(e.touches[0].clientX), { passive: true });
+featuredTrack.addEventListener("touchend", pointerUp);
+
+/* ==================================================
+   SAFETY: RESUME AUTO-SLIDE AFTER ANY INTERRUPTION
+   ================================================== */
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && !rafId) animate();
+});
+
 
 </script>
 
