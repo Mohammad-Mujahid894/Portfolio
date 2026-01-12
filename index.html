@@ -2723,6 +2723,57 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .emoji-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.emoji-preview {
+  font-size: 5rem; /* adjust if you want more drama */
+  line-height: 1;
+  user-select: none;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.25));
+}
+
+.aperian-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+
 </style> 
 </head>
 <body>
@@ -3424,9 +3475,23 @@ and making processes faster, cleaner, and scalable.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="cert-section innovation-scope">
 
-  <!-- FOUNDATION TITLE -->
   <h2 class="section-title">
     Reinvention with Agentic AI – Certification
   </h2>
@@ -3434,33 +3499,30 @@ and making processes faster, cleaner, and scalable.
   <p class="cert-text">
     Certified through the Reinvention with Agentic AI program, with a certificate powered by Stanford HAI,
     following completion of Agentic AI coursework via Udacity and an instructor-led virtual workshop.
-    <strong>Status:</strong> In Progress 🌌
   </p>
 
-  <!-- Image Preview Card -->
-  <div class="aperian-card">
+  <!-- Emoji Preview Card -->
+  <div class="aperian-card emoji-card" onclick="openAperianModal()">
 
-    <!-- TEMP PLACEHOLDER -->
-    <div class="aperian-preview" style="
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:220px;
-      font-size:0.95rem;
-      letter-spacing:0.5px;
-      opacity:0.75;
-    ">
-      🌌 Certificate in Progress
+    <div class="emoji-preview" aria-label="Agentic AI Credential">
+      🌌
     </div>
 
-    <!-- Actions (Disabled for now) -->
+    <!-- Actions -->
     <div class="aperian-actions">
-      <span title="Available soon" style="opacity:0.4; cursor:not-allowed;">⬇️</span>
-      <span title="Available soon" style="opacity:0.4; cursor:not-allowed;">⛶</span>
+      <button
+        type="button"
+        title="Expand View"
+        onclick="event.stopPropagation(); openAperianModal();"
+      >
+        ⛶
+      </button>
     </div>
 
   </div>
 </section>
+
+
 
 
     
