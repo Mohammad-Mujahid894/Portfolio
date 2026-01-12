@@ -2319,26 +2319,36 @@ const shareText    = "Check out my certifications:";
 
 
 
+/* =========================================================
+   FEATURED CERTIFICATIONS – TRUE INFINITE LOOP
+   ========================================================= */
+
 const featuredTrack = document.getElementById("featuredTrack");
 const wrapper = document.querySelector(".featured-wrapper");
 
 const featuredCerts = CERTIFICATIONS.filter(c => c.featured);
 
-/* 🎨 Gradient pool */
+/* 🎨 NON-REPEATING GRADIENT POOL */
 const gradients = [
   ["#7aa2ff", "#4ff0b0"],
   ["#8b5cf6", "#22d3ee"],
   ["#f97316", "#facc15"],
   ["#ec4899", "#a855f7"],
   ["#22c55e", "#16a34a"],
-  ["#0ea5e9", "#14b8a6"]
+  ["#0ea5e9", "#14b8a6"],
+  ["#6366f1", "#3b82f6"],
+  ["#9333ea", "#ec4899"]
 ];
 
 if (featuredCerts.length) {
+  /* Duplicate list for seamless loop */
   const loopCerts = [...featuredCerts, ...featuredCerts];
 
+  let gradientIndex = 0;
+
   loopCerts.forEach(cert => {
-    const [from, to] = gradients[Math.floor(Math.random() * gradients.length)];
+    const [from, to] = gradients[gradientIndex % gradients.length];
+    gradientIndex++;
 
     const card = document.createElement("div");
     card.className = "featured-card";
@@ -2356,19 +2366,22 @@ if (featuredCerts.length) {
   });
 }
 
-/* =========================
-   TRUE INFINITE AUTO SCROLL
-   ========================= */
-let speed = 0.4; // adjust for faster/slower
+/* =========================================================
+   TRUE INFINITE AUTO SCROLL (NO JUMP)
+   ========================================================= */
+
+let speed = 0.45;          // adjust speed here
 let isPaused = false;
 
 function autoScroll() {
   if (!isPaused) {
     wrapper.scrollLeft += speed;
 
-    // seamless loop
-    if (wrapper.scrollLeft >= featuredTrack.scrollWidth / 2) {
-      wrapper.scrollLeft = 0;
+    const halfWidth = featuredTrack.scrollWidth / 2;
+
+    // seamless loop without jump
+    if (wrapper.scrollLeft >= halfWidth) {
+      wrapper.scrollLeft -= halfWidth;
     }
   }
   requestAnimationFrame(autoScroll);
@@ -2376,12 +2389,13 @@ function autoScroll() {
 
 requestAnimationFrame(autoScroll);
 
-/* =========================
-   DRAG / TOUCH (NATIVE)
-   ========================= */
+/* =========================================================
+   DRAG / MOUSE SUPPORT
+   ========================================================= */
+
 let isDragging = false;
-let startX;
-let scrollStart;
+let startX = 0;
+let scrollStart = 0;
 
 wrapper.addEventListener("mousedown", e => {
   isDragging = true;
@@ -2402,22 +2416,32 @@ window.addEventListener("mousemove", e => {
   wrapper.scrollLeft = scrollStart - walk;
 });
 
-/* Touch */
-wrapper.addEventListener("touchstart", e => {
-  isPaused = true;
-  startX = e.touches[0].pageX;
-  scrollStart = wrapper.scrollLeft;
-}, { passive: true });
+/* =========================================================
+   TOUCH SUPPORT (MOBILE)
+   ========================================================= */
 
-wrapper.addEventListener("touchmove", e => {
-  const walk = (e.touches[0].pageX - startX) * 1.3;
-  wrapper.scrollLeft = scrollStart - walk;
-}, { passive: true });
+wrapper.addEventListener(
+  "touchstart",
+  e => {
+    isPaused = true;
+    startX = e.touches[0].pageX;
+    scrollStart = wrapper.scrollLeft;
+  },
+  { passive: true }
+);
+
+wrapper.addEventListener(
+  "touchmove",
+  e => {
+    const walk = (e.touches[0].pageX - startX) * 1.3;
+    wrapper.scrollLeft = scrollStart - walk;
+  },
+  { passive: true }
+);
 
 wrapper.addEventListener("touchend", () => {
   setTimeout(() => (isPaused = false), 1000);
 });
-
 
 
 </script>
