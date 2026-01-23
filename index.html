@@ -2772,6 +2772,35 @@ header, .nav, .glass:hover, .stat-card:hover {
   right: 10px;
 }
 
+/* ===== AGENTIC AI ACTION ROW (BUTTONS + BADGES INLINE) ===== */
+.agentic-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Reuse existing button styles */
+.agentic-actions .aperian-actions {
+  position: static;
+  display: flex;
+  gap: 10px;
+}
+
+/* Credly embeds inline */
+.agentic-actions .credly-inline {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Scale Credly embeds neatly */
+.agentic-actions .credly-inline div {
+  transform: scale(0.75);
+  transform-origin: top left;
+}
 
 
 </style> 
@@ -3501,25 +3530,46 @@ and making processes faster, cleaner, and scalable.
     following completion of Agentic AI coursework via Udacity and an instructor-led virtual workshop.
   </p>
 
-  <!-- Emoji Preview Card -->
-  <div class="aperian-card emoji-card" onclick="openAperianModal()">
+<!-- Preview Card -->
+<div class="aperian-card">
 
-    <div class="emoji-preview" aria-label="Agentic AI Credential">
-      🌌
+  <!-- Certificate Image -->
+  <img
+    src="./AgenticAI.png"
+    alt="Reinvention with Agentic AI Certificate Preview"
+    loading="lazy"
+    class="aperian-preview"
+  />
+
+  <!-- ACTION ROW -->
+  <div class="agentic-actions">
+
+    <!-- Download + Expand -->
+    <div class="aperian-actions">
+      <a href="./Mohammad_Mujahid_Agentic_AI.pdf" download title="Download Certificate">⬇️</a>
+      <button onclick="event.stopPropagation(); openAgenticModal();" title="Expand View">⛶</button>
     </div>
 
-    <!-- Actions -->
-    <div class="aperian-actions">
-      <button
-        type="button"
-        title="Expand View"
-        onclick="event.stopPropagation(); openAperianModal();"
-      >
-        ⛶
-      </button>
+    <!-- Credly Badges -->
+    <div class="credly-inline">
+      <div
+        data-iframe-width="150"
+        data-iframe-height="270"
+        data-share-badge-id="6683a9f4-de82-48e7-9aa4-cb55795511e6"
+        data-share-badge-host="https://www.credly.com">
+      </div>
+
+      <div
+        data-iframe-width="150"
+        data-iframe-height="270"
+        data-share-badge-id="50247f77-c0be-4783-8b16-546f35fb94d6"
+        data-share-badge-host="https://www.credly.com">
+      </div>
     </div>
 
   </div>
+</div>
+
 </section>
 
 
@@ -5433,6 +5483,11 @@ if (yearEl) {
   });
 </script>
 
+<script
+  type="text/javascript"
+  async
+  src="//cdn.credly.com/assets/utilities/embed.js">
+</script>
 
     
 
