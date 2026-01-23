@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Clifton - Strengths</title>
   <!-- D3 v7 -->
-  <script src="https://d3js.org/d3.v7.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
     :root{
@@ -29,7 +29,7 @@ body {
     #stars1,#stars2,#stars3{z-index:-3}
 #nebula {
   z-index: -2;
-  filter: blur(24px) saturate(110%);
+  filter: blur(40px) saturate(120%);
   background:
     radial-gradient(40% 40% at 15% 20%, rgba(122,162,255,.30), transparent 70%),
     radial-gradient(35% 35% at 85% 15%, rgba(79,240,176,.25), transparent 70%),
@@ -38,7 +38,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   animation: drift 24s ease-in-out infinite alternate;
-  animation-delay: 0.6s;
 }
     @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-2%,0)}}
 
@@ -1014,26 +1013,13 @@ html, body{ overflow-x: hidden; }
 
 
   
-    
-      <script>
-window.addEventListener("load", () => {
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      layers.map(Starfield);
-      drawMeteors();
-      setInterval(spawnMeteor, 2200);
-    }, 400); // let content paint first
-  });
-});
-
-</script>
-<script>
+    <script>
     /* ========= Parallax starfields (3 layers for depth) ========= */
     const DPR = Math.min(2, window.devicePixelRatio || 1);
     const layers = [
-      { id: 'stars1', count: 70, speed: 0.15, size: 1.0 }, // far
-      { id: 'stars2', count: 50, speed: 0.35, size: 1.6 }, // mid
-      { id: 'stars3', count: 35,  speed: 0.65, size: 2.0 }  // near
+      { id: 'stars1', count: 110, speed: 0.15, size: 1.0 }, // far
+      { id: 'stars2', count: 90, speed: 0.35, size: 1.6 }, // mid
+      { id: 'stars3', count: 60,  speed: 0.65, size: 2.0 }  // near
     ];
 
     function Starfield(layer){
@@ -1055,10 +1041,22 @@ window.addEventListener("load", () => {
         ctx.strokeStyle = grad; ctx.lineWidth = 1.5*DPR; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-vx*14, y-vy*14); ctx.stroke();
       }
     }
+    const fields = layers.map(Starfield);
 
+    /* ========= Random shooting stars ========= */
+    const meteors = [];
+    function spawnMeteor(){ if(document.visibilityState !== 'visible') return; const {w,h} = fields[2].size;
+      meteors.push({ x: Math.random()*w, y: -20, vx: -6*DPR, vy: 6*DPR, life: 180 }); }
+    setInterval(spawnMeteor, 2200);
+    function drawMeteors(){ for(let i=meteors.length-1;i>=0;i--){ const m = meteors[i]; m.x += m.vx; m.y += m.vy; m.life -= 1; fields[2].pushMeteor(m.x,m.y,m.vx,m.vy); if(m.x < -50 || m.y > fields[2].size.h+50 || m.life<=0){ meteors.splice(i,1); } }
+      requestAnimationFrame(drawMeteors); }
+    drawMeteors();
 
     /* ========= Glitter comet cursor ========= */
-     /* ========= 3D Hover Tilt ========= */
+    const sparks=[]; let last=0; function spawnSpark(x,y){ const s=document.createElement('span'); s.className='spark'; s.style.left=x+'px'; s.style.top=y+'px'; document.body.appendChild(s); sparks.push(s); if(sparks.length>40){ const old=sparks.shift(); old.remove(); } setTimeout(()=>s.remove(), 900); }
+    addEventListener('mousemove', (e)=>{ if(matchMedia('(pointer:fine)').matches) { const now=performance.now(); if(now-last>12){ spawnSpark(e.clientX, e.clientY); last=now; } } });
+
+    /* ========= 3D Hover Tilt ========= */
     const tilts = [...document.querySelectorAll('.tilt')];
     tilts.forEach(el=>{
       el.addEventListener('mousemove', (e)=>{ const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width; const y = (e.clientY - r.top) / r.height; const rx = (0.5 - y) * 10; const ry = (x - 0.5) * 10; el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`; });
@@ -2624,16 +2622,6 @@ const shareText    = "Check out my Gallup Strenghts:";
   }
 });
 </script>
-  <script>
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    document.body.classList.add("paused");
-  } else {
-    document.body.classList.remove("paused");
-  }
-});
-</script>
-
 
 <script>
   // We define the callback so the JSONP doesn't throw an error,
