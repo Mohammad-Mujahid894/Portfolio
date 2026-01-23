@@ -2775,16 +2775,17 @@ header, .nav, .glass:hover, .stat-card:hover {
 /* ===== AGENTIC AI ACTION ROW (BUTTONS + BADGES INLINE) ===== */
 .agentic-actions {
   display: flex;
-  align-items: flex-end;          /* 🔑 baseline alignment */
+  align-items: flex-end;
   justify-content: flex-end;
   gap: 14px;
   margin-top: 14px;
   flex-wrap: wrap;
 }
 
-/* Buttons (Download + Expand) */
+/* Buttons (Download + Expand) — MUST be above Credly */
 .agentic-actions .aperian-actions {
-  position: static;               /* override absolute */
+  position: relative;     /* 🔑 allows z-index */
+  z-index: 20;            /* 🔑 sits above iframe */
   display: flex;
   gap: 10px;
 }
@@ -2794,16 +2795,21 @@ header, .nav, .glass:hover, .stat-card:hover {
   display: flex;
   align-items: flex-end;
   gap: 10px;
-  opacity: 0.92;                  /* subtle de-emphasis */
+  position: relative;
+  z-index: 1;
+  opacity: 0.9;
 }
 
-/* Credly badge scaling */
+/* Hard clamp Credly size + scale */
 .agentic-actions .credly-inline > div {
-  transform: scale(0.65);         /* 🔑 sweet spot */
+  width: 110px;           /* 🔑 forces compact badge */
+  height: 180px;          /* 🔑 prevents tall overflow */
+  overflow: hidden;
+  transform: scale(0.65);
   transform-origin: bottom left;
 }
 
-/* Smooth polish on hover */
+/* Hover polish */
 .agentic-actions .credly-inline:hover {
   opacity: 1;
 }
@@ -2811,14 +2817,15 @@ header, .nav, .glass:hover, .stat-card:hover {
 /* Mobile refinement */
 @media (max-width: 768px) {
   .agentic-actions {
-    justify-content: center;      /* center on small screens */
+    justify-content: center;
     gap: 12px;
   }
 
-  .agentic-actions .credly-inline {
-    transform: scale(0.9);        /* avoid double shrinking */
+  .agentic-actions .credly-inline > div {
+    transform: scale(0.7); /* slight bump for readability */
   }
 }
+
 
 
 </style> 
