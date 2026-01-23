@@ -31,18 +31,25 @@
     /* ===== LAYERS ===== */
     .layer{position:fixed; inset:0; pointer-events:none}
     #stars1,#stars2,#stars3{z-index:-3}
+/* ===== Nebula clarity fix ===== */
 #nebula {
-  z-index: -2;
-  filter: blur(40px) saturate(120%);
+  z-index: -2 !important;
+
+  /* KEY FIXES */
+  filter: blur(18px) saturate(115%) !important; /* ↓ less fog */
+  opacity: 0.75 !important;                     /* ↓ less wash */
+  mix-blend-mode: screen;                       /* glow, not tint */
+
   background:
-    radial-gradient(40% 40% at 15% 20%, rgba(122,162,255,.30), transparent 70%),
-    radial-gradient(35% 35% at 85% 15%, rgba(79,240,176,.25), transparent 70%),
-    radial-gradient(50% 50% at 60% 80%, rgba(138,122,255,.22), transparent 70%),
-    radial-gradient(30% 30% at 20% 85%, rgba(255,200,120,.18), transparent 70%);
-  background-repeat: no-repeat;
-  background-size: cover;
-  animation: drift 24s ease-in-out infinite alternate;
+    radial-gradient(38% 38% at 15% 20%, rgba(122,162,255,0.28), transparent 72%),
+    radial-gradient(34% 34% at 85% 18%, rgba(79,240,176,0.22), transparent 72%),
+    radial-gradient(46% 46% at 60% 80%, rgba(138,122,255,0.18), transparent 72%),
+    radial-gradient(28% 28% at 22% 85%, rgba(255,200,120,0.15), transparent 72%);
+
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
+
    
 
     /* ===== CONTENT ===== */
@@ -1964,7 +1971,7 @@ html, body {
 
 /* Make header/nav glass less reactive to nebula color (reduces tint) */
 header, .nav, .glass, .card, .btn-secondary, .qa {
-  backdrop-filter: blur(8px) saturate(100%) !important;  /* remove over-saturation */
+  backdrop-filter: blur(6px) saturate(95%); !important;  /* remove over-saturation */
   background: rgba(6,8,12,0.4) !important;               /* darker glass so nebula color is muted */
   border: 1px solid rgba(255,255,255,0.06) !important;
   box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;    /* remove bluish shadows */
