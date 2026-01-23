@@ -7,7 +7,6 @@
   <title>Clifton - Strengths</title>
   <!-- D3 v7 -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
     :root{
@@ -28,7 +27,8 @@ body {
     #stars1,#stars2,#stars3{z-index:-3}
 #nebula {
   z-index: -2;
-  filter: blur(18px) saturate(110%);
+  filter: blur(10px) saturate(105%);
+  opacity: 0.8;
   background:
     radial-gradient(40% 40% at 15% 20%, rgba(122,162,255,.30), transparent 70%),
     radial-gradient(35% 35% at 85% 15%, rgba(79,240,176,.25), transparent 70%),
@@ -885,7 +885,7 @@ html, body{ overflow-x: hidden; }
   object-fit: contain;
 }
 
-  </style>
+ 
 
 </head>
 <body>
@@ -923,8 +923,6 @@ html, body{ overflow-x: hidden; }
 
   <!-- ===== BACKGROUND LAYERS ===== -->
   <canvas id="stars1" class="layer" aria-hidden="true"></canvas>
-  <canvas id="stars2" class="layer" aria-hidden="true"></canvas>
-  <canvas id="stars3" class="layer" aria-hidden="true"></canvas>
   <div id="nebula" class="layer" aria-hidden="true"></div>
 
 <div class="intro-center">
@@ -1015,11 +1013,7 @@ html, body{ overflow-x: hidden; }
     <script>
     /* ========= Parallax starfields (3 layers for depth) ========= */
     const DPR = Math.min(2, window.devicePixelRatio || 1);
-    const layers = [
-      { id: 'stars1', count: 110, speed: 0.15, size: 1.0 }, // far
-      { id: 'stars2', count: 90, speed: 0.35, size: 1.6 }, // mid
-      { id: 'stars3', count: 60,  speed: 0.65, size: 2.0 }  // near
-    ];
+Starfield({ id: 'stars1', count: 80, speed: 0.12, size: 1.2 });
 
     function Starfield(layer){
       const cvs = document.getElementById(layer.id); const ctx = cvs.getContext('2d');
@@ -1031,24 +1025,11 @@ html, body{ overflow-x: hidden; }
         for(const s of stars){ const px = s.x + mx*20*layer.speed; const py = s.y + my*20*layer.speed; ctx.globalAlpha = s.a; ctx.fillRect(px, py, layer.size*DPR, layer.size*DPR); }
         requestAnimationFrame(draw); }
       draw();
-      return {ctx, get size(){return {w,h}}, pushMeteor};
+      return { ctx };
 
-      function pushMeteor(x,y,vx,vy){ // gradient trail line
-        const grad = ctx.createLinearGradient(x,y, x-vx*14, y-vy*14);
-        grad.addColorStop(0,'rgba(255,255,255,.95)'); grad.addColorStop(1,'rgba(122,162,255,0)');
-        ctx.strokeStyle = grad; ctx.lineWidth = 1.5*DPR; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-vx*14, y-vy*14); ctx.stroke();
-      }
-    }
-    const fields = layers.map(Starfield);
+      
 
-    /* ========= Random shooting stars ========= */
-    const meteors = [];
-    function spawnMeteor(){ if(document.visibilityState !== 'visible') return; const {w,h} = fields[2].size;
-      meteors.push({ x: Math.random()*w, y: -20, vx: -6*DPR, vy: 6*DPR, life: 180 }); }
-    setInterval(spawnMeteor, 2200);
-    function drawMeteors(){ for(let i=meteors.length-1;i>=0;i--){ const m = meteors[i]; m.x += m.vx; m.y += m.vy; m.life -= 1; fields[2].pushMeteor(m.x,m.y,m.vx,m.vy); if(m.x < -50 || m.y > fields[2].size.h+50 || m.life<=0){ meteors.splice(i,1); } }
-      requestAnimationFrame(drawMeteors); }
-    drawMeteors();
+
 
     /* ========= Glitter comet cursor ========= */
 
@@ -1526,7 +1507,7 @@ svg.selectAll('rect')
     `);
   });
 }
-renderStackBar(strengths);
+
 
 /* ===== Controls: Search, Top5, Export CSV ===== */
 d3.select('#search').on('input', function(){
@@ -2429,15 +2410,16 @@ wrap.html(html);
   // Ensure D3 and strengths are available
   document.addEventListener('DOMContentLoaded', function () {
     // 1) Top split barcode (compact version)
-    renderCliftonSVGBar(strengths);
+    
 
     // 2) Full 34-barcode with diagonal X in the contained wrapper
     renderFull34BarcodeContained(strengths);
 
     // 3) Relator details (plain, centered)
-    renderRelatorDetailsNoTabs(strengths);
 
-      renderInputDetailsNoTabs(strengths);
+    
+
+     
   });
 
 </script>
@@ -2478,9 +2460,9 @@ wrap.html(html);
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   // Top section: grid + stackbar + compact split bar
-  renderTiles(strengths);
-  renderCliftonSVGBar(strengths);
-  renderStackBar(strengths);
+
+ 
+
 
   // ===== Full DNA bars for each section =====
   renderFull34BarcodeContained(strengths, 1, 'relatorBarcode');
