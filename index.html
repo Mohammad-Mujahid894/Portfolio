@@ -8,7 +8,7 @@
   <!-- Existing primary description is fine to keep -->
   <meta name="description" content="I craft clarity out of chaos in finance and operations. Mohammad Mujahid here — bridging real-world accounting operations with strategic insights. From streamlining O2C workflows to turning raw financial data into actionable decisions, I deliver solutions that matter. This portfolio isn’t just a showcase of my work — it’s a lens into how I think, solve, and create impact, right now.">
 
-  <!-- Add these PREVIEW TAGS here (after title/description, before <style>) -->
+  <!-- Add these PREVIEW TAGS here (after title/description, before  ) -->
 
   <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
   <meta property="og:type" content="website">
@@ -21,22 +21,13 @@
   <meta name="twitter:title" content="Mohammad Mujahid | Finance & O2C Professional">
  
 <meta name="twitter:description" content="Crafting clarity out of chaos in finance and operations. O2C, cash apps, and data-driven decisions. Delivering solutions that matter. This portfolio isn’t just a showcase of my work — it’s a lens into how I think, solve, and create impact.">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
-    :root{
-      --bg:#04060b; --fg:#eaf2ff; --muted:#9fb2d8; --glass:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
-      --radius:18px; --shadow:0 30px 80px rgba(0,0,0,.6);
-    }
+
     *{box-sizing:border-box}
     html,body{height:100%}
-body {
-  margin: 0;
-  color: var(--fg);
-  background: #04060b;   /* keep only the dark base color, no cloudy gradient */
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-  overflow-x: hidden;
-}
+
     /* ===== LAYERS ===== */
     .layer{position:fixed; inset:0; pointer-events:none}
     #stars1,#stars2,#stars3{z-index:-3}
@@ -52,7 +43,7 @@ body {
   background-size: cover;
   animation: drift 24s ease-in-out infinite alternate;
 }
-    @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-2%,0)}}
+   
 
     /* ===== CONTENT ===== */
     .wrap{max-width:1080px; margin:0 auto; padding:24px}
@@ -406,7 +397,7 @@ display: flex;
   text-align: center;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(8px) saturate(120%);
   box-shadow: 0 0 25px rgba(122,162,255,0.25),
               inset 0 0 10px rgba(255,255,255,0.1);
   transition: all 0.35s ease;
@@ -600,19 +591,14 @@ section#about {
 
 
     
-  <style>
+   
     :root {
       --bg: #04060b;
       --fg: #eaf2ff;
       --muted: #9fb2d8;
     }
 
-    body {
-      margin: 0;
-      font-family: system-ui, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-    }
+
 
 /* ===== TIMELINE SECTION ===== */
 .timeline-section {
@@ -701,7 +687,7 @@ section#about {
   padding: 20px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(8px) saturate(120%);
   box-shadow: 0 0 20px rgba(122,162,255,0.25),
               inset 0 0 10px rgba(255,255,255,0.1);
   transition: all 0.4s ease;
@@ -870,7 +856,7 @@ html{ scroll-behavior: smooth; }
   border-radius: 20px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(8px) saturate(120%);
   padding: 24px;
   box-shadow: 0 0 30px rgba(122,162,255,0.35),
               inset 0 0 8px rgba(255,255,255,0.05);
@@ -881,8 +867,8 @@ html{ scroll-behavior: smooth; }
   box-shadow: 0 0 40px rgba(122,162,255,0.6),
               0 0 70px rgba(79,240,176,0.4);
 }
-  </style>
-  <style>
+   
+   
 /* ==================== Tabs Container ==================== */
 /* ==================== Tabs Container ==================== */
 .skills-filter-tab {
@@ -1270,31 +1256,14 @@ html{ scroll-behavior: smooth; }
     padding-left: 15px;
   }
 }
-</style>
-<style>
-:root {
-  --bg: #071026;
-  --card: rgba(255,255,255,0.04);
-  --muted: #9fb2d8;
-  --glass: rgba(255,255,255,0.04);
-  --radius: 14px;
-  --shadow: 0 18px 40px rgba(2,8,23,0.6);
-  --gap: 14px;
-  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --domColor: #7aa2ff;
-}
+ 
+ 
+
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  font-family: var(--font-sans);
-  background: linear-gradient(180deg, #051022 0%, var(--bg) 100%);
-  color: #eaf2ff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  padding: 28px;
-}
+
+
 
 /* Header helpers */
 .centered-header {
@@ -1527,15 +1496,6 @@ body {
   }
 }
 
-:root {
-  --accent1: #7aa2ff;
-  --accent2: #8a7aff;
-  --accent3: #4ff0b0;
-  --fg: #eaf2ff;
-  --muted: #9fb2d8;
-  --glass: rgba(255,255,255,0.06);
-  --stroke: rgba(255,255,255,0.12);
-}
 
 /* Contact section wrapper */
 .contact-section {
@@ -1953,13 +1913,7 @@ html, body {
   z-index: 10;
   }
 
-body {
-  margin: 0;
-  color: var(--fg);
-  background: linear-gradient(180deg, #051022 0%, #04060b 100%);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-  overflow-x: hidden;
-}
+
 
 #nebula {
   z-index: -2;
@@ -1972,6 +1926,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   animation: drift 40s ease-in-out infinite alternate;
+  animation-delay: 1.2s;
 }
 
 @keyframes drift {
@@ -1990,10 +1945,7 @@ body {
 }
 
 /* Use Gallup-like base so colored nebula shows as subtle glow, not tint-everything */
-body {
-  background: linear-gradient(180deg, #051022 0%, var(--bg) 100%) !important;
-  color: var(--fg) !important;
-}
+
 
 /* Tone down nebula so it looks like a galaxy (colorful) but doesn't overpower glass */
 #nebula {
@@ -2791,8 +2743,26 @@ header, .nav, .glass:hover, .stat-card:hover {
 }
 
 
+:root{
+  --bg:#04060b;
+  --fg:#eaf2ff;
+  --muted:#9fb2d8;
+  --glass:rgba(255,255,255,0.06);
+  --stroke:rgba(255,255,255,0.12);
+  --accent1:#7aa2ff;
+  --accent2:#8a7aff;
+  --accent3:#4ff0b0;
+}
+body{
+  margin:0;
+  color:var(--fg);
+  background:linear-gradient(180deg,#051022 0%,#04060b 100%);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  overflow-x:hidden;
+}
 
-</style> 
+  </style>
+  
 </head>
 <body>
   <!-- ===== BACKGROUND LAYERS ===== -->
