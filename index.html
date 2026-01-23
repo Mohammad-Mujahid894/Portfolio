@@ -272,12 +272,8 @@ display: flex;
   min-height: 80vh;
 }
 
-@font-face {
-  font-family: 'FoundationTitlesHand';
-  src: url('FoundationTitlesHand.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+
+    
 #about h2,
 #experience h2,
 #skills h2,
@@ -290,12 +286,6 @@ display: flex;
   font-family: 'FoundationTitlesHand', sans-serif !important;
 }
 
-  @font-face {
-  font-family: 'FoundationTitlesHand';
-  src: url('foundationtitleshand.ttf') format('truetype'); /* make sure path is correct */
-  font-weight: normal;
-  font-style: normal;
-}
 
 #gallup-section-title h2, /* optional if needed elsewhere */
 #clifton-title {
@@ -804,19 +794,6 @@ section#about {
   box-shadow: 0 0 12px rgba(122,162,255,0.5),
               0 0 18px rgba(79,240,176,0.4);
 }
-@font-face {
-  font-family: 'FoundationTitlesHand';
-  src: url('FoundationTitlesHand.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-#typewriter {
-  font-family: 'FoundationTitlesHand', sans-serif;
-  font-size: clamp(18px, 3.5vw, 28px); /* smaller but still responsive */
-  font-weight: 700;
-  color: #fff; /* change color if needed */
-}
 
 
 @media (hover: hover) and (pointer: fine) {
@@ -870,23 +847,7 @@ html{ scroll-behavior: smooth; }
   height: 90px;       /* adjust if your header is taller/shorter */
   margin-top: -90px;  /* same value, negative */
 }
-/* Make typewriter its own line and reserve space */
-#typewriter{
-  display:block;         /* own line */
-  min-height: 2.4rem;    /* reserve height so it can type without pushing */
-  white-space: nowrap;   /* keep single line on desktop */
-}
 
-/* Gap between typewriter and CTAs */
-.typewriter-spacer{
-  height: 8px;           /* small fixed gap */
-}
-
-/* Mobile: allow wrapping so it doesn't collide with buttons */
-@media(max-width:600px){
-  #typewriter{ white-space: normal; word-break: break-word; }
-  .hero-ctas .btn{ width:100%; }      /* tidy stacked buttons on phones */
-}
 
     .glassy-card {
   border-radius: 20px;
@@ -1000,6 +961,37 @@ html{ scroll-behavior: smooth; }
   }
 }
 
+    #typewriter {
+  font-family: 'FoundationTitlesHand', sans-serif;
+  font-size: clamp(18px, 3.5vw, 28px);
+  font-weight: 700;
+  color: #fff;
+}
+
+    /* Make typewriter its own line and reserve space */
+#typewriter{
+  display:block;
+  min-height: 2.4rem;
+  white-space: nowrap;
+}
+
+/* Gap between typewriter and CTAs */
+.typewriter-spacer{
+  height: 8px;
+}
+
+/* Mobile: allow wrapping */
+@media(max-width:600px){
+  #typewriter{ 
+    white-space: normal; 
+    word-break: break-word; 
+  }
+  .hero-ctas .btn{ 
+    width:100%; 
+  }
+}
+
+    
 /* ==================== Glass Button (Optional) ==================== */
 .glass-button {
   display: inline-block;
@@ -2024,32 +2016,6 @@ header, .nav, .glass:hover, .stat-card:hover {
 
 
 
-/* --- alignment helpers --- */
-/* tweak this value if you need to align exactly under your profile / typewriter */
-/* make intro column left-aligned and ensure name and typewriter align */
-.hero-name-wrap {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
-
-#name-svg path {
-  stroke: #d8dbe0;
-  stroke-width: 2.2;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-  opacity: 0; /* for GSAP draw */
-}
-
-#name-svg {
-  width: 950px;   /* BIGGER text */
-  max-width: 100%;
-  height: auto;
-}
-
 /* Mobile: center name + typewriter + buttons */
 @media (max-width: 768px) {
   .intro-text {
@@ -2712,45 +2678,6 @@ header, .nav, .glass:hover, .stat-card:hover {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   .emoji-card {
   display: flex;
   align-items: center;
@@ -2899,88 +2826,10 @@ header, .nav, .glass:hover, .stat-card:hover {
 <!-- Right side - Name and Subtitles -->
 <div class="intro-text">
 <!-- HERO NAME: safe inline-stroked SVG (replace previous name SVG) -->
-<div class="hero-name-wrap">
-<svg id="name-svg" viewBox="0 0 1600 200" width="100%" height="160" preserveAspectRatio="xMinYMid meet">
+<h1 class="hero-name">
+  Mohammad Mujahid
+</h1>
 
-  <!-- M -->
-  <path d="M20 150 L20 50" />
-  <path d="M60 150 L60 50" />
-  <path d="M20 50 L40 100" />
-  <path d="M60 50 L40 100" />
-
- <!-- O -->
-<path d="M150 150 
-         A40 50 0 1 1 150 49.9 
-         A40 50 0 1 1 150 150" />
-
-<!-- H (shifted right) -->
-<path d="M230 50 L230 150" />
-<path d="M270 50 L270 150" />
-<path d="M230 100 L270 100" />
-
-<!-- A (shifted right) -->
-<path d="M310 150 L335 50" />
-<path d="M360 150 L335 50" />
-<path d="M320 105 L350 105" />
-
-<!-- M (shifted right) -->
-<path d="M400 150 L400 50" />
-<path d="M440 150 L440 50" />
-<path d="M400 50 L420 100" />
-<path d="M440 50 L420 100" />
-
-<!-- M -->
-<path d="M480 150 L480 50" />
-<path d="M520 150 L520 50" />
-<path d="M480 50 L500 100" />
-<path d="M520 50 L500 100" />
-
-<!-- A -->
-<path d="M560 150 L585 50" />
-<path d="M610 150 L585 50" />
-<path d="M570 105 L600 105" />
-
-<!-- D -->
-<path d="M640 50 L640 150" />
-<path d="M640 50 Q700 100 640 150" />
-
-
-  <!-- SPACE -->
-
-  <!-- M -->
-<!-- M -->
-<path d="M760 150 L760 50" />
-<path d="M800 150 L800 50" />
-<path d="M760 50 L780 100" />
-<path d="M800 50 L780 100" />
-
-<!-- U -->
-<path d="M840 50 L840 120" />
-<path d="M880 50 L880 120" />
-<path d="M840 120 Q860 150 880 120" />
-
-<!-- J -->
-<path d="M920 50 L920 120" />
-<path d="M920 120 Q920 150 890 150" />
-
-<!-- A -->
-<path d="M960 150 L985 50" />
-<path d="M1010 150 L985 50" />
-<path d="M970 105 L1000 105" />
-
-<!-- H -->
-<path d="M1050 50 L1050 150" />
-<path d="M1090 50 L1090 150" />
-<path d="M1050 100 L1090 100" />
-
-<!-- I -->
-<path d="M1130 50 L1130 150" />
-
-<!-- D -->
-<path d="M1170 50 L1170 150" />
-<path d="M1170 50 Q1230 100 1170 150" />
-</svg>
-</div>
 
   <br>
   <div id="typewriter"></div>
@@ -3899,25 +3748,6 @@ I Lead with Relationship Building
 
 
 
-<script>
-window.addEventListener("load", () => {
-  const paths = document.querySelectorAll("#name-svg path");
-
-  paths.forEach(p => {
-    const len = p.getTotalLength();
-    p.style.strokeDasharray = len;
-    p.style.strokeDashoffset = len;
-  });
-
-  gsap.to(paths, {
-    strokeDashoffset: 0,
-    opacity: 1,
-    duration: 1.1,
-    ease: "power2.out",
-    stagger: 0.10
-  });
-});
-</script>
 
 
 
