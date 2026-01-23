@@ -2772,57 +2772,52 @@ header, .nav, .glass:hover, .stat-card:hover {
   right: 10px;
 }
 
-/* ===== AGENTIC AI ACTION ROW (BUTTONS + BADGES INLINE) ===== */
-.agentic-actions {
+
+/* =========================================================
+   CREDLY BADGES STRIP (BETWEEN CERTIFICATIONS)
+   ========================================================= */
+
+.credly-strip {
+  padding: 56px 0;
+}
+
+.credly-strip-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+
   display: flex;
+  justify-content: center;
   align-items: flex-end;
-  justify-content: flex-end;
-  gap: 14px;
-  margin-top: 14px;
-  flex-wrap: wrap;
+  gap: 48px;
 }
 
-/* Buttons (Download + Expand) — MUST be above Credly */
-.agentic-actions .aperian-actions {
-  position: relative;     /* 🔑 allows z-index */
-  z-index: 20;            /* 🔑 sits above iframe */
-  display: flex;
-  gap: 10px;
-}
-
-/* Credly badges container */
-.agentic-actions .credly-inline {
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  position: relative;
-  z-index: 1;
-  opacity: 0.9;
-}
-
-/* Hard clamp Credly size + scale */
-.agentic-actions .credly-inline > div {
-  width: 110px;           /* 🔑 forces compact badge */
-  height: 180px;          /* 🔑 prevents tall overflow */
-  overflow: hidden;
-  transform: scale(0.65);
-  transform-origin: bottom left;
+/* Individual Credly badge containers */
+.credly-strip-inner > div {
+  transform: scale(0.78);
+  transform-origin: top center;
+  opacity: 0.95;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 /* Hover polish */
-.agentic-actions .credly-inline:hover {
+.credly-strip-inner > div:hover {
   opacity: 1;
+  transform: scale(0.82);
 }
 
-/* Mobile refinement */
+/* Mobile behavior */
 @media (max-width: 768px) {
-  .agentic-actions {
-    justify-content: center;
-    gap: 12px;
+  .credly-strip {
+    padding: 40px 0;
   }
 
-  .agentic-actions .credly-inline > div {
-    transform: scale(0.7); /* slight bump for readability */
+  .credly-strip-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .credly-strip-inner > div {
+    transform: scale(0.85);
   }
 }
 
@@ -3534,6 +3529,28 @@ and making processes faster, cleaner, and scalable.
 
 
 
+<!-- ===== VERIFIED CREDLY BADGES ===== -->
+<section class="cert-section credly-strip">
+
+  <div class="credly-strip-inner">
+
+    <div
+      data-iframe-width="150"
+      data-iframe-height="270"
+      data-share-badge-id="6683a9f4-de82-48e7-9aa4-cb55795511e6"
+      data-share-badge-host="https://www.credly.com">
+    </div>
+
+    <div
+      data-iframe-width="150"
+      data-iframe-height="270"
+      data-share-badge-id="50247f77-c0be-4783-8b16-546f35fb94d6"
+      data-share-badge-host="https://www.credly.com">
+    </div>
+
+  </div>
+
+</section>
 
 
 
@@ -3555,45 +3572,24 @@ and making processes faster, cleaner, and scalable.
     following completion of Agentic AI coursework via Udacity and an instructor-led virtual workshop.
   </p>
 
-<!-- Preview Card -->
-<div class="aperian-card">
+  <!-- Preview Card -->
+  <div class="aperian-card">
 
-  <!-- Certificate Image -->
-  <img
-    src="certificates/StanfordAgenticAI.png"
-    alt=""
-    loading="lazy"
-    class="aperian-preview"
-  />
+    <!-- Certificate Image -->
+    <img
+      src="certificates/StanfordAgenticAI.png"
+      alt=""
+      loading="lazy"
+      class="aperian-preview"
+    />
 
-  <!-- ACTION ROW -->
-  <div class="agentic-actions">
-
-    <!-- Download + Expand -->
+    <!-- ACTION ROW -->
     <div class="aperian-actions">
       <a href="certificates/StanfordAI.pdf" download title="Download Certificate">⬇️</a>
       <button onclick="event.stopPropagation(); openAgenticModal();" title="Expand View">⛶</button>
     </div>
 
-    <!-- Credly Badges -->
-    <div class="credly-inline">
-      <div
-        data-iframe-width="150"
-        data-iframe-height="270"
-        data-share-badge-id="6683a9f4-de82-48e7-9aa4-cb55795511e6"
-        data-share-badge-host="https://www.credly.com">
-      </div>
-
-      <div
-        data-iframe-width="150"
-        data-iframe-height="270"
-        data-share-badge-id="50247f77-c0be-4783-8b16-546f35fb94d6"
-        data-share-badge-host="https://www.credly.com">
-      </div>
-    </div>
-
   </div>
-</div>
 
 </section>
 
@@ -5508,11 +5504,7 @@ if (yearEl) {
   });
 </script>
 
-<script
-  type="text/javascript"
-  async
-  src="//cdn.credly.com/assets/utilities/embed.js">
-</script>
+<script async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
 
     
 
