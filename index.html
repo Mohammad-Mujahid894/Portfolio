@@ -2777,8 +2777,12 @@ header, .nav, .glass:hover, .stat-card:hover {
    CREDLY BADGES STRIP (BETWEEN CERTIFICATIONS)
    ========================================================= */
 
+/* =========================================================
+   CREDLY BADGES STRIP (BETWEEN CERTIFICATIONS)
+   ========================================================= */
+
 .credly-strip {
-  padding: 56px 0;
+  padding: 64px 0;
 }
 
 .credly-strip-inner {
@@ -2789,35 +2793,56 @@ header, .nav, .glass:hover, .stat-card:hover {
   justify-content: center;
   align-items: flex-end;
   gap: 48px;
+  flex-wrap: nowrap;
 }
 
-/* Individual Credly badge containers */
+/* Badge wrapper — visual integration layer */
 .credly-strip-inner > div {
-  transform: scale(0.78);
+  flex: 0 0 auto;
+
+  transform: scale(0.85);                 /* ⬆️ slightly larger */
   transform-origin: top center;
-  opacity: 0.95;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  padding: 8px;
+  border-radius: 18px;
+
+  background: radial-gradient(
+    circle at top,
+    rgba(122,162,255,0.15),
+    rgba(138,122,255,0.08),
+    rgba(0,0,0,0)
+  );
+
+  box-shadow:
+    0 0 22px rgba(122,162,255,0.25),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+
+  opacity: 0.96;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
 /* Hover polish */
 .credly-strip-inner > div:hover {
+  transform: scale(0.9);
   opacity: 1;
-  transform: scale(0.82);
+
+  box-shadow:
+    0 0 32px rgba(138,122,255,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.18);
 }
 
-/* Mobile behavior */
+/* Mobile – still side by side */
 @media (max-width: 768px) {
   .credly-strip {
-    padding: 40px 0;
+    padding: 44px 0;
   }
 
   .credly-strip-inner {
-    flex-direction: column;
-    gap: 32px;
+    gap: 24px;
   }
 
   .credly-strip-inner > div {
-    transform: scale(0.85);
+    transform: scale(0.78);               /* ⬆️ readable on mobile */
   }
 }
 
@@ -3552,6 +3577,15 @@ and making processes faster, cleaner, and scalable.
 
 </section>
 
+<!-- ===== AGENTIC AI EXPANDED IMAGE MODAL ===== -->
+<div id="agenticModal" class="aperian-modal" onclick="closeAgenticModal();">
+  <div class="aperian-modal-inner">
+    <img
+      src="certificates/StanfordAgenticAI.png"
+      alt="Expanded Agentic AI Certificate"
+    />
+  </div>
+</div>
 
 
 
@@ -5503,6 +5537,24 @@ if (yearEl) {
     }
   });
 </script>
+    <script>
+  const agenticModal = document.getElementById("agenticModal");
+
+  function openAgenticModal() {
+    agenticModal.classList.add("open");
+  }
+
+  function closeAgenticModal() {
+    agenticModal.classList.remove("open");
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeAgenticModal();
+    }
+  });
+</script>
+
 
 <script async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
 
