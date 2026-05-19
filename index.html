@@ -2791,6 +2791,10 @@ body{
   justify-content:center;
 }
 
+/* =========================
+   PREMIUM LINKEDIN CARD
+========================= */
+
 .linkedin-premium-card{
   margin-top:14px;
 
@@ -2821,7 +2825,9 @@ body{
     border-color .3s ease;
 }
 
+/* Hover */
 .linkedin-premium-card:hover{
+
   transform:translateY(-4px);
 
   border-color:rgba(122,162,255,0.45);
@@ -2831,9 +2837,13 @@ body{
     0 0 40px rgba(79,240,176,0.12);
 }
 
-/* TOP BANNER */
+/* =========================
+   TOP BLUE HEADER
+========================= */
+
 .linkedin-banner{
-  height:68px;
+
+  height:46px;
 
   background:
     linear-gradient(
@@ -2843,93 +2853,97 @@ body{
     );
 
   display:flex;
+
   align-items:center;
+
   justify-content:flex-end;
 
-  padding:16px;
+  padding:0 16px;
 }
 
+/* LinkedIn logo */
 .linkedin-logo-big{
+
   font-size:28px;
+
   font-weight:800;
 
   color:white;
 
   opacity:.95;
+
+  line-height:1;
 }
 
-/* PROFILE AREA */
+/* =========================
+   CONTENT SECTION
+========================= */
+
 .linkedin-profile-section{
+
   padding:16px;
-
-  display:flex;
-  gap:14px;
 }
 
-.linkedin-dp{
-  width:62px;
-  height:62px;
+/* Text wrapper */
+.linkedin-profile-info{
 
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #7aa2ff,
-      #4ff0b0
-    );
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:22px;
-  font-weight:700;
-
-  flex-shrink:0;
-
-  box-shadow:
-    0 0 18px rgba(122,162,255,0.35);
+  width:100%;
 }
 
+/* Name */
 .linkedin-profile-info h4{
+
   margin:0;
 
-  font-size:17px;
+  font-size:22px;
+
+  line-height:1.15;
+
+  font-weight:700;
 
   color:#fff;
 }
 
+/* Role */
 .linkedin-role{
-  margin-top:5px;
+
+  margin-top:8px;
+
+  font-size:14px;
+
+  line-height:1.5;
+
+  color:#d8e6ff;
+}
+
+/* Description */
+.linkedin-desc{
+
+  margin-top:10px;
 
   font-size:13px;
 
-  color:#d8e6ff;
-
-  line-height:1.4;
-}
-
-.linkedin-desc{
-  margin-top:8px;
-
-  font-size:12px;
+  line-height:1.6;
 
   color:var(--muted);
-
-  line-height:1.5;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER BUTTON
+========================= */
+
 .linkedin-footer{
+
   padding:
     0 16px 16px;
 }
 
 .linkedin-premium-btn{
+
   display:inline-flex;
 
   align-items:center;
+
   justify-content:center;
 
   padding:8px 16px;
@@ -2943,10 +2957,65 @@ body{
     1px solid rgba(255,255,255,0.16);
 
   font-size:13px;
+
   font-weight:600;
 
   color:#fff;
+
+  transition:
+    background .25s ease,
+    border-color .25s ease;
 }
+
+.linkedin-premium-btn:hover{
+
+  background:
+    rgba(255,255,255,0.12);
+
+  border-color:
+    rgba(255,255,255,0.28);
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+  .linkedin-profile-info h4{
+
+    font-size:19px;
+  }
+
+  .linkedin-role{
+
+    font-size:13px;
+  }
+
+  .linkedin-desc{
+
+    font-size:12px;
+
+    line-height:1.5;
+  }
+
+  .linkedin-banner{
+
+    height:42px;
+  }
+
+  .linkedin-logo-big{
+
+    font-size:24px;
+  }
+
+  .linkedin-footer{
+
+    padding:
+      0 14px 14px;
+  }
+}
+    
   </style>
   
 </head>
@@ -3892,10 +3961,12 @@ I Lead with Relationship Building
     </button>
   </a>
 
+<!-- Premium LinkedIn Card -->
 <a href="https://www.linkedin.com/in/mujahid-md"
    target="_blank"
    class="linkedin-premium-card">
 
+  <!-- Top banner -->
   <div class="linkedin-banner">
 
     <div class="linkedin-logo-big">
@@ -3904,11 +3975,8 @@ I Lead with Relationship Building
 
   </div>
 
+  <!-- Content -->
   <div class="linkedin-profile-section">
-
-    <div class="linkedin-dp">
-      MM
-    </div>
 
     <div class="linkedin-profile-info">
 
@@ -3926,6 +3994,7 @@ I Lead with Relationship Building
 
   </div>
 
+  <!-- Footer -->
   <div class="linkedin-footer">
 
     <span class="linkedin-premium-btn">
