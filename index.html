@@ -2790,13 +2790,110 @@ body{
   width:100%;
   justify-content:center;
 }
-    .linkedin-badge-wrapper{
-  margin-top:14px;
+
+.linkedin-card{
+  margin-top:12px;
   display:flex;
-  justify-content:center;
-  overflow:hidden;
+  flex-direction:column;
+  gap:14px;
+
+  padding:16px;
+  border-radius:16px;
+
+  text-decoration:none;
+  color:var(--fg);
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.12);
+
+  backdrop-filter:blur(10px);
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
 }
 
+.linkedin-card:hover{
+  transform:translateY(-3px);
+
+  border-color:rgba(122,162,255,0.4);
+
+  box-shadow:
+    0 0 18px rgba(122,162,255,0.25),
+    0 0 30px rgba(79,240,176,0.15);
+}
+
+.linkedin-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.linkedin-avatar{
+  width:52px;
+  height:52px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:700;
+  font-size:18px;
+
+  color:white;
+
+  background:
+    linear-gradient(135deg,#0077b5,#00a0dc);
+
+  box-shadow:
+    0 0 16px rgba(0,119,181,0.35);
+}
+
+.linkedin-info h4{
+  margin:0;
+  font-size:15px;
+  color:#fff;
+}
+
+.linkedin-info p{
+  margin-top:4px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.linkedin-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.linkedin-logo{
+  width:28px;
+  height:28px;
+
+  border-radius:8px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#0077b5;
+
+  color:white;
+
+  font-weight:800;
+  font-size:15px;
+}
+
+.linkedin-action{
+  font-size:13px;
+  color:#7aa2ff;
+  font-weight:600;
+}
   </style>
   
 </head>
@@ -3742,23 +3839,41 @@ I Lead with Relationship Building
     </button>
   </a>
 
-  <!-- LinkedIn Badge -->
-  <div class="linkedin-badge-wrapper">
+<a href="https://www.linkedin.com/in/mujahid-md"
+   target="_blank"
+   class="linkedin-card">
 
-    <div class="badge-base LI-profile-badge"
-         data-locale="en_US"
-         data-size="medium"
-         data-theme="dark"
-         data-type="VERTICAL"
-         data-vanity="mujahid-md"
-         data-version="v1">
+  <div class="linkedin-top">
 
-      <a class="badge-base__link LI-simple-link"
-         href="https://in.linkedin.com/in/mujahid-md?trk=profile-badge">
+    <div class="linkedin-avatar">
+      MM
+    </div>
 
-         Mohammad Mujahid
+    <div class="linkedin-info">
 
-      </a>
+      <h4>Mohammad Mujahid</h4>
+
+      <p>
+        Finance & O2C Professional
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="linkedin-bottom">
+
+    <span class="linkedin-logo">
+      in
+    </span>
+
+    <span class="linkedin-action">
+      View LinkedIn Profile
+    </span>
+
+  </div>
+
+</a>
 
     </div>
 
