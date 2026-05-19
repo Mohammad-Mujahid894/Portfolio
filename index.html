@@ -2768,6 +2768,29 @@ body{
   overflow-x:hidden;
 }
 
+    .contact-bottom-actions{
+  margin-top:14px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.contact-inline-actions{
+  display:flex;
+  gap:10px;
+}
+
+.contact-inline-actions .qa{
+  flex:1;
+  margin-bottom:0;
+  justify-content:center;
+}
+
+.contact-bottom-actions #visitorCounter{
+  width:100%;
+  justify-content:center;
+}
+
   </style>
   
 </head>
@@ -2919,7 +2942,7 @@ and making processes faster, cleaner, and scalable.
     <h3>⚡</h3>
     <p>Optimization & Automation</p>
     <div class="hover-info">
-      Steered AI Centric workflows & Macros @ Accenture with ~1.75 FTE Annulizedc Benefits.
+      Steered AI Centric workflows & Macros @ Accenture with ~1.75 FTE annualised Benefits.
     </div>
   </div>
 </div>
@@ -3641,6 +3664,38 @@ I Lead with Relationship Building
           <span class="btn-spin" aria-hidden="true"></span>
         </button>
 
+  <div class="contact-bottom-actions">
+
+  <div class="contact-inline-actions">
+
+  <!-- ✅ View QR Code Button -->
+  <button class="qa" type="button" id="view-qr-btn">
+    QR Code
+  </button>
+
+      <!-- ✅ QR Code Box (hidden by default) -->
+  <div id="qr-wrapper" class="qr-wrapper" style="display:none;">
+    <img src="qr.png" alt="QR code to open my portfolio" class="qr-image">
+  </div>
+
+  <!-- ✅ Share My Portfolio Button -->
+  <button class="qa" type="button" id="share-portfolio-btn">
+    Share My Portfolio
+  </button>
+
+  </div>
+
+<div class="qa visitor-card" id="visitor-box">
+  <div class="visitor-left">
+    <div class="visitor-icon">✨</div>
+
+    <div class="visitor-text-row">
+      <span class="visitor-label">Visitors</span>
+      <span class="visitor-count" id="visitor-count">loading…</span>
+    </div>
+
+</div>
+
         
         <div class="form-success" id="cf-success" hidden>
           <div class="succ-ico">Wuhu! 💫</div>
@@ -3669,30 +3724,7 @@ I Lead with Relationship Building
     <button class="qa" type="button">🥇 View My Certifications</button>
   </a>
 
-  <!-- ✅ View QR Code Button -->
-  <button class="qa" type="button" id="view-qr-btn">
-    🔳 View QR Code
-  </button>
 
-  <!-- ✅ Share My Portfolio Button -->
-  <button class="qa" type="button" id="share-portfolio-btn">
-    📤 Share My Portfolio
-  </button>
-
-  <!-- ✅ QR Code Box (hidden by default) -->
-  <div id="qr-wrapper" class="qr-wrapper" style="display:none;">
-    <img src="qr.png" alt="QR code to open my portfolio" class="qr-image">
-  </div>
-
-
-<div class="qa visitor-card" id="visitor-box">
-  <div class="visitor-left">
-    <div class="visitor-icon">✨</div>
-
-    <div class="visitor-text-row">
-      <span class="visitor-label">Visitors</span>
-      <span class="visitor-count" id="visitor-count">loading…</span>
-    </div>
 
   </div>
 </div>
