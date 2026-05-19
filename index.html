@@ -2792,17 +2792,18 @@ body{
 }
 
 /* =========================
-   PREMIUM LINKEDIN CARD
+   COMPACT LINKEDIN CARD
 ========================= */
 
 .linkedin-premium-card{
+
   margin-top:14px;
 
   display:block;
 
   overflow:hidden;
 
-  border-radius:18px;
+  border-radius:16px;
 
   text-decoration:none;
 
@@ -2811,45 +2812,43 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,0.08),
-      rgba(255,255,255,0.04)
+      rgba(255,255,255,0.07),
+      rgba(255,255,255,0.035)
     );
 
-  border:1px solid rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.10);
 
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(12px);
 
   transition:
-    transform .3s ease,
-    box-shadow .3s ease,
-    border-color .3s ease;
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
 }
 
-/* Hover */
 .linkedin-premium-card:hover{
 
-  transform:translateY(-4px);
+  transform:translateY(-3px);
 
-  border-color:rgba(122,162,255,0.45);
+  border-color:rgba(122,162,255,0.35);
 
   box-shadow:
-    0 0 20px rgba(122,162,255,0.25),
-    0 0 40px rgba(79,240,176,0.12);
+    0 0 18px rgba(122,162,255,0.18);
 }
 
 /* =========================
-   TOP BLUE HEADER
+   HEADER
 ========================= */
 
 .linkedin-banner{
 
-  height:46px;
+  height:38px;
 
   background:
     linear-gradient(
       135deg,
       #0077b5,
-      #005885
+      #006097
     );
 
   display:flex;
@@ -2858,84 +2857,78 @@ body{
 
   justify-content:flex-end;
 
-  padding:0 16px;
+  padding:0 14px;
 }
 
-/* LinkedIn logo */
 .linkedin-logo-big{
 
-  font-size:28px;
+  font-size:22px;
 
   font-weight:800;
 
   color:white;
 
-  opacity:.95;
-
   line-height:1;
 }
 
 /* =========================
-   CONTENT SECTION
+   CONTENT
 ========================= */
 
 .linkedin-profile-section{
 
-  padding:16px;
+  padding:14px;
 }
 
-/* Text wrapper */
 .linkedin-profile-info{
 
   width:100%;
 }
 
-/* Name */
 .linkedin-profile-info h4{
 
   margin:0;
 
-  font-size:22px;
+  font-size:15px;
 
-  line-height:1.15;
+  line-height:1.2;
 
   font-weight:700;
 
   color:#fff;
 }
 
-/* Role */
 .linkedin-role{
 
-  margin-top:8px;
+  margin-top:6px;
 
-  font-size:14px;
+  font-size:12px;
 
-  line-height:1.5;
+  line-height:1.45;
 
   color:#d8e6ff;
 }
 
-/* Description */
+/* Smaller compact description */
 .linkedin-desc{
 
-  margin-top:10px;
+  margin-top:8px;
 
-  font-size:13px;
+  font-size:11px;
 
-  line-height:1.6;
+  line-height:1.5;
 
   color:var(--muted);
 }
 
 /* =========================
-   FOOTER BUTTON
+   FOOTER
 ========================= */
 
 .linkedin-footer{
 
   padding:
-    0 16px 16px;
+    0 14px 14px;
 }
 
 .linkedin-premium-btn{
@@ -2946,7 +2939,7 @@ body{
 
   justify-content:center;
 
-  padding:8px 16px;
+  padding:7px 14px;
 
   border-radius:999px;
 
@@ -2954,65 +2947,39 @@ body{
     rgba(255,255,255,0.08);
 
   border:
-    1px solid rgba(255,255,255,0.16);
+    1px solid rgba(255,255,255,0.14);
 
-  font-size:13px;
+  font-size:12px;
 
   font-weight:600;
 
   color:#fff;
-
-  transition:
-    background .25s ease,
-    border-color .25s ease;
-}
-
-.linkedin-premium-btn:hover{
-
-  background:
-    rgba(255,255,255,0.12);
-
-  border-color:
-    rgba(255,255,255,0.28);
 }
 
 /* =========================
-   MOBILE RESPONSIVE
+   MOBILE
 ========================= */
 
 @media (max-width:768px){
 
   .linkedin-profile-info h4{
 
-    font-size:19px;
+    font-size:14px;
   }
 
   .linkedin-role{
 
-    font-size:13px;
+    font-size:11px;
   }
 
   .linkedin-desc{
 
-    font-size:12px;
-
-    line-height:1.5;
+    font-size:10px;
   }
 
   .linkedin-banner{
 
-    height:42px;
-  }
-
-  .linkedin-logo-big{
-
-    font-size:24px;
-  }
-
-  .linkedin-footer{
-
-    padding:
-      0 14px 14px;
+    height:34px;
   }
 }
     
@@ -3987,7 +3954,7 @@ I Lead with Relationship Building
       </p>
 
       <p class="linkedin-desc">
-        Cash Apps • Receivables • Dynamics 365 • Power Apps • O2C Operations
+        Cash Apps • Receivables • D365 • Power Apps
       </p>
 
     </div>
