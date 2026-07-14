@@ -1,16 +1,15 @@
 
 
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Clifton - Strengths</title>
-  <!-- D3 v7 -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-  <style>
+  <link rel="preload" href="./FoundationTitlesHand.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./062325.webp" as="image" type="image/webp">
+<style>
     :root{
       --bg:#04060b; --fg:#eaf2ff; --muted:#9fb2d8; --glass:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
       --radius:18px; --shadow:0 30px 80px rgba(0,0,0,.6);
@@ -893,7 +892,7 @@ html, body{ overflow-x: hidden; }
 
 <header>
   <div class="brand">
-    <img src="062325.webp" alt="Profile" />
+    <img src="062325.webp" alt="Profile" width="40" height="40" decoding="async" fetchpriority="high" />
     <strong>Mohammad Mujahid</strong>
   </div>
 
@@ -1008,47 +1007,57 @@ html, body{ overflow-x: hidden; }
 
   
     <script>
-    /* ========= Parallax starfields (3 layers for depth) ========= */
-    const DPR = Math.min(2, window.devicePixelRatio || 1);
+    /* ========= Lightweight starfields: half density, no meteors ========= */
+    const DPR = Math.min(1.5, window.devicePixelRatio || 1);
     const layers = [
-      { id: 'stars1', count: 110, speed: 0.15, size: 1.0 }, // far
-      { id: 'stars2', count: 90, speed: 0.35, size: 1.6 }, // mid
-      { id: 'stars3', count: 60,  speed: 0.65, size: 2.0 }  // near
+      { id: 'stars1', count: 55, size: 1.0, opacity: 0.55 },
+      { id: 'stars2', count: 45, size: 1.6, opacity: 0.70 },
+      { id: 'stars3', count: 30, size: 2.0, opacity: 0.85 }
     ];
 
-    function Starfield(layer){
-      const cvs = document.getElementById(layer.id); const ctx = cvs.getContext('2d');
-      let w, h, stars=[]; let mx=0, my=0; // parallax
-      function resize(){ w = cvs.width = innerWidth * DPR; h = cvs.height = innerHeight * DPR; cvs.style.width = innerWidth+'px'; cvs.style.height = innerHeight+'px';
-        stars = Array.from({length: layer.count}, ()=>({ x: Math.random()*w, y: Math.random()*h, a: Math.random()*0.7+0.2 })); }
-      resize(); addEventListener('resize', resize);
-      addEventListener('mousemove', (e)=>{ mx = (e.clientX/innerWidth - .5); my = (e.clientY/innerHeight - .5); });
-      function draw(){ ctx.clearRect(0,0,w,h); ctx.fillStyle = '#fff';
-        for(const s of stars){ const px = s.x + mx*20*layer.speed; const py = s.y + my*20*layer.speed; ctx.globalAlpha = s.a; ctx.fillRect(px, py, layer.size*DPR, layer.size*DPR); }
-        requestAnimationFrame(draw); }
-      draw();
-      return {ctx, get size(){return {w,h}}, pushMeteor};
+    function drawStaticStarfield(layer) {
+      const canvas = document.getElementById(layer.id);
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { alpha: true });
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      canvas.width = Math.round(width * DPR);
+      canvas.height = Math.round(height * DPR);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#fff';
 
-      function pushMeteor(x,y,vx,vy){ // gradient trail line
-        const grad = ctx.createLinearGradient(x,y, x-vx*14, y-vy*14);
-        grad.addColorStop(0,'rgba(255,255,255,.95)'); grad.addColorStop(1,'rgba(122,162,255,0)');
-        ctx.strokeStyle = grad; ctx.lineWidth = 1.5*DPR; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-vx*14, y-vy*14); ctx.stroke();
+      let seed = layer.count * 997 + layer.id.length * 101;
+      const random = () => {
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        return seed / 4294967296;
+      };
+
+      for (let i = 0; i < layer.count; i++) {
+        ctx.globalAlpha = (0.25 + random() * 0.75) * layer.opacity;
+        ctx.fillRect(
+          Math.floor(random() * canvas.width),
+          Math.floor(random() * canvas.height),
+          layer.size * DPR,
+          layer.size * DPR
+        );
       }
+      ctx.globalAlpha = 1;
     }
-    const fields = layers.map(Starfield);
 
-    /* ========= Random shooting stars ========= */
-    const meteors = [];
-    function spawnMeteor(){ if(document.visibilityState !== 'visible') return; const {w,h} = fields[2].size;
-      meteors.push({ x: Math.random()*w, y: -20, vx: -6*DPR, vy: 6*DPR, life: 180 }); }
-    setInterval(spawnMeteor, 2200);
-    function drawMeteors(){ for(let i=meteors.length-1;i>=0;i--){ const m = meteors[i]; m.x += m.vx; m.y += m.vy; m.life -= 1; fields[2].pushMeteor(m.x,m.y,m.vx,m.vy); if(m.x < -50 || m.y > fields[2].size.h+50 || m.life<=0){ meteors.splice(i,1); } }
-      requestAnimationFrame(drawMeteors); }
-    drawMeteors();
+    function initStarfields() {
+      layers.forEach(drawStaticStarfield);
+    }
 
-    /* ========= Glitter comet cursor ========= */
-    const sparks=[]; let last=0; function spawnSpark(x,y){ const s=document.createElement('span'); s.className='spark'; s.style.left=x+'px'; s.style.top=y+'px'; document.body.appendChild(s); sparks.push(s); if(sparks.length>40){ const old=sparks.shift(); old.remove(); } setTimeout(()=>s.remove(), 900); }
-    addEventListener('mousemove', (e)=>{ if(matchMedia('(pointer:fine)').matches) { const now=performance.now(); if(now-last>12){ spawnSpark(e.clientX, e.clientY); last=now; } } });
+    // Paint the page first, then add the decorative background.
+    requestAnimationFrame(() => setTimeout(initStarfields, 0));
+    let starResizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(starResizeTimer);
+      starResizeTimer = setTimeout(initStarfields, 160);
+    }, { passive: true });
+
 
     /* ========= 3D Hover Tilt ========= */
     const tilts = [...document.querySelectorAll('.tilt')];
@@ -1200,19 +1209,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <script>
   const certsBtn = document.getElementById("certsBtn");
-
-  certsBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    gsap.to("body", {
-      opacity: 0,
-      duration: 0.4,
-      ease: "power2.inOut",
-      onComplete: () => (window.location.href = "Certifications.html")
+  if (certsBtn) {
+    certsBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.body.style.transition = "opacity 0.4s ease";
+      document.body.style.opacity = "0";
+      setTimeout(() => { window.location.href = "Certifications.html"; }, 400);
     });
-  });
+  }
 </script>
 
 
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
 /* ============================
    DATA: 34 strengths with domains and short descriptions
@@ -2625,7 +2633,7 @@ const shareText    = "Check out my Gallup Strenghts:";
   }
 </script>
 
-<script src="https://script.google.com/macros/s/AKfycbwPRsUBty2jIqRm1XadZCJYgvvC-qIbE2EBKLgY6XFBTTaTiFtJWo7M42StUj4zBq3s/exec?cb=updateVisitorCount"></script>
+<script async src="https://script.google.com/macros/s/AKfycbwPRsUBty2jIqRm1XadZCJYgvvC-qIbE2EBKLgY6XFBTTaTiFtJWo7M42StUj4zBq3s/exec?cb=updateVisitorCount"></script>
 
 
 
