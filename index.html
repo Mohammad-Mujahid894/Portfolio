@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -2985,6 +2986,22 @@ body{
 
 /* Safe performance rules */
 img{max-width:100%;height:auto}
+
+/* Fast in-page navigation: fixed-header offset without layout-shifting :target hacks */
+section[id], #gallup-section { scroll-margin-top: 105px; }
+
+/* Skip layout/paint work for large below-the-fold sections until needed */
+.timeline-section,
+#skills,
+.cert-section,
+#gallup-section,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+
+/* Keep navigation responsive even while heavier widgets are loading */
+#navbar a[href^="#"] { touch-action: manipulation; }
 @media (prefers-reduced-motion:reduce){#nebula,.scroll-down{animation:none!important}}
 </style>
 </head>
@@ -3005,19 +3022,19 @@ img{max-width:100%;height:auto}
 </div>
 <nav class="navbar" id="navbar">
 <a href="./index.html">Home</a>
-<a href="./index.html#about">About</a>
-<a href="./index.html#experience">Experience</a>
-<a href="./index.html#skills">Skills</a>
-<a href="./index.html#contact">Contact</a>
+<a href="#about">About</a>
+<a href="#experience">Experience</a>
+<a href="#skills">Skills</a>
+<a href="#contact">Contact</a>
 <div class="dropdown">
 <a aria-expanded="false" aria-haspopup="true" class="dropbtn" href="#">More ▾</a>
 <div class="dropdown-content">
 <a href="./Mujahid_Resume_O2C_AR_CashApp.pdf?v=1" rel="noopener" target="_blank">Download Resume</a>
 <a href="./GallupStrenght.html">Gallup Strengths</a>
 <a href="./Certifications.html">Achievements</a>
-<a href="./index.html#projects">QR Code</a>
-<a href="./index.html#blogs">Share my Profile</a>
-<a href="./index.html#interests">Interests</a>
+<a href="#projects">QR Code</a>
+<a href="#blogs">Share my Profile</a>
+<a href="#interests">Interests</a>
 </div>
 </div>
 </nav>
@@ -3407,7 +3424,7 @@ and making processes faster, cleaner, and scalable.
 </div>
 <div class="skills-tab">
 <h3></h3>
-<iframe allowfullscreen="" src="https://mohammad-mujahid894.github.io/Skills_Constellation/" style="width:100%; height:80vh; border:none;" title="Interactive skills constellation">
+<iframe allowfullscreen="" loading="lazy" fetchpriority="low" src="https://mohammad-mujahid894.github.io/Skills_Constellation/" style="width:100%; height:80vh; border:none;" title="Interactive skills constellation">
 </iframe>
 <!-- Button to view full page -->
 <div class="full-view-btn-container">
@@ -5175,7 +5192,7 @@ document.addEventListener("DOMContentLoaded", function () {
    * =============================== */
 
   // "Projects" in More ▾ → open / close QR popup (same as QR behaviour)
-  var navProjectsLink = document.querySelector('.dropdown-content a[href="./index.html#projects"]');
+  var navProjectsLink = document.querySelector('.dropdown-content a[href="#projects"]');
 
   if (navProjectsLink) {
     navProjectsLink.addEventListener("click", function (e) {
@@ -5199,7 +5216,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // "Blogs" in More ▾ → same as "Share My Portfolio" quick action
-  var navBlogsLink = document.querySelector('.dropdown-content a[href="./index.html#blogs"]');
+  var navBlogsLink = document.querySelector('.dropdown-content a[href="#blogs"]');
 
   if (navBlogsLink && shareBtn) {
     navBlogsLink.addEventListener("click", function (e) {
@@ -5264,7 +5281,7 @@ if (yearEl) {
     }
   }
 </script>
-<script src="https://script.google.com/macros/s/AKfycbwPRsUBty2jIqRm1XadZCJYgvvC-qIbE2EBKLgY6XFBTTaTiFtJWo7M42StUj4zBq3s/exec?cb=updateVisitorCount"></script>
+<script async src="https://script.google.com/macros/s/AKfycbwPRsUBty2jIqRm1XadZCJYgvvC-qIbE2EBKLgY6XFBTTaTiFtJWo7M42StUj4zBq3s/exec?cb=updateVisitorCount"></script>
 <script>
   const aperianModal = document.getElementById("aperianModal");
 
@@ -5310,5 +5327,34 @@ if (yearEl) {
 <footer class="copyright">
 <p>© <span id="year"></span> Mohammad Mujahid. All rights reserved.</p>
 </footer>
+
+<script>
+/* Instant, reliable same-page navigation (prevents index.html from reloading). */
+(() => {
+  const headerOffset = () => (document.querySelector('header')?.offsetHeight || 70) + 24;
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    const hash = link.getAttribute('href');
+    if (!hash || hash === '#') return;
+
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    event.preventDefault();
+
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset();
+    window.scrollTo({ top, behavior: 'auto' });
+    history.pushState(null, '', hash);
+
+    document.getElementById('navbar')?.classList.remove('show');
+    document.querySelector('.hamburger')?.classList.remove('active');
+    document.querySelectorAll('.dropdown.open').forEach(el => el.classList.remove('open'));
+  });
+})();
+</script>
+
 </body>
 </html>
