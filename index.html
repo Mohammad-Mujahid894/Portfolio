@@ -3075,9 +3075,59 @@ body.cert-viewer-open { overflow: hidden !important; }
   .cert-modal-close { top: 8px; right: 8px; width: 36px; height: 36px; }
 }
 
+
+/* ===== 2026 PERFORMANCE + CERTIFICATE VIEWER RESTRUCTURE ===== */
+:root{--bg:#04060b;--fg:#eaf2ff;--muted:#9fb2d8;--glass:rgba(8,12,20,.78);--stroke:rgba(255,255,255,.12);--accent1:#7aa2ff;--accent2:#8a7aff;--accent3:#4ff0b0}
+html{scroll-behavior:smooth}
+body{background:#04060b linear-gradient(180deg,#051022 0%,#04060b 100%);overflow-x:hidden}
+#about,#experience,#skills,#contact{scroll-margin-top:100px}
+:target::before{display:none!important}
+/* Avoid expensive blur on dozens of scrolling cards; retain it only in the fixed header. */
+.glass,.glassy-card,.stat-card,.timeline-content,.tag,.badge,.linkedin-premium-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.timeline-content,.stat-card,.glassy-card{will-change:auto!important}
+/* Browser can skip below-fold paint/layout until approached. */
+.cert-section,#gallup-section,#contact{content-visibility:auto;contain-intrinsic-size:auto 900px}
+/* Keep the certificate slider GPU-stable. */
+.cert-slider{will-change:transform;touch-action:pan-y}
+.cert-slide{user-select:none;-webkit-user-drag:none}
+.cert-live-count{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:6;padding:6px 12px;border-radius:999px;background:rgba(2,6,23,.88);border:1px solid rgba(255,255,255,.18);color:#eaf2ff;font-size:12px;pointer-events:none}
+/* Viewer is a direct body child: no transformed parent or overflow can clip it. */
+.cert-modal{position:fixed!important;inset:0!important;display:none!important;align-items:center!important;justify-content:center!important;padding:18px!important;background:rgba(2,6,23,.9)!important;z-index:2147483646!important;overflow:auto!important}
+.cert-modal.is-open{display:flex!important}
+.cert-backdrop{position:fixed!important;inset:0!important;z-index:0!important;cursor:zoom-out}
+.cert-modal-inner{position:relative!important;z-index:1!important;width:min(1120px,96vw)!important;height:min(860px,94vh)!important;padding:54px 64px 24px!important;border-radius:20px!important;background:#0b1220!important;border:1px solid rgba(255,255,255,.2)!important;box-shadow:0 28px 90px rgba(0,0,0,.9)!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+.cert-modal-figure{width:100%;height:100%;margin:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px;min-width:0}
+.cert-modal-img{display:block!important;width:100%!important;height:100%!important;min-height:0!important;object-fit:contain!important;background:#fff!important;border-radius:8px!important;filter:none!important;opacity:1!important}
+.cert-modal-caption{display:flex;justify-content:space-between;gap:18px;color:#eaf2ff;font-size:13px;line-height:1.35;text-align:left}
+#cert-modal-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#cert-modal-count{color:#9fb2d8;white-space:nowrap}
+.cert-modal-close{position:absolute;top:10px;right:12px;z-index:4;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:#111c31;color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.cert-modal .modal-arrow{z-index:4!important}
+body.cert-viewer-open{overflow:hidden!important}
+@media(max-width:640px){.cert-modal{padding:8px!important}.cert-modal-inner{width:98vw!important;height:92vh!important;padding:50px 40px 16px!important;border-radius:14px!important}.cert-modal .modal-left{left:4px!important}.cert-modal .modal-right{right:4px!important}.cert-modal-caption{font-size:11px}.cert-modal-close{top:7px;right:7px}}
+@media(max-width:768px){#nebula{filter:blur(14px) saturate(115%)!important}.timeline-content{transition:none!important}.stat-card:hover,.glassy-card:hover,.timeline-content:hover{transform:none!important}}
+
 </style>
 </head>
 <body>
+
+<!-- Certificate viewer: kept directly under body for reliable fixed positioning -->
+<div class="cert-modal" id="cert-modal" aria-hidden="true">
+  <div class="cert-backdrop" data-cert-close></div>
+  <div class="cert-modal-inner" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+    <button aria-label="Close certificate viewer" class="cert-modal-close" type="button" data-cert-close>×</button>
+    <button aria-label="Previous certificate" class="modal-arrow modal-left" type="button">‹</button>
+    <figure class="cert-modal-figure">
+      <img alt="Certificate preview" class="cert-modal-img" id="cert-modal-img" src="">
+      <figcaption class="cert-modal-caption">
+        <span id="cert-modal-title">Certificate</span>
+        <span id="cert-modal-count">1 of 31</span>
+      </figcaption>
+    </figure>
+    <button aria-label="Next certificate" class="modal-arrow modal-right" type="button">›</button>
+  </div>
+</div>
+
 <!-- ===== BACKGROUND LAYERS ===== -->
 <canvas aria-hidden="true" class="layer" id="stars1"></canvas>
 <canvas aria-hidden="true" class="layer" id="stars2"></canvas>
@@ -3557,19 +3607,10 @@ and making processes faster, cleaner, and scalable.
 <img alt="Accenture We Innovate Certificate for Continuous Innovation" class="cert-slide" decoding="async" loading="lazy" src="certificates/M30.webp"/>
 </div>
 <button aria-label="Next certificate" class="cert-arrow right">›</button>
+<div class="cert-live-count" id="cert-live-count" aria-live="polite">1 of 31</div>
 </div>
 </div>
-<!-- Popup modal for full certificate -->
-<div class="cert-modal" id="cert-modal">
-<div class="cert-backdrop"></div>
-<div class="cert-modal-inner" role="dialog" aria-modal="true" aria-label="Certificate viewer">
-<button aria-label="Close certificate viewer" class="cert-modal-close" type="button">×</button>
-<button aria-label="Previous certificate" class="modal-arrow modal-left" type="button">‹</button>
-<img alt="Full certificate view" class="cert-modal-img" decoding="async" id="cert-modal-img" loading="lazy" src=""/>
-<button aria-label="Next certificate" class="modal-arrow modal-right" type="button">›</button>
-</div>
-</div>
-</div>
+
 </section>
 <!-- ===== Aperian GlobeSmart Profile ===== -->
 <!-- ===== Aperian GlobeSmart Profile ===== -->
@@ -3871,8 +3912,8 @@ and making processes faster, cleaner, and scalable.
 (()=>{
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine=matchMedia('(pointer:fine)').matches;
-const dpr=Math.min(1.5,devicePixelRatio||1);
-const configs=[{id:'stars1',count:90,speed:.15,size:1},{id:'stars2',count:70,speed:.35,size:1.5},{id:'stars3',count:45,speed:.65,size:2}];
+const dpr=1;
+const configs=[{id:'stars1',count:55,speed:.15,size:1},{id:'stars2',count:36,speed:.35,size:1.5},{id:'stars3',count:22,speed:.65,size:2}];
 let mx=0,my=0,pending=false;
 const fields=configs.map(c=>{const canvas=document.getElementById(c.id),ctx=canvas.getContext('2d');let w,h,stars;
 function resize(){w=canvas.width=Math.round(innerWidth*dpr);h=canvas.height=Math.round(innerHeight*dpr);canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';stars=Array.from({length:c.count},()=>({x:Math.random()*w,y:Math.random()*h,a:Math.random()*.7+.2}));}
@@ -3883,7 +3924,7 @@ function queue(){if(!pending){pending=true;requestAnimationFrame(render);}}
 addEventListener('resize',()=>{fields.forEach(f=>f.resize());queue();},{passive:true});
 if(fine&&!reduced)addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;queue();},{passive:true});
 document.addEventListener('visibilitychange',queue);queue();
-if(fine&&!reduced){const sparks=[];let last=0;addEventListener('mousemove',e=>{const now=performance.now();if(now-last<40)return;last=now;const q=document.createElement('span');q.className='spark';q.style.left=e.clientX+'px';q.style.top=e.clientY+'px';document.body.appendChild(q);sparks.push(q);if(sparks.length>16)sparks.shift()?.remove();setTimeout(()=>q.remove(),700);},{passive:true});}
+
 document.querySelectorAll('.tilt').forEach(el=>{el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;el.style.transform=`rotateX(${(0.5-y)*10}deg) rotateY(${(x-0.5)*10}deg)`;},{passive:true});el.addEventListener('mouseleave',()=>el.style.transform='rotateX(0deg) rotateY(0deg)');});
 })();
 </script>
@@ -3893,52 +3934,26 @@ document.querySelectorAll('.tilt').forEach(el=>{el.addEventListener('mousemove',
   }
     // Counter animation
 const counters = document.querySelectorAll('.counter');
-const speed = 200; // smaller = faster
-
 const animateCounters = (entries, observer) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const counter = entry.target;
-
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const current = +counter.innerText;
-
-        const increment = Math.ceil(target / speed);
-
-        if (current < target) {
-          counter.innerText = current + increment;
-          setTimeout(updateCount, 20);
-        } else {
-          counter.innerText = target;
-        }
-      };
-
-      updateCount();
-      observer.unobserve(counter);
-    }
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = Number(el.dataset.target || 0);
+    const start = performance.now();
+    const duration = 700;
+    const tick = now => {
+      const progress = Math.min(1, (now - start) / duration);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - progress, 3)));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    observer.unobserve(el);
   });
 };
-
-const observer = new IntersectionObserver(animateCounters, { threshold: 0.3 });
+const observer = new IntersectionObserver(animateCounters, { threshold: 0.25 });
 counters.forEach(counter => observer.observe(counter));
 </script>
-<script>
-const entries = document.querySelectorAll('.entry');
-const stars = document.querySelectorAll('.star');
 
-window.addEventListener('scroll', () => {
-  entries.forEach((entry, i) => {
-    const rect = entry.getBoundingClientRect();
-    if (rect.top >= 100 && rect.top < window.innerHeight / 2) {
-      entries.forEach(e => e.classList.remove('active'));
-      stars.forEach(s => s.classList.remove('active'));
-      entry.classList.add('active');
-      stars[i].classList.add('active');
-    }
-  });
-});
-</script>
 <script>
   const openCertifications = document.getElementById("openCertifications");
 
@@ -4697,158 +4712,6 @@ function barHoverOnly(d){
 
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const slider = document.getElementById("certSlider");
-  const leftBtn = document.querySelector(".cert-arrow.left");
-  const rightBtn = document.querySelector(".cert-arrow.right");
-  const modal = document.getElementById("cert-modal");
-  const modalImg = document.getElementById("cert-modal-img");
-  const modalLeft = document.querySelector(".modal-arrow.modal-left");
-  const modalRight = document.querySelector(".modal-arrow.modal-right");
-  const modalBackdrop = document.querySelector(".cert-backdrop");
-  const modalClose = document.querySelector(".cert-modal-close");
-
-  if (!slider || !leftBtn || !rightBtn || !modal || !modalImg) return;
-
-  /* Move the fixed modal directly under body so no parent stacking context can hide it. */
-  document.body.appendChild(modal);
-
-  const realSlides = Array.from(slider.querySelectorAll(".cert-slide"));
-  const realCount = realSlides.length;
-  if (!realCount) return;
-
-  const firstClone = realSlides[0].cloneNode(true);
-  const lastClone = realSlides[realCount - 1].cloneNode(true);
-  firstClone.setAttribute("aria-hidden", "true");
-  lastClone.setAttribute("aria-hidden", "true");
-  slider.appendChild(firstClone);
-  slider.insertBefore(lastClone, realSlides[0]);
-
-  const slides = Array.from(slider.querySelectorAll(".cert-slide"));
-  let index = 1;
-  let modalIndex = 0;
-  let slideWidth = 0;
-  let autoplayId = null;
-  let snapTimer = null;
-  let pointerStart = 0;
-  let pointerDelta = 0;
-  let dragging = false;
-
-  function measure() {
-    slideWidth = slider.getBoundingClientRect().width || 1;
-    goTo(index, false);
-  }
-
-  function goTo(target, animate = true) {
-    index = target;
-    slider.style.transition = animate ? "transform .35s ease" : "none";
-    slider.style.transform = `translate3d(${-index * slideWidth}px,0,0)`;
-  }
-
-  function normalizeClone() {
-    if (index === 0) goTo(realCount, false);
-    if (index === realCount + 1) goTo(1, false);
-  }
-
-  function move(direction) {
-    clearTimeout(snapTimer);
-    goTo(index + direction, true);
-    snapTimer = setTimeout(normalizeClone, 380);
-  }
-
-  function stopAutoplay() {
-    if (autoplayId !== null) clearInterval(autoplayId);
-    autoplayId = null;
-  }
-
-  function startAutoplay() {
-    stopAutoplay();
-    if (!modal.classList.contains("show") && !document.hidden) {
-      autoplayId = setInterval(() => move(1), 3500);
-    }
-  }
-
-  function showModalImage() {
-    const source = realSlides[modalIndex].currentSrc || realSlides[modalIndex].src;
-    modalImg.removeAttribute("loading");
-    modalImg.src = source;
-    modalImg.alt = realSlides[modalIndex].alt || "Certificate preview";
-  }
-
-  function openModal(realIndex) {
-    modalIndex = (realIndex + realCount) % realCount;
-    showModalImage();
-    modal.classList.add("show");
-    document.body.classList.add("cert-viewer-open");
-    stopAutoplay();
-    modalClose?.focus({ preventScroll: true });
-  }
-
-  function closeModal() {
-    modal.classList.remove("show");
-    document.body.classList.remove("cert-viewer-open");
-    startAutoplay();
-  }
-
-  function changeModal(direction) {
-    modalIndex = (modalIndex + direction + realCount) % realCount;
-    showModalImage();
-    goTo(modalIndex + 1, true);
-  }
-
-  rightBtn.addEventListener("click", () => { move(1); startAutoplay(); });
-  leftBtn.addEventListener("click", () => { move(-1); startAutoplay(); });
-
-  slides.forEach((slide, position) => {
-    slide.addEventListener("click", () => {
-      if (Math.abs(pointerDelta) > 8) return;
-      const realIndex = position === 0 ? realCount - 1 : position === slides.length - 1 ? 0 : position - 1;
-      openModal(realIndex);
-    });
-  });
-
-  slider.addEventListener("pointerdown", event => {
-    dragging = true;
-    pointerStart = event.clientX;
-    pointerDelta = 0;
-    stopAutoplay();
-    slider.setPointerCapture?.(event.pointerId);
-  });
-  slider.addEventListener("pointermove", event => {
-    if (!dragging) return;
-    pointerDelta = event.clientX - pointerStart;
-  });
-  slider.addEventListener("pointerup", () => {
-    if (!dragging) return;
-    dragging = false;
-    if (pointerDelta < -60) move(1);
-    else if (pointerDelta > 60) move(-1);
-    startAutoplay();
-    setTimeout(() => { pointerDelta = 0; }, 0);
-  });
-  slider.addEventListener("pointercancel", () => { dragging = false; pointerDelta = 0; startAutoplay(); });
-
-  modalRight?.addEventListener("click", event => { event.stopPropagation(); changeModal(1); });
-  modalLeft?.addEventListener("click", event => { event.stopPropagation(); changeModal(-1); });
-  modalClose?.addEventListener("click", closeModal);
-  modalBackdrop?.addEventListener("click", closeModal);
-  modal.querySelector(".cert-modal-inner")?.addEventListener("click", event => event.stopPropagation());
-  modal.addEventListener("click", event => { if (event.target === modal) closeModal(); });
-
-  document.addEventListener("keydown", event => {
-    if (!modal.classList.contains("show")) return;
-    if (event.key === "Escape") closeModal();
-    if (event.key === "ArrowRight") changeModal(1);
-    if (event.key === "ArrowLeft") changeModal(-1);
-  });
-  document.addEventListener("visibilitychange", () => document.hidden ? stopAutoplay() : startAutoplay());
-  window.addEventListener("resize", measure, { passive: true });
-
-  measure();
-  startAutoplay();
-});
-</script>
-<script>
 function openMobileModal(html){
   const modal = document.getElementById("mobileModal");
   const body = document.getElementById("mobileModalBody");
@@ -5320,5 +5183,119 @@ if (yearEl) {
 <footer class="copyright">
 <p>© <span id="year"></span> Mohammad Mujahid. All rights reserved.</p>
 </footer>
+
+<script>
+/* Certificate slider/viewer: delegated clicks, viewport-only autoplay, numbering. */
+(() => {
+  const init = () => {
+    const slider = document.getElementById('certSlider');
+    const shell = slider?.closest('.cert-slider-container');
+    const modal = document.getElementById('cert-modal');
+    if (!slider || !shell || !modal || modal.dataset.ready === '1') return;
+    modal.dataset.ready = '1';
+
+    const slides = Array.from(slider.querySelectorAll('.cert-slide'));
+    const total = slides.length;
+    const previewCount = document.getElementById('cert-live-count');
+    const modalImg = document.getElementById('cert-modal-img');
+    const modalTitle = document.getElementById('cert-modal-title');
+    const modalCount = document.getElementById('cert-modal-count');
+    let current = 0;
+    let timer = 0;
+    let visible = false;
+    let modalOpen = false;
+    let startX = 0;
+    let moved = 0;
+
+    const updateNumbers = () => {
+      const text = `${current + 1} of ${total}`;
+      if (previewCount) previewCount.textContent = text;
+      if (modalCount) modalCount.textContent = text;
+    };
+
+    const render = (animate = true) => {
+      slider.style.transition = animate ? 'transform .35s ease' : 'none';
+      slider.style.transform = `translate3d(${-current * 100}%,0,0)`;
+      updateNumbers();
+    };
+
+    const stop = () => { if (timer) clearInterval(timer); timer = 0; };
+    const start = () => {
+      stop();
+      if (visible && !modalOpen && !document.hidden && total > 1) {
+        timer = setInterval(() => { current = (current + 1) % total; render(); }, 3500);
+      }
+    };
+
+    const open = index => {
+      current = (index + total) % total;
+      render(false);
+      const slide = slides[current];
+      modalImg.src = slide.currentSrc || slide.getAttribute('src');
+      modalImg.alt = slide.alt || 'Certificate preview';
+      modalTitle.textContent = slide.alt || 'Certificate';
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('cert-viewer-open');
+      modalOpen = true;
+      stop();
+      modal.querySelector('.cert-modal-close')?.focus({preventScroll:true});
+    };
+
+    const close = () => {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('cert-viewer-open');
+      modalOpen = false;
+      start();
+    };
+
+    const modalMove = delta => {
+      current = (current + delta + total) % total;
+      const slide = slides[current];
+      modalImg.src = slide.currentSrc || slide.getAttribute('src');
+      modalImg.alt = slide.alt || 'Certificate preview';
+      modalTitle.textContent = slide.alt || 'Certificate';
+      render(false);
+    };
+
+    shell.addEventListener('click', event => {
+      if (event.target.closest('.cert-arrow.right')) { current = (current + 1) % total; render(); start(); return; }
+      if (event.target.closest('.cert-arrow.left')) { current = (current - 1 + total) % total; render(); start(); return; }
+      const image = event.target.closest('.cert-slide');
+      if (image && Math.abs(moved) < 10) open(slides.indexOf(image));
+    });
+
+    slider.addEventListener('pointerdown', e => { startX=e.clientX; moved=0; stop(); });
+    slider.addEventListener('pointermove', e => { if(startX) moved=e.clientX-startX; });
+    slider.addEventListener('pointerup', () => {
+      if (moved < -55) { current=(current+1)%total; render(); }
+      else if (moved > 55) { current=(current-1+total)%total; render(); }
+      startX=0; setTimeout(()=>{moved=0},0); start();
+    });
+
+    modal.addEventListener('click', event => {
+      if (event.target.closest('[data-cert-close]') || event.target === modal) { close(); return; }
+      if (event.target.closest('.modal-right')) modalMove(1);
+      if (event.target.closest('.modal-left')) modalMove(-1);
+    });
+    document.addEventListener('keydown', event => {
+      if (!modalOpen) return;
+      if (event.key === 'Escape') close();
+      if (event.key === 'ArrowRight') modalMove(1);
+      if (event.key === 'ArrowLeft') modalMove(-1);
+    });
+
+    new IntersectionObserver(entries => {
+      visible = entries[0]?.isIntersecting && entries[0].intersectionRatio >= .25;
+      visible ? start() : stop();
+    }, {threshold:[0,.25,.6]}).observe(shell);
+    document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+    render(false);
+  };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init, {once:true}) : init();
+})();
+</script>
+
 </body>
 </html>
