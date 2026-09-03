@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -3108,6 +3109,102 @@ body.cert-viewer-open { overflow: hidden !important; }
 @media(max-width:760px){.case-studies-section{padding:72px 12px 28px}.case-study-topline{flex-direction:column}.case-impact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.case-story-grid{grid-template-columns:1fr}.case-study-coming-soon{align-items:flex-start;flex-direction:column}.case-study-coming-soon p{text-align:left}}
 @media(max-width:420px){.case-impact-grid{grid-template-columns:1fr}.case-impact-card{min-height:94px}}
 
+
+/* ===== PREMIUM STACKED CASE-STUDY DECK V4 ===== */
+.case-studies-section{content-visibility:auto;contain-intrinsic-size:auto 980px}
+.case-deck{position:relative;margin-top:30px;padding:0 0 108px;isolation:isolate}
+.case-deck-stage{position:relative;transition:height .58s cubic-bezier(.22,1,.36,1);contain:layout style}
+.case-deck-card{display:none;width:100%;will-change:transform,opacity}
+.case-deck-card.is-active{display:block;position:relative;z-index:5}
+.case-deck-card.deck-in-up{display:block;position:relative;z-index:6;animation:deckInUp .62s cubic-bezier(.22,1,.36,1) both}
+.case-deck-card.deck-in-down{display:block;position:relative;z-index:6;animation:deckInDown .62s cubic-bezier(.22,1,.36,1) both}
+.case-deck-card.deck-out-up{display:block;position:absolute;inset:0;z-index:5;animation:deckOutUp .48s cubic-bezier(.55,0,1,.45) both;pointer-events:none}
+.case-deck-card.deck-out-down{display:block;position:absolute;inset:0;z-index:5;animation:deckOutDown .48s cubic-bezier(.55,0,1,.45) both;pointer-events:none}
+@keyframes deckInUp{from{opacity:.2;transform:translate3d(0,84px,0) scale(.965)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes deckInDown{from{opacity:.2;transform:translate3d(0,-84px,0) scale(.965)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes deckOutUp{to{opacity:0;transform:translate3d(0,-64px,0) scale(.976)}}
+@keyframes deckOutDown{to{opacity:0;transform:translate3d(0,64px,0) scale(.976)}}
+.case-deck-card.case-study-featured{overflow:hidden;box-shadow:0 32px 90px rgba(0,0,0,.42),0 0 0 1px rgba(255,255,255,.035) inset}
+.case-deck-card.case-study-featured::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(700px 260px at 88% 0%,rgba(122,162,255,.11),transparent 62%)}
+.case-deck-card[data-accent="mint"]::before{background:linear-gradient(90deg,#4ff0b0,#7aa2ff,#8a7aff)}
+.case-deck-card[data-accent="violet"]::before{background:linear-gradient(90deg,#a68bff,#ff8bd4,#7aa2ff)}
+.case-deck-card[data-accent="amber"]::before{background:linear-gradient(90deg,#ffbf69,#4ff0b0,#7aa2ff)}
+.case-deck-card .case-study-topline,.case-deck-card .case-study-summary,.case-deck-card .case-impact-grid,.case-deck-card .case-story-grid,.case-deck-card .case-tools{position:relative;z-index:1}
+.case-study-summary strong{color:#eef4ff}
+.case-impact-grid.case-impact-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.case-impact-card strong{font-variant-numeric:tabular-nums}
+.case-story-grid{margin-top:20px}
+.case-story-block{min-height:142px;transition:transform .24s ease,border-color .24s ease,background .24s ease}
+.case-story-block:hover{transform:translateY(-3px);border-color:rgba(122,162,255,.32);background:rgba(122,162,255,.055)}
+.case-story-label{display:flex;align-items:center;gap:8px}
+.case-story-label::before{content:'';width:7px;height:7px;border-radius:50%;background:#4ff0b0;box-shadow:0 0 12px rgba(79,240,176,.7)}
+.case-flow-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:20px 0 0;position:relative;z-index:1}
+.case-flow-step{position:relative;padding:12px 10px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.035);text-align:center;color:#dce7f7;font-size:11px;font-weight:850;letter-spacing:.025em}
+.case-flow-step:not(:last-child)::after{content:'›';position:absolute;right:-8px;top:50%;transform:translateY(-50%);z-index:2;width:16px;height:16px;line-height:14px;border-radius:50%;background:#101827;color:#4ff0b0;border:1px solid rgba(79,240,176,.35)}
+.case-deck-preview-layer{position:absolute;left:3.2%;right:3.2%;bottom:20px;height:104px;z-index:2}
+.case-deck-preview-shadow{position:absolute;inset:16px 2.5% -10px;border:1px solid rgba(255,255,255,.06);border-radius:0 0 22px 22px;background:rgba(11,16,28,.72);transform:scale(.97);z-index:-1}
+.case-deck-preview{position:absolute;inset:0;padding:22px 72px 16px 28px;border:1px solid rgba(122,162,255,.3);border-radius:0 0 22px 22px;background:linear-gradient(135deg,rgba(24,34,56,.98),rgba(9,14,25,.98));box-shadow:0 24px 54px rgba(0,0,0,.36);color:#fff;text-align:left;cursor:pointer;transition:transform .26s ease,border-color .26s ease,box-shadow .26s ease}
+.case-deck-preview:hover{transform:translate3d(0,6px,0);border-color:rgba(79,240,176,.58);box-shadow:0 28px 65px rgba(0,0,0,.48)}
+.case-deck-preview span{display:block;color:#4ff0b0;font-size:10px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+.case-deck-preview strong{display:block;margin-top:6px;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-deck-preview em{display:block;margin-top:4px;color:#8294b3;font-size:11px;font-style:normal}
+.case-deck-preview .preview-cue{position:absolute;right:28px;top:35px;width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(122,162,255,.28);border-radius:50%;color:#9bb8ff;font-size:18px}
+.case-deck-preview.is-end{cursor:default;opacity:.62}
+.case-deck-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 13px}
+.case-deck-prev{min-width:150px;border:1px solid rgba(255,255,255,.11);border-radius:999px;padding:9px 15px;background:rgba(255,255,255,.035);color:#bfcce2;font-weight:850;cursor:pointer;transition:.2s ease}
+.case-deck-prev:hover:not(:disabled){border-color:rgba(122,162,255,.35);color:#fff}
+.case-deck-prev:disabled{visibility:hidden}
+.case-deck-progress{display:flex;align-items:center;gap:7px}
+.case-deck-dot{width:25px;height:6px;border:0;border-radius:999px;background:rgba(255,255,255,.11);padding:0;cursor:pointer;transition:width .25s ease,background .25s ease}
+.case-deck-dot.is-active{width:46px;background:linear-gradient(90deg,#4ff0b0,#7aa2ff)}
+.case-deck-counter{min-width:54px;text-align:right;color:#8294b3;font-size:11px;font-weight:900;letter-spacing:.12em}
+@media(max-width:760px){.case-deck{padding-bottom:96px}.case-impact-grid.case-impact-four{grid-template-columns:repeat(2,minmax(0,1fr))}.case-flow-bar{grid-template-columns:repeat(2,minmax(0,1fr))}.case-flow-step:nth-child(2)::after{display:none}.case-story-block{min-height:0}.case-deck-preview-layer{left:4%;right:4%;height:94px}.case-deck-preview{padding:18px 58px 13px 18px}.case-deck-preview strong{font-size:14px}.case-deck-preview em{display:none}.case-deck-preview .preview-cue{right:16px;top:29px}.case-deck-prev{min-width:auto;font-size:11px}.case-deck-dot{width:18px}.case-deck-dot.is-active{width:32px}}
+@media(prefers-reduced-motion:reduce){.case-deck-card{animation:none!important}.case-deck-stage{transition:none}}
+/* Performance pass: keep the premium composition while reducing continuous paint work */
+.spark{display:none!important}
+.case-deck,.case-deck-card{backface-visibility:hidden;-webkit-font-smoothing:antialiased}
+@media(max-width:900px){.case-deck-card.case-study-featured{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+
+
+/* ===== TRUE STACKED SLIDE DECK CORRECTION ===== */
+.case-deck{padding-bottom:142px}
+.case-deck-stack{position:absolute;left:3.5%;right:3.5%;bottom:4px;height:132px;z-index:2;pointer-events:none}
+.case-stack-preview{--stack-index:0;position:absolute;left:calc(var(--stack-index) * 2.2%);right:calc(var(--stack-index) * 2.2%);top:calc(var(--stack-index) * 31px);height:78px;padding:16px 70px 13px 24px;border:1px solid rgba(122,162,255,.26);border-radius:0 0 20px 20px;background:linear-gradient(135deg,rgba(22,31,51,.985),rgba(8,13,24,.985));box-shadow:0 18px 42px rgba(0,0,0,.34);color:#fff;text-align:left;cursor:pointer;pointer-events:auto;transform:scale(calc(1 - var(--stack-index) * .018));transform-origin:top center;transition:transform .28s ease,border-color .28s ease,filter .28s ease;overflow:hidden}
+.case-stack-preview:nth-child(1){z-index:3}
+.case-stack-preview:nth-child(2){z-index:2;filter:brightness(.82)}
+.case-stack-preview:nth-child(3){z-index:1;filter:brightness(.66)}
+.case-stack-preview:hover{border-color:rgba(79,240,176,.6);filter:brightness(1);transform:translateY(5px) scale(calc(1 - var(--stack-index) * .018))}
+.case-stack-preview span{display:block;color:#4ff0b0;font-size:9px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+.case-stack-preview strong{display:block;margin-top:5px;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-stack-preview b{position:absolute;right:23px;top:22px;width:32px;height:32px;display:grid;place-items:center;border:1px solid rgba(122,162,255,.3);border-radius:50%;color:#9bb8ff;font-size:17px}
+.case-stack-preview:first-child::before{content:'NEXT SLIDE';position:absolute;right:68px;top:25px;color:#6f83a7;font-size:8px;font-weight:900;letter-spacing:.14em}
+.case-deck-nav{margin-bottom:14px}
+@media(max-width:760px){.case-deck{padding-bottom:130px}.case-deck-stack{left:4%;right:4%;height:122px}.case-stack-preview{top:calc(var(--stack-index) * 28px);height:70px;padding:14px 52px 11px 17px}.case-stack-preview strong{font-size:12px}.case-stack-preview b{right:14px;top:19px;width:28px;height:28px}.case-stack-preview:first-child::before{display:none}}
+
+
+/* ===== FULL-CARD STACKED CASE STUDY SLIDER ===== */
+.case-deck{position:relative;margin-top:34px;padding:0;isolation:isolate}
+.case-deck-nav,.case-deck-stack,.case-deck-preview-layer{display:none!important}
+.case-deck-stage{position:relative;overflow:visible;transition:height .55s cubic-bezier(.22,1,.36,1);perspective:1400px}
+.case-deck-card{display:block!important;position:absolute!important;left:0;right:0;top:86px;width:100%;margin:0;opacity:0;visibility:hidden;pointer-events:none;transform-origin:center center;transition:transform .62s cubic-bezier(.22,1,.36,1),opacity .42s ease,filter .42s ease;will-change:transform,opacity;backface-visibility:hidden}
+.case-deck-card.is-active{z-index:5;opacity:1;visibility:visible;pointer-events:auto;transform:translate3d(0,0,0) scale(1);filter:none}
+.case-deck-card.is-prev{z-index:2;opacity:.72;visibility:visible;pointer-events:auto;cursor:pointer;transform:translate3d(0,-70px,-45px) scale(.958);filter:brightness(.72) saturate(.8)}
+.case-deck-card.is-next{z-index:3;opacity:.82;visibility:visible;pointer-events:auto;cursor:pointer;transform:translate3d(0,70px,-30px) scale(.972);filter:brightness(.82) saturate(.9)}
+.case-deck-card.is-far{z-index:1;opacity:0;visibility:hidden;transform:translate3d(0,115px,-80px) scale(.93)}
+.case-deck-card.is-prev:hover{transform:translate3d(0,-77px,-38px) scale(.962);filter:brightness(.82) saturate(.9)}
+.case-deck-card.is-next:hover{transform:translate3d(0,77px,-22px) scale(.976);filter:brightness(.92) saturate(.96)}
+.case-deck-card.is-prev::after,.case-deck-card.is-next::after{content:'';position:absolute;inset:0;z-index:20;border-radius:inherit;background:linear-gradient(180deg,rgba(4,8,16,.12),rgba(4,8,16,.5));pointer-events:none}
+.case-deck-card.is-prev::before,.case-deck-card.is-next::before{z-index:21}
+.case-deck-card.is-active::after{display:none}
+.case-deck-card.is-prev .case-study-topline,.case-deck-card.is-next .case-study-topline{position:relative;z-index:22}
+.case-deck-card.is-prev .case-study-summary,.case-deck-card.is-prev .case-impact-grid,.case-deck-card.is-prev .case-flow-bar,.case-deck-card.is-prev .case-story-grid,.case-deck-card.is-prev .case-tools,
+.case-deck-card.is-next .case-study-summary,.case-deck-card.is-next .case-impact-grid,.case-deck-card.is-next .case-flow-bar,.case-deck-card.is-next .case-story-grid,.case-deck-card.is-next .case-tools{pointer-events:none}
+.case-deck-hint{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;color:#7285a5;font-size:10px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+.case-deck-hint::before,.case-deck-hint::after{content:'';width:44px;height:1px;background:linear-gradient(90deg,transparent,rgba(122,162,255,.38))}
+.case-deck-hint::after{transform:scaleX(-1)}
+@media(max-width:760px){.case-deck-stage{margin-left:-2px;margin-right:-2px}.case-deck-card{top:66px}.case-deck-card.is-prev{transform:translate3d(0,-52px,-35px) scale(.965)}.case-deck-card.is-next{transform:translate3d(0,52px,-25px) scale(.976)}.case-deck-card.is-prev:hover{transform:translate3d(0,-57px,-30px) scale(.968)}.case-deck-card.is-next:hover{transform:translate3d(0,57px,-20px) scale(.979)}.case-deck-hint{font-size:8px;letter-spacing:.09em}}
+@media(prefers-reduced-motion:reduce){.case-deck-card,.case-deck-stage{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -3248,88 +3345,44 @@ and making processes faster, cleaner, and scalable.
 <section class="case-studies-section" id="case-studies" aria-labelledby="case-studies-title">
   <div class="case-studies-shell">
     <div class="case-studies-heading">
-      <span class="case-eyebrow">Selected transformation work</span>
+      <span class="case-eyebrow">Automation with operational consequence</span>
       <h2 id="case-studies-title">Featured Case Studies</h2>
-      <p>Practical improvements built around accuracy, control and measurable operational impact. Client, customer and internal system details are intentionally anonymised.</p>
+      <p>Four solutions that replaced fragmented manual work with controlled, scalable and measurable operating models.</p>
     </div>
-
-    <article class="case-study-featured">
-      <div class="case-study-topline">
-        <div>
-          <span class="case-number">CASE STUDY 01</span>
-          <h3>Automated High-Volume NSF Return Posting</h3>
-        </div>
-        <span class="case-status">Implemented</span>
-      </div>
-
-      <p class="case-study-summary">
-        Redesigned a repetitive NSF return-posting workflow by combining structured Excel input, VBA-based validation and desktop automation. The solution transformed a time-sensitive, manual activity into a controlled and repeatable process while preserving operational review and exception handling.
-      </p>
-
-      <div class="case-impact-grid" aria-label="Case study impact metrics">
-        <div class="case-impact-card">
-          <strong>5+ hrs</strong>
-          <span>Previous daily effort</span>
-        </div>
-        <div class="case-impact-card">
-          <strong>15 min</strong>
-          <span>Automated processing time</span>
-        </div>
-        <div class="case-impact-card">
-          <strong>~95%</strong>
-          <span>Estimated cycle-time reduction</span>
-        </div>
-        <div class="case-impact-card">
-          <strong>2 associates</strong>
-          <span>Manual effort released</span>
-        </div>
-        <div class="case-impact-card">
-          <strong>Near-zero</strong>
-          <span>Manual entry errors observed</span>
-        </div>
-        <div class="case-impact-card">
-          <strong>5 days/week</strong>
-          <span>Recurring operational benefit</span>
-        </div>
-      </div>
-
-      <div class="case-story-grid">
-        <section class="case-story-block">
-          <span class="case-story-label">The challenge</span>
-          <p>Return-item details had to be entered individually into an internal application with no practical bulk-upload route. Repetitive copying, screen navigation and field-level entry consumed most of the working day, increased fatigue and created deadline and accuracy risk.</p>
-        </section>
-        <section class="case-story-block">
-          <span class="case-story-label">The solution</span>
-          <p>Built a standardised Excel input template with VBA controls and an attended desktop-automation flow. The solution reads approved return data, opens the required application workflow, retrieves the relevant customer record, enters the required NSF details and completes the repetitive posting sequence.</p>
-        </section>
-        <section class="case-story-block">
-          <span class="case-story-label">Controls retained</span>
-          <p>Input standardisation, required-field checks, user-triggered execution, exception visibility and final operational review were retained so the automation supported the process without removing accountability.</p>
-        </section>
-        <section class="case-story-block">
-          <span class="case-story-label">Business outcome</span>
-          <p>Reduced daily processing from approximately 6–7 hours to 10–15 minutes, improved posting consistency, supported on-time completion and released capacity previously absorbed by two associates for higher-value exception and reconciliation work.</p>
-        </section>
-      </div>
-
-      <div class="case-tools" aria-label="Tools and capabilities used">
-        <span>Power Automate</span>
-        <span>Excel VBA</span>
-        <span>Desktop Automation</span>
-        <span>Data Validation</span>
-        <span>NSF Returns</span>
-        <span>Process Controls</span>
-      </div>
-
-      <div class="case-confidentiality">
-        <strong>Confidentiality note:</strong> This case study describes the business problem, solution architecture and outcomes at a portfolio level. Client names, customer information, internal application names, field mappings and implementation logic are not disclosed.
-      </div>
+    <div class="case-deck" id="caseDeck">
+      <div class="case-deck-stage" id="caseDeckStage" tabindex="0" aria-live="polite"><article class="case-study-featured case-deck-card" data-deck-card="0" data-accent="blue">
+      <div class="case-study-topline"><div><span class="case-number">CASE STUDY 01</span><h3>Automated High-Volume NSF Return Posting</h3></div><span class="case-status">Implemented</span></div>
+      <p class="case-study-summary">Re-engineered a time-intensive return-posting activity into a <strong>controlled, repeatable automation</strong> that preserved validation and operational accountability.</p>
+      <div class="case-impact-grid case-impact-four" aria-label="Key outcomes"><div class="case-impact-card"><strong>6–7 hrs</strong><span>Previous daily effort</span></div><div class="case-impact-card"><strong>10–15 min</strong><span>Automated cycle</span></div><div class="case-impact-card"><strong>~95%</strong><span>Time reduction</span></div><div class="case-impact-card"><strong>2 associates</strong><span>Capacity released</span></div></div>
+      <div class="case-flow-bar" aria-label="Solution flow"><div class="case-flow-step">Prepare input</div><div class="case-flow-step">Validate records</div><div class="case-flow-step">Execute posting</div><div class="case-flow-step">Review exceptions</div></div>
+      <div class="case-story-grid"><section class="case-story-block"><span class="case-story-label">Operational friction</span><p>High-volume NSF returns required repetitive field-by-field entry, consuming most of the working day and increasing deadline and accuracy exposure.</p></section><section class="case-story-block"><span class="case-story-label">Automation design</span><p>Structured Excel input, VBA controls and attended desktop automation were combined to retrieve records and complete the repetitive posting sequence.</p></section><section class="case-story-block"><span class="case-story-label">Control by design</span><p>Mandatory-field checks, user-triggered execution, exception visibility and final review kept the process governed rather than blindly automated.</p></section><section class="case-story-block"><span class="case-story-label">Business impact</span><p>Cycle time fell from hours to minutes, posting consistency improved and capacity shifted toward exceptions, reconciliation and higher-value analysis.</p></section></div>
+      <div class="case-tools" aria-label="Tools and capabilities"><span>Power Automate</span><span>Excel VBA</span><span>Desktop Automation</span><span>Data Validation</span></div>
     </article>
-
-    <div class="case-study-coming-soon">
-      <span>Case studies 02–04</span>
-      <p>Additional automation and finance-transformation projects will be added as concise, outcome-led case studies.</p>
-    </div>
+<article class="case-study-featured case-deck-card" data-deck-card="1" data-accent="mint">
+      <div class="case-study-topline"><div><span class="case-number">CASE STUDY 02</span><h3>Shared Mailbox SLA Command Centre</h3></div><span class="case-status">Implemented</span></div>
+      <p class="case-study-summary">Converted 74+ disconnected shared mailboxes into a <strong>single operational control layer</strong> for SLA risk, ownership, volume and leadership visibility.</p>
+      <div class="case-impact-grid case-impact-four" aria-label="Key outcomes"><div class="case-impact-card"><strong>74+</strong><span>Mailboxes unified</span></div><div class="case-impact-card"><strong>2-day</strong><span>SLA controlled</span></div><div class="case-impact-card"><strong>1 refresh</strong><span>Live aging view</span></div><div class="case-impact-card"><strong>Daily</strong><span>Leadership reporting</span></div></div>
+      <div class="case-flow-bar" aria-label="Solution flow"><div class="case-flow-step">Capture queues</div><div class="case-flow-step">Map ownership</div><div class="case-flow-step">Surface SLA risk</div><div class="case-flow-step">Report & rebalance</div></div>
+      <div class="case-story-grid"><section class="case-story-block"><span class="case-story-label">Visibility gap</span><p>Leads and SMEs could not inspect every mailbox throughout the day, allowing untouched, misplaced, aging or dependency-held emails to remain hidden.</p></section><section class="case-story-block"><span class="case-story-label">Command-centre view</span><p>A one-refresh VBA tracker scans monitored inboxes, captures selected details, maps associate ownership and converts live queues into urgency-based aging.</p></section><section class="case-story-block"><span class="case-story-label">Connected intelligence</span><p>Power Automate and Microsoft Lists retain incoming-email history, while Power Apps enables drill-down by region, SME, associate and market.</p></section><section class="case-story-block"><span class="case-story-label">Operational impact</span><p>The solution enables earlier breach intervention, clearer accountability, workload balancing, evidence-led staffing decisions and faster leadership review.</p></section></div>
+      <div class="case-tools" aria-label="Tools and capabilities"><span>Excel VBA</span><span>Power Automate</span><span>Microsoft Lists</span><span>Power Apps</span><span>Teams</span></div>
+    </article>
+<article class="case-study-featured case-deck-card" data-deck-card="2" data-accent="violet">
+      <div class="case-study-topline"><div><span class="case-number">CASE STUDY 03</span><h3>Intelligent Remittance Consolidation Engine</h3></div><span class="case-status">Implemented</span></div>
+      <p class="case-study-summary">Turned fragmented, multi-format remittances into <strong>posting-ready output within a few clicks</strong>, removing one of cash application’s most repetitive preparation bottlenecks.</p>
+      <div class="case-impact-grid case-impact-four" aria-label="Key outcomes"><div class="case-impact-card"><strong>Multi-format</strong><span>PDF, image & email tables</span></div><div class="case-impact-card"><strong>High-volume</strong><span>Legacy customer coverage</span></div><div class="case-impact-card"><strong>Few clicks</strong><span>Retrieval to output</span></div><div class="case-impact-card"><strong>Validated</strong><span>Posting-ready data</span></div></div>
+      <div class="case-flow-bar" aria-label="Solution flow"><div class="case-flow-step">Locate remittances</div><div class="case-flow-step">Retrieve attachments</div><div class="case-flow-step">Consolidate & convert</div><div class="case-flow-step">Prepare posting data</div></div>
+      <div class="case-story-grid"><section class="case-story-block"><span class="case-story-label">Fragmented inputs</span><p>Remittances arrived through email bodies, PDFs, images and third-party platforms such as billing portals, with no consistent customer format or retrieval path.</p></section><section class="case-story-block"><span class="case-story-label">Targeted automation</span><p>Customer-specific Outlook, Excel and Power Automate solutions locate relevant emails, retrieve documents and consolidate high-volume remittances into one controlled workspace.</p></section><section class="case-story-block"><span class="case-story-label">Data preparation</span><p>Retrieved information can be combined, cleaned and converted into structured Excel output, reducing repeated searching, exporting, copying and manual consolidation.</p></section><section class="case-story-block"><span class="case-story-label">Business impact</span><p>Associates receive organised, validated and posting-ready data faster, reducing fatigue, avoidable research and downstream debit, credit or matching exceptions.</p></section></div>
+      <div class="case-tools" aria-label="Tools and capabilities"><span>Outlook VBA</span><span>Excel VBA</span><span>Power Automate</span><span>PDF Consolidation</span><span>Data Transformation</span></div>
+    </article>
+<article class="case-study-featured case-deck-card" data-deck-card="3" data-accent="amber">
+      <div class="case-study-topline"><div><span class="case-number">CASE STUDY 04</span><h3>Automated Discrepancy Follow-Up & Audit Control</h3></div><span class="case-status">Implemented</span></div>
+      <p class="case-study-summary">Built a governed follow-up engine for unapplied cash and incomplete remittance cases, combining <strong>customer communication, timing controls and audit evidence</strong> in one workflow.</p>
+      <div class="case-impact-grid case-impact-four" aria-label="Key outcomes"><div class="case-impact-card"><strong>3-stage</strong><span>Reminder governance</span></div><div class="case-impact-card"><strong>24-hour</strong><span>Timing control</span></div><div class="case-impact-card"><strong>1 click</strong><span>Draft & log action</span></div><div class="case-impact-card"><strong>Full trail</strong><span>Audit-ready history</span></div></div>
+      <div class="case-flow-bar" aria-label="Solution flow"><div class="case-flow-step">Select case type</div><div class="case-flow-step">Generate communication</div><div class="case-flow-step">Enforce timing</div><div class="case-flow-step">Update audit trail</div></div>
+      <div class="case-story-grid"><section class="case-story-block"><span class="case-story-label">Control risk</span><p>Partial, incomplete or missing remittances required repeated customer follow-up. Manual handling created risks of skipped reminders, incorrect sequencing and premature contact.</p></section><section class="case-story-block"><span class="case-story-label">Guided communication</span><p>Associates enter payment references, choose the discrepancy reason and reminder stage, and generate a tailored Outlook communication from controlled templates.</p></section><section class="case-story-block"><span class="case-story-label">Timing & audit logic</span><p>The workbook records each action, calculates the next due date, highlights upcoming follow-ups and blocks reminders when the required time gap has not elapsed.</p></section><section class="case-story-block"><span class="case-story-label">Business impact</span><p>The solution improves communication consistency, protects the customer experience, strengthens unapplied-cash governance and creates a clean evidence trail for every case.</p></section></div>
+      <div class="case-tools" aria-label="Tools and capabilities"><span>Excel VBA</span><span>Outlook Automation</span><span>Dynamic Templates</span><span>Audit Logging</span><span>Timing Controls</span></div>
+    </article></div>
+      <div class="case-deck-hint">Scroll, swipe, or select the exposed card</div></div>
   </div>
 </section>
 
@@ -4006,8 +4059,8 @@ function queue(){if(!pending){pending=true;requestAnimationFrame(render);}}
 addEventListener('resize',()=>{fields.forEach(f=>f.resize());queue();},{passive:true});
 if(fine&&!reduced)addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;queue();},{passive:true});
 document.addEventListener('visibilitychange',queue);queue();
-if(fine&&!reduced){const sparks=[];let last=0;addEventListener('mousemove',e=>{const now=performance.now();if(now-last<40)return;last=now;const q=document.createElement('span');q.className='spark';q.style.left=e.clientX+'px';q.style.top=e.clientY+'px';document.body.appendChild(q);sparks.push(q);if(sparks.length>16)sparks.shift()?.remove();setTimeout(()=>q.remove(),700);},{passive:true});}
-document.querySelectorAll('.tilt').forEach(el=>{el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;el.style.transform=`rotateX(${(0.5-y)*10}deg) rotateY(${(x-0.5)*10}deg)`;},{passive:true});el.addEventListener('mouseleave',()=>el.style.transform='rotateX(0deg) rotateY(0deg)');});
+if(false){const sparks=[];let last=0;addEventListener('mousemove',e=>{const now=performance.now();if(now-last<40)return;last=now;const q=document.createElement('span');q.className='spark';q.style.left=e.clientX+'px';q.style.top=e.clientY+'px';document.body.appendChild(q);sparks.push(q);if(sparks.length>16)sparks.shift()?.remove();setTimeout(()=>q.remove(),700);},{passive:true});}
+document.querySelectorAll('.tilt-disabled').forEach(el=>{el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;el.style.transform=`rotateX(${(0.5-y)*10}deg) rotateY(${(x-0.5)*10}deg)`;},{passive:true});el.addEventListener('mouseleave',()=>el.style.transform='rotateX(0deg) rotateY(0deg)');});
 })();
 </script>
 <script>
@@ -5443,5 +5496,80 @@ if (yearEl) {
 <footer class="copyright">
 <p>© <span id="year"></span> Mohammad Mujahid. All rights reserved.</p>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const deck = document.getElementById('caseDeck');
+  const stage = document.getElementById('caseDeckStage');
+  if (!deck || !stage) return;
+  const cards = Array.from(stage.querySelectorAll('[data-deck-card]'));
+  let active = 0;
+  let locked = false;
+  let touchY = null;
+  let resizeTimer;
+
+  const wrap = index => (index + cards.length) % cards.length;
+
+  function applyStack() {
+    const previous = wrap(active - 1);
+    const next = wrap(active + 1);
+    cards.forEach((card, index) => {
+      card.classList.remove('is-active', 'is-prev', 'is-next', 'is-far', 'deck-in-up', 'deck-in-down', 'deck-out-up', 'deck-out-down');
+      card.removeAttribute('hidden');
+      card.setAttribute('aria-hidden', index === active ? 'false' : 'true');
+      if (index === active) card.classList.add('is-active');
+      else if (index === previous) card.classList.add('is-prev');
+      else if (index === next) card.classList.add('is-next');
+      else card.classList.add('is-far');
+    });
+    const activeHeight = cards[active].offsetHeight;
+    stage.style.height = (activeHeight + 172) + 'px';
+  }
+
+  function move(direction) {
+    if (locked) return;
+    locked = true;
+    active = wrap(active + direction);
+    applyStack();
+    window.setTimeout(() => { locked = false; }, 650);
+  }
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', event => {
+      if (index === active) return;
+      event.preventDefault();
+      if (card.classList.contains('is-next')) move(1);
+      else if (card.classList.contains('is-prev')) move(-1);
+    });
+  });
+
+  deck.addEventListener('wheel', event => {
+    if (locked || Math.abs(event.deltaY) < 22) return;
+    event.preventDefault();
+    move(event.deltaY > 0 ? 1 : -1);
+  }, { passive:false });
+
+  stage.addEventListener('touchstart', event => {
+    touchY = event.changedTouches[0].clientY;
+  }, { passive:true });
+  stage.addEventListener('touchend', event => {
+    if (touchY === null) return;
+    const delta = event.changedTouches[0].clientY - touchY;
+    if (Math.abs(delta) > 52) move(delta < 0 ? 1 : -1);
+    touchY = null;
+  }, { passive:true });
+
+  stage.addEventListener('keydown', event => {
+    if (event.key === 'ArrowDown') move(1);
+    if (event.key === 'ArrowUp') move(-1);
+  });
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(applyStack, 120);
+  }, { passive:true });
+
+  applyStack();
+});
+</script>
 </body>
 </html>
